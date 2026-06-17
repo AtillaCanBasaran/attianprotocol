@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ATTIAN PROTOCOL</title>
-    <style>
-        body {
-            background-color: #05010a;
-            color: #ff7cff;
-            font-family: Consolas, monospace;
-            max-width: 800px;
-            margin: 80px auto;
-            line-height: 1.6;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATTIAN PROTOCOL</title>
 
-        h1 {
-            color: #ff3df5;
-            letter-spacing: 4px;
-            text-shadow:
-                0 0 5px #ff3df5,
-                0 0 10px #ff3df5,
-                0 0 20px #ff3df5;
-        }
+<style>
 
-        a {
-            color: #d46cff;
-        }
+body {
+    background-color: #05010a;
+    color: #dca0ff;
+    font-family: Consolas, Monaco, monospace;
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 20px;
+    line-height: 1.6;
+}
 
-        .status {
-            margin-top: 30px;
-            color: #9b5cff;
-        }
-    </style>
+h1 {
+    color: #ff5cff;
+    letter-spacing: 6px;
+    text-shadow:
+        0 0 5px #ff5cff,
+        0 0 10px #ff5cff,
+        0 0 20px rgba(255,92,255,0.6);
+}
+
+.status {
+    color: #8d68b5;
+}
+
+.cursor {
+    color: #ff5cff;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
 <h1>ATTIAN PROTOCOL</h1>
 
-<p>Memory Node Active</p>
+<p>MEMORY NODE ACTIVE<span class="cursor">_</span></p>
 
 <div class="status">
 Last Synchronization: 17.06.2026
