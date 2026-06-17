@@ -6,28 +6,50 @@
 <title>ATTIAN PROTOCOL</title>
 
 <style>
+
 body {
-    background-color: #08040d;
-    color: #c99fff;
+    background-color: #05010a;
+    color: #b58ad8;
     font-family: Consolas, Monaco, monospace;
     max-width: 800px;
     margin: 80px auto;
     padding: 20px;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 h1 {
-    color: #e17cff;
-    letter-spacing: 4px;
-    text-shadow: 0 0 8px rgba(225,124,255,0.5);
+    color: #c56cff;
+    letter-spacing: 6px;
+    font-weight: normal;
+    text-shadow:
+        0 0 4px rgba(197,108,255,0.5),
+        0 0 10px rgba(197,108,255,0.25);
 }
 
 .status {
-    color: #75608c;
+    margin-top: 40px;
+    color: #6d5b80;
+    font-size: 0.9em;
 }
 
 .cursor {
-    animation: blink 1s infinite;
+    color: #c56cff;
+    animation: blink 1.2s infinite;
+}
+
+a {
+    color: #c56cff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-shadow: 0 0 6px rgba(197,108,255,0.6);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #2a1838;
+    margin: 30px 0;
 }
 
 @keyframes blink {
@@ -35,6 +57,7 @@ h1 {
         opacity: 0;
     }
 }
+
 </style>
 </head>
 
@@ -43,6 +66,14 @@ h1 {
 <h1>ATTIAN PROTOCOL</h1>
 
 <p>MEMORY NODE ACTIVE<span class="cursor">_</span></p>
+
+<hr>
+
+<p>
+Archive Status: Operational<br>
+Memory Integrity: Stable<br>
+Awaiting Collection...
+</p>
 
 <div class="status">
 Last Synchronization: 17.06.2026
