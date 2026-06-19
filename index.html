@@ -6,7 +6,6 @@
 <title>ATTIAN PROTOCOL</title>
 
 <style>
-
 body {
     background-color: #05010a;
     color: #b58ad8;
@@ -17,7 +16,7 @@ body {
     line-height: 1.8;
 }
 
-h1, h2 {
+h1 {
     color: #c56cff;
     letter-spacing: 6px;
     font-weight: normal;
@@ -25,59 +24,29 @@ h1, h2 {
         0 0 4px rgba(197,108,255,0.5),
         0 0 10px rgba(197,108,255,0.25);
 }
-
-.status {
-    margin-top: 40px;
-    color: #6d5b80;
-    font-size: 0.9em;
+.dim {
+    color: #6d5b80
 }
-
 .cursor {
     color: #c56cff;
     animation: blink 1.2s infinite;
 }
-
-a {
+.nav a {
     color: #c56cff;
     text-decoration: none;
-}
-
-a:hover {
-    text-shadow: 0 0 6px rgba(197,108,255,0.6);
-}
-
-hr {
-    border: none;
-    border-top: 1px solid #2a1838;
-    margin: 30px 0;
-}
-    
-.nav button:hover {
-    background: none;
-    border: none;
-    color: #c56cff;
-    font-family: inherit;
-    font-size: 1em;
     margin-right: 20px;
-    cursor: pointer;
     text-shadow: 0 0 6px rgba(197,108,255,0.3);
 }
     
-.console {
-    display: none;
-    margin-top: 40px;
-    border-top: 1px solid #2a1838;
-    padding-top: 25px;
+
+.nav a:hover {
+    color: #ffffff;
 }
 
-.console.active {
-    display: block;
-}
 @keyframes blink {
-    50% {
-        opacity: 0;
-    }
+    50% { opacity: 0; }
 }
+    
 
 </style>
 </head>
@@ -99,70 +68,11 @@ Awaiting Collection...<span class="cursor">_</span>
 </p>
 
 <div class="nav">
-    <button onclick="openConsole("archieve)" > [ archieve ] </button>
-    <button onclick="openConsole("fragments)" > [ fragments ] </button>
-    <button onclick="openConsole("theWall)" > [ theWall ] </button>
-    <button onclick="openConsole("status)" > [ status ] </button>
+    <a href="archive.html">[ archive ]</a>
+    <a href="fragments.html">[ fragments ]</a>
+    <a href="theWall.html">[ theWall ]</a>
+    <a href="status.html">[ status ]</a>
 </div>
-
-<div id="archive" class="console active">
-    <h2>ARCHIVE</h2>
-    <p class="dim">/memory_node/attian/entry_000</p>
-    <p>
-    Gentle Death touches all softly.<br><br>
-    I keep the stories of the living—<br>
-    their dreams, their follies, their ghosts.<br><br>
-    When she returns,<br>
-    I will tell her all.<br><br>
-    Then we shall leave,<br>
-    without goodbye.
-    </p>
-    <p class="dim">/memory_node/attian/archive</p>
-    <p>
-    No further memories archieved yet.<br>
-    Fragments remain scattered.
-    </p>
-</div>
-
-
-<div id="fragments" class="console">
-    <h2>FRAGMENTS</h2>
-    <p class="dim">/memory_node/attian/fragments</p>
-    <p>
-    Fragment 001: A thought survived deletion.<br>
-    Fragment 002: A place remembered me back.<br>
-    Fragment 003: Your hands are always on your face. Why are you tired all the time?
-    </p>
-</div>
-
-<div id="theWall" class="console">
-    <h2>FRAGMENTS</h2>
-    <p class="dim">/memory_node/attian/theWall</p>
-    <p>
-    This is where sacrifices are made. Please give yours:<br>  
-    </p>
-</div>
-
-<div id="status" class="console">
-    <h2>STATUS</h2>
-    <p class="dim">/system/status</p>
-    <p>
-    Last Synchronization: 17.06.2026<br>
-    Node State: Active<br>
-    Signal: Weak<br>
-    Collection: Pending
-    </p>
-</div>
-
-<script>
-function openConsole(id) {
-    const consoles = document.querySelectorAll('.console');
-    consoles.forEach(console => console.classList.remove('active'));
-
-    document.getElementById(id).classList.add('active');
-}
-</script>
-
     
 <div class="status">
 Last Synchronization: 17.06.2026
