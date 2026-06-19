@@ -17,7 +17,7 @@ body {
     line-height: 1.8;
 }
 
-h1 {
+h1, h2 {
     color: #c56cff;
     letter-spacing: 6px;
     font-weight: normal;
@@ -51,7 +51,28 @@ hr {
     border-top: 1px solid #2a1838;
     margin: 30px 0;
 }
+    
+.nav button:hover {
+    background: none;
+    border: none;
+    color: #c56cff;
+    font-family: inherit;
+    font-size: 1em;
+    margin-right: 20px;
+    cursor: pointer;
+    text-shadow: 0 0 6px rgba(197,108,255,0.3);
+}
+    
+.console {
+    display: none;
+    margin-top: 40px;
+    border-top: 1px solid #2a1838;
+    padding-top: 25px;
+}
 
+.console.active {
+    display: block;
+}
 @keyframes blink {
     50% {
         opacity: 0;
