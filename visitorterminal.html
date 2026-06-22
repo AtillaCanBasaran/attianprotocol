@@ -144,8 +144,7 @@ async function loadArchive() {
 
     const { data, error } = await client
         .from("visitor_logs")
-        .select("entry_title, visitor_name, log_text, created_at")
-        .eq("folder", "visitor_terminal")
+        .select("entry_title, visitor_name, log_text, created_at"
         .order("created_at", { ascending: false });
 
     if (error) {
