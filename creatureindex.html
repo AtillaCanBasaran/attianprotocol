@@ -1,21 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CREATURE INDEX</title>
+
 <style>
 body {
     background-color: #05010a;
     color: #b58ad8;
     font-family: Consolas, Monaco, monospace;
-    max-width: 800px;
+    max-width: 850px;
     margin: 80px auto;
     padding: 20px;
     line-height: 1.8;
 }
-h1 {
+
+h1, h2 {
     color: #c56cff;
     letter-spacing: 6px;
     font-weight: normal;
@@ -23,47 +24,185 @@ h1 {
         0 0 4px rgba(197,108,255,0.5),
         0 0 10px rgba(197,108,255,0.25);
 }
+
 .dim {
-    color: #6d5b80
+    color: #6d5b80;
 }
+
 .cursor {
     color: #c56cff;
     animation: blink 1.2s infinite;
 }
-.nav a {
+
+.profile-card {
+    border: 1px solid #2a1838;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 0 15px rgba(197,108,255,0.12);
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 6px 20px;
+}
+
+.label {
+    color: #6d5b80;
+}
+
+.value {
+    color: #b58ad8;
+}
+
+.admin-comment {
+    margin-top: 25px;
+    border-left: 1px solid #c56cff;
+    padding-left: 15px;
+    color: #d7b4ff;
+}
+
+a {
     color: #c56cff;
     text-decoration: none;
-    margin-right: 20px;
-    text-shadow: 0 0 6px rgba(197,108,255,0.3);
 }
-    
 
-.nav a:hover {
+a:hover {
     color: #ffffff;
+    text-shadow: 0 0 6px rgba(197,108,255,0.6);
+}
+
+.status {
+    margin-top: 40px;
+    color: #6d5b80;
 }
 
 @keyframes blink {
     50% { opacity: 0; }
 }
-
 </style>
 </head>
 
 <body>
 
-<h1>CREATURE INDEX</h1>
+<h1>COMPANION DATABASE</h1>
+
+<p class="dim">/memory_node/attian/companion_database</p>
+
 <p>
-Cats
-    DOgs
-    Sheep
-    Pigs
-    Ducks
-    Spiders
-  <span class="cursor">_</span>
-<br><br>
+Accessing trusted entity records...<span class="cursor">_</span>
+</p>
+
+<hr>
+
+<div class="profile-card">
+    <h2>ENTITY FILE: PAMUK</h2>
+
+    <p class="dim">
+    SPECIES: Felis catus
+    THREAT LEVEL: It can hurt humans emotionally <br>
+    RARITY: Common
+    RELATIONSHIP STATUS: Acquired companion, last update: 22.06.2026<br>
+    DATA INTEGRITY: Questionable but accepted
+    </p>
+
+    <div class="data-grid">
+        <div class="label">Name:</div>
+        <div class="value">Ege Gulsoy</div>
+
+        <div class="label">Birth Date:</div>
+        <div class="value">30.12.1995</div>
+
+        <div class="label">Last Known Location:</div>
+        <div class="value">Got a date with a chem-runner, 40°55'50"N - 29°7'2"E </div>
+
+        <div class="label">Gender:</div>
+        <div class="value">Male / system refuses further analysis</div>
+
+        <div class="label">Height:</div>
+        <div class="value">168 cm</div>
+
+        <div class="label">Eye Color:</div>
+        <div class="value">Brown</div>
+
+        <div class="label">Hair:</div>
+        <div class="value">Curly, short, brown</div>
+
+        <div class="label">Image File:</div>
+        <div class="value"><a href="images/ege.jpg" target="_blank">[ open visual record ]</a></div>
+
+        <div class="label">Hobbies:</div>
+        <div class="value">Being suspiciously present in the archive</div>
+
+        <div class="label">Talents:</div>
+        <div class="value">Surviving admin insults; maintaining companion status</div>
+    </div>
+
+    <div class="admin-comment">
+        <p class="dim">ADMIN COMMENT:</p>
+        <p>
+        Subject remains an essential companion despite multiple personality bugs.
+        Deletion request denied. Emotional attachment detected.
+        Unfortunately, the system appears to like him.
+        </p>
+    </div>
+</div>
+
+<div class="profile-card">
+    <h2>ENTITY FILE: CIHAN MUTLU</h2>
+
+    <p class="dim">
+    STATUS: Authorized companion, last update: 22.06.2026<br>
+    THREAT LEVEL: Emotionally annoying, physically harmless<br>
+    DATA INTEGRITY: Corrupted but accepted
+    </p>
+
+    <div class="data-grid">
+        <div class="label">Name:</div>
+        <div class="value">Cihan Ismail Mutlu Mersim</div>
+
+        <div class="label">Birth Date:</div>
+        <div class="value">23.05.1996</div>
+
+        <div class="label">Last Known Location:</div>
+        <div class="value">, 47°46'00"N - 09°17'45"E </div>
+
+        <div class="label">Gender:</div>
+        <div class="value">Male / system refuses further analysis</div>
+
+        <div class="label">Height:</div>
+        <div class="value">175 cm</div>
+
+        <div class="label">Eye Color:</div>
+        <div class="value">Claimed: Green, Actual: Hazel </div>
+
+        <div class="label">Hair:</div>
+        <div class="value">Long brown</div>
+
+        <div class="label">Image File:</div>
+        <div class="value"><a href="images/cihan.jpg" target="_blank">[ open visual record ]</a></div>
+
+        <div class="label">Hobbies:</div>
+        <div class="value">Being suspiciously present in the archive</div>
+
+        <div class="label">Talents:</div>
+        <div class="value">Surviving admin insults; maintaining companion status</div>
+    </div>
+
+    <div class="admin-comment">
+        <p class="dim">ADMIN COMMENT:</p>
+        <p>
+        Subject remains an essential companion despite multiple personality bugs.
+        Deletion request denied. Emotional attachment detected.
+        Unfortunately, the system appears to like him.
+        </p>
+    </div>
+</div>
+
 <div class="nav">
-    <a href="index.html">[ <-- back ]</a><br><br>
-</div>  
+    <p><a href="index.html">[ &lt;-- back ]</a></p>
+</div>
+
 <div class="status">
 Last Synchronization: 19.06.2026
 </div>
