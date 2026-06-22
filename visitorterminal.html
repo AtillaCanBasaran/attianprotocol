@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VISITOR TERMINAL</title>
+
 <style>
 body {
     background-color: #05010a;
@@ -19,82 +19,107 @@ h1 {
     color: #c56cff;
     letter-spacing: 6px;
     font-weight: normal;
-    text-shadow:
-        0 0 4px rgba(197,108,255,0.5),
-        0 0 10px rgba(197,108,255,0.25);
-}
-
-.signal-record {
-    border: 1px solid #6d3b91;
-    padding: 20px;
-    margin-bottom: 30px;
-    background: rgba(197,108,255,0.04);
-}
-
-.signal-record h2 {
-    color: #c56cff;
-    font-weight: normal;
+    text-shadow: 0 0 10px rgba(197,108,255,0.25);
 }
 
 .dim {
     color: #6d5b80;
 }
 
-.cursor {
-    color: #c56cff;
-    animation: blink 1.2s infinite;
+.terminal {
+    border: 1px solid #2a1838;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(197,108,255,0.15);
 }
 
-.nav a {
+input, textarea {
+    width: 100%;
+    background: #05010a;
+    color: #b58ad8;
+    border: 1px solid #2a1838;
+    font-family: Consolas, Monaco, monospace;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: none;
+    color: #c56cff;
+    border: 1px solid #c56cff;
+    padding: 8px 14px;
+    font-family: Consolas, Monaco, monospace;
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;
+    border-color: white;
+}
+
+a {
     color: #c56cff;
     text-decoration: none;
-    margin-right: 20px;
-    text-shadow: 0 0 6px rgba(197,108,255,0.3);
-}
-
-.nav a:hover {
-    color: #ffffff;
-}
-
-.status {
-    color: #6d5b80;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<h1> VISITOR TERMINAL // OFFLINE </h1>
+<h1>VISITOR TERMINAL</h1>
+<p class="dim">/memory_node/attian/visitor_terminal</p>
 
-<p class="dim">
-Recovered media fragments. Personal meaning unavailable. Reconstruction pending.
-<span class="cursor">_</span>
-</p>
+<div class="terminal">
+    <p class="dim">Create folder:</p>
+    <input id="folder" placeholder="e.g. forgotten_room">
 
-<div class="signal-record">
-    <h2>VISITOR_TERMINAL // OFFLINE</h2>
-    <p>
-        Visitor communication systems temporarily unavailable.<br>
-        Original implementation proved incompatible with current infrastructure.<br>
-        Alternative transmission methods are under evaluation.<br>
-        Resource allocation remains insufficient for deployment.<br>
-        Public access will be restored in a future update.
-    </p>
-</div>
-  
-<div class="nav">
-    <a href="index.html">[ <-- back ]</a>
+    <p class="dim">Write log:</p>
+    <textarea id="logText" rows="8" placeholder="Leave a fragment..."></textarea>
+
+    <button onclick="submitLog()">[ transmit ]</button>
+
+    <p id="response" class="dim"></p>
 </div>
 
-<br>
+<p><a href="index.html">[ return ]</a></p>
 
-<div class="status">
-Last Synchronization: 19.06.2026
-</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://kykvxudcgndhrtuiiazm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ALdL51D5F_lDYJz1LXKaiA_-8HGrOaD";
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function submitLog() {
+    const folder = document.getElementById("folder").value.trim();
+    const logText = document.getElementById("logText").value.trim();
+    const response = document.getElementById("response");
+
+    if (!folder || !logText) {
+        response.textContent = "ERROR: folder and log text required.";
+        return;
+    }
+
+    response.textContent = "TRANSMITTING...";
+
+    const { error } = await client
+        .from("visitor_logs")
+        .insert([
+            {
+                folder: folder,
+                log_text: logText
+            }
+        ]);
+
+    if (error) {
+        response.textContent = "TRANSMISSION FAILED: " + error.message;
+    } else {
+        response.textContent = "TRANSMISSION COMPLETE. FRAGMENT STORED.";
+        document.getElementById("folder").value = "";
+        document.getElementById("logText").value = "";
+    }
+}
+</script>
 
 </body>
 </html>
