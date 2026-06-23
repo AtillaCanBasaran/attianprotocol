@@ -34,6 +34,10 @@
     <a href="/memory_node/attian/">[ <-- back ]</a>
 </div>
 
+<div class="status">
+Last Synchronization: 23.06.2026 16:12
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -85,7 +89,8 @@ async function loadArchive() {
 
     const { data, error } = await client
         .from("visitor_logs")
-        .select("entry_title, visitor_name, log_text, created_at"
+        .select("entry_title, visitor_name, log_text, created_at")
+        .eq("folder", "visitor_terminal")
         .order("created_at", { ascending: false });
 
     if (error) {
