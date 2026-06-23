@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISITOR TERMINAL</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<body>
+
+<h1>VISITOR TERMINAL</h1>
+<p class="dim">/memory_node/attian/visitor_terminal</p>
+
+<div class="terminal">
+    <p class="dim">Submit visitor fragment:</p>
+
+    <input id="entryTitle" placeholder="ID / Title">
+    <input id="visitorName" placeholder="Name">
+    <input id="logText" placeholder="One sentence fragment">
+
+    <button onclick="submitLog()">[ transmit ]</button>
+
+    <p id="response" class="dim"></p>
+</div>
+
+<h2>VISITOR ARCHIVE</h2>
+<div id="archive" class="terminal">
+    <p class="dim">Loading stored fragments...</p>
+</div>
+
+<div class="nav">
+    <a href="/memory_node/attian/">[ <-- back ]</a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://kykvxudcgndhrtuiiazm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ALdL51D5F_lDYJz1LXKaiA_-8HGrOaD";
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function submitLog() {
+    const entryTitle = document.getElementById("entryTitle").value.trim();
+    const visitorName = document.getElementById("visitorName").value.trim();
+    const logText = document.getElementById("logText").value.trim();
+    const response = document.getElementById("response");
+
+    if (!entryTitle || !visitorName || !logText) {
+        response.textContent = "ERROR: title, name, and fragment required.";
+        return;
+    }
+
+    response.textContent = "TRANSMITTING...";
+
+    const { error } = await client
+        .from("visitor_logs")
+        .insert([
+            {
+                folder: "visitor_terminal",
+                entry_title: entryTitle,
+                visitor_name: visitorName,
+                log_text: logText
+            }
+        ]);
+
+    if (error) {
+        response.textContent = "TRANSMISSION FAILED: " + error.message;
+    } else {
+        response.textContent = "TRANSMISSION COMPLETE. FRAGMENT STORED.";
+
+        document.getElementById("entryTitle").value = "";
+        document.getElementById("visitorName").value = "";
+        document.getElementById("logText").value = "";
+
+        loadArchive();
+    }
+}
+
+async function loadArchive() {
+    const archive = document.getElementById("archive");
+
+    const { data, error } = await client
+        .from("visitor_logs")
+        .select("entry_title, visitor_name, log_text, created_at"
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        archive.innerHTML = "<p class='dim'>ARCHIVE ACCESS FAILED: " + error.message + "</p>";
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        archive.innerHTML = "<p class='dim'>No visitor fragments stored.</p>";
+        return;
+    }
+
+    archive.innerHTML = "";
+
+    data.forEach(entry => {
+        const date = new Date(entry.created_at).toLocaleString();
+
+        archive.innerHTML += `
+            <div class="entry">
+                <p class="dim">
+                ENTRY: ${escapeHTML(entry.entry_title)}<br>
+                VISITOR: ${escapeHTML(entry.visitor_name)}<br>
+                DATE: ${date}<br>
+                STATUS: RECOVERED
+                </p>
+
+                <p>> ${escapeHTML(entry.log_text)}</p>
+            </div>
+        `;
+    });
+}
+
+function escapeHTML(text) {
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+loadArchive();
+</script>
+
+</body>
+</html>
