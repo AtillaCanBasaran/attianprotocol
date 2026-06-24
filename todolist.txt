@@ -1,3 +1,8 @@
 - adding slight delay - terminal running effect when a page is loading
 
 -main page-descriptiion -- change mainpage name to navigator
+
+
+
+
+-- impresum and law stuff for google 
