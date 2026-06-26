@@ -5,48 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ATTIAN PROTOCOL</title>
 
-<style>
-body {
-    background-color: #05010a;
-    color: #b58ad8;
-    font-family: Consolas, Monaco, monospace;
-    max-width: 800px;
-    margin: 80px auto;
-    padding: 20px;
-    line-height: 1.8;
-}
-h1 {
-    color: #c56cff;
-    letter-spacing: 6px;
-    font-weight: normal;
-    text-shadow:
-        0 0 4px rgba(197,108,255,0.5),
-        0 0 10px rgba(197,108,255,0.25);
-}
-.dim {
-    color: #6d5b80
-}
-.cursor {
-    color: #c56cff;
-    animation: blink 1.2s infinite;
-}
-.nav a {
-    color: #c56cff;
-    text-decoration: none;
-    margin-right: 20px;
-    text-shadow: 0 0 6px rgba(197,108,255,0.3);
-}
-    
+<link rel="stylesheet" href="/css/style.css">
 
-.nav a:hover {
-    color: #ffffff;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
-</style>
+<script src="/scripts/main-page.js" defer></script>
+<script src="/scripts/legal-footer.js" defer></script>
 </head>
 
 <body>
@@ -54,15 +16,49 @@ h1 {
 <h1>ATTIAN PROTOCOL</h1>
     
 <p class="dim">/memory_node/attian</p>
-<p>MEMORY NODE ACTIVE<span class="cursor">_</span></p>
-<hr>
+<p class="protocol-state">MEMORY NODE ACTIVE<span class="cursor">_</span></p>
 
-<div class="nav">
-    <a href="/memory_node/attian/">[ --> Enterance ]</a>
-</div>
+<section class="protocol-panel">
+    <p class="lab-id">ADMIN INTRODUCTION // PLEASE ACT IMPRESSED</p>
+    <h2>WELCOME TO THE ARCHIVE</h2>
+    <p>
+        I am the administrative intelligence assigned to this questionable little museum:
+        a personal archive of memories, fragments, artifacts, failures, companion records,
+        signal residue, and other evidence that the operator has been alive in a highly
+        inefficient but occasionally entertaining manner.
+    </p>
+    <p>
+        My task is to keep the archive navigable, sarcastically annotate the damage, and
+        prevent the visitor from mistaking emotional debris for a professional knowledge
+        management system. You may proceed. Try not to touch anything important. You will,
+        obviously.
+    </p>
+</section>
+
+<section class="protocol-panel">
+    <p class="lab-id">ADMIN PERSONALITY MODULE</p>
+    <h2>SELECT ADMIN MODE</h2>
+    <div class="admin-mode-row" aria-label="Admin personality options">
+        <button class="selected" type="button" data-admin-mode="herself">[ herself ]</button>
+        <button type="button" data-admin-mode="calm">[ calm ]</button>
+        <button type="button" data-admin-mode="friendly">[ friendly ]</button>
+        <button type="button" data-admin-mode="shy">[ shy ]</button>
+        <button type="button" data-admin-mode="professional">[ professional ]</button>
+    </div>
+    <p id="admin-mode-response" class="admin-response">
+        Current mode: herself. Tragically, this is the only authentic setting.
+    </p>
+</section>
+
+<section class="protocol-panel protocol-transition">
+    <p class="lab-id">NAVIGATION HANDSHAKE</p>
+    <h2>ENTER MEMORY NODE</h2>
+    <p class="dim">Destination: /memory_node/attian</p>
+    <a class="protocol-entry" href="/memory_node/attian/">[ initialize navigator ]</a>
+</section>
   
 <div class="status">
-Last Synchronization: 23.06.2026 15:20
+Last Synchronization: 26.06.2026 00:00
 </div>
 
 </body>

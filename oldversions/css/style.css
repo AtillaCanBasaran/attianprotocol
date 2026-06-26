@@ -1,0 +1,142 @@
+body {
+    background-color: #05010a;
+    color: #b58ad8;
+    font-family: Consolas, Monaco, monospace;
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 20px;
+    line-height: 1.8;
+}
+
+h1, h2 {
+    color: #c56cff;
+    letter-spacing: 6px;
+    font-weight: normal;
+    text-shadow:
+        0 0 4px rgba(197,108,255,0.5),
+        0 0 10px rgba(197,108,255,0.25);
+}
+.record-box1 {
+    border: 1px solid #6d3b91;
+    padding: 20px;
+    margin-bottom: 30px;
+    background: rgba(197,108,255,0.04);
+}
+.record.box h2h2 {
+    color: #c56cff;
+    font-weight: normal;
+}
+
+.artifact    {
+    display: block;
+    max-width: 100%;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    border: 1px solid #2a1838;
+    box-shadow: 0 0 15px rgba(197,108,255,0.15);
+}
+
+.profile-card {
+    border: 1px solid #2a1838;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 0 15px rgba(197,108,255,0.12);
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 6px 20px;
+}
+
+.label {
+    color: #6d5b80;
+}
+
+.value1 {
+    color: #b58ad8;
+}
+
+.admin-comment {
+    margin-top: 25px;
+    border-left: 1px solid #c56cff;
+    padding-left: 15px;
+    color: #d7b4ff;
+}
+
+.terminal {
+    border: 1px solid #2a1838;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(197,108,255,0.15);
+    margin-bottom: 35px;
+}
+
+input {
+    width: 100%;
+    background: #05010a;
+    color: #b58ad8;
+    border: 1px solid #2a1838;
+    font-family: Consolas, Monaco, monospace;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: none;
+    color: #c56cff;
+    border: 1px solid #c56cff;
+    padding: 8px 14px;
+    font-family: Consolas, Monaco, monospace;
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;
+    border-color: white;
+}
+
+.entry {
+    border-left: 1px solid #c56cff;
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+.dim {
+    color: #6d5b80;
+}
+
+.cursor {
+    color: #c56cff;
+    animation: blink 1.2s infinite;
+}
+
+a {
+    color: #c56cff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+.nav a {
+    color: #c56cff;
+    text-decoration: none;
+    margin-right: 20px;
+    text-shadow: 0 0 6px rgba(197,108,255,0.3);
+}
+
+.nav a:hover {
+    color: #ffffff;
+}
+
+
+.status {
+    color: #6d5b80;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
