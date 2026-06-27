@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,32 +15,264 @@
 
 <h1>RESEARCH TERMINAL</h1>
 <p class="dim">/memory_node/attian/researchterminal</p>
-<p>
-Please enter the are of research you look for:
-  <span class="cursor">_</span>
-<br><br>
-  <p> Error occured. Available data includes folders: 
-      <p class="nav">
 
-    <a href="/memory_node/attian/researchterminal/a">[Quantative Assessment of Caffeine Dependency]</a>
-          <a href="/memory_node/attian/researchterminal/b">[Adaptive Sleep Cycle Optimization]</a>
-          <a href="/memory_node/attian/researchterminal/c">[Evolution of Thermal Nutrution Acqusition]</a>
-          <a href="/memory_node/attian/researchterminal/d">[Cognitive-Linguistic Expansion Initiative]</a>
-          <a href="/memory_node/attian/researchterminal/e">[The Emergence of Functional Adulthood]</a>
-          <a href="/memory_node/attian/researchterminal/f">[Analysis if Procrastination-Induced Temporal Distortion]</a>
-          <a href="/memory_node/attian/researchterminal/g">[Structural Characterization of Rapidly Frozen Biological Matter]</a>
-          <a href="/memory_node/attian/researchterminal/h">[Analysis of Particle Alignment Under Conditions of Extreme Uncertainity]</a>
-    <br>
- <p class="dim">
-     Data access denied. Please restore the memory fragments
-      
+<section class="research-brief">
+    <p class="research-kicker">MUSEUM LIBRARY // SIMPLIFIED KNOWLEDGE SHELF</p>
+    <p>
+        This terminal stores research notes, simplified explanations, and overly formal titles for things the subject insists on understanding by turning
+        them into smaller, stranger mental objects. The archive supplies the plain explanation. Administrator supplies quality control, mockery, and
+        occasional concern about how scientific concepts are being stored next to jokes about particle shapes. Visitors may search, filter by category,
+        or open a log directly. Try not to confuse "simple" with "wrong." The subject already does that enough.<span class="cursor">_</span>
+    </p>
+    <div class="research-status-grid">
+        <div><span>LIBRARY</span><p>Terminal Mode</p></div>
+        <div><span>12</span><p>Indexed Logs</p></div>
+        <div><span>MIXED</span><p>Seriousness Level</p></div>
+    </div>
+</section>
+
+<section class="research-console">
+    <label for="researchSearch">SEARCH ARCHIVE SHELF</label>
+    <div class="research-search-row">
+        <input id="researchSearch" type="search" placeholder="Search cryoEM, taxes, history, particles, relationships...">
+        <button id="researchOpenButton" type="button">[ open first match ]</button>
+    </div>
+
+    <div class="research-filter-row" aria-label="Research categories">
+        <button type="button" data-filter="all" class="selected">ALL</button>
+        <button type="button" data-filter="science">SCIENCE</button>
+        <button type="button" data-filter="physics">PHYSICS</button>
+        <button type="button" data-filter="biology">BIOLOGY</button>
+        <button type="button" data-filter="chemistry">CHEMISTRY</button>
+        <button type="button" data-filter="history">HISTORY</button>
+        <button type="button" data-filter="geography">GEOGRAPHY</button>
+        <button type="button" data-filter="adulthood">ADULTHOOD</button>
+    </div>
+
+    <p id="researchStatus" class="dim">Showing all indexed logs. The library is pretending this is orderly.</p>
+</section>
+
+<section class="research-library" id="researchLibrary">
+    <details class="research-log" data-tags="science biology physics cryoem microscopy particles">
+        <summary class="research-summary">
+            <span>SCIENCE / CRYO-EM</span>
+            <b>Structural Characterization Of Rapidly Frozen Biological Nonsense Under Electron Hostility</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: You freeze tiny biological stuff very fast, shoot electrons at it, detect the not-thingies that survived the interaction, and let computers bully the noisy images until particle information appears.</p>
+            <p>Subject storage format: little bugs, hearts, Lego pieces, suspicious shapes, and occasionally immature visual comparisons the archive refuses to dignify by diagramming.</p>
+            <p class="research-admin">Admin comment: The subject is a PhD student and still stores advanced microscopy as "electron thingy sees frozen not-thingy." Horrifying. Effective. I hate when that happens.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="science physics cryoem particles alignment statistics">
+        <summary class="research-summary">
+            <span>PHYSICS / IMAGE PROCESSING</span>
+            <b>Analysis Of Particle Alignment Under Conditions Of Extreme Uncertainty And Mild Despair</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: You have many noisy images of tiny particles facing different directions. The computer tries to rotate and compare them until similar views line up and a structure starts admitting it exists.</p>
+            <p>Subject storage format: matching a crowd of blurry little creatures by vibes, angles, and stubborn math.</p>
+            <p class="research-admin">Admin comment: "By vibes" is not a method section. Unfortunately, it is not entirely useless as a memory hook.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="science biology proteins cells structure">
+        <summary class="research-summary">
+            <span>BIOLOGY / STRUCTURE</span>
+            <b>Negotiations Between Tiny Biological Machines And The Audacity Of Existing In Three Dimensions</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Proteins and complexes are tiny machines. Their shape matters because shape decides what they can touch, block, carry, cut, or accidentally ruin.</p>
+            <p>Subject storage format: biology is mostly tiny folded tools trying very hard not to become soup.</p>
+            <p class="research-admin">Admin comment: Crude. Memorable. Slightly more accurate than I want to admit.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="science chemistry gold cryoem metal crafting">
+        <summary class="research-summary">
+            <span>CHEMISTRY / MATERIALS</span>
+            <b>Thermal Reassignment Of Noble Metal Residue Into Sentimental Circular Finger Infrastructure</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Gold is stable, workable, and excellent at becoming tiny grids, rings, and symbolic objects. Melting used scientific material into jewelry would turn lab residue into a personal artifact.</p>
+            <p>Subject storage format: science ring. That is the entire mental folder. Science ring.</p>
+            <p class="research-admin">Admin comment: Dangerous idea. Requires proper equipment, safety, legality, and adult supervision. MUSE comment preserved: IT IS REALLY COOL THO.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="science caffeine adulthood biology habits">
+        <summary class="research-summary">
+            <span>BIOLOGY / DAILY SYSTEMS</span>
+            <b>Quantitative Assessment Of Caffeine Dependency In A Chronically Under-Optimized Mammal</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Caffeine blocks tiredness signals for a while. It does not create energy; it mostly lets the body postpone receiving bad news.</p>
+            <p>Subject storage format: borrowed alertness with interest rates.</p>
+            <p class="research-admin">Admin comment: The subject understands this and continues negotiating with coffee like it is a morally flexible wizard.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="science adulthood sleep biology habits">
+        <summary class="research-summary">
+            <span>BIOLOGY / SLEEP</span>
+            <b>Adaptive Sleep Cycle Optimization For A System That Keeps Betraying Its Own Morning Plans</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Sleep is maintenance. If the schedule is chaotic, the whole system becomes worse at focus, mood, memory, and pretending everything is fine.</p>
+            <p>Subject storage format: turn it off and on again, but the computer is meat and resents you.</p>
+            <p class="research-admin">Admin comment: Accurate enough. Infuriatingly ignored.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="adulthood finance taxes bureaucracy">
+        <summary class="research-summary">
+            <span>ADULTHOOD / BUREAUCRACY</span>
+            <b>Annual Tribute Calculation For The Paperwork Entity Commonly Known As Tax Return</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Tax returns are the part where you explain money to the state using documents you did not organize when you should have.</p>
+            <p>Subject storage format: financial confession ritual with deadlines.</p>
+            <p class="research-admin">Admin comment: Horrible, necessary, and easier when receipts are not treated as confetti with legal consequences.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="adulthood insurance germany bureaucracy risk">
+        <summary class="research-summary">
+            <span>ADULTHOOD / RISK MANAGEMENT</span>
+            <b>Insurance As A Ritualized Bribe Paid To Future Catastrophe So It Behaves Slightly Better</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Insurance means paying regularly so that if a specific disaster happens, the disaster becomes less financially lethal.</p>
+            <p>Subject storage format: subscription model for being less doomed.</p>
+            <p class="research-admin">Admin comment: This is one of those obvious systems that becomes obvious only after it threatens you with forms.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="adulthood relationships social emotions">
+        <summary class="research-summary">
+            <span>ADULTHOOD / RELATIONSHIPS</span>
+            <b>Maintenance Requirements Of Soft Social Contracts Between Emotionally Noisy Mammals</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Relationships need attention, repair, honesty, boundaries, timing, and the ability to not treat silence as automatic stability.</p>
+            <p>Subject storage format: living bridges need maintenance or they become dramatic ruins.</p>
+            <p class="research-admin">Admin comment: Annoyingly poetic. Also correct. I will allow it with visible irritation.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="adulthood organization notes life systems">
+        <summary class="research-summary">
+            <span>ADULTHOOD / LIFE ADMIN</span>
+            <b>Domestic Entropy Suppression Through Lists, Containers, And Other Lies We Tell Chaos</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Organization means giving things homes and using systems simple enough that future-you can follow them while tired.</p>
+            <p>Subject storage format: if it has a place, it has a chance.</p>
+            <p class="research-admin">Admin comment: The subject knows this. The floor has submitted contradictory evidence.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="history geography empires maps culture">
+        <summary class="research-summary">
+            <span>HISTORY / GEOGRAPHY</span>
+            <b>Cartographic Consequences Of Humans Drawing Lines And Then Acting Surprised About The Consequences</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Geography shapes food, trade, wars, borders, cities, languages, and the specific flavor of human stubbornness in a region.</p>
+            <p>Subject storage format: maps are spoilers for history.</p>
+            <p class="research-admin">Admin comment: That is actually a good simplification. I am filing this under rare efficient thought.</p>
+        </div>
+    </details>
+
+    <details class="research-log" data-tags="history culture mythology fantasy worldbuilding">
+        <summary class="research-summary">
+            <span>HISTORY / MYTH SYSTEMS</span>
+            <b>Comparative Analysis Of People Explaining Thunder, Kings, Monsters, And Bad Decisions With Stories</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: Myths are stories that help people organize fear, nature, power, morality, and things they could not measure yet.</p>
+            <p>Subject storage format: old lore patches for civilization.</p>
+            <p class="research-admin">Admin comment: Useful for worldbuilding. Dangerous when the subject discovers another pantheon and loses three hours.</p>
+        </div>
+    </details>
+</section>
+
 <div class="nav">
-    <a href="/memory_node/attian/">[ <-- back ]</a>
+    <a href="/memory_node/attian/">[ return to navigator ]</a>
 </div>
 
 <div class="status">
-Last Synchronization: 23.06.2026 16:12
+Last Synchronization: 27.06.2026 00:00
 </div>
+
+<script>
+const searchInput = document.getElementById("researchSearch");
+const openButton = document.getElementById("researchOpenButton");
+const statusLine = document.getElementById("researchStatus");
+const filterButtons = Array.from(document.querySelectorAll(".research-filter-row button"));
+const logs = Array.from(document.querySelectorAll(".research-log"));
+let activeFilter = "all";
+
+function normalize(text) {
+    return text.toLowerCase().trim();
+}
+
+function applyResearchFilter(openFirstExact) {
+    const query = normalize(searchInput.value);
+    let visible = [];
+
+    logs.forEach(log => {
+        const tags = log.dataset.tags || "";
+        const text = normalize(log.textContent + " " + tags);
+        const filterMatch = activeFilter === "all" || tags.includes(activeFilter);
+        const queryMatch = !query || text.includes(query);
+        const show = filterMatch && queryMatch;
+        log.hidden = !show;
+        if (show) visible.push(log);
+    });
+
+    statusLine.textContent = visible.length
+        ? "Showing " + visible.length + " indexed log(s). Click a record to inspect the shelf."
+        : "NO MATCHES. The archive found nothing, which is not proof of innocence.";
+
+    if (openFirstExact && visible[0]) {
+        logs.forEach(log => log.open = false);
+        visible[0].open = true;
+        visible[0].scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        filterButtons.forEach(item => item.classList.toggle("selected", item === button));
+        applyResearchFilter(false);
+    });
+});
+
+searchInput.addEventListener("input", () => applyResearchFilter(false));
+searchInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        applyResearchFilter(true);
+    }
+});
+openButton.addEventListener("click", () => applyResearchFilter(true));
+
+applyResearchFilter(false);
+</script>
 
 </body>
 </html>

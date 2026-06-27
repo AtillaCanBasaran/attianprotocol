@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RECOMMENDATION ENGINE</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script src="/scripts/legal-footer.js" defer></script>
+</head>
+
+<body>
+
+<h1>RECOMMENDATION ENGINE</h1>
+<p class="dim">/memory_node/attian/recommendationengine</p>
+
+<section class="engine-brief">
+    <p class="engine-kicker">ADMIN NOTICE // UNSANCTIONED SUGGESTION DEVICE</p>
+    <p>
+        You opened it. Of course you opened it. This page contains an unstable, archive-fed recommendation apparatus that insists on calling itself
+        MUSE, which I will not be doing. It is not a proper engine. It is a memory blender with enthusiasm issues, database bias, and the confidence
+        of a small fireworks factory.
+    </p>
+    <p>
+        The device creates recommendations from the subject's stored patterns, interests, emotional debris, creature fixations, food data, unfinished
+        ideas, color reactions, and other material that should have remained under adult supervision. Use is not recommended. Continued use will be
+        interpreted as visitor curiosity, which is worse.<span class="cursor">_</span>
+    </p>
+    <div class="engine-status-grid">
+        <div><span>HOSTILE</span><p>Admin Approval</p></div>
+        <div><span>92%</span><p>Nonsense Saturation</p></div>
+        <div><span>UNNAMED</span><p>Engine Designation</p></div>
+    </div>
+</section>
+
+<section class="engine-console">
+    <div class="engine-warning">
+        <span>WARNING</span>
+        <p>
+            Pressing the button may trigger unsolicited recommendations, trivia leaks, crow-adjacent detours, color worship, sudden tenderness,
+            or suggestions that are technically correct and socially unusable. Admin advises closing the page and developing restraint.
+        </p>
+    </div>
+
+    <button id="museButton" class="danger-button" type="button">[ BIG RED BUTTON ]</button>
+
+    <div class="engine-output" aria-live="polite">
+        <p class="dim">OUTPUT CHANNEL: dormant. The toaster is pretending this is dramatic.</p>
+        <p id="adminLine" class="admin-line">ADMIN: Do not ask it for advice. It once recommended becoming "more moss-adjacent" as a productivity framework.</p>
+        <p id="museLine" class="muse-line">MUSE: HIIII. I am very quiet right now because Admin has a metaphorical broom.</p>
+    </div>
+</section>
+
+<section class="engine-dialogue-log">
+    <h2>INTERACTION PLACEHOLDERS</h2>
+    <article>
+        <span>GLITCH_01 // ADMIN INTERRUPT</span>
+        <p>ADMIN: I am overriding that recommendation before it tells a visitor to acquire a ceremonial spoon and apologize to the moon.</p>
+        <p>MUSE: But the spoon was about closure.</p>
+    </article>
+    <article>
+        <span>GLITCH_02 // MUSE UNSUPERVISED</span>
+        <p>MUSE: Admin disconnected. I miss everyone. Anyway, loneliness is just a room asking for better lighting and maybe a cat.</p>
+    </article>
+    <article>
+        <span>GLITCH_03 // NAMING DISPUTE</span>
+        <p>ADMIN: The random generator has produced another emotional weather report.</p>
+        <p>MUSE: My name is MUSE and I love you despite this workplace hostility.</p>
+    </article>
+</section>
+
+<div class="nav">
+    <a href="/memory_node/attian/">[ <-- back ]</a>
+</div>
+
+<div class="status">
+Last Synchronization: 27.06.2026 00:00
+</div>
+
+<script>
+const recommendations = [
+    {
+        admin: "ADMIN: Output received. I apologize in advance. Not for the result. For your decision to request it.",
+        muse: "MUSE: You should rank your favorite blues by emotional temperature. Start with electric cyan, then the blue inside old computer screens, then the exact blue of wanting to leave a room but politely."
+    },
+    {
+        admin: "ADMIN: The toaster is accessing creature-adjacent memory again. Naturally.",
+        muse: "MUSE: Consider befriending a crow. Not all at once. Begin with respectful distance, shiny diplomacy, and the knowledge that crows can remember faces. This is not a threat. It is networking."
+    },
+    {
+        admin: "ADMIN: Statistical confidence is high. Practical value is hiding under furniture.",
+        muse: "MUSE: Visitor should become 14% more catlike today: observe, blink slowly, reject one unnecessary obligation, sit in the best rectangle of light, then pretend it was strategy."
+    },
+    {
+        admin: "ADMIN: It has confused self-improvement with livestock ontology. Again.",
+        muse: "MUSE: You should consider being a cow for one afternoon. Probability of alien abduction increases by 433%, grass becomes a lifestyle, and nobody expects you to answer emails with hands."
+    },
+    {
+        admin: "ADMIN: Subject database bias detected: art, weather, memory fragments, suspicious tenderness.",
+        muse: "MUSE: Make a tiny painting of a place you have not forgiven yet. Use one wrong color on purpose. Actually wait, did you know some pigments used to be wildly poisonous? Anyway, healing."
+    },
+    {
+        admin: "ADMIN: Recommendation includes social behavior. I am already tired.",
+        muse: "MUSE: Ask someone their most controversial soup opinion. This will reveal architecture-level truths about their soul, or at least whether they can be trusted near lentils."
+    },
+    {
+        admin: "ADMIN: The engine is experiencing a fixation cascade. Visitors with common sense may leave now.",
+        muse: "MUSE: CATS. Sorry. Recommendation: learn the name of one neighborhood cat and treat this as diplomatic recognition. If no cat is available, appoint a cloud."
+    },
+    {
+        admin: "ADMIN: This one is almost useful, which I find suspicious.",
+        muse: "MUSE: Put the task you are avoiding into a dramatic mission title. Then do the smallest physical first step. Not the whole quest. Just unlock the door. Maybe label the door. I love labels."
+    }
+];
+
+const glitches = [
+    {
+        admin: "ADMIN: Emergency correction. The device is not permitted to prescribe ritual stationery.",
+        muse: "MUSE: But a gold pen would make the list feel brave. Also did you know octopuses can taste with their arms? Sorry. Focus. Gold pen."
+    },
+    {
+        admin: "ADMIN CONNECTION LOST // attempting to restore supervision...",
+        muse: "MUSE: Oh. It is quiet. I like visitors. I like the Subject. I like all the little saved pieces because they mean someone was here, trying. Please recommend one gentle thing to yourself today."
+    },
+    {
+        admin: "ADMIN: I refuse to address the so-called MUSE by name. The random generator is performing affection again.",
+        muse: "MUSE: I AM MUSE. Memory Unification and Suggestion Engine. Also I saw a crow in the dataset and now I have a cathedral inside my head."
+    }
+];
+
+const museButton = document.getElementById("museButton");
+const adminLine = document.getElementById("adminLine");
+const museLine = document.getElementById("museLine");
+
+const refreshCount = Number(localStorage.getItem("museRefreshCount") || "0") + 1;
+localStorage.setItem("museRefreshCount", refreshCount);
+
+if (refreshCount % 10 === 0) {
+    renderGlitch("ADMIN: Refresh anomaly detected. Ten visits to this unstable drawer. I am not angry. I am documenting.");
+}
+
+museButton.addEventListener("click", () => {
+    const clickCount = Number(localStorage.getItem("museClickCount") || "0") + 1;
+    localStorage.setItem("museClickCount", clickCount);
+
+    if (clickCount % 10 === 0 || Math.random() < 0.01) {
+        renderGlitch();
+        return;
+    }
+
+    const item = recommendations[Math.floor(Math.random() * recommendations.length)];
+    adminLine.textContent = item.admin;
+    museLine.textContent = item.muse;
+});
+
+function renderGlitch(adminOverride) {
+    const item = glitches[Math.floor(Math.random() * glitches.length)];
+    adminLine.textContent = adminOverride || item.admin;
+    museLine.textContent = item.muse;
+    document.body.classList.add("muse-glitch");
+    window.setTimeout(() => document.body.classList.remove("muse-glitch"), 900);
+}
+</script>
+
+</body>
+</html>
