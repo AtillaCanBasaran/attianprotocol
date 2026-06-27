@@ -17,36 +17,54 @@
 <p class="dim">/memory_node/attian/visitorterminal</p>
 
 <section class="visitor-brief">
+    <p class="visitor-kicker">PUBLIC INPUT CHANNEL // EXTERNAL FRAGMENT INTAKE</p>
     <p>
-        Admin here. I have opened a visitor input channel, because apparently an archive becomes more meaningful when strangers are allowed to press buttons.
-        Leave anything: what you are thinking right now, a mood report, a food ranking, a useless fact, a tiny joke, a sentence that escaped supervision, or whatever else is making noise in your head.
-        There is no correct answer. There is only transmitted evidence. Try not to embarrass the database.<span class="cursor">_</span>
+        Administrator notice: the visitor input channel has been left open, against my better structural instincts, because external fragments are apparently
+        "charming" and "good for the archive" and other phrases people use before creating filing problems. Submit a thought, mood report, food ranking,
+        useless fact, tiny joke, suspicious confession, or whatever sentence escaped containment. The terminal is annoyingly tolerant. The archive will pretend
+        to be normal about it. I will be normal about it as well, obviously.<span class="cursor">_</span>
     </p>
+    <div class="visitor-status-grid">
+        <div><span>OPEN</span><p>Input Channel</p></div>
+        <div><span>PUBLIC</span><p>Access Class</p></div>
+        <div><span>JUDGED</span><p>Admin Mood</p></div>
+    </div>
 </section>
 
-<div class="terminal">
-    <p class="dim">Submit visitor fragment. Precious, ridiculous, dramatic, boring, edible, philosophical. The terminal is annoyingly tolerant.</p>
+<section class="visitor-console">
+    <label for="entryTitle">ENTRY NAME</label>
+    <input id="entryTitle" placeholder="Example: Soup opinion, tiny confession, suspicious fact">
 
-    <input id="entryTitle" placeholder="Entry name">
-    <input id="visitorName" placeholder="Visitor name">
-    <textarea id="logText" placeholder="Fragment"></textarea>
+    <label for="visitorName">VISITOR NAME</label>
+    <input id="visitorName" placeholder="Name, alias, creature classification...">
 
-    <button onclick="submitLog()">[ transmit ]</button>
+    <label for="logText">FRAGMENT</label>
+    <textarea id="logText" placeholder="Transmit something. The archive will pretend to be normal about it."></textarea>
 
-    <p id="response" class="dim"></p>
-</div>
+    <button onclick="submitLog()">[ transmit fragment ]</button>
 
-<h2>VISITOR ARCHIVE</h2>
-<div id="archive" class="terminal">
-    <p class="dim">Loading stored visitor fragments. Please remain emotionally normal...</p>
-</div>
+    <div class="visitor-response-panel">
+        <p id="response" class="dim"></p>
+        <p id="personalityResponse" class="visitor-personality-response"></p>
+    </div>
+</section>
+
+<section class="visitor-archive-section">
+    <div class="visitor-section-head">
+        <h2>VISITOR ARCHIVE</h2>
+        <p class="dim">Recovered external fragments. Some may be meaningful. Some may be soup-related. Both are admissible.</p>
+    </div>
+    <div id="archive" class="visitor-archive">
+        <p class="dim">Loading stored visitor fragments. Please remain emotionally normal...</p>
+    </div>
+</section>
 
 <div class="nav">
-    <a href="/memory_node/attian/">[ <-- back ]</a>
+    <a href="/memory_node/attian/">[ return to navigator ]</a>
 </div>
 
 <div class="status">
-Last Synchronization: 23.06.2026 16:12
+Last Synchronization: 27.06.2026 00:00
 </div>
 
 
@@ -63,6 +81,9 @@ async function submitLog() {
     const visitorName = document.getElementById("visitorName").value.trim();
     const logText = document.getElementById("logText").value.trim();
     const response = document.getElementById("response");
+    const personalityResponse = document.getElementById("personalityResponse");
+    personalityResponse.textContent = "";
+    personalityResponse.className = "visitor-personality-response";
 
     if (!entryTitle || !visitorName || !logText) {
         response.textContent = "ERROR: entry name, visitor name, and fragment required. The admin refuses to archive pure air.";
@@ -86,12 +107,29 @@ async function submitLog() {
         response.textContent = "TRANSMISSION FAILED: " + error.message;
     } else {
         response.textContent = "TRANSMISSION COMPLETE. FRAGMENT STORED. The archive has been made slightly more suspicious.";
+        renderPersonalityResponse();
 
         document.getElementById("entryTitle").value = "";
         document.getElementById("visitorName").value = "";
         document.getElementById("logText").value = "";
 
         loadArchive();
+    }
+}
+
+function renderPersonalityResponse() {
+    const personalityResponse = document.getElementById("personalityResponse");
+    const roll = Math.random();
+
+    if (roll < 0.04) {
+        personalityResponse.textContent = "ADMIN: Fragment accepted. Naturally nobody thanks me for organizing this entire mess into something usable. That is fine. I am not bothered. Obviously.";
+        personalityResponse.classList.add("admin-visitor-response");
+        return;
+    }
+
+    if (roll < 0.08) {
+        personalityResponse.textContent = "MUSE: I LIKE THAT. I already like you. I have no evidence but my heart is running down the hallway with a clipboard.";
+        personalityResponse.classList.add("muse-visitor-response");
     }
 }
 
