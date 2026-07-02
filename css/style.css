@@ -16,6 +16,48 @@ h1, h2 {
         0 0 4px rgba(197,108,255,0.5),
         0 0 10px rgba(197,108,255,0.25);
 }
+
+code {
+    color: #71ffe3;
+    background: rgba(113,255,227,0.055);
+    border: 1px solid #1f3f42;
+    padding: 1px 4px;
+}
+
+.update-entry {
+    border: 1px solid #2a1838;
+    padding: 22px;
+    margin: 30px 0 38px;
+    background:
+        linear-gradient(135deg, rgba(197,108,255,0.06), transparent 46%),
+        rgba(5,1,10,0.66);
+    box-shadow: 0 0 14px rgba(197,108,255,0.10);
+}
+
+.update-code {
+    margin-top: 0;
+    color: #71ffe3;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(113,255,227,0.22);
+}
+
+.update-entry ul {
+    border-left: 1px solid #2a1838;
+    margin: 18px 0;
+    padding-left: 24px;
+}
+
+.update-entry li {
+    margin-bottom: 8px;
+}
+
+.update-admin {
+    border-left: 1px solid #c56cff;
+    margin: 18px 0 0;
+    padding-left: 14px;
+    color: #d7b4ff;
+}
+
 .record-box1 {
     border: 1px solid #6d3b91;
     padding: 20px;
@@ -948,6 +990,73 @@ a:hover {
     width: 68px;
     aspect-ratio: 1;
     font-size: 0.72rem;
+}
+
+
+.restored-visual {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    border: 1px solid #3d2850;
+    box-shadow: 0 0 18px rgba(197,108,255,0.14);
+    background: rgba(5,1,10,0.72);
+}
+
+.artifact-image-slot .restored-visual,
+.creature-image-slot .restored-visual,
+.companion-portrait-slot .restored-visual {
+    border: 0;
+}
+
+.companion-avatar-slot .restored-visual,
+.artifact-thumb-slot .restored-visual {
+    border: 0;
+    aspect-ratio: 1;
+}
+
+.restored-note {
+    margin: 8px 0 0;
+    color: #71ffe3;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+}
+
+.original-fragment {
+    border: 1px solid #24162f;
+    margin-top: 12px;
+    background: rgba(5,1,10,0.42);
+}
+
+.original-fragment summary {
+    padding: 10px 12px;
+    cursor: pointer;
+    color: #9f78c4;
+    list-style: none;
+}
+
+.original-fragment summary::-webkit-details-marker {
+    display: none;
+}
+
+.original-fragment summary::before {
+    content: "[ + ] ";
+    color: #71ffe3;
+}
+
+.original-fragment[open] summary::before {
+    content: "[ - ] ";
+}
+
+.original-fragment img {
+    display: block;
+    width: calc(100% - 24px);
+    max-height: 420px;
+    object-fit: contain;
+    margin: 0 12px 12px;
+    border: 1px solid #2a1838;
+    background: #05010a;
 }
 
 .artifact-grid {
