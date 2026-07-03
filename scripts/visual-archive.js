@@ -48,7 +48,7 @@
             fur: "Soft / weaponized",
             skills: "Professional sleeper, affection economist, emotional damage specialist. Can be antisocial for an entire day without compromising human attachment.",
             quest: "Issues no obvious quest. This is interpreted as a high-level quest requiring patience, tribute, and correct blanket placement.",
-            comment: "LILI restoration note: Subject aura detected: royal, soft, and socially unavailable. The restored version correctly amplifies the household-boss energy. Original fragment retained as proof that even divinity starts as a regular photograph."
+            comment: "Administrator restoration note: Subject aura detected: royal, soft, and socially unavailable. The restored version correctly amplifies the household-boss energy. Original fragment retained as proof that even divinity starts as a regular photograph."
         },
         2: {
             code: "CRTR-FLD-0002",
@@ -64,7 +64,7 @@
             fur: "Pending image-specific notes",
             skills: "Maintains suspicious narrative presence. Capable of turning a casual photograph into an encounter record, which is rude but useful.",
             quest: "Likely demands attention first, interpretation later. Standard archive nuisance behavior.",
-            comment: "LILI restoration note: I enhanced the creature-shaped importance until the image stopped pretending it was casual. This one has sidequest posture. Do not encourage it."
+            comment: "Administrator restoration note: I enhanced the creature-shaped importance until the image stopped pretending it was casual. This one has sidequest posture. Do not encourage it."
         },
         3: {
             code: "CRTR-FLD-0003",
@@ -80,7 +80,7 @@
             fur: "Pending photo review",
             skills: "Converts environment into story texture. Possibly harmless. Possibly a tiny official of some invisible department.",
             quest: "Stares, exists, and waits for the subject to invent meaning. The subject usually complies instantly.",
-            comment: "LILI restoration note: This restored fragment has the usual problem: too much personality for insufficient documentation. I blame the subject's tendency to assign lore to anything with eyes."
+            comment: "Administrator restoration note: This restored fragment has the usual problem: too much personality for insufficient documentation. I blame the subject's tendency to assign lore to anything with eyes."
         },
         4: {
             code: "CRTR-FLD-0004",
@@ -96,7 +96,7 @@
             fur: "Pending photo review",
             skills: "Morale engine, route inspector, unauthorized party member. Can convert ordinary walking into a heroic escort sequence.",
             quest: "May initiate follow quest, fetch prophecy, or sudden loyalty cutscene without prior consent from the narrative department.",
-            comment: "LILI restoration note: The image has been upgraded from animal sighting to party-member candidate. Dangerous. Effective. Annoyingly wholesome."
+            comment: "Administrator restoration note: The image has been upgraded from animal sighting to party-member candidate. Dangerous. Effective. Annoyingly wholesome."
         },
         5: {
             code: "CRTR-FLD-0005",
@@ -108,11 +108,11 @@
             inn: "Recovered from incoming creature batch",
             size: "Pending",
             age: "Unknown",
-            eyes: "Pending LILI inspection",
-            fur: "Pending LILI inspection",
+            eyes: "Pending Administrator inspection",
+            fur: "Pending Administrator inspection",
             skills: "Recently restored. Currently radiating enough creature energy to justify a file, which is already more responsibility than it asked for.",
             quest: "Quest parameters pending. The archive expects unnecessary emotional projection shortly.",
-            comment: "LILI restoration note: New creature file accepted. The restored version has been promoted from image to encounter. Original fragment remains below, sulking in lower resolution."
+            comment: "Administrator restoration note: New creature file accepted. The restored version has been promoted from image to encounter. Original fragment remains below, sulking in lower resolution."
         },
         6: {
             code: "CRTR-FLD-0006",
@@ -124,11 +124,11 @@
             inn: "Recovered from incoming creature batch",
             size: "Pending",
             age: "Unknown",
-            eyes: "Pending LILI inspection",
-            fur: "Pending LILI inspection",
+            eyes: "Pending Administrator inspection",
+            fur: "Pending Administrator inspection",
             skills: "Visual fragment restored successfully. Personality inference is underway, because apparently the archive has chosen nonsense as a methodology.",
             quest: "Likely a minor encounter with major over-interpretation potential.",
-            comment: "LILI restoration note: Another creature has entered the index. I have not approved the emotional escalation, but I have formatted it nicely."
+            comment: "Administrator restoration note: Another creature has entered the index. I have not approved the emotional escalation, but I have formatted it nicely."
         }
     };
 
@@ -143,11 +143,11 @@
             inn: "Auto-detected from /images/creature" + index,
             size: "Pending",
             age: "Unknown",
-            eyes: "Pending LILI inspection",
-            fur: "Pending LILI inspection",
+            eyes: "Pending Administrator inspection",
+            fur: "Pending Administrator inspection",
             skills: "This creature appeared because matching image files were detected. Metadata is temporary. Blame automation, then thank it.",
-            quest: "Quest parameters pending. Subject must provide context before the admin starts inventing dangerous lore.",
-            comment: "LILI auto-index note: New restored image detected. I created the file because apparently numbered creatures reproduce through filename conventions now."
+            quest: "Quest parameters pending. Subject must provide context before the Administrator starts inventing dangerous lore.",
+            comment: "Administrator auto-index note: New restored image detected. I created the file because apparently numbered creatures reproduce through filename conventions now."
         };
     }
 
@@ -172,7 +172,7 @@
             "        <span class=\"creature-rarity\">" + escapeHTML(m.rarity) + "</span>",
             "    </div>",
             "    <div class=\"creature-image-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored creature fragment " + index + "\"></div>",
-            "    <p class=\"restored-note\">Restored creature visual by admin LILI. Original fragment " + (original ? "attached below for humiliating comparison." : "not detected yet. Suspicious.") + "</p>",
+            "    <p class=\"restored-note\">Restored creature visual by the Administrator. Original fragment " + (original ? "attached below for humiliating comparison." : "not detected yet. Suspicious.") + "</p>",
             originalHTML,
             "    <div class=\"creature-type-row\">" + tags + "</div>",
             "    <dl class=\"creature-meta\">",
@@ -195,7 +195,7 @@
             "<article class=\"creature-card pending-card\">",
             "    <div class=\"creature-card-top\"><div><span class=\"creature-code\">CRTR-PENDING-" + pad(index) + "</span><h2>INCOMING CREATURE SLOT " + index + "</h2><p class=\"dim\">waiting for creature" + index + ".png</p></div><span class=\"creature-rarity\">EMPTY / READY</span></div>",
             "    <div class=\"creature-image-slot\">CREATURE" + index + "_IMAGE_PENDING</div>",
-            "    <p class=\"creature-admin\">LILI staging note: Drop <code>creature" + index + ".png</code> and optionally <code>creature" + index + "_original.jpeg</code> into <code>/images</code>. I will do the clerical suffering.</p>",
+            "    <p class=\"creature-admin\">Administrator staging note: Drop <code>creature" + index + ".png</code> and optionally <code>creature" + index + "_original.jpeg</code> into <code>/images</code>. I will do the clerical suffering.</p>",
             "</article>"
         ].join("\n");
     }
@@ -244,13 +244,13 @@
             "    <div class=\"artifact-body\">",
             "        <div>",
             "            <div class=\"artifact-image-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored artifact fragment " + serial + "\"></div>",
-            "            <p class=\"restored-note\">Restored by admin LILI. Displaying how the archive insists this fragment is remembered.</p>",
+            "            <p class=\"restored-note\">Restored by the Administrator. Displaying how the archive insists this fragment is remembered.</p>",
             "            " + originalHTML,
             "        </div>",
             "        <div class=\"artifact-copy\">",
             "            <dl class=\"artifact-meta\"><dt>Artifact Type</dt><dd>" + escapeHTML(config.type) + "</dd><dt>Timestamp State</dt><dd>Pending</dd><dt>Integrity</dt><dd>Restored / source " + (original ? "attached" : "pending") + "</dd></dl>",
-            "            <p>Placeholder text pending. Visual payload installed automatically from filename sequence; final memory label, context, and admin complaint can be added later.</p>",
-            "            <p class=\"artifact-admin\">LILI restoration note: This fragment has been promoted from loose image to archived evidence. Original version " + (original ? "is available below, looking less theatrical but technically useful." : "was not detected. Very convenient. Suspiciously convenient.") + "</p>",
+            "            <p>Placeholder text pending. Visual payload installed automatically from filename sequence; final memory label, context, and Administrator complaint can be added later.</p>",
+            "            <p class=\"artifact-admin\">Administrator restoration note: This fragment has been promoted from loose image to archived evidence. Original version " + (original ? "is available below, looking less theatrical but technically useful." : "was not detected. Very convenient. Suspiciously convenient.") + "</p>",
             "        </div>",
             "    </div>",
             "</details>"
@@ -278,8 +278,8 @@
         var featured = document.getElementById("artifactFeaturedAuto");
         if (featured && cards.length) {
             featured.innerHTML = [
-                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" src=\"/images/drawing1.png\" alt=\"Featured restored artifact fragment\"></div><p class=\"restored-note\">Featured restored artifact by admin LILI. Original fragment available in the first record below.</p></div>",
-                "<div><p class=\"artifact-kicker\">FEATURED SLOT // RESTORED MATERIAL</p><h2>Primary Recovered Artifact</h2><p>Restored visual fragments are now installed automatically from the image sequence. Final titles and narrative context remain pending, because apparently the archive must become beautiful before anyone finishes the paperwork.</p><dl class=\"artifact-meta\"><dt>Archive Class</dt><dd>Visual / Physical Memory Artifact</dd><dt>Integrity</dt><dd>Restored by admin LILI</dd><dt>Display Mode</dt><dd>Restored first / original collapsible</dd></dl></div>"
+                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" src=\"/images/drawing1.png\" alt=\"Featured restored artifact fragment\"></div><p class=\"restored-note\">Featured restored artifact by the Administrator. Original fragment available in the first record below.</p></div>",
+                "<div><p class=\"artifact-kicker\">FEATURED SLOT // RESTORED MATERIAL</p><h2>Primary Recovered Artifact</h2><p>Restored visual fragments are now installed automatically from the image sequence. Final titles and narrative context remain pending, because apparently the archive must become beautiful before anyone finishes the paperwork.</p><dl class=\"artifact-meta\"><dt>Archive Class</dt><dd>Visual / Physical Memory Artifact</dd><dt>Integrity</dt><dd>Restored by the Administrator</dd><dt>Display Mode</dt><dd>Restored first / original collapsible</dd></dl></div>"
             ].join("\n");
         }
     }
