@@ -1342,7 +1342,8 @@ a:hover {
 .creature-brief {
     border: 1px solid #6d3b91;
     padding: 22px;
-    margin: 30px 0 36px;
+    margin: 30px auto 36px;
+    max-width: 980px;
     background:
         linear-gradient(135deg, rgba(113,255,227,0.055), transparent 42%),
         linear-gradient(315deg, rgba(197,108,255,0.065), transparent 48%),
@@ -1384,16 +1385,18 @@ a:hover {
 
 .creature-dex {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin: 0 0 42px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    max-width: 980px;
+    margin: 0 auto 42px;
 }
 
 .creature-card {
     display: grid;
-    gap: 14px;
+    gap: 16px;
     border: 1px solid #2a1838;
-    padding: 16px;
+    padding: 18px;
+    overflow: hidden;
     background:
         linear-gradient(135deg, rgba(113,255,227,0.035), transparent 36%),
         rgba(5,1,10,0.66);
@@ -1414,16 +1417,17 @@ a:hover {
 
 .creature-card-top {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) minmax(180px, auto);
+    gap: 14px;
     align-items: start;
-    min-height: 86px;
+    min-height: 76px;
 }
 
 .creature-card h2 {
     margin: 6px 0 2px;
     font-size: 1.03rem;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
+    overflow-wrap: anywhere;
 }
 
 .creature-code {
@@ -1434,12 +1438,43 @@ a:hover {
 
 .creature-rarity {
     border: 1px solid #3d2850;
-    padding: 6px 8px;
+    padding: 7px 9px;
     color: #9f78c4;
     background: rgba(5,1,10,0.54);
     font-size: 0.72rem;
     line-height: 1.3;
     text-align: right;
+    max-width: 240px;
+}
+
+.rarity-uncommon .creature-rarity {
+    border-color: #47c777;
+    color: #79f0a2;
+    box-shadow: 0 0 12px rgba(71,199,119,0.12);
+}
+
+.rarity-rare .creature-rarity {
+    border-color: #2f73d9;
+    color: #83b7ff;
+    box-shadow: 0 0 12px rgba(47,115,217,0.14);
+}
+
+.rarity-epic .creature-rarity {
+    border-color: #f0d77a;
+    color: #ffe59a;
+    box-shadow: 0 0 12px rgba(240,215,122,0.15);
+}
+
+.rarity-legendary .creature-rarity {
+    border-color: #ff9d3d;
+    color: #ffbd76;
+    box-shadow: 0 0 12px rgba(255,157,61,0.16);
+}
+
+.rarity-mythic .creature-rarity {
+    border-color: #ff4f6d;
+    color: #ff8aa0;
+    box-shadow: 0 0 14px rgba(255,79,109,0.2);
 }
 
 .creature-image-slot {
@@ -1495,7 +1530,7 @@ a:hover {
 
 .creature-section {
     border: 1px solid #24162f;
-    padding: 12px 14px;
+    padding: 14px;
     background: rgba(5,1,10,0.42);
 }
 
@@ -1510,6 +1545,70 @@ a:hover {
 .creature-section p {
     margin: 0;
     color: #9f86b6;
+    max-width: 78ch;
+}
+
+.creature-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.creature-field {
+    border: 1px solid rgba(61,40,80,0.78);
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.16);
+}
+
+.creature-field-wide {
+    grid-column: 1 / -1;
+}
+
+.creature-field span {
+    display: block;
+    margin-bottom: 8px;
+    color: #7f6a94;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.creature-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.creature-chip-row b,
+.creature-quest b {
+    display: inline-block;
+    border: 1px solid rgba(113,255,227,0.28);
+    padding: 3px 7px;
+    color: #71ffe3;
+    background: rgba(113,255,227,0.045);
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+.creature-quest {
+    display: grid;
+    gap: 9px;
+}
+
+.creature-story {
+    cursor: pointer;
+}
+
+.creature-story summary {
+    color: #71ffe3;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    list-style-position: inside;
+}
+
+.creature-story p {
+    margin-top: 10px;
+    line-height: 1.7;
 }
 
 .creature-admin {

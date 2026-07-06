@@ -1,10 +1,4 @@
-- adding slight delay - terminal running effect when a page is loading
-
--main page-descriptiion -- change mainpage name to navigator
-
-hi
--language and color change
-
-
-
--- impresum and law stuff for google 
+LILI comes alive and does real archieving: subject input panel, questionare, real-time commentary, AIvolution stuff.
+Timeout-zone: get punished for your actions.
+Spinning wheels are fun.
+Adventure log, interactive map, interactive fiction.

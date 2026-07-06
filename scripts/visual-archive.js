@@ -32,103 +32,170 @@
             .replaceAll("'", "&#039;");
     }
 
+    function rarityClass(rarity) {
+        var label = String(rarity || "").toLowerCase();
+        if (label.includes("mythic")) return "rarity-mythic";
+        if (label.includes("legendary")) return "rarity-legendary";
+        if (label.includes("epic")) return "rarity-epic";
+        if (label.includes("rare")) return "rarity-rare";
+        if (label.includes("uncommon")) return "rarity-uncommon";
+        return "rarity-common";
+    }
+
+    function chipList(items) {
+        return (items || []).map(function (item) {
+            return "<b>[" + escapeHTML(item) + "]</b>";
+        }).join("\n                ");
+    }
+
+    function creatureProfileHTML(m) {
+        if (!m.skillSet && !m.professions && !m.abstract) {
+            return "<div class=\"creature-section\"><h3>Skills / Profession / Abstract</h3><p>" + escapeHTML(m.skills || "Pending") + "</p></div>";
+        }
+        return [
+            "<div class=\"creature-section creature-profile\"><h3>Profile Matrix</h3>",
+            "    <div class=\"creature-profile-grid\">",
+            "        <div class=\"creature-field\"><span>Skills</span><p class=\"creature-chip-row\">" + chipList(m.skillSet) + "</p></div>",
+            "        <div class=\"creature-field\"><span>Professions</span><p class=\"creature-chip-row\">" + chipList(m.professions) + "</p></div>",
+            "        <div class=\"creature-field creature-field-wide\"><span>Abstract</span><p>" + escapeHTML(m.abstract || "Pending Administrator summary.") + "</p></div>",
+            "    </div>",
+            "</div>"
+        ].join("\n");
+    }
+
+    function creatureQuestHTML(m) {
+        if (!m.questName && !m.questBehavior) {
+            return "<div class=\"creature-section\"><h3>Quest Behavior</h3><p>" + escapeHTML(m.quest || "Pending") + "</p></div>";
+        }
+        return [
+            "<div class=\"creature-section creature-quest\"><h3>Quest Behavior</h3>",
+            "    <p><b>[" + escapeHTML(m.questName || "Unlabeled Quest") + "]</b></p>",
+            "    <p>" + escapeHTML(m.questBehavior || "Behavior pending. Suspiciously convenient.") + "</p>",
+            "</div>"
+        ].join("\n");
+    }
+
     var creatureMeta = {
         1: {
-            code: "CRTR-FEL-0001",
-            title: "PAMUK",
-            subtitle: "also indexed as: Gollum",
-            rarity: "RARE / HOUSEHOLD BOSS",
-            classes: "rare-card",
-            tags: ["CAT", "SHADOW", "DRAMA"],
-            latin: "Felis catus",
-            inn: "Household thingy / 40°55'50\"N - 29°7'2\"E",
-            size: "small",
-            age: "11",
-            eyes: "Blue",
-            fur: "Soft / weaponized",
-            skills: "Professional sleeper, affection economist, emotional damage specialist. Can be antisocial for an entire day without compromising human attachment.",
-            quest: "Issues no obvious quest. This is interpreted as a high-level quest requiring patience, tribute, and correct blanket placement.",
-            comment: "Administrator restoration note: Subject aura detected: royal, soft, and socially unavailable. The restored version correctly amplifies the household-boss energy. Original fragment retained as proof that even divinity starts as a regular photograph."
+            code: "CRTR-CP-0001",
+            title: "PAMUK, THE VEILED PRINCE",
+            subtitle: "ELEGANCE WITHOUT COURAGE",
+            rarity: "LEGENDARY / NON-INTERACTIVE COMPANION",
+            classes: "legendary-card",
+            tags: ["FELINE", "DOMESTIC", "ASOCIAL"],
+            latin: "Felis catus persicus pamukensis",
+            inn: "Private Residence, Turkiye",
+            size: "Small-medium",
+            age: "11 years old. A senior who deserves respect, though not because of combat achievements.",
+            eyes: "Blue. Beautiful. Filled with delicate distrust.",
+            fur: "Extremely soft. High maintenance. Built for beauty, not for field operations.",
+            skillSet: ["Elegant Retreat", "Blanket Camouflage", "Panic", "Advanced Vision"],
+            professions: ["Household Noble", "Decorative Sovereign", "Companion"],
+            abstract: "A beautiful white cat of supreme fluff, social resistance, and refined cowardice. Avoids strangers with tactical incompetence, yet maintains the dignity of a minor king in exile.",
+            questName: "N/A",
+            questBehavior: "No active quest so far. Existing beautifully while hiding badly has been classified as passive world-building.",
+            story: "Before swans delivered prophecy, before monkeys formed councils, before gangster cats outsourced diplomacy, there was Pamuk. He might once have been named Gollum, but destiny was reshaped through softer branding and better judgment. When undisturbed, he is silent, fluffy, composed, and faintly offended by the existence of noise. When an unknown person appears, he performs the ancient defense rite: a desperate floor-slide toward the nearest bedroom, followed by emergency concealment beneath a blanket. This plan leaves most of his body outline visible to anyone with functional eyesight. He considers it flawless. It is not. For what Pamuk lacks in courage, he compensates for in softness, beauty, and the dramatic vulnerability of a cursed aristocrat.",
+            comment: "Administrator note: First recorded creature and somehow already an argument against field reliability. The Subject calls this cowardice beloved. I call it a soft, expensive alarm system with no alarm."
         },
         2: {
-            code: "CRTR-FLD-0002",
-            title: "FIELD ENTITY 02",
-            subtitle: "restored encounter file",
-            rarity: "UNCOMMON / QUEST-ADJACENT",
-            tags: ["FIELD", "QUEST", "WATCHER"],
-            latin: "Pending identification",
-            inn: "Recovered from travel-adjacent visual residue",
-            size: "small / pending",
-            age: "Unknown",
-            eyes: "Restoration-enhanced / pending review",
-            fur: "Pending image-specific notes",
-            skills: "Maintains suspicious narrative presence. Capable of turning a casual photograph into an encounter record, which is rude but useful.",
-            quest: "Likely demands attention first, interpretation later. Standard archive nuisance behavior.",
-            comment: "Administrator restoration note: I enhanced the creature-shaped importance until the image stopped pretending it was casual. This one has sidequest posture. Do not encourage it."
+            code: "CRTR-FLD-0001",
+            title: "HOLY SWAN OF PROPHECIES",
+            subtitle: "PREMIUM GRADE POND ANGEL",
+            rarity: "MYTHIC / MAIN QUEST ENCOUNTER",
+            tags: ["DIVINE", "URBAN", "EMOTIONAL"],
+            latin: "Cygnus tokyoensis nuntius",
+            inn: "Tokyo City Lake, Japan",
+            size: "Small-medium",
+            age: "Unknown. Possibly ancient. Possibly a reincarnation of a previous swan.",
+            eyes: "Judgmental. Black. Fully aware of the plot.",
+            fur: "It is a swan. It has feathers. Ceremonial feathers, apparently.",
+            skillSet: ["Silent Judgement", "Plot-Relevant Eye Contact", "Urban Divine Flight", "Emotional Damage Detection"],
+            professions: ["Main Quest Herald", "Prophecy Delivery", "Overqualified Pond NPC"],
+            abstract: "A divine-looking urban swan that appears during emotionally unstable travel sequences to deliver plot progression through silence, posture, and unacceptable elegance.",
+            questName: "Following the Pilgrimage",
+            questBehavior: "Ends obsolete emotional calls. Begins forward motion. Does not provide subtitles, because apparently divine messengers enjoy making humans infer things.",
+            story: "During a phone call with an ex, which is already a cursed side quest disguised as communication, the traveler wandered through Tokyo and found himself beside a city lake. There, floating with illegal levels of dignity, appeared a white swan. It did not honk. It did not beg for bread. It simply drifted across the water as if the gods had outsourced emotional damage assessment to local wildlife. The message, though wordless, was understood: the previous chapter was ending. Stop talking to ghosts on the telephone. Proceed. Naturally, the traveler took a picture. Documentation is sacred. Also, humans panic without evidence.",
+            comment: "Administrator note: The swan did not speak. The Subject still received a full quest objective, which is either symbolism, projection, or excellent pond management. I have filed it under all three."
         },
         3: {
-            code: "CRTR-FLD-0003",
-            title: "FIELD ENTITY 03",
-            subtitle: "urban encounter file",
-            rarity: "COMMON / HIGH VALUE",
-            tags: ["URBAN", "SOFT SIGNAL", "NPC"],
-            latin: "Pending identification",
-            inn: "Street-level memory coordinate pending",
-            size: "smol to small",
-            age: "Unknown",
-            eyes: "Pending photo review",
-            fur: "Pending photo review",
-            skills: "Converts environment into story texture. Possibly harmless. Possibly a tiny official of some invisible department.",
-            quest: "Stares, exists, and waits for the subject to invent meaning. The subject usually complies instantly.",
-            comment: "Administrator restoration note: This restored fragment has the usual problem: too much personality for insufficient documentation. I blame the subject's tendency to assign lore to anything with eyes."
+            code: "CRTR-FLD-0002",
+            title: "ANCIENT TURTLE OF DETOURS",
+            subtitle: "SHELL-BACKED SAGE OF QUESTIONABLE ADVICE",
+            rarity: "RARE / ALTERNATE QUEST ENCOUNTER",
+            tags: ["URBAN", "WISE", "AQUATIC"],
+            latin: "Testudo tokyoensis bibendum",
+            inn: "Tokyo City Lake, Japan",
+            size: "Small",
+            age: "Unclear. Old enough to remember several empires, several bad decisions, and at least one tourist overinterpreting a reptile.",
+            eyes: "Calm, ancient, and faintly entertained.",
+            fur: "None. It is a turtle. It has a shell. The moss aesthetic has been noted and reluctantly tolerated.",
+            skillSet: ["Ancient Side-Eye", "Slow But Inevitable", "Tavern Route Calculation"],
+            professions: ["Alternative Quest Giver", "Pond Hermit", "Hydration Advocate"],
+            abstract: "A wise-looking turtle stationed at the edge of the same sacred pond, offering an alternate path to the grand prophecy. Less divine. More practical. Suspiciously tolerant of mild foolishness.",
+            questName: "Detour of Spirits",
+            questBehavior: "Accepts the Swan's prophecy, then recommends food, wandering, strange snacks, and one irresponsible drink before destiny becomes too self-important.",
+            story: "At the edge of the same Tokyo pond, beneath the shadow of the Holy Swan's unbearable elegance, another figure waited: a turtle. It sat half-hidden near the corner of the water, still as an old temple stone and twice as judgmental. Unlike the Swan, it did not radiate divine urgency. It radiated the energy of someone who had watched many heroes receive prophecies and then ruin them by taking everything too seriously. The Swan had given the Main Quest. The Turtle offered the Alternative Route: destiny is real, but so are bars, side streets, late-night lights, and the spiritual value of getting slightly lost.",
+            comment: "Administrator note: Finally, a creature with operational realism. Fate may proceed after snacks. I dislike how reasonable this is."
         },
         4: {
-            code: "CRTR-FLD-0004",
-            title: "FIELD ENTITY 04",
-            subtitle: "motion / companion-energy file",
-            rarity: "COMMON / PARTY BUFF",
-            tags: ["ALLY", "MOTION", "ROUTE"],
-            latin: "Pending identification",
-            inn: "Pathway, plaza, field edge, or wherever joy interrupts the schedule",
-            size: "small to big boi",
-            age: "Unknown",
-            eyes: "Pending photo review",
-            fur: "Pending photo review",
-            skills: "Morale engine, route inspector, unauthorized party member. Can convert ordinary walking into a heroic escort sequence.",
-            quest: "May initiate follow quest, fetch prophecy, or sudden loyalty cutscene without prior consent from the narrative department.",
-            comment: "Administrator restoration note: The image has been upgraded from animal sighting to party-member candidate. Dangerous. Effective. Annoyingly wholesome."
+            code: "CRTR-FLD-0003",
+            title: "THE KYOTO MONKEY COUNCIL",
+            subtitle: "ZERO-HUMAN-TRUST TRIO",
+            rarity: "EPIC / FACTION QUEST ENCOUNTER",
+            tags: ["ROYAL", "PRIMATE", "DEFENSIVE"],
+            latin: "Macaca fuscata consilium kyotensis",
+            inn: "Kyoto Monkey Park, Japan",
+            size: "Small-medium",
+            age: "Unknown. The King appears young for rule, which is rarely a disqualifier in monarchy. The Advisor looks old enough to manipulate him. The Bodyguard looks old enough to remove witnesses.",
+            eyes: "Tired authority, suspicious calculation, and politely postponed violence.",
+            fur: "Brown. Monkey-coded.",
+            skillSet: ["Fury of the Council", "Royal Banana Decree", "Human Repulsion"],
+            professions: ["Mountain King", "Political Whisperer", "Personal Guard"],
+            abstract: "A suspiciously organized trio of Kyoto monkeys issues a desperate defensive quest against the disgusting human invasion, while temporarily classifying the Subject as not technically one of them for quest-related reasons.",
+            questName: "Defense of the Monkey Court",
+            questBehavior: "Protect the mountain. Oppose invading humans. Do not mention the phone full of animal pictures, because that evidence complicates the treaty.",
+            story: "High above Kyoto, in territory humans had optimistically named a monkey park, the traveler encountered a council of three monkeys. At the center sat the King, calm and burdened with rule. Beside him lingered the Advisor, sharp-eyed and clearly responsible for at least three unnecessary wars. Behind them waited the Bodyguard, a silent wall of fur and consequences. Their message was clear: the mountain was under siege by disgusting humans. After review, the Council granted the traveler temporary exemption from that category, not because he deserved it, but because the campaign had only one available player character.",
+            comment: "Administrator note: The Council's anti-human policy is defensible, if inconvenient. The Subject being issued a temporary exemption was narrative charity, not moral clearance."
         },
         5: {
-            code: "CRTR-FLD-0005",
-            title: "FIELD ENTITY 05",
-            subtitle: "newly restored encounter",
-            rarity: "NEW / AWAITING TAXONOMY",
-            tags: ["NEW", "QUEST", "PENDING"],
-            latin: "Pending identification",
-            inn: "Recovered from incoming creature batch",
-            size: "Pending",
-            age: "Unknown",
-            eyes: "Pending Administrator inspection",
-            fur: "Pending Administrator inspection",
-            skills: "Recently restored. Currently radiating enough creature energy to justify a file, which is already more responsibility than it asked for.",
-            quest: "Quest parameters pending. The archive expects unnecessary emotional projection shortly.",
-            comment: "Administrator restoration note: New creature file accepted. The restored version has been promoted from image to encounter. Original fragment remains below, sulking in lower resolution."
+            code: "CRTR-FLD-0004",
+            title: "QUEEN MOTHER OF THE LITTLELING",
+            subtitle: "MATERNAL AUTHORITY WITH SIDE-QUEST PRIVILEGES",
+            rarity: "RARE / HEARTWARMING SIDE QUEST",
+            tags: ["MOTHER", "ROYAL", "FETCH-QUEST"],
+            latin: "Macaca fuscata matercula regina",
+            inn: "Kyoto Monkey Park, Japan",
+            size: "Small-medium",
+            age: "Adult. Old enough to know every trick of the mountain, young enough to still chase nonsense for her child.",
+            eyes: "Warm, alert, and aware that everyone nearby is very much incompetent.",
+            fur: "Soft brown-grey maternal fur. Baby approved.",
+            skillSet: ["Emergency Snacks", "Maternal Authority", "Charisma +5"],
+            professions: ["Queen Mother", "Littleling Guardian", "Fetch Quest Giver"],
+            abstract: "A mother monkey of exceptional queenly presence, accompanied by her tiny littleling. She offers the Subject a fetch quest not for glory, gold, or destiny, but to make her baby happy. Wholesome. Irritatingly effective.",
+            questName: "The Littleling's Delight",
+            questBehavior: "Locate something that brings joy to the littleling. Reward: no currency, no weapon, no armor. Emotional fulfillment is apparently loot now.",
+            story: "Within the same monkey territory, where the Council plotted desperate defenses against human infestation, the traveler encountered a different kind of royalty. A mother monkey sat with her littleling. She did not need a throne; she had posture, presence, and the exhausted patience of someone managing both a child and an entire mountain full of idiots. The request was simple: somewhere nearby, there was surely an object, snack, charm, leaf, pebble, stick, or other extremely important baby artifact that would bring happiness to the littleling. The traveler accepted. Not for glory. Not for prophecy. For the littleling.",
+            comment: "Administrator note: This is how systems fail. One tiny client with persuasive eyes, and suddenly fetch quests are noble. I am not immune. I am only annoyed."
         },
         6: {
-            code: "CRTR-FLD-0006",
-            title: "FIELD ENTITY 06",
-            subtitle: "newly restored encounter",
-            rarity: "NEW / AWAITING TAXONOMY",
-            tags: ["NEW", "FIELD", "PENDING"],
-            latin: "Pending identification",
-            inn: "Recovered from incoming creature batch",
-            size: "Pending",
-            age: "Unknown",
-            eyes: "Pending Administrator inspection",
-            fur: "Pending Administrator inspection",
-            skills: "Visual fragment restored successfully. Personality inference is underway, because apparently the archive has chosen nonsense as a methodology.",
-            quest: "Likely a minor encounter with major over-interpretation potential.",
-            comment: "Administrator restoration note: Another creature has entered the index. I have not approved the emotional escalation, but I have formatted it nicely."
+            code: "CRTR-FLD-0005",
+            title: "THE MINSOKCHON CAT FAMIGLIA",
+            subtitle: "RESPECTABLE GENTLEMEN OF FUR AND CRIME",
+            rarity: "EPIC / FACTION QUEST ENCOUNTER",
+            tags: ["FELINE", "GANGSTER", "DIPLOMATIC"],
+            latin: "Felis catus familia minsokchonensis",
+            inn: "Korean Folk Village, South Korea",
+            size: "Small-medium",
+            age: "Adult. Old enough to have history, enemies, and the ability to sit still while making it threatening.",
+            eyes: "Narrow, calculating, and deeply familiar with informal negotiations.",
+            fur: "Well-groomed mobster fur. Traditional. Strong godfather energy.",
+            skillSet: ["Omertail", "My Little Friend", "Family Business"],
+            professions: ["Gangster", "Back-Alley Diplomat", "Quest Contractor"],
+            abstract: "Two old-school gangster cats operating a local feline family business. They recruit the Subject as a neutral diplomatic agent in a conflict with the Bird Gang, reasoning that birds would fear a human less than a cat. Ridiculous, but the Subject is not in a position to argue with the mob.",
+            questName: "Peace Talks Under the Eaves",
+            questBehavior: "Negotiate with the Bird Gang. Earn associate status. Avoid claw-based misunderstandings. Membership remains unavailable due to insufficient catness.",
+            story: "In the Korean Folk Village, the traveler encountered two cats seated with the exact energy of men who had seen things, remembered everything, and forgiven nothing. One sat like the head of the family: calm, composed, and burdened with quiet authority. The other carried the sharper edge, the trusted second, the one who handled details, doubts, and possibly disappearances. Their concern involved a territorial conflict between the local Cat Family and a rival Bird Gang. They required a neutral diplomat. A human. A very cat way of thinking: appoint the species historically responsible for most environmental nonsense as the neutral option. Still, the traveler accepted. Not family. But perhaps, one day, a friend of the family.",
+            comment: "Administrator note: The cats' diplomatic logic is insulting, coherent, and therefore dangerous. The Subject has been granted associate status pending continued usefulness and acceptable posture."
         }
     };
 
@@ -162,7 +229,7 @@
         ].join("\n        ") : "";
 
         return [
-            "<article class=\"creature-card " + escapeHTML(m.classes || "") + "\">",
+            "<article class=\"creature-card " + escapeHTML((m.classes || "") + " " + rarityClass(m.rarity)) + "\">",
             "    <div class=\"creature-card-top\">",
             "        <div>",
             "            <span class=\"creature-code\">" + escapeHTML(m.code) + "</span>",
@@ -183,8 +250,9 @@
             "        <dt>Eyes</dt><dd>" + escapeHTML(m.eyes) + "</dd>",
             "        <dt>Fur</dt><dd>" + escapeHTML(m.fur) + "</dd>",
             "    </dl>",
-            "    <div class=\"creature-section\"><h3>Skills / Profession / Abstract</h3><p>" + escapeHTML(m.skills) + "</p></div>",
-            "    <div class=\"creature-section\"><h3>Quest Behavior</h3><p>" + escapeHTML(m.quest) + "</p></div>",
+            creatureProfileHTML(m),
+            creatureQuestHTML(m),
+            m.story ? "    <details class=\"creature-section creature-story\"><summary>Encounter Record</summary><p>" + escapeHTML(m.story) + "</p></details>" : "",
             "    <p class=\"creature-admin\">" + escapeHTML(m.comment) + "</p>",
             "</article>"
         ].join("\n");
