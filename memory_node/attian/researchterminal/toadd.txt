@@ -1,0 +1,17 @@
+    <details class="research-log" data-tags="tag-hidden"
+            <span>MAIN_BRANCH / SUB_BRANCH</span>
+            <b>TITLE</b>
+            <small>open log</small>
+        </summary>
+        <div class="research-log-body">
+            <p class="research-simple">Archive explanation: </p>
+            <p>Subject storage format: </p>
+            <p class="research-admin">Admin comment: </p>
+        </div>
+    </details>
+
+
+
+----------------------------------------------------------------------------------
+
+

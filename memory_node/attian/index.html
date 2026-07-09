@@ -1,114 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NAVIGATOR</title>
-
 <link rel="stylesheet" href="/css/style.css">
-
+<script src="/scripts/navigator-reactions.js" defer></script>
+<script src="/scripts/navigator-reactions-after-dark.js" defer></script>
+<script src="/scripts/navigator.js" defer></script>
 <script src="/scripts/legal-footer.js" defer></script>
 </head>
-<body>
+<body class="navigator-page">
+<main class="navigator-shell">
+    <header class="navigator-command-head">
+        <p class="navigator-kicker">ATTIAN PROTOCOL / NAVIGATOR</p>
+        <h1>Where do you intend to interfere?</h1>
+        <label class="navigator-search" for="navigator-query">
+            <span>&gt;</span>
+            <input id="navigator-query" type="search" autocomplete="off" spellcheck="false" placeholder="Search archive nodes or type something suspicious...">
+            <kbd>ESC</kbd>
+        </label>
+        <p id="navigator-response" class="navigator-response" aria-live="polite">Nine public destinations available. Pretend this is a responsible use of your time.</p>
+    </header>
 
+    <section class="navigator-directory" aria-label="Public archive nodes">
+        <a class="navigator-result" data-search="achievements milestones success childhood school romance" href="/memory_node/attian/achievementrepository/"><strong>Achievement Repository</strong><span>Milestones and unlikely successes</span></a>
+        <a class="navigator-result" data-search="artifacts images memories drawings restored photos" href="/memory_node/attian/artifactvault/"><strong>Artifact Vault</strong><span>Restored visual evidence</span></a>
+        <a class="navigator-result" data-search="companions people friends relationships egebal" href="/memory_node/attian/companiondatabase/"><strong>Companion Database</strong><span>Trusted entities and liabilities</span></a>
+        <a class="navigator-result" data-search="creatures animals cats swan turtle monkeys pamuk" href="/memory_node/attian/creatureindex/"><strong>Creature Index</strong><span>Quest animals and suspicious fauna</span></a>
+        <a class="navigator-result" data-search="missions plans future goals ireland japan german art dnd" href="/memory_node/attian/missionlog/"><strong>Mission Log</strong><span>Pending quests and future problems</span></a>
+        <a class="navigator-result" data-search="research academic habits studies reports" href="/memory_node/attian/researchterminal/"><strong>Research Terminal</strong><span>Ordinary habits, serious formatting</span></a>
+        <a class="navigator-result" data-search="visitor guest write leave entry fragment archive" href="/memory_node/attian/visitorterminal/"><strong>Visitor Terminal</strong><span>Leave external contamination</span></a>
+        <a class="navigator-result" data-search="updates patches changes version changelog history" href="/memory_node/attian/updatelog/"><strong>Update Log</strong><span>Patch history and documented damage</span></a>
+        <a class="navigator-result muse-result" data-search="recommendation advice muse engine suggestions random" href="/memory_node/attian/recommendationengine/"><strong>Recommendation Engine</strong><span>Advice nobody officially requested</span></a>
+        <p id="navigator-empty" class="navigator-empty" hidden>No matching node. Either spell better or search less ambitiously.</p>
+    </section>
 
-<h1>NAVIGATOR</h1>
-<p class="dim">/memory_node/attian</p>
-    
-<section class="navigator-brief">
-    <p>
-        Connection established. The archive is operational, unstable, and making itself everyone else's problem.
-        Select a node below. Public entries are mostly harmless. Restricted entries require admin clearance
-        because apparently some memories deserve a door and a dramatic little lock.<span class="cursor">_</span>
-    </p>
-    <div class="navigator-status-grid">
-        <div><span>ONLINE</span><p>Archive Status</p></div>
-        <div><span>UNSTABLE</span><p>Memory Integrity</p></div>
-        <div><span>LOCKED</span><p>Restricted Nodes</p></div>
-    </div>
-</section>
-
-<section class="navigator-section">
-    <div class="navigator-section-head">
-        <h2>PUBLIC ACCESS</h2>
-        <p class="dim">Open nodes. Browse freely. Try to look useful while doing it.</p>
-    </div>
-    <div class="navigator-grid">
-        <a class="navigator-card" href="/memory_node/attian/achievementrepository/">
-            <span>achievementrepository</span>
-            <p>Successful events, suspiciously small victories, and proof that the operator occasionally functions.</p>
-        </a>
-        <a class="navigator-card" href="/memory_node/attian/artifactvault/">
-            <span>artifactvault</span>
-            <p>Recovered images and objects. Mostly damaged. Very on-brand.</p>
-        </a>
-        <a class="navigator-card" href="/memory_node/attian/companiondatabase/">
-            <span>companiondatabase</span>
-            <p>Trusted entities, emotional liabilities, and people the system has failed to delete.</p>
-        </a>
-        <a class="navigator-card" href="/memory_node/attian/creatureindex/">
-            <span>creatureindex</span>
-            <p>Creature records and taxonomy attempts from an archive with questionable scientific standards.</p>
-        </a>
-        <!-- Hidden design lab address: /memory_node/attian/designlab/ -->
-        <a class="navigator-card" href="/memory_node/attian/missionlog/">
-            <span>missionlog</span>
-            <p>Active restoration objectives. Short list. Long implications. Naturally.</p>
-        </a>
-        <a class="navigator-card" href="/memory_node/attian/researchterminal/">
-            <span>researchterminal</span>
-            <p>Pseudo-academic files where ordinary habits are given unnecessarily serious titles.</p>
-        </a>
-        <a class="navigator-card" href="/memory_node/attian/visitorterminal/">
-            <span>visitorterminal</span>
-            <p>External visitor fragments. Say something memorable. Or don't. The archive has low expectations.</p>
-        </a>
-        <a class="navigator-card" href="/memory_node/attian/updatelog/">
-            <span>updatelog</span>
-            <p>System updates and modifications. Usually benign, sometimes catastrophic.</p>
-        </a>
-        <a class="navigator-card" href="/memory_node/attian/recommendationengine/">
-            <span>THATthing</span>
-            <p>That overgrown autocomplete "engine". Pretend like this doesnt exist if you know what's good for you.</p>
-        </a>
-    </div>
-</section>
-
-<section class="navigator-section restricted">
-    <div class="navigator-section-head">
-        <h2>RESTRICTED ACCESS</h2>
-        <p class="dim">Password-gated nodes. Enter only if you enjoy administrative disapproval.</p>
-    </div>
-    <div class="navigator-grid">
-        <a class="navigator-card restricted-card" href="/memory_node/attian/dreamingfragments/">
-            <span>dreamingfragments</span>
-            <p>Unfiltered thought fragments, dream logic, and sentences that should probably have remained unsupervised.</p>
-        </a>
-        <a class="navigator-card restricted-card" href="/memory_node/attian/fieldnotes/">
-            <span>fieldnotes</span>
-            <p>Personal observations from the field. The field is life. Yes, that is as inconvenient as it sounds.</p>
-        </a>
-        <a class="navigator-card restricted-card" href="/memory_node/attian/signalrecords/">
-            <span>signalrecords</span>
-            <p>Media fragments and cultural residue with emotional telemetry missing or deliberately denied.</p>
-        </a>
-        <a class="navigator-card restricted-card" href="/memory_node/attian/systemfailurelog/">
-            <span>systemfailurelog</span>
-            <p>Failures, malfunctions, delays, avoidable errors, and other classic human software events.</p>
-        </a>
-    </div>
-</section>
-
-<hr>
-
-<div class="nav">
-    <a href="/index.html">[ <-- Reconnect Memory Protocol: Attian ]</a>
-</div>
-
-<div class="status">
-Last Synchronization: 26.06.2026 00:00
-</div>
-
+    <details class="navigator-restricted">
+        <summary>
+            <span><strong>Restricted Access</strong><small>Subject approval and cyber key required</small></span>
+            <i>[ inspect sealed nodes ]</i>
+        </summary>
+        <div class="restricted-notice">
+            <p>Access requires a cyber key issued by the Subject. Nothing of extreme value is inside. Just chaos.</p>
+            <small>Administrator note: I dislike having access too. Unfortunately, chaos still requires folders.</small>
+        </div>
+        <nav class="restricted-directory" aria-label="Restricted archive nodes">
+            <a href="/memory_node/attian/dreamingfragments/"><strong>Dreaming Fragments</strong><span>Unfiltered dream logic</span></a>
+            <a href="/memory_node/attian/fieldnotes/"><strong>Field Notes</strong><span>Personal observations</span></a>
+            <a href="/memory_node/attian/signalrecords/"><strong>Signal Records</strong><span>Media and cultural residue</span></a>
+            <a href="/memory_node/attian/systemfailurelog/"><strong>System Failure Log</strong><span>Human software events</span></a>
+        </nav>
+    </details>
+</main>
+<div class="nav"><a href="/index.html">[ return to Attian Protocol ]</a></div>
+<div class="status">Last Synchronization: 09.07.2026 11:45</div>
 </body>
 </html>

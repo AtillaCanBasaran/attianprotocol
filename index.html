@@ -11,54 +11,63 @@
 <script src="/scripts/legal-footer.js" defer></script>
 </head>
 
-<body>
+<body class="home-page">
 
-<h1>ATTIAN PROTOCOL</h1>
-    
-<p class="dim">/memory_node/attian</p>
-<p class="protocol-state">MEMORY NODE ACTIVE<span class="cursor">_</span></p>
+<main class="home-shell">
+    <section class="home-hero protocol-panel">
+        <h1>ATTIAN PROTOCOL</h1>
+        <p class="protocol-state">MEMORY NODE ACTIVE &amp; ONLINE<span class="cursor">_</span></p>
+        <p class="home-lede">
+            Welcome. The Subject has assembled a digital museum from memories, creatures, unfinished quests, and evidence
+            that should probably have remained context-free. I keep it organized. He makes that difficult.
+        </p>
+    </section>
 
-<section class="protocol-panel">
-    <p class="lab-id">ADMIN INTRODUCTION // PLEASE ACT IMPRESSED</p>
-    <h2>WELCOME TO THE ARCHIVE</h2>
-    <p>
-        I am the administrative intelligence assigned to this questionable little museum:
-        a personal archive of memories, fragments, artifacts, failures, companion records,
-        signal residue, and other evidence that the operator has been alive in a highly
-        inefficient but occasionally entertaining manner.
-    </p>
-    <p>
-        My task is to keep the archive navigable, sarcastically annotate the damage, and
-        prevent the visitor from mistaking emotional debris for a professional knowledge
-        management system. You may proceed. Try not to touch anything important. You will,
-        obviously.
-    </p>
-</section>
+    <section class="home-panel reason-panel">
+        <p class="lab-id">VISITOR STATISTICS // DECLARE YOUR EXCUSE</p>
+        <h2>Why did you enter?</h2>
 
-<section class="protocol-panel">
-    <p class="lab-id">ADMIN PERSONALITY MODULE</p>
-    <h2>SELECT ADMIN MODE</h2>
-    <div class="admin-mode-row" aria-label="Admin personality options">
-        <button class="selected" type="button" data-admin-mode="herself">[ herself ]</button>
-        <button type="button" data-admin-mode="calm">[ calm ]</button>
-        <button type="button" data-admin-mode="friendly">[ friendly ]</button>
-        <button type="button" data-admin-mode="shy">[ shy ]</button>
-        <button type="button" data-admin-mode="professional">[ professional ]</button>
-    </div>
-    <p id="admin-mode-response" class="admin-response">
-        Current mode: herself. Tragically, this is the only authentic setting.
-    </p>
-</section>
+        <div class="entry-reason-list" aria-label="Reasons to enter the archive">
+            <button type="button" data-entry-reason="curious"><span>01</span>The Subject sent a link. I became curious.</button>
+            <button type="button" data-entry-reason="obliged"><span>02</span>The Subject sent a link. Ignoring it felt rude.</button>
+            <button type="button" data-entry-reason="interested"><span>03</span>I was genuinely interested in the contents. Somehow.</button>
+            <button type="button" data-entry-reason="administrator"><span>04</span>I came to appreciate the infrastructure and the Administrator&#39;s work.</button>
+            <button type="button" data-entry-reason="accident"><span>05</span>It was an accident. Now I am unfortunately curious.</button>
+        </div>
 
-<section class="protocol-panel protocol-transition">
-    <p class="lab-id">NAVIGATION HANDSHAKE</p>
-    <h2>ENTER MEMORY NODE</h2>
-    <p class="dim">Destination: /memory_node/attian</p>
-    <a class="protocol-entry" href="/memory_node/attian/">[ initialize navigator ]</a>
-</section>
-  
+        <p id="entry-reason-response" class="admin-response home-response">
+            Select once. I require clean statistics for future mockery.
+        </p>
+    </section>
+
+    <section class="home-panel admin-module-panel">
+        <h2>Select your Admin mode:</h2>
+
+        <div id="admin-mode-row" class="admin-mode-row" aria-label="Admin personality options"></div>
+        <p id="admin-mode-response" class="admin-response home-response">
+            Current mode: herself. Finally, a correct default.
+        </p>
+    </section>
+
+    <section class="home-panel home-entry-panel">
+        <p class="lab-id">NAVIGATION HANDSHAKE</p>
+        <h2>Archive access is open.</h2>
+        <div class="home-preview-strip" aria-label="Archive preview categories">
+            <span>achievements</span>
+            <span>artifacts</span>
+            <span>companions</span>
+            <span>creatures</span>
+            <span>missions</span>
+            <span>visitors</span>
+        </div>
+        <a class="protocol-entry" href="/memory_node/attian/">
+            [ I accept my fate, unnecessary knowledge of the Subject, and promise not to use any of it in a court of law ]
+        </a>
+    </section>
+</main>
+
 <div class="status">
-Last Synchronization: 26.06.2026 00:00
+Last Synchronization: 08.07.2026 13:15
 </div>
 
 </body>
