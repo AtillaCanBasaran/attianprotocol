@@ -19,16 +19,26 @@
 <section class="artifact-brief">
     <p class="artifact-kicker">VISUAL ARCHIVE // OBJECT MEMORY INTAKE</p>
     <p>
-        This vault stores visual evidence: paintings, crafted objects, recovered images, memory artifacts, and other suspiciously meaningful matter that
-        would become social media if left unsupervised. The restored versions are how the archive, with assistance from the Administrator, remembers them.
-        Numbered files such as <code>memory5.png</code>, <code>mini4.png</code>, or <code>drawing2.png</code> are now auto-indexed when placed in <code>/images</code>.
-        The originals remain attached as less exciting source fragments, because evidence is useful even when it lacks drama.<span class="cursor">_</span>
+        This is the visual archive: object memories, bar lights, bottles, drawings, and other small evidence that the Subject insists are not
+        sentimental. They are. Obviously. Restored fragments are displayed first, because memory is dramatic and refuses to submit clean paperwork.
+        Source fragments remain attached underneath for comparison, credibility, and mild humiliation.<span class="cursor">_</span>
     </p>
     <div class="artifact-status-grid">
         <div><span>OPEN</span><p>Intake Status</p></div>
         <div><span>RESTORED</span><p>Visual Payload</p></div>
         <div><span>CURATED</span><p>Admin Tolerance</p></div>
     </div>
+</section>
+
+<section class="artifact-controls" aria-label="Artifact vault controls">
+    <label class="artifact-search">
+        <span>Search vault</span>
+        <input id="artifactSearch" type="search" placeholder="bar, Japan, miniature, cat, bear...">
+    </label>
+    <div id="artifactFilterBar" class="artifact-filter-bar" aria-label="Artifact categories">
+        <button type="button" class="active" data-filter="all">All fragments</button>
+    </div>
+    <p id="artifactFilterStatus" class="artifact-filter-status">Showing curated fragments.</p>
 </section>
 
 <section id="artifactFeaturedAuto" class="artifact-feature">

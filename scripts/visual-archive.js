@@ -288,47 +288,207 @@
     }
 
     var artifactTypes = [
-        { prefix: "drawing", label: "Drawing Fragment", code: "ART-DRW", type: "Drawing / visual output" },
-        { prefix: "memory", label: "Memory Fragment", code: "ART-MEM", type: "Restored memory image" },
-        { prefix: "mini", label: "Miniature Fragment", code: "ART-MINI", type: "Miniature / object-memory" }
+        { prefix: "drawing", label: "Drawing Fragment", type: "Drawing / visual output" },
+        { prefix: "memory", label: "Memory Fragment", type: "Restored memory image" },
+        { prefix: "mini", label: "Miniature Fragment", type: "Miniature / object-memory" }
     ];
 
-    function artifactCard(serial, config, index, restored, original) {
+    var artifactCatalog = {
+        "drawing1": {
+            code: "ART-DRAW-0001",
+            title: "Bibi Exists Anyway",
+            short: "cat drawing / soft system patch",
+            category: "Art",
+            collection: "Drawings",
+            status: "Accepted",
+            type: "Reference drawing",
+            timestamp: "2024",
+            integrity: "Flawed. Existing. Approved.",
+            archive: "A drawing of a cat named Bibi. The Subject was bored, used a reference, produced a cute little creature, and then immediately began listing technical defects as if existence requires peer review.",
+            note: "Administrator restoration note: Bibi is accepted into the vault with visible flaws, because perfection is not a personality and the Subject would be in serious trouble if it were required for admission.",
+            feature: "Featured today because MUSE calmed down when Bibi appeared. This is not science, but it is the closest thing this archive has to workplace peace."
+        },
+        "memory1": {
+            code: "PLACE-BAR-0001",
+            title: "Rock The Who",
+            short: "Korean rock bar / warm stranger protocol",
+            category: "Special Places",
+            collection: "Travel Bars",
+            status: "Welcoming",
+            type: "Music bar memory",
+            timestamp: "2026-05",
+            integrity: "Warm. Loud. Verified.",
+            archive: "A rock bar in Korea where the Subject sat alone, drank, and ended up talking with two older men despite the heroic absence of shared language. They learned where he was from, played a cool rock band from there, and let the evening become warm without needing perfect translation.",
+            note: "Administrator restoration note: The important part is not linguistic accuracy. It is the fridge beer, loud downloaded video clips, shared music, and the rare human competence of making a stranger feel welcome.",
+            feature: "Featured today because apparently a bar with bad bandwidth and good humans can outperform several modern social systems. Disturbing, but documented."
+        },
+        "memory2": {
+            code: "OBJ-SOUV-0001",
+            title: "Dassai 39",
+            short: "sake bottle / Japan echo",
+            category: "Special Objects",
+            collection: "Travel Souvenirs",
+            status: "Recovered Echo",
+            type: "Sake bottle",
+            timestamp: "2026-05",
+            integrity: "Slightly warm. Still sacred.",
+            archive: "A bottle of Dassai 39 brought from Japan and shared with flatmates. They did not like sake very much. The Subject did. The bottle still carried an echo of meals, sweetness, rice flavor, easy tipsiness, and the better version of the drink remembered from Japan.",
+            note: "Administrator restoration note: The room was too hot, the sake warmed too quickly, and the recreation failed to match the original. Naturally, the memory survived anyway. Annoyingly durable little thing.",
+            feature: "Featured today because the archive enjoys reminding the Subject that a bottle can preserve a trip badly, warmly, and effectively at the same time."
+        },
+        "memory3": {
+            code: "PLACE-BAR-0002",
+            title: "Dusk Until Dawn",
+            short: "Japanese rock bar / almost-regular timeline",
+            category: "Special Places",
+            collection: "Travel Bars",
+            status: "Almost Home",
+            type: "Music bar memory",
+            timestamp: "2026-05",
+            integrity: "Cozy. Clear. Dangerous.",
+            archive: "A rock bar in Japan where the Subject arrived alone, ordered drinks, and spoke with the bartender, Neon. Neon was young, talkative, from Akabane in Tokyo, and studying English literature. Later, the Subject returned on a day Neon was off and spoke with the others there instead. The place still felt open, cozy, and possible.",
+            note: "Administrator restoration note: This fragment has strong 'could have become a regular' energy. Music, bar light, casual conversation, and a doorway into a life not taken. Very inconveniently charming.",
+            feature: "Featured today because Neon sounds like an NPC with excellent dialogue flags, and the archive respects a location where returning once already felt meaningful."
+        },
+        "memory4": {
+            code: "PLACE-ODD-0001",
+            title: "Probable Bear Claw, Allegedly",
+            short: "tree scratches / failed perception check",
+            category: "Special Places",
+            collection: "Travel Oddities",
+            status: "Unproven",
+            type: "Tree mark investigation",
+            timestamp: "2026-05",
+            integrity: "Probably not bear. Filing anyway.",
+            archive: "A tree in Japan marked with scratches the Subject interpreted as bear claws. Other observers did not support this theory. Bear-warning signs existed nearby, the bears were reportedly small, and the evidence therefore became just plausible enough to survive as a private wilderness hypothesis.",
+            note: "Administrator restoration note: Perception and survival checks were rolled. The result may have been success, failure, or the Dungeon Master lying with professional confidence. The official archive position is: maybe not a bear, but the Subject has already emotionally committed.",
+            feature: "Featured today because the archive respects a field investigation where the evidence is weak, the confidence is unstable, and the Dungeon Master may still have plans."
+        },
+        "mini1": {
+            code: "ART-MINI-0002",
+            title: "Unfinished Cyber Samurai",
+            short: "first face attempt / perfection damage",
+            category: "Art",
+            collection: "Miniature Paintings",
+            status: "Unfinished",
+            type: "Painted miniature",
+            timestamp: "2024",
+            integrity: "Face survived. Project did not.",
+            archive: "A cyberpunk samurai robo-woman miniature. The Subject was proud of the first face-painting attempt, then became dissatisfied, removed the paint, painted again, and still did not finish the piece. The miniature now records both progress and the classic alliance of perfectionism with laziness.",
+            note: "Administrator restoration note: The face was good enough to count as progress. Naturally, the Subject treated this as a threat and restarted the process. File under: technical improvement, psychological ambush.",
+            feature: "Featured today because unfinished projects deserve representation, especially the ones held hostage by perfection with a tiny brush."
+        },
+        "mini2": {
+            code: "ART-MINI-0003",
+            title: "Veiled Necromancer With Gloss Issues",
+            short: "undead caster / varnish lesson",
+            category: "Art",
+            collection: "Miniature Paintings",
+            status: "Overvarnished",
+            type: "Painted miniature",
+            timestamp: "2024",
+            integrity: "Too shiny. Lesson learned.",
+            archive: "An undead mage, necromancer, warlock, or related suspicious spellcaster. The figure has no visible face, only a veil, which helps the mystery and reduces facial accountability. The green tones work well. The varnish is slightly too shiny. A lesson was learned, allegedly.",
+            note: "Administrator restoration note: The greens are successful. The shine is enthusiastic. The lack of face is either design strength or convenient evasion of detail work. I will allow both interpretations.",
+            feature: "Featured today because nothing says personal growth like an undead caster reflecting too much light and too many lessons."
+        },
+        "mini3": {
+            code: "ART-MINI-0001",
+            title: "First Battle Sister",
+            short: "first miniature / purple-gold doctrine",
+            category: "Art",
+            collection: "Miniature Paintings",
+            status: "First Attempt",
+            type: "Painted miniature",
+            timestamp: "2024",
+            integrity: "Beginner flaws. Still glorious.",
+            archive: "The Subject's first ever miniature: a battle sister with purple and gold coloring, Eastern Roman ceremonial energy, skulls, statues, and enough detail to justify affection. Lighting and technique could improve, but as a first painted miniature, it achieved the important objective: looking cool enough to survive judgment.",
+            note: "Administrator restoration note: The purple and gold palette is doing significant diplomatic labor here. Byzantium-adjacent drama remains a valid aesthetic strategy. Beginner flaws detected; charm also detected. Annoying balance.",
+            feature: "Featured today because first attempts are allowed to be imperfect, especially when they arrive wearing purple, gold, and an alarming amount of ecclesiastical confidence."
+        }
+    };
+
+    function artifactKey(config, index) {
+        return config.prefix + index;
+    }
+
+    function defaultArtifact(config, index, original) {
         var title = config.label + " " + String(index).padStart(2, "0");
+        var category = config.prefix === "drawing" || config.prefix === "mini" ? "Art" : "Memory";
+        return {
+            code: (category === "Art" ? "ART-PENDING-" : "MEM-PENDING-") + String(index).padStart(4, "0"),
+            title: title,
+            short: "visual fragment awaiting context",
+            category: category,
+            collection: "Unsorted Intake",
+            status: original ? "Source Attached" : "Source Pending",
+            type: "Pending classification",
+            timestamp: "Pending archive context",
+            integrity: "Restored / source " + (original ? "attached" : "pending"),
+            archive: "A restored visual fragment has entered the vault. The memory context has not been written yet, which is very bold behavior from an object demanding wall space.",
+            note: "Administrator staging note: This fragment is visible and structurally archived. Narrative paperwork remains pending, because apparently images arrive before explanations.",
+            feature: "Featured today by rotational accident. The archive is not saying this object is important yet. It is saying the queue has opinions."
+        };
+    }
+
+    function slugify(text) {
+        return String(text || "uncategorized").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+
+    function artifactSearchText(meta) {
+        return [meta.title, meta.short, meta.category, meta.collection, meta.status, meta.type, meta.timestamp, meta.integrity, meta.archive, meta.note, meta.code].join(" ").toLowerCase();
+    }
+
+    function artifactCard(serial, config, index, restored, original) {
+        var meta = artifactCatalog[artifactKey(config, index)] || defaultArtifact(config, index, original);
+        var category = meta.category || config.label;
+        var searchText = artifactSearchText(meta);
         var originalHTML = original ? [
             "<details class=\"original-fragment\">",
-            "    <summary>inspect original fragment</summary>",
-            "    <img src=\"" + original + "\" alt=\"Original artifact fragment " + serial + "\">",
+            "    <summary>inspect source fragment</summary>",
+            "    <img src=\"" + original + "\" alt=\"Source fragment for " + escapeHTML(meta.title) + "\">",
             "</details>"
         ].join("\n                ") : "";
         return [
-            "<details class=\"artifact-card\"" + (serial === 1 ? " open" : "") + ">",
+            "<details class=\"artifact-card\" data-category=\"" + escapeHTML(slugify(category)) + "\" data-search=\"" + escapeHTML(searchText) + "\"" + (serial === 1 ? " open" : "") + ">",
             "    <summary class=\"artifact-summary\">",
-            "        <span class=\"artifact-thumb-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored thumbnail for " + escapeHTML(title) + "\"></span>",
-            "        <span class=\"artifact-code\">" + config.code + "-" + pad(serial) + "</span>",
-            "        <b>" + escapeHTML(title) + "</b>",
-            "        <small>restored visual fragment</small>",
+            "        <span class=\"artifact-thumb-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored thumbnail for " + escapeHTML(meta.title) + "\"></span>",
+            "        <span class=\"artifact-summary-main\"><span class=\"artifact-category\">" + escapeHTML(category) + "</span><b>" + escapeHTML(meta.title) + "</b><small>" + escapeHTML(meta.short) + "</small></span>",
+            "        <span class=\"artifact-summary-side\"><span>" + escapeHTML(meta.collection || "Unsorted") + "</span><small>" + escapeHTML(meta.status || "Restored") + "</small></span>",
             "    </summary>",
             "    <div class=\"artifact-body\">",
             "        <div>",
-            "            <div class=\"artifact-image-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored artifact fragment " + serial + "\"></div>",
-            "            <p class=\"restored-note\">Restored by the Administrator. Displaying how the archive insists this fragment is remembered.</p>",
+            "            <div class=\"artifact-image-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored artifact: " + escapeHTML(meta.title) + "\"></div>",
+            "            <p class=\"restored-note\">Restored view: how the archive remembers the object after memory has finished exaggerating responsibly.</p>",
             "            " + originalHTML,
             "        </div>",
             "        <div class=\"artifact-copy\">",
-            "            <dl class=\"artifact-meta\"><dt>Artifact Type</dt><dd>" + escapeHTML(config.type) + "</dd><dt>Timestamp State</dt><dd>Pending</dd><dt>Integrity</dt><dd>Restored / source " + (original ? "attached" : "pending") + "</dd></dl>",
-            "            <p>Placeholder text pending. Visual payload installed automatically from filename sequence; final memory label, context, and Administrator complaint can be added later.</p>",
-            "            <p class=\"artifact-admin\">Administrator restoration note: This fragment has been promoted from loose image to archived evidence. Original version " + (original ? "is available below, looking less theatrical but technically useful." : "was not detected. Very convenient. Suspiciously convenient.") + "</p>",
+            "            <dl class=\"artifact-meta\"><dt>Category</dt><dd>" + escapeHTML(category) + "</dd><dt>Collection</dt><dd>" + escapeHTML(meta.collection || "Unsorted") + "</dd><dt>Artifact Type</dt><dd>" + escapeHTML(meta.type) + "</dd><dt>Timestamp</dt><dd>" + escapeHTML(meta.timestamp) + "</dd><dt>Integrity</dt><dd>" + escapeHTML(meta.integrity) + "</dd><dt>Archive ID</dt><dd>" + escapeHTML(meta.code) + "</dd></dl>",
+            "            <h3>Archive Information</h3>",
+            "            <p>" + escapeHTML(meta.archive) + "</p>",
+            "            <p class=\"artifact-admin\">" + escapeHTML(meta.note) + "</p>",
             "        </div>",
             "    </div>",
             "</details>"
         ].join("\n");
     }
 
+    function dayOfYear(date) {
+        var start = new Date(date.getFullYear(), 0, 0);
+        return Math.floor((date - start) / 86400000);
+    }
+
+    function featuredArtifact(found) {
+        if (!found.length) return null;
+        var index = dayOfYear(new Date()) % found.length;
+        return found[index];
+    }
+
     async function loadArtifacts() {
         var container = document.getElementById("artifactGridAuto");
         if (!container) return;
         var cards = [];
+        var found = [];
         var serial = 1;
         for (var t = 0; t < artifactTypes.length; t += 1) {
             var config = artifactTypes[t];
@@ -337,19 +497,68 @@
                 if (restored) {
                     var original = await firstExisting(["/images/" + config.prefix + i + "_original.jpeg", "/images/" + config.prefix + i + "_original.jpg", "/images/" + config.prefix + i + "_original.png"]);
                     if (original === restored) original = null;
+                    var key = artifactKey(config, i);
+                    var meta = artifactCatalog[key] || defaultArtifact(config, i, original);
+                    found.push({ serial: serial, meta: meta, restored: restored, original: original });
                     cards.push(artifactCard(serial, config, i, restored, original));
                     serial += 1;
                 }
             }
         }
         container.innerHTML = cards.join("\n");
+        setupArtifactFilters(found);
         var featured = document.getElementById("artifactFeaturedAuto");
-        if (featured && cards.length) {
+        var selected = featuredArtifact(found);
+        if (featured && selected) {
             featured.innerHTML = [
-                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" src=\"/images/drawing1.png\" alt=\"Featured restored artifact fragment\"></div><p class=\"restored-note\">Featured restored artifact by the Administrator. Original fragment available in the first record below.</p></div>",
-                "<div><p class=\"artifact-kicker\">FEATURED SLOT // RESTORED MATERIAL</p><h2>Primary Recovered Artifact</h2><p>Restored visual fragments are now installed automatically from the image sequence. Final titles and narrative context remain pending, because apparently the archive must become beautiful before anyone finishes the paperwork.</p><dl class=\"artifact-meta\"><dt>Archive Class</dt><dd>Visual / Physical Memory Artifact</dd><dt>Integrity</dt><dd>Restored by the Administrator</dd><dt>Display Mode</dt><dd>Restored first / original collapsible</dd></dl></div>"
+                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" src=\"" + selected.restored + "\" alt=\"Featured restored artifact: " + escapeHTML(selected.meta.title) + "\"></div><p class=\"restored-note\">Daily feature rotation. The archive denies favoritism, poorly.</p></div>",
+                "<div><p class=\"artifact-kicker\">FEATURED SLOT // TODAY'S RESTORED FRAGMENT</p><h2>" + escapeHTML(selected.meta.title) + "</h2><p>" + escapeHTML(selected.meta.feature) + "</p><dl class=\"artifact-meta\"><dt>Category</dt><dd>" + escapeHTML(selected.meta.category || selected.meta.type) + "</dd><dt>Collection</dt><dd>" + escapeHTML(selected.meta.collection || "Unsorted") + "</dd><dt>Status</dt><dd>" + escapeHTML(selected.meta.status || "Restored") + "</dd><dt>Rotation</dt><dd>Daily selection from active vault fragments</dd></dl></div>"
             ].join("\n");
         }
+    }
+
+    function setupArtifactFilters(found) {
+        var bar = document.getElementById("artifactFilterBar");
+        var input = document.getElementById("artifactSearch");
+        var status = document.getElementById("artifactFilterStatus");
+        var cards = Array.prototype.slice.call(document.querySelectorAll(".artifact-card"));
+        if (!bar || !input || !status || !cards.length) return;
+
+        var categories = [];
+        found.forEach(function (item) {
+            var label = item.meta.category || "Uncategorized";
+            if (!categories.some(function (cat) { return cat.label === label; })) {
+                categories.push({ label: label, slug: slugify(label) });
+            }
+        });
+        categories.sort(function (a, b) { return a.label.localeCompare(b.label); });
+        bar.innerHTML = ["<button type=\"button\" class=\"active\" data-filter=\"all\">All fragments</button>"].concat(categories.map(function (cat) {
+            return "<button type=\"button\" data-filter=\"" + escapeHTML(cat.slug) + "\">" + escapeHTML(cat.label) + "</button>";
+        })).join("\n");
+
+        var active = "all";
+        function applyFilters() {
+            var query = input.value.trim().toLowerCase();
+            var visible = 0;
+            cards.forEach(function (card) {
+                var categoryMatch = active === "all" || card.getAttribute("data-category") === active;
+                var queryMatch = !query || (card.getAttribute("data-search") || "").indexOf(query) !== -1;
+                var show = categoryMatch && queryMatch;
+                card.hidden = !show;
+                if (show) visible += 1;
+            });
+            status.textContent = visible + " fragment" + (visible === 1 ? "" : "s") + " visible. " + (query ? "Search query tolerated." : "Archive order temporarily maintained.");
+        }
+
+        bar.addEventListener("click", function (event) {
+            var button = event.target.closest("button[data-filter]");
+            if (!button) return;
+            active = button.getAttribute("data-filter");
+            Array.prototype.forEach.call(bar.querySelectorAll("button"), function (item) { item.classList.toggle("active", item === button); });
+            applyFilters();
+        });
+        input.addEventListener("input", applyFilters);
+        applyFilters();
     }
 
     document.addEventListener("DOMContentLoaded", function () {
