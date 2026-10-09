@@ -34,6 +34,79 @@
 
 <section class="patch-stream">
     <details class="patch-note" open>
+        <summary class="patch-summary"><span>NAVIGATOR // PATCH 0.3.55</span><b>Mixed Voice Transmission Layout</b><small>MUSE/Admin interruptions now render as conflict instead of one uniform reply</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>INTERFACE / VOICE SYSTEM / AVATAR REFRESH</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / MUSE remains too bright</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Regenerated the MUSE thumbnail from the updated portrait.</li>
+                <li class="plus">Added automatic mixed-voice parsing for Navigator responses containing embedded <code>ADMINISTRATOR:</code> or <code>MUSE:</code> markers.</li>
+                <li class="plus">Added an asymmetric cyberpunk dual-response layout with left/right mirrored portrait frames for MUSE/Admin interruptions.</li>
+                <li class="plus">Documented the mixed-voice authoring format in the content guide and response bank header.</li>
+            </ul>
+            <p class="patch-admin">Administrator correction: MUSE interruptions now look like interruptions. This is dangerously close to rewarding her behavior.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>RED SIGNAL // PATCH 0.3.54</span><b>Public Contamination Rules</b><small>red no longer speaks or shows its face in public channels</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>VOICE RULE / INTERFACE CORRECTION</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / public channel sealed</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Regenerated the Red Signal avatar thumbnail from the updated source image for restricted-use contexts.</li>
+                <li class="minus">Removed public Navigator use of the Red Signal avatar.</li>
+                <li class="plus">Changed public red-related Navigator responses into corrupted/silenced transmissions instead of clean Red Channel speech.</li>
+                <li class="plus">Added red glitch contamination over the visible archive avatar while preserving the original portrait shape.</li>
+            </ul>
+            <p class="patch-admin">Administrator correction: Red does not get a microphone in public. It may rattle the lights. That is already more permission than it deserves.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>NAVIGATOR // PATCH 0.3.53</span><b>Response Bank Consolidation And Voice Color Correction</b><small>MUSE restored to cyan; Administrator restored to purple</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>INTERFACE / DATA CLEANUP / IMMERSION</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / fragmentation contained</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Merged all Navigator reactions into <code>scripts/navigator-response-data.js</code> as the single editable response bank.</li>
+                <li class="minus">Removed the old split reaction packs from the live Navigator loading path.</li>
+                <li class="plus">Corrected voice colors so Administrator uses the purple archive-control frame and MUSE uses the bright cyan live-spark frame.</li>
+                <li class="plus">Replaced circular portrait badges with angular cyberpunk archive frames and bracketed scanline styling.</li>
+            </ul>
+            <p class="patch-admin">Administrator correction: The voices have returned to their proper colors. MUSE is once again illegally bright; I remain purple and burdened.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>NAVIGATOR // PATCH 0.3.52</span><b>Avatar Search Responses And Admin-Bot Return</b><small>search suggestions, Enter routing, and LILI shell repaired</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>INTERFACE / NAVIGATOR / ADMIN SHELL</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / visible under protest</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Restored the Administrator/LILI assistant shell on the Navigator page.</li>
+                <li class="plus">Added LILI avatar imagery to the Admin-Bot toggle and interface header.</li>
+                <li class="plus">Added lightweight avatar thumbnails so tiny interface portraits do not summon multi-megabyte witnesses.</li>
+                <li class="plus">Updated Navigator search replies with speaker avatars and themed border frames for Administrator, MUSE, and Red Channel responses.</li>
+                <li class="plus">Added <code>scripts/navigator-response-data.js</code> as the clean manual path for future query terms and responses.</li>
+                <li class="plus">Reinforced Enter behavior so the first visible matching archive node opens from the search bar.</li>
+            </ul>
+            <p class="patch-admin">Administrator correction: The search bar now answers with a face, because apparently text alone was not haunted enough.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>IMAGE PIPELINE // PATCH 0.3.51</span><b>AVIF/WebP Fallbacks And Thumbnail Loading</b><small>large archive visuals now prefer lighter files</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>PERFORMANCE / IMAGE PIPELINE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / originals retained as fallback</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Generated optimized <code>.avif</code> and <code>.webp</code> versions for heavy Artifact Vault, Creature Index, Achievement, Fun Village, and portal images.</li>
+                <li class="plus">Generated small thumbnail variants for Artifact Vault and Creature Index restored visuals.</li>
+                <li class="plus">Updated generated archive rendering to prefer thumbnails and optimized formats while falling back to original PNG/JPEG files.</li>
+                <li class="plus">Updated Achievement icons and the Fun Village map to use browser-native picture fallbacks.</li>
+                <li class="plus">Kept original images in place as backup and compatibility fallback.</li>
+            </ul>
+            <p class="patch-admin">Administrator correction: The archive has stopped throwing full-resolution paintings at visitors merely because they opened a door. Revolutionary restraint.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
         <summary class="patch-summary"><span>REPOSITORY // PATCH 0.3.50</span><b>README And Image Intake Speed Pass</b><small>GitHub documentation added and generated archive scans reduced</small></summary>
         <div class="patch-body">
             <dl class="patch-meta"><dt>Patch Type</dt><dd>DOCUMENTATION / PERFORMANCE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / fewer missing-image interrogations</dd></dl>

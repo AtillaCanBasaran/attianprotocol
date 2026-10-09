@@ -22,6 +22,11 @@
         return null;
     }
 
+    function thumbCandidates(src) {
+        var stem = String(src || "").replace(/\.[^.]+$/, "");
+        return [stem + "_thumb.avif", stem + "_thumb.webp", src];
+    }
+
     function pad(num) {
         return String(num).padStart(4, "0");
     }
@@ -225,7 +230,7 @@
         };
     }
 
-    function creatureCard(index, restored, original) {
+    function creatureCard(index, restored, original, thumb) {
         var m = creatureMeta[index] || defaultCreatureMeta(index);
         var tags = m.tags.map(function (tag) { return "<span>" + escapeHTML(tag) + "</span>"; }).join("\n            ");
         var originalHTML = original ? [
@@ -245,7 +250,7 @@
             "        </div>",
             "        <span class=\"creature-rarity\">" + escapeHTML(m.rarity) + "</span>",
             "    </div>",
-            "    <div class=\"creature-image-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + restored + "\" alt=\"Restored creature fragment " + index + "\"></div>",
+            "    <div class=\"creature-image-slot\"><a href=\"" + restored + "\" aria-label=\"Open full restored creature image " + index + "\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + (thumb || restored) + "\" alt=\"Restored creature fragment " + index + "\"></a></div>",
             "    <p class=\"restored-note\">Restored creature visual by the Administrator. Original fragment " + (original ? "attached below for humiliating comparison." : "not detected yet. Suspicious.") + "</p>",
             originalHTML,
             "    <div class=\"creature-type-row\">" + tags + "</div>",
@@ -285,10 +290,23 @@
             : Array.from({ length: MAX_SCAN }, function (_, idx) { return idx + 1; });
         for (var idx = 0; idx < indexes.length; idx += 1) {
             var i = indexes[idx];
-            var restored = await firstExisting([CREATURE_IMAGE_BASE + "creature" + i + ".png", CREATURE_IMAGE_BASE + "creature" + i + ".jpeg", CREATURE_IMAGE_BASE + "creature" + i + ".jpg"]);
+            var restored = await firstExisting([
+                CREATURE_IMAGE_BASE + "creature" + i + ".avif",
+                CREATURE_IMAGE_BASE + "creature" + i + ".webp",
+                CREATURE_IMAGE_BASE + "creature" + i + ".png",
+                CREATURE_IMAGE_BASE + "creature" + i + ".jpeg",
+                CREATURE_IMAGE_BASE + "creature" + i + ".jpg"
+            ]);
             if (restored) {
-                var original = await firstExisting([CREATURE_IMAGE_BASE + "creature" + i + "_original.jpeg", CREATURE_IMAGE_BASE + "creature" + i + "_original.jpg", CREATURE_IMAGE_BASE + "creature" + i + "_original.png"]);
-                cards.push(creatureCard(i, restored, original));
+                var original = await firstExisting([
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.avif",
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.webp",
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.jpeg",
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.jpg",
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.png"
+                ]);
+                var thumb = await firstExisting(thumbCandidates(restored));
+                cards.push(creatureCard(i, restored, original, thumb));
                 lastFound = Math.max(lastFound, i);
             }
         }
@@ -466,7 +484,7 @@
         return [meta.title, meta.short, meta.category, meta.collection, meta.status, meta.type, meta.timestamp, meta.integrity, meta.archive, meta.note, meta.code].join(" ").toLowerCase();
     }
 
-    function artifactCard(serial, config, index, restored, original) {
+    function artifactCard(serial, config, index, restored, original, thumb) {
         var meta = artifactCatalog[artifactKey(config, index)] || defaultArtifact(config, index, original);
         var category = meta.category || config.label;
         var searchText = artifactSearchText(meta);
@@ -479,7 +497,7 @@
         return [
             "<details class=\"artifact-card\" data-category=\"" + escapeHTML(slugify(category)) + "\" data-search=\"" + escapeHTML(searchText) + "\"" + (serial === 1 ? " open" : "") + ">",
             "    <summary class=\"artifact-summary\">",
-            "        <span class=\"artifact-thumb-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + restored + "\" alt=\"Restored thumbnail for " + escapeHTML(meta.title) + "\"></span>",
+            "        <span class=\"artifact-thumb-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + (thumb || restored) + "\" alt=\"Restored thumbnail for " + escapeHTML(meta.title) + "\"></span>",
             "        <span class=\"artifact-summary-main\"><span class=\"artifact-category\">" + escapeHTML(category) + "</span><b>" + escapeHTML(meta.title) + "</b><small>" + escapeHTML(meta.short) + "</small></span>",
             "        <span class=\"artifact-summary-side\"><span>" + escapeHTML(meta.collection || "Unsorted") + "</span><small>" + escapeHTML(meta.status || "Restored") + "</small></span>",
             "    </summary>",
@@ -531,14 +549,33 @@
             var item = artifactQueue[q];
             var config = item.config;
             var i = item.index;
-            var restored = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + ".png", ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.png", ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
+            var restored = await firstExisting([
+                ARTIFACT_IMAGE_BASE + config.prefix + i + ".avif",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + ".webp",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + ".png",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.avif",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.webp",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.png",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpeg",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpg",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.avif",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.webp",
+                ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"
+            ]);
             if (restored) {
-                var original = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
+                var original = await firstExisting([
+                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.avif",
+                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.webp",
+                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpeg",
+                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpg",
+                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"
+                ]);
                 if (original === restored) original = null;
+                var thumb = await firstExisting(thumbCandidates(restored));
                 var key = artifactKey(config, i);
                 var meta = artifactCatalog[key] || defaultArtifact(config, i, original);
                 found.push({ serial: serial, meta: meta, restored: restored, original: original });
-                cards.push(artifactCard(serial, config, i, restored, original));
+                cards.push(artifactCard(serial, config, i, restored, original, thumb));
                 serial += 1;
             }
         }

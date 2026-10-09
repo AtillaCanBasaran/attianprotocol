@@ -97,6 +97,21 @@ The card should appear automatically. If it does not:
 - confirm the image is inside `images/artifactvault/`;
 - hard refresh the page if the browser cached the old script.
 
+### 4. Optimized image versions
+
+The live page prefers optimized `.avif` / `.webp` files and small `_thumb` files when present. The original `.png` / `.jpeg` stays in place as backup and browser fallback.
+
+For best performance, generate these beside the original:
+
+```text
+memory5.avif
+memory5.webp
+memory5_thumb.avif
+memory5_thumb.webp
+```
+
+If you skip this, the page will still work, but it will load the larger original image.
+
 ## Adding a Creature Index Entry
 
 Files involved:
@@ -158,6 +173,21 @@ creatureItems: [1, 2, 3, 4, 5, 6, 7],
 ```
 
 This lets the page render from a known list instead of checking many missing filenames.
+
+### 3. Optimized image versions
+
+The live page prefers optimized `.avif` / `.webp` files and small `_thumb` files when present. The original `.png` / `.jpeg` stays in place as backup and browser fallback.
+
+For best performance, generate these beside the original:
+
+```text
+creature7.avif
+creature7.webp
+creature7_thumb.avif
+creature7_thumb.webp
+```
+
+If you skip this, the page will still work, but it will load the larger original image.
 
 ## Adding a Mission Log Quest
 
@@ -228,6 +258,43 @@ After adding quests, update the intro count:
 ```html
 <div><span>20</span><p>Logged Quests</p></div>
 ```
+
+## Adding a Navigator Search Response
+
+Files involved:
+
+- Easy manual response bank: `scripts/navigator-response-data.js`
+- Navigator page: no edit needed unless adding/removing visible destination cards.
+
+Open `scripts/navigator-response-data.js` and add one object inside `window.NAVIGATOR_RESPONSE_BANK`:
+
+```js
+{
+    terms: ["cake", "the cake", "grand prize"],
+    speaker: "muse",
+    text: "Cake Trial located. The prize may be dessert, acronym, leverage, or a trap wearing frosting."
+}
+```
+
+Supported speakers:
+
+- `administrator` or `lili` = LILI avatar, purple archive-control frame
+- `muse` = MUSE avatar, bright cyan live-spark frame
+- `red` = public signal corruption: no Red avatar and no clean Red voice; it glitches/silences the visible archive speaker instead
+
+Keep terms lowercase when possible. Add several phrases if visitors may search the same idea different ways. The Navigator loads the bank automatically; no separate registration step is needed.
+
+For a mixed voice response, keep one entry and mark the interruption inside `text`:
+
+```js
+{
+    terms: ["beer"],
+    speaker: "muse",
+    text: "Liquid bread! ADMINISTRATOR: Technically closer than I wanted."
+}
+```
+
+The Navigator will split the line into an asymmetric MUSE/Admin transmission automatically.
 
 ## Adding an Achievement
 

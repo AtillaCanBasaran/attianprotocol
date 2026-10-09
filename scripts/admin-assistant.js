@@ -10,10 +10,16 @@
         shell.className = "admin-assistant-shell";
         shell.setAttribute("aria-label", "Administrator assistant shell");
         shell.innerHTML = [
-            "<button class=\"admin-assistant-toggle\" type=\"button\" aria-expanded=\"false\">ADMIN</button>",
+            "<button class=\"admin-assistant-toggle\" type=\"button\" aria-expanded=\"false\">",
+            "    <span class=\"admin-assistant-toggle-portrait\"><img src=\"/images/avatars/lili_avatar_thumb.png\" alt=\"\" loading=\"lazy\"></span>",
+            "    <span>ADMIN-BOT</span>",
+            "</button>",
             "<section class=\"admin-assistant-panel\" hidden>",
             "    <header>",
-            "        <span>LILI / ADMINISTRATOR INTERFACE</span>",
+            "        <span class=\"admin-assistant-identity\">",
+            "            <span class=\"admin-assistant-portrait\"><img class=\"admin-assistant-avatar\" src=\"/images/avatars/lili_avatar_thumb.png\" alt=\"LILI avatar\" loading=\"lazy\"></span>",
+            "            <span>LILI / ADMINISTRATOR INTERFACE</span>",
+            "        </span>",
             "        <button class=\"admin-assistant-close\" type=\"button\" aria-label=\"Close Administrator interface\">[ x ]</button>",
             "    </header>",
             "    <div class=\"admin-assistant-log\">",

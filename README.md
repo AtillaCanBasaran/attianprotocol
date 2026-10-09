@@ -77,6 +77,7 @@ For generated visual archive content:
 - Put Artifact Vault images in `images/artifactvault/`.
 - Put Creature Index images in `images/creatureindex/`.
 - Add future metadata in `scripts/archive-content-data.js`.
+- Keep original images as fallback, and add optimized `.avif` / `.webp` plus `_thumb` variants for faster pages.
 
 ## Voice rules
 

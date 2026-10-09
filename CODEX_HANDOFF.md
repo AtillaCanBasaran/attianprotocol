@@ -136,8 +136,8 @@ Concept/reference pages:
 - `scripts/restricted-access.js` gates restricted pages. Current password: `1327`.
 - `scripts/main-page.js` handles entry-page interaction.
 - `scripts/main-page-concepts.js` supports the main-page concept node.
-- `scripts/navigator.js` powers the navigator.
-- `scripts/navigator-reactions.js` and `scripts/navigator-reactions-after-dark.js` provide reactions.
+- `scripts/navigator.js` powers the navigator search, result filtering, Enter-to-open behavior, and avatar-framed responses.
+- `scripts/navigator-response-data.js` is the single Navigator response bank for search terms. Add one object with `terms`, `speaker`, and `text`.
 - `scripts/visual-archive.js` generates Artifact Vault and Creature Index cards from image naming patterns and metadata.
 - `scripts/archive-content-data.js` is the manual metadata layer for future Artifact Vault and Creature Index entries. Load it before `visual-archive.js`.
 - `scripts/mission-log.js` powers Mission Log filtering, search, tracking, and local objective progress.
@@ -209,6 +209,7 @@ Red Channel style:
 - more unsettling than mysterious or logical
 - never too articulate, never advisory in a clean way
 - it can imply harm, fear, hunger, fixation, or contamination, but should not become gore theater
+- on public pages, Red Channel should not speak as a visible narrator and should not show its avatar; represent it as interference, deletion, silencing, or corruption of another visible archive voice
 
 Good:
 

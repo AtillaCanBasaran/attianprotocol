@@ -2,6 +2,8 @@
 
 This file is a personal roadmap for the attianprotocol. It contains aimed improvements and future plans.
 
+
+
 # Achievement Repository
 
 - More achievements = Also corresponding logos
@@ -54,10 +56,14 @@ Less text, more visual
 
 # Update Log
 
--
+- Language matching and making it easier to consume, more lore details and commentary.
 
 # Field Notes
+- More field related notes and journals, rather than personal stuff. == basically just more content
+
 # Dreaming Fragments
+-
+
 # Signal Records
 # System Failure Log
 
@@ -73,3 +79,5 @@ Less text, more visual
 - Update Log polishing
 - Style matching
 - Storage system for visitor terminal and LILI framework inputs
+
+- red channel interferance in deleted comments in public nodes. It is never allowed to be there, but still has some effects
