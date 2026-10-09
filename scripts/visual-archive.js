@@ -231,7 +231,7 @@
         var originalHTML = original ? [
             "<details class=\"original-fragment\">",
             "    <summary>inspect original fragment</summary>",
-            "    <img src=\"" + original + "\" alt=\"Original creature fragment " + index + "\">",
+            "    <img loading=\"lazy\" decoding=\"async\" src=\"" + original + "\" alt=\"Original creature fragment " + index + "\">",
             "</details>"
         ].join("\n        ") : "";
 
@@ -245,7 +245,7 @@
             "        </div>",
             "        <span class=\"creature-rarity\">" + escapeHTML(m.rarity) + "</span>",
             "    </div>",
-            "    <div class=\"creature-image-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored creature fragment " + index + "\"></div>",
+            "    <div class=\"creature-image-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + restored + "\" alt=\"Restored creature fragment " + index + "\"></div>",
             "    <p class=\"restored-note\">Restored creature visual by the Administrator. Original fragment " + (original ? "attached below for humiliating comparison." : "not detected yet. Suspicious.") + "</p>",
             originalHTML,
             "    <div class=\"creature-type-row\">" + tags + "</div>",
@@ -280,12 +280,16 @@
         if (!container) return;
         var cards = [];
         var lastFound = 0;
-        for (var i = 1; i <= MAX_SCAN; i += 1) {
+        var indexes = Array.isArray(externalArchiveContent.creatureItems)
+            ? externalArchiveContent.creatureItems.map(function (item) { return Number(item); }).filter(Boolean)
+            : Array.from({ length: MAX_SCAN }, function (_, idx) { return idx + 1; });
+        for (var idx = 0; idx < indexes.length; idx += 1) {
+            var i = indexes[idx];
             var restored = await firstExisting([CREATURE_IMAGE_BASE + "creature" + i + ".png", CREATURE_IMAGE_BASE + "creature" + i + ".jpeg", CREATURE_IMAGE_BASE + "creature" + i + ".jpg"]);
             if (restored) {
                 var original = await firstExisting([CREATURE_IMAGE_BASE + "creature" + i + "_original.jpeg", CREATURE_IMAGE_BASE + "creature" + i + "_original.jpg", CREATURE_IMAGE_BASE + "creature" + i + "_original.png"]);
                 cards.push(creatureCard(i, restored, original));
-                lastFound = i;
+                lastFound = Math.max(lastFound, i);
             }
         }
         for (var p = lastFound + 1; p <= lastFound + PENDING_SLOTS; p += 1) {
@@ -427,6 +431,14 @@
         return config.prefix + index;
     }
 
+    function parseArtifactItem(key) {
+        var match = String(key || "").match(/^([a-z]+)(\d+)$/i);
+        if (!match) return null;
+        var config = artifactTypes.find(function (item) { return item.prefix === match[1]; });
+        if (!config) return null;
+        return { config: config, index: Number(match[2]) };
+    }
+
     function defaultArtifact(config, index, original) {
         var title = config.label + " " + String(index).padStart(2, "0");
         var category = config.prefix === "drawing" || config.prefix === "mini" ? "Art" : "Memory";
@@ -461,19 +473,19 @@
         var originalHTML = original ? [
             "<details class=\"original-fragment\">",
             "    <summary>inspect source fragment</summary>",
-            "    <img src=\"" + original + "\" alt=\"Source fragment for " + escapeHTML(meta.title) + "\">",
+            "    <img loading=\"lazy\" decoding=\"async\" src=\"" + original + "\" alt=\"Source fragment for " + escapeHTML(meta.title) + "\">",
             "</details>"
         ].join("\n                ") : "";
         return [
             "<details class=\"artifact-card\" data-category=\"" + escapeHTML(slugify(category)) + "\" data-search=\"" + escapeHTML(searchText) + "\"" + (serial === 1 ? " open" : "") + ">",
             "    <summary class=\"artifact-summary\">",
-            "        <span class=\"artifact-thumb-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored thumbnail for " + escapeHTML(meta.title) + "\"></span>",
+            "        <span class=\"artifact-thumb-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + restored + "\" alt=\"Restored thumbnail for " + escapeHTML(meta.title) + "\"></span>",
             "        <span class=\"artifact-summary-main\"><span class=\"artifact-category\">" + escapeHTML(category) + "</span><b>" + escapeHTML(meta.title) + "</b><small>" + escapeHTML(meta.short) + "</small></span>",
             "        <span class=\"artifact-summary-side\"><span>" + escapeHTML(meta.collection || "Unsorted") + "</span><small>" + escapeHTML(meta.status || "Restored") + "</small></span>",
             "    </summary>",
             "    <div class=\"artifact-body\">",
             "        <div>",
-            "            <div class=\"artifact-image-slot\"><img class=\"restored-visual\" src=\"" + restored + "\" alt=\"Restored artifact: " + escapeHTML(meta.title) + "\"></div>",
+            "            <div class=\"artifact-image-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + restored + "\" alt=\"Restored artifact: " + escapeHTML(meta.title) + "\"></div>",
             "            <p class=\"restored-note\">Restored view: how the archive remembers the object after memory has finished exaggerating responsibly.</p>",
             "            " + originalHTML,
             "        </div>",
@@ -505,19 +517,29 @@
         var cards = [];
         var found = [];
         var serial = 1;
-        for (var t = 0; t < artifactTypes.length; t += 1) {
-            var config = artifactTypes[t];
-            for (var i = 1; i <= MAX_SCAN; i += 1) {
-                var restored = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + ".png", ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.png", ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
-                if (restored) {
-                    var original = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
-                    if (original === restored) original = null;
-                    var key = artifactKey(config, i);
-                    var meta = artifactCatalog[key] || defaultArtifact(config, i, original);
-                    found.push({ serial: serial, meta: meta, restored: restored, original: original });
-                    cards.push(artifactCard(serial, config, i, restored, original));
-                    serial += 1;
+        var artifactQueue = [];
+        if (Array.isArray(externalArchiveContent.artifactItems)) {
+            artifactQueue = externalArchiveContent.artifactItems.map(parseArtifactItem).filter(Boolean);
+        } else {
+            for (var t = 0; t < artifactTypes.length; t += 1) {
+                for (var i = 1; i <= MAX_SCAN; i += 1) {
+                    artifactQueue.push({ config: artifactTypes[t], index: i });
                 }
+            }
+        }
+        for (var q = 0; q < artifactQueue.length; q += 1) {
+            var item = artifactQueue[q];
+            var config = item.config;
+            var i = item.index;
+            var restored = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + ".png", ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.png", ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
+            if (restored) {
+                var original = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
+                if (original === restored) original = null;
+                var key = artifactKey(config, i);
+                var meta = artifactCatalog[key] || defaultArtifact(config, i, original);
+                found.push({ serial: serial, meta: meta, restored: restored, original: original });
+                cards.push(artifactCard(serial, config, i, restored, original));
+                serial += 1;
             }
         }
         container.innerHTML = cards.join("\n");
@@ -526,7 +548,7 @@
         var selected = featuredArtifact(found);
         if (featured && selected) {
             featured.innerHTML = [
-                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" src=\"" + selected.restored + "\" alt=\"Featured restored artifact: " + escapeHTML(selected.meta.title) + "\"></div><p class=\"restored-note\">Daily feature rotation. The archive denies favoritism, poorly.</p></div>",
+                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" decoding=\"async\" src=\"" + selected.restored + "\" alt=\"Featured restored artifact: " + escapeHTML(selected.meta.title) + "\"></div><p class=\"restored-note\">Daily feature rotation. The archive denies favoritism, poorly.</p></div>",
                 "<div><p class=\"artifact-kicker\">FEATURED SLOT // TODAY'S RESTORED FRAGMENT</p><h2>" + escapeHTML(selected.meta.title) + "</h2><p>" + escapeHTML(selected.meta.feature) + "</p><dl class=\"artifact-meta\"><dt>Category</dt><dd>" + escapeHTML(selected.meta.category || selected.meta.type) + "</dd><dt>Collection</dt><dd>" + escapeHTML(selected.meta.collection || "Unsorted") + "</dd><dt>Status</dt><dd>" + escapeHTML(selected.meta.status || "Restored") + "</dd><dt>Rotation</dt><dd>Daily selection from active vault fragments</dd></dl></div>"
             ].join("\n");
         }

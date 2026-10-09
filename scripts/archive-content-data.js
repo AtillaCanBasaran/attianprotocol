@@ -6,7 +6,14 @@
          * Add future Artifact Vault entries under `artifacts`.
          * Add future Creature Index entries under `creatures`.
          *
-         * Image files are still discovered automatically by filename:
+         * Image files are listed below so generated pages do not need to probe
+         * dozens of missing filenames before rendering.
+         *
+         * Add future entries to the relevant list:
+         * - artifactItems: "memory5", "drawing2", "mini4"
+         * - creatureItems: 7
+         *
+         * Image filename patterns:
          * - Artifact restored image: /images/artifactvault/memory5.png
          * - Artifact optional source: /images/artifactvault/memory5_original.jpeg
          * - Creature restored image: /images/creatureindex/creature7.png
@@ -18,6 +25,8 @@
          * - mini4 metadata key: "mini4"
          * - creature7 metadata key: 7
          */
+        artifactItems: ["drawing1", "memory1", "memory2", "memory3", "memory4", "mini1", "mini2", "mini3"],
+        creatureItems: [1, 2, 3, 4, 5, 6],
         artifacts: {
             /*
             "memory5": {

@@ -50,6 +50,8 @@ Use `scripts/archive-content-data.js` for:
 
 - Creature card metadata: `creatureMeta`
 - Artifact card metadata: `artifactCatalog`
+- Generated Artifact Vault manifest: `artifactItems`
+- Generated Creature Index manifest: `creatureItems`
 - Optional artifact type families if a new image family is added later
 
 Filename conventions used by the generated archive:

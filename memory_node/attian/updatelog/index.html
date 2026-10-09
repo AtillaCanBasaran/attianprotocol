@@ -34,6 +34,21 @@
 
 <section class="patch-stream">
     <details class="patch-note" open>
+        <summary class="patch-summary"><span>REPOSITORY // PATCH 0.3.50</span><b>README And Image Intake Speed Pass</b><small>GitHub documentation added and generated archive scans reduced</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>DOCUMENTATION / PERFORMANCE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / fewer missing-image interrogations</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Added a proper GitHub repository <code>README.md</code> explaining the project, structure, workflow, and deployment.</li>
+                <li class="plus">Added explicit Artifact Vault and Creature Index image manifests in <code>scripts/archive-content-data.js</code>.</li>
+                <li class="minus">Reduced generated archive filename probing so pages no longer inspect dozens of absent image slots before rendering.</li>
+                <li class="plus">Added lazy/async image hints to generated archive visuals and achievement icons.</li>
+                <li class="plus">Updated authoring docs so future image entries are added to the manifest as well as the metadata section.</li>
+            </ul>
+            <p class="patch-admin">Administrator correction: The archive has been told which pictures exist instead of asking every possible filename whether it feels real today. Stunning administrative breakthrough.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
         <summary class="patch-summary"><span>ALPHA CHECKPOINT // PATCH 0.3.49</span><b>Structure Audit And Content Intake Guide</b><small>manual authoring path added for future archive growth</small></summary>
         <div class="patch-body">
             <dl class="patch-meta"><dt>Patch Type</dt><dd>CHECKPOINT / DOCUMENTATION / MAINTENANCE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / alpha structure accepted under protest</dd></dl>

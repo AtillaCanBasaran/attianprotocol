@@ -75,6 +75,14 @@ Inside `artifacts`, add a key matching the image filename without extension:
 }
 ```
 
+Also add the key to `artifactItems` near the top of the file:
+
+```js
+artifactItems: ["drawing1", "memory1", "memory2", "memory3", "memory4", "memory5", "mini1", "mini2", "mini3"],
+```
+
+This avoids slow filename scanning and keeps the page loading quickly.
+
 ### 3. Check the page
 
 Open:
@@ -142,6 +150,14 @@ Inside `creatures`, add the matching number:
     comment: "Administrator note: final dry classification."
 }
 ```
+
+Also add the number to `creatureItems` near the top of the file:
+
+```js
+creatureItems: [1, 2, 3, 4, 5, 6, 7],
+```
+
+This lets the page render from a known list instead of checking many missing filenames.
 
 ## Adding a Mission Log Quest
 
