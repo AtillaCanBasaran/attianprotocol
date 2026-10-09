@@ -1,0 +1,45 @@
+Cards:
+-----------------------
+Balance: increase ability score in sacrifice of other one.  Card might not have an effect
+
+Comet: select, encounter, if you suceed you win.
+
+Donjon: you disappear, and entombed. you draw no more.
+
+Euryale: you are cursed by medusa
+
+Fates: Avoid or erase one event as it never happened. Any other time before you die possible
+
+Flames: A powerful devil is your enemy. This enmity lasts until one surrenders.
+
+Fool: You have disadvantage in next card.draw
+
+Gem: getting the riches
+
+jester: you have advantage in next card.draw
+
+key: get a weapon fits your needs
+
+knight: you get a knight Companion
+
+moon: you get to cast wish
+
+puzzle: int debuff perma, draw 1 extra if you want
+
+rogue: someone got hostile to you
+
+ruin: you lost everthing you have
+
+sage: you ask a question. You get the answer, turthfully.
+
+skull: you fight with the avatar of death
+
+star: incrase AP 2
+
+Sun: you get a magic item. also 10 temporary hp everyday
+
+talons: you lose everything you wear
+
+throne: you get authority
+
+void: your soul is lost in an object. no more draws

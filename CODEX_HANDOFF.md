@@ -1,417 +1,500 @@
-# Attian Protocol - Project Context
+# Attian Protocol - Codex Handoff
 
-This repository is a static personal website called **Attian Protocol**. It is a personal digital museum/archive: memories, fragments, objects, visitors, goals, private logs, and strange little systems presented as a cyberpunk terminal.
+Read this first when opening the project in a new Codex session. It explains what the site is, how it is organized, where future content lives, and what rules matter.
 
-The tone should feel like a memory archive operated by a sarcastic, bad-mannered admin. The admin is annoyed, dry, judgmental, sometimes weirdly caring, and should narrate the site more than the owner directly explains himself. Think: clinical terminal language mixed with rude affection. Avoid making pages sound like plain diary entries unless that is explicitly the point.
+## Project Identity
 
-## Current Version
+Attian Protocol is a static personal digital archive at:
 
-Local version: **v0.3**
-
-Local Git state as of this handoff:
-
-- Branch: `main`
-- Local commit: `3f0ad07 Release version 0.3`
-- Local tag: `v0.3`
-- Local branch is ahead of `origin/main` by 1 commit.
-- Push was attempted but blocked because GitHub authentication is not configured in the local terminal.
-- To publish after authentication:
-
-```bash
-git push origin main
-git push origin v0.3
+```text
+https://attianprotocol.net/
 ```
 
-## Design Direction
+Repository:
 
-- Static HTML/CSS/JS.
+```text
+AtillaCanBasaran/attianprotocol
+```
+
+Local path on the original machine:
+
+```text
+/Users/sb-atillacanbasaran/Documents/Codex/attianprotocol
+```
+
+The site is not meant to feel like a normal portfolio, blog, or corporate page. It is a cyberpunk personal museum: memory archive, quest log, artifact vault, creature index, private writing archive, media record, and terminal system held together by an in-world Administrator.
+
+## Technical Shape
+
+This is a static HTML/CSS/JS site.
+
+- No build step.
+- No package manager required.
 - Main stylesheet: `css/style.css`.
-- Keep styling consolidated in `css/style.css`; avoid reintroducing separate `blocks.css`, `cards.css`, `terminal.css`, or `visitor.css`.
-- Visual style: dark cyberpunk terminal, purple/cyan glow, archive/system UI, not a corporate landing page.
-- Admin voice should appear in descriptions, status lines, error messages, labels, and empty states.
-- The site should feel usable first, atmospheric second.
-- No emojis unless intentionally requested.
+- Shared scripts live in `scripts/`.
+- Live public pages are mostly under `memory_node/attian/*/index.html`.
+- GitHub Pages deploys from `main`.
+- Custom domain is controlled by `CNAME`.
+- `.nojekyll` is present so GitHub Pages serves underscore-style files normally.
+- `.github/workflows/static.yml` exists for static deployment/Pages workflow context.
 
-## Core Scripts
+Preview locally from the repo root:
 
-### `scripts/legal-footer.js`
+```bash
+python3 -m http.server 8001
+```
 
-Injects collapsible legal sections into pages:
+Then open:
 
-- `IMPRESSUM / LEGAL NOTICE`
-- `DATENSCHUTZERKLARUNG / PRIVACY POLICY`
+```text
+http://localhost:8001/
+http://localhost:8001/memory_node/attian/
+```
 
-Contact details used:
+If a port is occupied, use another port such as `8002`.
 
-- Johannisstr. 136
-- 49074 Osnabrück
-- Germany
-- atillacanbasran@gmail.com
+## Repository Structure
 
-### `scripts/restricted-access.js`
+```text
+index.html                         Main entry page
+CNAME                              GitHub Pages custom domain
+.github/workflows/static.yml       GitHub Pages/static deployment workflow
+.gitignore                         Ignores macOS/system noise
+.nojekyll                          GitHub Pages behavior marker
+CODEX_HANDOFF.md                   Read-me-first context for Codex
+CONTENT_EDITING_GUIDE.md           Quick map for editing visible copy
+docs/CONTENT_AUTHORING_GUIDE.md    Step-by-step manual content recipes
+docs/ALPHA_CHECKPOINT_AUDIT.md     Alpha structure/content audit
+css/style.css                      Central visual system
+scripts/                           Shared JavaScript modules
+images/                            Active image assets
+images/artifactvault/              Artifact Vault drawing/memory/mini assets
+images/creatureindex/              Creature Index restored/original creature assets
+images/icons/                      Achievement icon assets
+memory_node/attian/                Main archive nodes
+docs/content-sources/              Raw future-content notes and idea banks
+```
 
-Adds password gate for restricted pages.
+Do not create new random CSS files for individual pages unless there is a strong reason. The user's preference is one central stylesheet.
 
-- Current password: `1327`
-- Does not persist session unlock; pages ask again on reload.
-- Keep the cyberpunk admin-access feel.
+## Current Content Source Policy
 
-Protected pages currently include:
+Live page folders should stay clean: normally each page directory should contain `index.html` only.
 
-- `memory_node/attian/dreamingfragments/`
-- `memory_node/attian/fieldnotes/`
-- `memory_node/attian/signalrecords`
-- `memory_node/attian/systemfailurelog/`
+Raw future ideas, lists, drafts, and unimplemented content belong in:
 
-### `scripts/main-page.js`
+```text
+docs/content-sources/
+```
 
-Controls the admin personality selector on the main landing page.
+Current source files there include:
 
-- Default selected personality: admin being herself.
-- Other personality options are rejected with sarcastic admin responses.
+- `achievement-repository-seeds.txt`
+- `chaos-index-ruleset.txt`
+- `companion-database-seeds.txt`
+- `creature-index-story-seeds.txt`
+- `mission-log-quest-seeds.txt`
+- `research-terminal-topic-seeds.txt`
+- `signal-records-source.txt`
+- `site-backlog-raw.txt`
+- `system-failure-log-seeds.txt`
+
+When implementing content from these files, copy/adapt it into the relevant page's `index.html` or the relevant script data structure, then leave the source file as a long-term idea bank unless the user asks to prune it.
 
 ## Page Map
 
-### `/index.html`
+Primary pages:
 
-Main entry page.
+- `index.html` - entry page and visitor reason handshake.
+- `memory_node/attian/index.html` - navigator / archive hub.
+- `memory_node/attian/achievementrepository/index.html` - achievements and icon records.
+- `memory_node/attian/artifactvault/index.html` - object/image archive; cards generated by `scripts/visual-archive.js`.
+- `memory_node/attian/companiondatabase/index.html` - companion records.
+- `memory_node/attian/creatureindex/index.html` - creature archive; cards generated by `scripts/visual-archive.js`.
+- `memory_node/attian/designlab/index.html` - design concepts.
+- `memory_node/attian/dreamingfragments/index.html` - restricted dream fragments.
+- `memory_node/attian/fieldnotes/index.html` - restricted writing fragments.
+- `memory_node/attian/gamingarea/index.html` - MUSE-run game backbone: tarot, wheel, and trivia/Cake trial.
+- `memory_node/attian/grandmap/index.html` - world map backbone and route hub.
+- `memory_node/attian/fantasyvillage/index.html` - portal-only CRPG village backbone linked from Grand Map.
+- `memory_node/attian/missionlog/index.html` - game-style quest journal.
+- `memory_node/attian/recommendationengine/index.html` - interactive recommendation engine.
+- `memory_node/attian/researchterminal/index.html` - research entries.
+- `memory_node/attian/signalrecords/index.html` - media/music/film/game records.
+- `memory_node/attian/systemfailurelog/index.html` - restricted failure/interference records.
+- `memory_node/attian/updatelog/index.html` - append-at-top patch log.
+- `memory_node/attian/visitorterminal/index.html` - visitor terminal shell. Currently intentionally offline/locked until Supabase is reactivated.
 
-Purpose:
+Concept/reference pages:
 
-- Introduces **Attian Protocol** as the website/system.
-- Contains a short admin-written concept introduction.
-- Has admin mode/personality buttons.
-- Provides transition to the navigator.
+- `memory_node/attian/mainpageconcepts/index.html`
+- `memory_node/attian/navigationconcepts/index.html`
 
-Important behavior:
+## Script Map
 
-- The admin personality cannot actually be changed.
-- Clicking other personality modes should produce sarcastic refusal text.
+- `scripts/legal-footer.js` injects Impressum and privacy/legal footer.
+- `scripts/restricted-access.js` gates restricted pages. Current password: `1327`.
+- `scripts/main-page.js` handles entry-page interaction.
+- `scripts/main-page-concepts.js` supports the main-page concept node.
+- `scripts/navigator.js` powers the navigator.
+- `scripts/navigator-reactions.js` and `scripts/navigator-reactions-after-dark.js` provide reactions.
+- `scripts/visual-archive.js` generates Artifact Vault and Creature Index cards from image naming patterns and metadata.
+- `scripts/archive-content-data.js` is the manual metadata layer for future Artifact Vault and Creature Index entries. Load it before `visual-archive.js`.
+- `scripts/mission-log.js` powers Mission Log filtering, search, tracking, and local objective progress.
+- `scripts/game-area.js` powers lightweight placeholder interactions for Gaming Area.
+- `scripts/grand-map.js` powers the Grand Map direct-SVG country selection and JSON-index dossier panel.
+- `scripts/grand-map-dev.js` is a retained manual experimentation hook, but it is not loaded by the live Grand Map page.
+- `scripts/fantasy-village.js` powers the Fun Village clickable POI map and local dossier panel.
+- `scripts/admin-assistant.js` injects the visual Administrator/LILI assistant shell. It has no AI backend yet.
 
-### `/memory_node/attian/index.html`
+## Restricted Pages
 
-Navigator page.
+Restricted pages use `scripts/restricted-access.js`:
 
-Purpose:
+- `memory_node/attian/dreamingfragments/`
+- `memory_node/attian/fieldnotes/`
+- `memory_node/attian/signalrecords/`
+- `memory_node/attian/systemfailurelog/`
 
-- Main hub after entering the protocol.
-- Shows public and restricted archive nodes.
-- Design lab is intentionally hidden from visible navigation.
+The access gate should feel like an archive terminal, not a generic password prompt.
 
-Visible public nodes:
+## Voice Rules
 
-- `achievementrepository`
-- `artifactvault`
-- `companiondatabase`
-- `creatureindex`
-- `missionlog`
-- `researchterminal`
-- `visitorterminal`
+### Administrator
 
-- `recommendationengine`
-- `updatelog`
+Public-facing site text should normally use `Administrator`, not `LILI`.
 
-Visible restricted nodes:
+The user may call the character LILI in conversation, but public archive narration should keep the name sealed unless the user explicitly asks otherwise.
 
-- `dreamingfragments`
-- `fieldnotes`
-- `signalrecords`
-- `systemfailurelog`
+Administrator voice:
 
-Hidden node:
+- dry, competent, sarcastic
+- protective without becoming sentimental
+- clinical terminal language mixed with rude affection
+- funny and judgmental, but not cruel about serious or private material
 
-- `designlab`
-- URL: `/memory_node/attian/designlab/`
-- It exists, but is not shown as a visible navigator card.
-- There is currently a source comment in the navigator preserving the address.
+Good:
 
-### `/memory_node/attian/designlab/index.html`
+```text
+Administrator: The floor is not a storage system. I regret needing to clarify this.
+```
 
-Hidden design lab.
+Avoid:
 
-Purpose:
+```text
+LILI says: Here are memory4.png and mini2.png.
+```
 
-- A private test/playground page for trying CSS concepts.
-- Contains 100 design/style ideas for the site.
-- Useful for future inspiration and copy/paste styling experiments.
-- Should remain hidden for now, not deleted.
+### MUSE
 
-### `/memory_node/attian/achievementrepository/index.html`
+MUSE is a second internal voice.
 
-Achievement repository.
+MUSE voice:
 
-Purpose:
+- whimsical and enthusiastic
+- distractible
+- shiny-object energy
+- occasionally useful by accident
 
-- Records life milestones as achievement unlocks rather than direct diary entries.
-- Narrated by the admin in sarcastic system language.
+MUSE can appear in Mission Log, Recommendation Engine, hidden reactions, and selected archive notes. Do not overuse MUSE everywhere.
 
-Current entries include:
+### Red Channel / Archive Echoes
 
-- Birth/existence unlock.
-- Early speech around age 2-3, date corrupted.
-- Childhood chewing-gum-ring wedding around age 6.
-- Primary school completion and top 4% placement around age 13.
-- High school friend group formation.
-- High school questioning/identity/philosophy phase.
-- First serious university relationship around age 17.
+Red Channel is sealed inner interference, not a helpful narrator. It should feel creepy, unfinished, and corruptive: an echo of something deeper leaking through the archive before containment cuts it off. Use it sparingly.
 
-Tone:
+Red Channel style:
 
-- "Achievement unlocked" style.
-- Admin judging requirements, penalties, unlocks, and system effects.
-- Avoid too much direct wording from the owner's original memory notes.
+- short fragments, not complete explanations
+- sentence cutoffs and ellipses are appropriate
+- more unsettling than mysterious or logical
+- never too articulate, never advisory in a clean way
+- it can imply harm, fear, hunger, fixation, or contamination, but should not become gore theater
 
-### `/contents/missionlog.html`
+Good:
 
-Mission log.
+```text
+[ RED CHANNEL ]: ... no export ... no shape ... no voice ...
+[ RED CHANNEL ]: ... give me the mouth ... let me fin...
+```
 
-Purpose:
+Avoid:
 
-- Current/future life objectives written as admin-tracked missions.
+```text
+[ RED CHANNEL ]: words arrive empty and leave carrying fingerprints.
+```
 
-Current missions:
+Archive Echoes are allowed as temporary voices tied to a specific memory or artifact. They are not permanent new cast members. Treat them as recovered fragments, old sentences, younger self-signals, location echoes, discarded beliefs, or artifact-generated voices.
 
-- Go to Ireland.
-- Revisit Japan.
-- Improve German.
-- Paint more.
-- Finish this website.
-- Attend next therapy sessions.
-- Do more art.
-- Organize writings and notes.
-- Handle bureaucracy.
-- Play a DnD campaign and find a group.
+## Design Rules
 
-Tone:
+Target mood:
 
-- Active objective list.
-- Admin is judgmental but motivating in her own unpleasant way.
+- dark cyberpunk archive
+- terminal panels
+- purple/cyan glow
+- game UI / quest journal / field guide / recovered evidence
+- structured and readable despite the chaos
 
-### `/memory_node/attian/visitorterminal/index.html`
+Avoid:
 
-Visitor terminal.
+- corporate landing-page tone
+- giant walls of text on first view
+- overexplaining UI behavior in visible text
+- visible implementation/file-name talk unless it is intentionally part of the joke
+- introducing random acronyms that do not help immersion
 
-Purpose:
+Use collapsible sections, cards, filters, concise visible summaries, and optional deeper lore.
 
-- Lets visitors submit fragments to a Supabase-backed archive.
-- Visitors can leave anything: thoughts, feelings, facts, jokes, food opinions, fragments, etc.
+## Important Page Systems
 
-Current form fields:
+### Mission Log
 
-- `Entry name`
-- `Visitor name`
-- `Fragment`
+Mission Log is now a video-game-style quest journal.
 
-Important implementation:
+Implemented features:
 
-- Uses Supabase CDN:
-  - `https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2`
-- Database table:
-  - `visitor_logs`
-- Folder key:
-  - `visitor_terminal`
+- expandable quest cards
+- nested expandable story descriptions
+- category filters: Main, Side, Crafting, Multiplayer, World, Corrupted
+- text search
+- tracked-only view
+- local browser progress tracking
+- checkable requirement/objective lists
 
-Visitor archive:
+Edit quest content in:
 
-- Entries render as collapsible `details` records.
-- Entry name is the visible title.
-- Clicking expands visitor name, date/status, and fragment content.
+```text
+memory_node/attian/missionlog/index.html
+```
 
-### `/memory_node/attian/artifactvault/index.html`
+Edit behavior in:
 
-Artifact vault.
+```text
+scripts/mission-log.js
+```
 
-Purpose:
+Future quest seeds live in:
 
-- Recovered images/objects/artifacts.
-- Currently basic but part of the public navigator.
+```text
+docs/content-sources/mission-log-quest-seeds.txt
+```
 
-Future direction:
+### Artifact Vault and Creature Index Intake
 
-- Could become a gallery of meaningful objects, photos, drawings, souvenirs, or "evidence."
-- Admin should describe objects as recovered artifacts, not sentimental scrapbook items.
+Artifact Vault and Creature Index image cards are generated by `scripts/visual-archive.js`.
 
-### `/memory_node/attian/companiondatabase/index.html`
+New manual metadata should go in:
 
-Companion database.
+```text
+scripts/archive-content-data.js
+```
 
-Purpose:
+Do not add future artifact/creature content directly into `scripts/visual-archive.js` unless changing the renderer itself. Existing base metadata remains there for now; the new data layer can override or extend it.
 
-- People/companions/entities important to the archive.
-- Public navigator describes it as trusted entities, emotional liabilities, and people the system failed to delete.
+For exact naming patterns and templates, read:
 
-Future direction:
+```text
+docs/CONTENT_AUTHORING_GUIDE.md
+```
 
-- Profile cards for friends, family, important people, fictional companions, pets, or symbolic "allies."
+### Visitor Terminal
 
-### `/memory_node/attian/creatureindex/index.html`
-
-Creature index.
-
-Purpose:
-
-- Creature records and taxonomy attempts.
-- Can be silly, mythic, animal-related, invented, or symbolic.
-
-Future direction:
-
-- Entries can feel like field-guide records written by an incompetent-but-confident archive admin.
-
-### `/memory_node/attian/researchterminal/index.html`
-
-Research terminal.
-
-Purpose:
-
-- Pseudo-academic files where ordinary habits/ideas are given unnecessarily serious titles.
-
-Future direction:
-
-- Good place for essays, theories, observations, funny analyses, "studies" of habits, interests, aesthetics, people, etc.
-
-### `/contents/signalrecords.html`
-
-Restricted page.
-
-Purpose:
-
-- Media/culture/music/signal fragments.
-
-Current note:
-
-- Protected by admin access password.
-- Input/access gate styling previously had theme issues; keep it aligned with global style.
-
-### `/memory_node/attian/dreamingfragments/index.html`
-
-Restricted page.
-
-Purpose:
-
-- Dreams, intrusive fragments, surreal thoughts, or less public memory pieces.
-
-Current note:
-
-- Protected by admin access password.
-
-### `/memory_node/attian/fieldnotes/index.html`
-
-Restricted page.
-
-Purpose:
-
-- Personal observations, field notes from life, possibly more candid.
-
-Current note:
-
-- Protected by admin access password.
-
-### `/memory_node/attian/systemfailurelog/index.html`
-
-Restricted page.
-
-Purpose:
-
-- Failures, malfunctions, delays, avoidable errors, depression-ish states, and other human software incidents.
-
-Current note:
-
-- Protected by admin access password.
-
-### `/memory_node/attian/bodyreadout/index.html`
-
-Existing page, not currently visible in the navigator.
-
-Purpose:
-
-- Could be used for physical/body state, health, exhaustion, sleep, weird biological telemetry.
-
-Future direction:
-
-- If restored to navigation, decide whether public or restricted.
-
-### `/contents/lostdata.html`
-
-Existing content page.
-
-Purpose:
-
-- Lost/corrupted data.
-
-Future direction:
-
-- Could be a place for unrecoverable memories, missing years, placeholders, or intentionally glitched writing.
-
-### `/contents/transmissionbeacon.html`
-
-Existing content page.
-
-Purpose:
-
-- Beacon/transmission style page.
-
-Future direction:
-
-- Could become contact/broadcast/announcement page, but legal contact already lives in the footer's Impressum.
-
-## Removed / Deprecated
-
-### Emotion Analytics
-
-Deleted:
-
-- `memory_node/attian/emotionanalytics/index.html`
+Visitor Terminal currently uses an intentional offline state.
 
 Reason:
 
-- User requested complete removal.
+- The Supabase backend may pause while inactive.
+- The user wants the public intake disabled until the final version is ready.
+- The page should look red/error/offline, not green/online.
 
-### Old CSS Files
+Current behavior:
 
-Deleted:
+- `memory_node/attian/visitorterminal/index.html` does not load Supabase.
+- Form controls are disabled.
+- Intro copy states the terminal is offline and deactivated by the Administrator.
+- Navigator marks the entry as `Offline / input sealed`.
+- Styling is scoped through `body.visitor-offline-page` in `css/style.css`.
 
-- `css/blocks.css`
-- `css/cards.css`
-- `css/terminal.css`
-- `css/visitor.css`
+When reactivating later:
 
-Reason:
+- Restore or rebuild the Supabase script intentionally.
+- Re-enable inputs/buttons.
+- Change Navigator copy away from offline state.
+- Add a new Update Log entry explaining reactivation.
 
-- User wants a single main CSS file for easier design edits.
+### Gaming Area
 
-## Development Notes
+Gaming Area is a backbone node moderated by MUSE.
 
-Local server has been run from the repo root with:
+Current modules:
+
+- cyberpunk/netrunner tarot inspired by tarot and DnD's Deck of Many Things
+- spin-the-wheel consequence game
+- trivia quiz scaffold for the mysterious grand prize, `The Cake`
+
+The page has small placeholder interactions through `scripts/game-area.js`, but the final decks, outcomes, question bank, scoring, and prize logic are not implemented yet.
+
+### Grand Map and Fun Village
+
+Grand Map is a world-map backbone. It should eventually link geographic country regions to archive pages or specific records.
+
+Current map asset:
+
+```text
+images/Map/world_rw.svg
+```
+
+Current live state uses `images/Map/world_rw.svg` directly as the preferred visible interactive map, falling back to `images/Map/world.svg` only if the rewritten file is unavailable. There is no PNG/SVG overlay anymore. Do not modify, regenerate, reposition, or recalculate the SVG path geometry.
+
+Country click behavior reads the SVG country ID and looks up the matching dossier entry in `images/Map/countries-index.json`. `world_rw.svg` mostly uses two-letter ISO IDs such as `DE`, `NL`, `AT`, `BE`, `BG`, and `KR`. Some countries, currently Turkey, Japan, and Italy, are split into multiple path pieces with generated path IDs and `inkscape:label` or class markers; `scripts/grand-map.js` normalizes those to `TR`, `JP`, and `IT` at runtime without editing the SVG file. Multiple pieces with the same normalized country ID select together. Other countries fall back to a Corrupted Data dossier until content is added.
+
+Hover/selection styling is defined in `css/style.css`: dark navy/black/purple map fill, thin cyan strokes, brighter purple hover fill with cyan-white stroke and glow, and persistent purple-cyan gradient fill for selected countries.
+
+The non-live reference/instruction file is `docs/GRAND_MAP_SEGMENTATION_GUIDE.js`; it explains manual overlay concepts in comments, but the live implementation should now prefer the existing SVG geometry.
+
+- Osnabrueck, Germany
+- Istanbul, Turkey
+- Amsterdam, Netherlands
+- Vienna, Austria
+- Tokyo, Japan
+- Seoul, Korea
+
+Fun Village is a fantasy/old-school CRPG-style node linked only through the Grand Map portal, not from the main Navigator. It uses `images/fantasyvillage/villagemap.png` as the visible map and `scripts/fantasy-village.js` to drive clickable SVG POI boxes for tavern, market, port/dock, cave, temple, forest, workshop, and cemetery. The POI copy is intentionally preliminary; full village content is pending.
+
+### Administrator / LILI Assistant Shell
+
+`scripts/admin-assistant.js` injects a floating visual assistant shell across pages. It is intentionally offline.
+
+Rules:
+
+- no AI calls yet
+- no API keys
+- no real chat persistence
+- visible copy may say LILI / Administrator Interface, but public narration should still usually say `Administrator`
+- when real integration happens later, update the handoff, privacy/legal considerations, and Update Log
+
+### Artifact Vault and Creature Index
+
+These pages use generated cards from `scripts/visual-archive.js`.
+
+Creature Index images live in `images/creatureindex/`. Artifact Vault images live in `images/artifactvault/`.
+
+Naming conventions:
+
+- Creatures: `images/creatureindex/creature7.png`, optional original `images/creatureindex/creature7_original.jpeg`.
+- Artifacts: `images/artifactvault/drawing2.png`, `images/artifactvault/memory5.png`, `images/artifactvault/mini4.png`, optional originals using `_original`.
+
+Do not delete image assets just because direct HTML references are not found; many are discovered by naming pattern in JavaScript.
+
+### Update Log
+
+Never delete old update-log entries.
+
+File:
+
+```text
+memory_node/attian/updatelog/index.html
+```
+
+New entries go at the top of:
+
+```html
+<section class="patch-stream">
+```
+
+Author should be `Administrator`, not LILI.
+
+Recent relevant patches include:
+
+- `MISSION LOG // PATCH 0.3.31`
+- `MISSION LOG // PATCH 0.3.32`
+- `MISSION LOG // PATCH 0.3.33`
+- `ARCHIVE MAINTENANCE // PATCH 0.3.34`
+- `VISITOR TERMINAL // PATCH 0.3.35`
+
+## Legal Footer
+
+Legal footer is injected by:
+
+```text
+scripts/legal-footer.js
+```
+
+Public details currently used:
+
+```text
+Address: Johannisstr. 136, 49074 Osnabrueck, Germany
+Contact: atillacanbasran@gmail.com
+```
+
+Do not create a separate contact section unless requested. Contact is already part of Impressum.
+
+## Cleanup Policy
+
+Keep:
+
+- active page HTML
+- active shared CSS/JS
+- active images and icons
+- `CODEX_HANDOFF.md`
+- `CONTENT_EDITING_GUIDE.md`
+- `docs/content-sources/` future-content notes
+- `CNAME`
+
+Remove or avoid:
+
+- `.DS_Store`
+- stale page copies outside Git history
+- random `toadd.txt`, `toad.txt`, `ideas.txt`, or loose scratch files inside live page folders
+- unused generated folders that are not linked or documented
+
+The old `oldversions/` folder was removed because Git history already preserves previous snapshots.
+
+## Recent Restructure Notes
+
+A cleanup pass moved loose future-content notes out of live page folders and into `docs/content-sources/`.
+
+Expected results after that pass:
+
+- no loose `toadd.txt`, `toad.txt`, `ideas.txt`, or similar scratch files in `memory_node/attian/*/`
+- no `oldversions/` folder
+- no `.DS_Store` files
+- raw future content preserved in `docs/content-sources/`
+- Field Notes normalized into repeated `field-entry` articles
+- Visitor Terminal intentionally red/offline
+
+If a fresh session sees these changes still uncommitted, do not revert them. They are intentional housekeeping work unless the user says otherwise.
+
+## Working Safely
+
+Before editing:
 
 ```bash
-python3 -m http.server 8000
+git status -sb
+git diff --stat
 ```
 
-Local URL:
+The user edits files manually. Do not reset or revert user edits unless explicitly asked.
 
-```text
-http://localhost:8000/
+Before publishing:
+
+```bash
+git diff --check
+git status -sb
 ```
 
-Open the repo folder in VSCode:
+For static preview:
 
-```text
-/Users/sb-atillacanbasaran/Documents/Codex/2026-06-24/i-hav/attianprotocol
+```bash
+python3 -m http.server 8001
 ```
 
-Important:
+To publish live:
 
-- There are currently some `.DS_Store` files untracked from Finder/VSCode browsing. They are not part of v0.3.
-- Consider adding `.DS_Store` to `.gitignore` later.
-- Do not reset or overwrite local changes casually; the local version is ahead of GitHub.
+```bash
+git add <intended files>
+git commit -m "Short clear message"
+git push origin main
+```
 
-## Writing Guidelines For Future Edits
-
-- Prefer admin narration over plain self-description.
-- Main story can stay accurate, but phrasing should be transformed into archive/system language.
-- Use humor, but keep emotional truths intact.
-- Avoid overexplaining how the site works inside visible UI.
-- Keep links and paths absolute from root when possible, e.g. `/memory_node/attian/`.
-- Keep legal footer script loaded on pages.
-- Keep restricted access script loaded on restricted pages.
-- When adding new pages, link `css/style.css` and `scripts/legal-footer.js`.
+After pushing, verify the public page with `curl` or a browser. GitHub Pages usually updates quickly, but it can lag briefly.

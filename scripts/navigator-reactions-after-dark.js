@@ -208,6 +208,14 @@ window.NAVIGATOR_AFTER_DARK_REACTIONS = [
         "MUSE: Should we call someone? ADMINISTRATOR: We are waiting for context."
     ],
     [
+        "clitoris",
+        "ADMINISTRATOR: If you are still trying to find it, you are not looking in the right place. And obviously you cannot find it in a search bar. Embarrassing. "
+    ],
+        [
+        "clit",
+        "ADMINISTRATOR: If you are still trying to find it, you are not looking in the right place. And obviously you cannot find it in a search bar. Embarrassing. "
+    ],
+    [
         "blackmail",
         "ADMINISTRATOR: The archive provides no legal advice and several bad optics."
     ],
@@ -337,7 +345,7 @@ window.NAVIGATOR_AFTER_DARK_REACTIONS = [
     ],
     [
         "medication",
-        "MUSE: We can sit quietly. ADMINISTRATOR: Surprisingly correct."
+        "MUSE: We can sit quietly. ADMINISTRATOR: This 'THING' can only do it for few seconds. Don't be like that."
     ],
     [
         "mental breakdown",
@@ -478,5 +486,9 @@ window.NAVIGATOR_AFTER_DARK_REACTIONS = [
     [
         "administrator password",
         "ADMINISTRATOR: Confidentiality level: amusing, not important."
+    ]
+    [
+        "password",
+        "ADMINISTRATOR: Something in the archieve tells your most used password is password. Not very impressing."
     ]
 ];

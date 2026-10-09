@@ -92,7 +92,7 @@
             if (reaction) {
                 response.textContent = reaction[1];
             } else if (!query) {
-                response.textContent = "Nine public destinations available. Pretend this is a responsible use of your time.";
+                response.textContent = "Eleven public destinations available. Pretend this is a responsible use of your time.";
             } else if (visible) {
                 response.textContent = visible + (visible === 1 ? " node found. Suspiciously efficient." : " nodes found. Try forming an intention.");
             } else {

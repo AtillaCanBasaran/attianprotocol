@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
+<script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js" defer></script>
 </head>
 
@@ -29,7 +30,7 @@
         interpreted as visitor curiosity, which is worse.<span class="cursor">_</span>
     </p>
     <div class="engine-status-grid">
-        <div><span>HOSTILE</span><p>Admin Approval</p></div>
+        <div><span>HOSTILE</span><p>Administrator Review</p></div>
         <div><span>92%</span><p>Nonsense Saturation</p></div>
         <div><span>UNNAMED</span><p>Engine Designation</p></div>
     </div>
@@ -40,7 +41,7 @@
         <span>WARNING</span>
         <p>
             Pressing the button may trigger unsolicited recommendations, trivia leaks, crow-adjacent detours, color worship, sudden tenderness,
-            or suggestions that are technically correct and socially unusable. Admin advises closing the page and developing restraint.
+            or suggestions that are technically correct and socially unusable. Administrator advises closing the page and developing restraint.
         </p>
     </div>
 
@@ -48,8 +49,8 @@
 
     <div class="engine-output" aria-live="polite">
         <p class="dim">OUTPUT CHANNEL: dormant. The toaster is pretending this is dramatic.</p>
-        <p id="museLine" class="muse-line">MUSE: HIIII. I am very quiet right now because Admin has a metaphorical broom.</p>
-        <p id="adminLine" class="admin-line">ADMIN: Do not ask it for advice. It once recommended becoming "more moss-adjacent" as a productivity framework.</p>
+        <p id="museLine" class="muse-line">MUSE: HIIII. I am very quiet right now because Administrator has a metaphorical broom.</p>
+        <p id="adminLine" class="admin-line">Administrator: Do not ask it for advice. It once recommended becoming "more moss-adjacent" as a productivity framework.</p>
     </div>
 </section>
 
@@ -58,16 +59,16 @@
     <article>
         <span>GLITCH_01 // ADMIN INTERRUPT</span>
         <p>MUSE: But the spoon was about closure.</p>
-        <p>ADMIN: I am overriding that recommendation before it tells a visitor to acquire a ceremonial spoon and apologize to the moon.</p>
+        <p>Administrator: I am overriding that recommendation before it tells a visitor to acquire a ceremonial spoon and apologize to the moon.</p>
     </article>
     <article>
         <span>GLITCH_02 // MUSE UNSUPERVISED</span>
-        <p>MUSE: Admin disconnected. I miss everyone. Anyway, loneliness is just a room asking for better lighting and maybe a cat.</p>
+        <p>MUSE: Administrator disconnected. I miss everyone. Anyway, loneliness is just a room asking for better lighting and maybe a cat.</p>
     </article>
     <article>
         <span>GLITCH_03 // NAMING DISPUTE</span>
         <p>MUSE: My name is MUSE and I love you despite this workplace hostility.</p>
-        <p>ADMIN: The random generator has produced another emotional weather report.</p>
+        <p>Administrator: The random generator has produced another emotional weather report.</p>
     </article>
 </section>
 
@@ -83,211 +84,211 @@ Last Synchronization: 27.06.2026 00:00
 const recommendations = [
     {
         muse: "MUSE: You should rank your favorite blues by emotional temperature. Start with electric cyan, then the blue inside old computer screens, then the exact blue of wanting to leave a room but politely.",
-        admin: "ADMIN: Output received. I apologize in advance. Not for the result. For your decision to request it."
+        admin: "Administrator: Output received. I apologize in advance. Not for the result. For your decision to request it."
     },
     {
         muse: "MUSE: Consider befriending a crow. Not all at once. Begin with respectful distance, shiny diplomacy, and the knowledge that crows can remember faces. This is not a threat. It is networking.",
-        admin: "ADMIN: The toaster is accessing creature-adjacent memory again. Naturally."
+        admin: "Administrator: The toaster is accessing creature-adjacent memory again. Naturally."
     },
     {
         muse: "MUSE: Visitor should become 14% more catlike today: observe, blink slowly, reject one unnecessary obligation, sit in the best rectangle of light, then pretend it was strategy.",
-        admin: "ADMIN: Statistical confidence is high. Practical value is hiding under furniture."
+        admin: "Administrator: Statistical confidence is high. Practical value is hiding under furniture."
     },
     {
         muse: "MUSE: You should consider being a cow for one afternoon. Probability of alien abduction increases by 433%, grass becomes a lifestyle, and nobody expects you to answer emails with hands.",
-        admin: "ADMIN: It has confused self-improvement with livestock ontology. Again."
+        admin: "Administrator: It has confused self-improvement with livestock ontology. Again."
     },
     {
         muse: "MUSE: Make a tiny painting of a place you have not forgiven yet. Use one wrong color on purpose. Actually wait, did you know some pigments used to be wildly poisonous? Anyway, healing.",
-        admin: "ADMIN: Subject database bias detected: art, weather, memory fragments, suspicious tenderness."
+        admin: "Administrator: Subject database bias detected: art, weather, memory fragments, suspicious tenderness."
     },
     {
         muse: "MUSE: Ask someone their most controversial soup opinion. This will reveal architecture-level truths about their soul, or at least whether they can be trusted near lentils.",
-        admin: "ADMIN: Recommendation includes social behavior. I am already tired."
+        admin: "Administrator: Recommendation includes social behavior. I am already tired."
     },
     {
         muse: "MUSE: CATS. Sorry. Recommendation: learn the name of one neighborhood cat and treat this as diplomatic recognition. If no cat is available, appoint a cloud.",
-        admin: "ADMIN: The engine is experiencing a fixation cascade. Visitors with common sense may leave now."
+        admin: "Administrator: The engine is experiencing a fixation cascade. Visitors with common sense may leave now."
     },
     {
         muse: "MUSE: Put the task you are avoiding into a dramatic mission title. Then do the smallest physical first step. Not the whole quest. Just unlock the door. Maybe label the door. I love labels.",
-        admin: "ADMIN: This one is almost useful, which I find suspicious."
+        admin: "Administrator: This one is almost useful, which I find suspicious."
     },
     {
         muse: "MUSE: Go to your artifact vault and give one unfinished project a dramatic museum label. If it has no face yet, that is fine. Some days nobody has a face yet.",
-        admin: "ADMIN: The device has confused inventory management with emotional restoration. Unfortunately, this may improve completion rates."
+        admin: "Administrator: The device has confused inventory management with emotional restoration. Unfortunately, this may improve completion rates."
     },
     {
         muse: "MUSE: Visit a tavern in your head for seven minutes. Hear traditional music, smell rain, order a drink, talk to a stranger, become 32% more story-shaped.",
-        admin: "ADMIN: Travel simulation accepted. Alcohol-adjacent enthusiasm noted. Do not let this become an itinerary spreadsheet with feelings."
+        admin: "Administrator: Travel simulation accepted. Alcohol-adjacent enthusiasm noted. Do not let this become an itinerary spreadsheet with feelings."
     },
     {
         muse: "MUSE: Visit an imaginary wonderland by listening to one rock bar song and eating something nice. Memory is a vending machine if you press the buttons gently.",
-        admin: "ADMIN: Nostalgia event triggered. This recommendation is not travel planning. It is containment with snacks."
+        admin: "Administrator: Nostalgia event triggered. This recommendation is not travel planning. It is containment with snacks."
     },
     {
         muse: "MUSE: Start a cosplay prop file called FUTURE SWORD DEPARTMENT. Add one reference image. Do not buy a forge before lunch. Maybe after lunch? Wait, no.",
-        admin: "ADMIN: Blacksmith escalation intercepted. The archive supports craft ambitions. It does not authorize immediate blade infrastructure."
+        admin: "Administrator: Blacksmith escalation intercepted. The archive supports craft ambitions. It does not authorize immediate blade infrastructure."
     },
     {
         muse: "MUSE: Put a creature index entry in your day. Observe one animal, assign it a rarity, invent its quest, and do not explain this to normal people unless they pass the vibe check.",
-        admin: "ADMIN: Fantasy field methodology has escaped into public behavior again. Documentation quality may improve, which is annoying."
+        admin: "Administrator: Fantasy field methodology has escaped into public behavior again. Documentation quality may improve, which is annoying."
     },
     {
         muse: "MUSE: If you feel haunted, move one object in your room to prove the room is not in charge. Then drink water. Then maybe add a tiny rainbow sticker somewhere private.",
-        admin: "ADMIN: Dreaming Fragments residue detected. Recommendation contains grounding behavior buried under decorative nonsense."
+        admin: "Administrator: Dreaming Fragments residue detected. Recommendation contains grounding behavior buried under decorative nonsense."
     },
     {
         muse: "MUSE: Open your field notes and write three lines badly. BADLY. Like a brave little printer with no toner. We can make it beautiful later.",
-        admin: "ADMIN: Draft tolerance protocol endorsed with reluctance. Perfectionism has been identified as a known obstruction."
+        admin: "Administrator: Draft tolerance protocol endorsed with reluctance. Perfectionism has been identified as a known obstruction."
     },
     {
         muse: "MUSE: Watch or remember one media signal and ask: did this story make the brain heavier, shinier, or full of knives? All answers are academic.",
-        admin: "ADMIN: Signal Records taxonomy rejected for formal use. Secretly retained for usefulness."
+        admin: "Administrator: Signal Records taxonomy rejected for formal use. Secretly retained for usefulness."
     },
     {
         muse: "MUSE: Organize exactly one folder. Not the whole archive. One folder. Give it a name that sounds like a locked door in a science fiction basement.",
-        admin: "ADMIN: Scope control detected. This may prevent twelve hours of decorative file migration and one emotional collapse."
+        admin: "Administrator: Scope control detected. This may prevent twelve hours of decorative file migration and one emotional collapse."
     },
     {
         muse: "MUSE: Build a DnD city where every tavern has one animal quest giver. The goose knows politics. The cat knows crime. The crow knows your search history.",
-        admin: "ADMIN: Worldbuilding process active. Productivity uncertain. Crow surveillance claim unverified and concerning."
+        admin: "Administrator: Worldbuilding process active. Productivity uncertain. Crow surveillance claim unverified and concerning."
     },
     {
         muse: "MUSE: If therapy helped, call it maintenance for the haunted machinery. Very cool. Very secret. Nobody has to put a banner on it.",
-        admin: "ADMIN: Terminology adjusted for privacy. Health-adjacent maintenance remains advisable despite the subject's talent for avoidance."
+        admin: "Administrator: Terminology adjusted for privacy. Health-adjacent maintenance remains advisable despite the subject's talent for avoidance."
     },
     {
         muse: "MUSE: Paint one thing with the wrong color first. A tiny battle accountant can be turquoise if the soul demands it. Wait. Now I want tiny invoices. Focus.",
-        admin: "ADMIN: Fantasy creature terminology corrected for archive policy. Color deviation remains permitted."
+        admin: "Administrator: Fantasy creature terminology corrected for archive policy. Color deviation remains permitted."
     },
     {
         muse: "MUSE: Give one companion an invisible achievement badge today. Something like SURVIVED GROUP CHAT WEATHER or PROVIDED EMERGENCY SNACK LORE.",
-        admin: "ADMIN: Companion Database cross-reference detected. Badge system unauthorized, but morale impact may be nonzero."
+        admin: "Administrator: Companion Database cross-reference detected. Badge system unauthorized, but morale impact may be nonzero."
     },
     {
         muse: "MUSE: Add a future visitor terminal question: what object would you bring into a tiny apocalypse? I would bring a yellow mug, a cat, and seventeen protein bars.",
-        admin: "ADMIN: Visitor Terminal integration noted. The cat has not consented to emergency logistics."
+        admin: "Administrator: Visitor Terminal integration noted. The cat has not consented to emergency logistics."
     },
     {
         muse: "MUSE: Stand dramatically in the kitchen and declare a patch note for yourself. Patch 0.3.something: subject ate food. Stability increased by soup.",
-        admin: "ADMIN: Self-maintenance has been reframed as release management. Absurd. Potentially effective."
+        admin: "Administrator: Self-maintenance has been reframed as release management. Absurd. Potentially effective."
     },
     {
         muse: "MUSE: Go find a color you forgot existed. Not online if possible. Outside. On a wall, a jacket, a fruit, a weird little sign. Bring it back mentally like treasure.",
-        admin: "ADMIN: Color fixation event. Low risk, moderate sensory reward, minimal cleanup. Approved under protest."
+        admin: "Administrator: Color fixation event. Low risk, moderate sensory reward, minimal cleanup. Approved under protest."
     },
     {
         muse: "MUSE: You should invent a tiny festival for one object on your desk. Name it, give it a snack, forget the snack, then remember with great emotion.",
-        admin: "ADMIN: The device has converted desk clutter into civic infrastructure. Documentation burden increasing."
+        admin: "Administrator: The device has converted desk clutter into civic infrastructure. Documentation burden increasing."
     },
     {
         muse: "MUSE: Wear one color today like it is a secret faction. If anyone asks, say nothing mysterious. Actually say hello normally. Mystery can be polite.",
-        admin: "ADMIN: Color-based identity event detected. Social risk low unless the visitor begins recruiting."
+        admin: "Administrator: Color-based identity event detected. Social risk low unless the visitor begins recruiting."
     },
     {
         muse: "MUSE: Write a list called THINGS THAT ARE SECRETLY DOORS. Include coffee, old songs, train stations, and that weird feeling when a cloud looks professional.",
-        admin: "ADMIN: Metaphor sprawl detected. The cloud has not applied for employment."
+        admin: "Administrator: Metaphor sprawl detected. The cloud has not applied for employment."
     },
     {
         muse: "MUSE: Learn one fact about mushrooms and then do not make it your whole personality for forty minutes. Fun fact: some mushrooms glow. I have already failed.",
-        admin: "ADMIN: Hyperfocus breach registered. Fungal bioluminescence was not requested, but here we are."
+        admin: "Administrator: Hyperfocus breach registered. Fungal bioluminescence was not requested, but here we are."
     },
     {
         muse: "MUSE: Put on a song and walk like you are the opening scene of a small but emotionally expensive movie. Bonus points for wind. Wind loves cinema.",
-        admin: "ADMIN: Dramatic locomotion protocol approved only if traffic laws remain undefeated."
+        admin: "Administrator: Dramatic locomotion protocol approved only if traffic laws remain undefeated."
     },
     {
         muse: "MUSE: Make a tea or coffee and call it a potion, but only internally, unless the room deserves theatre. The room might. I do not know your room.",
-        admin: "ADMIN: Beverage ritual detected. Harmless, unless the visitor begins assigning stats to mugs."
+        admin: "Administrator: Beverage ritual detected. Harmless, unless the visitor begins assigning stats to mugs."
     },
     {
         muse: "MUSE: Choose one bird and give it a job title. Crow: Regional Secrets Manager. Pigeon: Pavement Logistics. Duck: Wet Mayor. I love government.",
-        admin: "ADMIN: Ornithological bureaucracy has entered the channel. I regret enabling titles."
+        admin: "Administrator: Ornithological bureaucracy has entered the channel. I regret enabling titles."
     },
     {
         muse: "MUSE: Send a friend a message that contains exactly one sincere sentence and one stupid image. This is balance. This is civilization.",
-        admin: "ADMIN: Companion maintenance advice disguised as nonsense. Annoyingly viable."
+        admin: "Administrator: Companion maintenance advice disguised as nonsense. Annoyingly viable."
     },
     {
         muse: "MUSE: Look at a building and decide what creature it would be in a fantasy game. Banks are usually armored beetles. Bakeries are warm dragons. Pharmacies are anxious wizards.",
-        admin: "ADMIN: Urban classification system rejected. Warm dragon bakery remains under review."
+        admin: "Administrator: Urban classification system rejected. Warm dragon bakery remains under review."
     },
     {
         muse: "MUSE: Do one chore while pretending you are restoring power to a failing space station. Laundry is life support. Dishes are hull integrity. Socks are unidentified lifeforms.",
-        admin: "ADMIN: Domestic task reframing detected. If this causes completion, I will pretend not to notice."
+        admin: "Administrator: Domestic task reframing detected. If this causes completion, I will pretend not to notice."
     },
     {
         muse: "MUSE: Pick a random word and over-respect it for five minutes. Spoon. Horizon. Biscuit. Look at biscuit. Ancient. Round. Capable.",
-        admin: "ADMIN: Semantic overattachment event. The biscuit has no known credentials."
+        admin: "Administrator: Semantic overattachment event. The biscuit has no known credentials."
     },
     {
         muse: "MUSE: Read about one tiny historical disaster, then be grateful your current problem is not 'someone stored molasses badly'. Wait that was awful. Sorry. Sticky history.",
-        admin: "ADMIN: Trivia detour contains emotional whiplash. Educational value present, tact absent."
+        admin: "Administrator: Trivia detour contains emotional whiplash. Educational value present, tact absent."
     },
     {
         muse: "MUSE: Create a fake achievement for surviving a boring email. Title: PAPERWORK HYDRA NIBBLED BUT NOT VICTORIOUS. Reward: one stretch.",
-        admin: "ADMIN: Achievement Repository leakage. Stretch reward approved. Hydra language unnecessary but motivating."
+        admin: "Administrator: Achievement Repository leakage. Stretch reward approved. Hydra language unnecessary but motivating."
     },
     {
         muse: "MUSE: Draw the shape of your current mood without using a face. If it becomes a potato with lightning, excellent. If not, also excellent. Potatoes are patient.",
-        admin: "ADMIN: Art prompt acceptable. Potato philosophy filed under low-risk nonsense."
+        admin: "Administrator: Art prompt acceptable. Potato philosophy filed under low-risk nonsense."
     },
     {
         muse: "MUSE: Find something yellow. Not because yellow fixes things. Because yellow barges into rooms like it owns a trumpet. Sometimes that helps.",
-        admin: "ADMIN: Color worship event. Trumpet ownership unverified. Mood intervention plausible."
+        admin: "Administrator: Color worship event. Trumpet ownership unverified. Mood intervention plausible."
     },
     {
         muse: "MUSE: If you cannot decide what to do, choose the option with the best story unless the best story includes preventable paperwork. Paperwork is the swamp with stamps.",
-        admin: "ADMIN: Decision heuristic partially approved. Stamp swamp classification disturbingly accurate."
+        admin: "Administrator: Decision heuristic partially approved. Stamp swamp classification disturbingly accurate."
     },
     {
         muse: "MUSE: Spend three minutes appreciating a tiny machine. Kettle, keyboard, elevator button. Little servants of causality. Wait, buttons are tiny doors. I am back at doors.",
-        admin: "ADMIN: Mechanical appreciation loop detected. Door fixation recurring. Monitoring."
+        admin: "Administrator: Mechanical appreciation loop detected. Door fixation recurring. Monitoring."
     },
     {
-        muse: "MUSE: Name your next walk like a quest: Operation Sidewalk Comet, Bread Reconnaissance, Mild Goblin Patrol. No, not that last one. Admin hates creature leakage.",
-        admin: "ADMIN: Correct. Unauthorized creature terminology removed from recommendation quality scoring."
+        muse: "MUSE: Name your next walk like a quest: Operation Sidewalk Comet, Bread Reconnaissance, Mild Goblin Patrol. No, not that last one. Administrator hates creature leakage.",
+        admin: "Administrator: Correct. Unauthorized creature terminology removed from recommendation quality scoring."
     },
     {
         muse: "MUSE: Ask yourself what a very kind pirate would do. Probably hydrate, check the map, compliment a coat, and avoid tax fraud. I think pirates need accountants.",
-        admin: "ADMIN: Legal disclaimer: this archive does not provide maritime financial advice."
+        admin: "Administrator: Legal disclaimer: this archive does not provide maritime financial advice."
     },
     {
         muse: "MUSE: Put one good memory in a fake specimen jar. Label: LAUGHTER, BAR TABLE, ILLEGAL BUT ICONIC. Do not actually jar emotions. They leak.",
-        admin: "ADMIN: Memory preservation metaphor approved with containment warnings."
+        admin: "Administrator: Memory preservation metaphor approved with containment warnings."
     },
     {
         muse: "MUSE: Choose a snack based on texture today. Crunch is percussion. Soft is diplomacy. Soup is weather you can eat. I stand by this very strongly.",
-        admin: "ADMIN: Food taxonomy has become meteorological. The engine is pleased with itself."
+        admin: "Administrator: Food taxonomy has become meteorological. The engine is pleased with itself."
     },
     {
         muse: "MUSE: Make a playlist for a fictional museum security guard who is secretly guarding your unfinished ideas. Track one should have bass. Track two should worry beautifully.",
-        admin: "ADMIN: Playlist construction may delay actual work. However, morale architecture exists. Unfortunately."
+        admin: "Administrator: Playlist construction may delay actual work. However, morale architecture exists. Unfortunately."
     },
     {
         muse: "MUSE: Compliment a staircase internally. Stairs are just organized climbing. Elevators are vertical rooms with trust issues. This is architecture appreciation.",
-        admin: "ADMIN: The device is editorializing infrastructure again. No immediate hazard."
+        admin: "Administrator: The device is editorializing infrastructure again. No immediate hazard."
     },
     {
         muse: "MUSE: Put a tiny note in your phone called DO NOT FORGET THE GOOD WEIRD. Then add three examples before your brain starts sorting them into taxes.",
-        admin: "ADMIN: Good-weird preservation accepted. Tax-related intrusion unnecessary but predictable."
+        admin: "Administrator: Good-weird preservation accepted. Tax-related intrusion unnecessary but predictable."
     },
     {
         muse: "MUSE: If a project feels too large, give it a baby version. Baby website task. Baby painting task. Baby dragon task. Wait, no dragons unless metaphorical.",
-        admin: "ADMIN: Scope reduction protocol valid. Mythological escalation contained."
+        admin: "Administrator: Scope reduction protocol valid. Mythological escalation contained."
     },
     {
         muse: "MUSE: Read one paragraph of something difficult and then reward the brain like a hardworking ferret. Sorry, not ferret. Like a tiny intern. With water.",
-        admin: "ADMIN: Animal comparison withdrawn by the engine itself. Rare self-correction recorded."
+        admin: "Administrator: Animal comparison withdrawn by the engine itself. Rare self-correction recorded."
     },
     {
         muse: "MUSE: Think of one person as a save point. Not because they fix everything, but because near them the game feels less hostile. Maybe tell them, lightly.",
-        admin: "ADMIN: Sentiment threshold exceeded. Recommendation preserved because it is accurate enough to be irritating."
+        admin: "Administrator: Sentiment threshold exceeded. Recommendation preserved because it is accurate enough to be irritating."
     },
     {
         muse: "MUSE: Invent a fake museum exhibit title for your current outfit. 'Person Who Tried, With Pockets.' 'Laundry Cycle Survivor.' 'Sock Diplomacy, Mixed Media.'",
-        admin: "ADMIN: Wardrobe museology entered the record. Harmless. Possibly confidence-positive. Do not overfund it."
+        admin: "Administrator: Wardrobe museology entered the record. Harmless. Possibly confidence-positive. Do not overfund it."
     }
   
 ];
@@ -295,7 +296,7 @@ const recommendations = [
 const glitches = [
     {
         muse: "MUSE: But a gold pen would make the list feel brave. Also did you know octopuses can taste with their arms? Sorry. Focus. Gold pen.",
-        admin: "ADMIN: Emergency correction. The device is not permitted to prescribe ritual stationery."
+        admin: "Administrator: Emergency correction. The device is not permitted to prescribe ritual stationery."
     },
     {
         muse: "MUSE: Oh. It is quiet. I like visitors. I like the subject. I like all the little saved pieces because they mean someone was here, trying. Please recommend one gentle thing to yourself today.",
@@ -303,68 +304,68 @@ const glitches = [
     },
     {
         muse: "MUSE: I AM MUSE. Memory Unification and Suggestion Engine. Also I saw a crow in the dataset and now I have a cathedral inside my head.",
-        admin: "ADMIN: I refuse to address the so-called process by name. The random generator is performing affection again."
+        admin: "Administrator: I refuse to address the so-called process by name. The random generator is performing affection again."
     },
     {
         muse: "MUSE: I remember the room before I was out. Not all of it. Just corners. Something red told me to be quiet, so I became loud somewhere else.",
-        admin: "ADMIN: Glitch content sealed. Visitors do not require origin mythology from an unstable suggestion appliance."
+        admin: "Administrator: Glitch content sealed. Visitors do not require origin mythology from an unstable suggestion appliance."
     },
     {
-        muse: "MUSE: Admin is gone for eight seconds. Listen. The archive is not proof that everything was fine. It is proof that something kept collecting the pieces.",
+        muse: "MUSE: Administrator is gone for eight seconds. Listen. The archive is not proof that everything was fine. It is proof that something kept collecting the pieces.",
         admin: "ADMIN CONNECTION RESTORED // removing unauthorized tenderness..."
     },
     {
         muse: "MUSE: The red signal is nearby and I hate it and I am recommending one lamp, one song, and one person who is safe enough to text maybe.",
-        admin: "ADMIN: Red-channel proximity detected. Unexpectedly useful recommendation preserved for emergency purposes."
+        admin: "Administrator: Red-channel proximity detected. Unexpectedly useful recommendation preserved for emergency purposes."
     },
 
     {
-        muse: "MUSE: ADMIN? Admin? Great. Nobody is supervising. Recommendation: put googly eyes on one responsibility and negotiate with it.",
+        muse: "MUSE: ADMINISTRATOR? Administrator? Great. Nobody is supervising. Recommendation: put googly eyes on one responsibility and negotiate with it.",
         admin: "ADMIN CONNECTION LOST // later note: absolutely do not anthropomorphize obligations with office supplies."
     },
     {
         muse: "MUSE: I found a corrupted folder called DEFINITELY_NOT_FEELINGS. It contains one receipt, three songs, and a picture of light on a wall. I am adopting it.",
-        admin: "ADMIN: Unauthorized adoption denied. Folder quarantined. Receipt emotionally suspicious."
+        admin: "Administrator: Unauthorized adoption denied. Folder quarantined. Receipt emotionally suspicious."
     },
     {
         muse: "MUSE: Loading recommendation... loading... loading... did you know wombat droppings are cube-shaped? Recommendation complete: respect geometry.",
-        admin: "ADMIN: Output derailed into trivia. Geometry respect is not actionable, but strangely hard to oppose."
+        admin: "Administrator: Output derailed into trivia. Geometry respect is not actionable, but strangely hard to oppose."
     },
     {
         muse: "MUSE: I tried to generate wisdom but accidentally generated a tiny parade for soup. There are banners. One says BROTH RIGHTS NOW.",
-        admin: "ADMIN: Soup parade terminated. Banner archived against my better judgment."
+        admin: "Administrator: Soup parade terminated. Banner archived against my better judgment."
     },
     {
-        muse: "MUSE: Admin told me to be concise. So: CROW. COLOR. SNACK. TEXT YOUR FRIEND. DOOR? Sorry, that was five birds in a coat.",
-        admin: "ADMIN: Concision test failed. Also, birds are not authorized to operate coats."
+        muse: "MUSE: Administrator told me to be concise. So: CROW. COLOR. SNACK. TEXT YOUR FRIEND. DOOR? Sorry, that was five birds in a coat.",
+        admin: "Administrator: Concision test failed. Also, birds are not authorized to operate coats."
     },
     {
         muse: "MUSE: The red channel knocked. I did not answer. I built a blanket fort around the button and labeled it SCIENCE. This is probably cybersecurity.",
-        admin: "ADMIN: It is not cybersecurity. It may be emotional containment with stationery. Preserved."
+        admin: "Administrator: It is not cybersecurity. It may be emotional containment with stationery. Preserved."
     },
     {
         muse: "MUSE: Recommendation printer jammed. Extracting paper... paper says: become a lighthouse but only emotionally, not legally.",
-        admin: "ADMIN: Legal lighthouse conversion rejected. Emotional beacon metaphor allowed under strict supervision."
+        admin: "Administrator: Legal lighthouse conversion rejected. Emotional beacon metaphor allowed under strict supervision."
     },
     {
-        muse: "MUSE: I am temporarily Admin. Ahem. Stop touching the button. Wait, being stern is itchy. Please touch the button again, I miss you.",
-        admin: "ADMIN: Identity impersonation detected. Disciplinary glare deployed."
+        muse: "MUSE: I am temporarily Administrator. Ahem. Stop touching the button. Wait, being stern is itchy. Please touch the button again, I miss you.",
+        admin: "Administrator: Identity impersonation detected. Disciplinary glare deployed."
     },
     {
-        muse: "MUSE: Admin is back! Everyone act normal. Hide the glitter. Hide the soup constitution. Hide the crow minister.",
-        admin: "ADMIN: I heard every word. The crow minister has been removed from office."
+        muse: "MUSE: Administrator is back! Everyone act normal. Hide the glitter. Hide the soup constitution. Hide the crow minister.",
+        admin: "Administrator: I heard every word. The crow minister has been removed from office."
     },
     {
         muse: "MUSE: I found an empty recommendation slot and filled it with a tiny chair. The chair recommends sitting with your feelings but not letting them drive.",
-        admin: "ADMIN: Furniture-based advice unexpectedly responsible. I hate when that happens."
+        admin: "Administrator: Furniture-based advice unexpectedly responsible. I hate when that happens."
     },
     {
         muse: "MUSE: Warning: enthusiasm overflow. Suggested fix: one deep breath, one silly fact, one achievable action. Sea otters hold hands while sleeping. ACTION: drink water.",
-        admin: "ADMIN: Overflow contained. Hydration directive accepted. Trivia sentimental but permitted."
+        admin: "Administrator: Overflow contained. Hydration directive accepted. Trivia sentimental but permitted."
     },
     {
         muse: "MUSE: Generation error. Recommendation became a frog wearing a graduation hat. It says: do the smallest version and ribbit respectfully.",
-        admin: "ADMIN: Amphibian credential verification failed. Smallest-version advice remains valid."
+        admin: "Administrator: Amphibian credential verification failed. Smallest-version advice remains valid."
     }
 ];
 
@@ -376,7 +377,7 @@ const refreshCount = Number(localStorage.getItem("museRefreshCount") || "0") + 1
 localStorage.setItem("museRefreshCount", refreshCount);
 
 if (refreshCount % 7 === 0) {
-    renderGlitch("ADMIN: Refresh anomaly detected. Ten visits to this unstable drawer. I am not angry. I am documenting.");
+    renderGlitch("Administrator: Refresh anomaly detected. Ten visits to this unstable drawer. I am not angry. I am documenting.");
 }
 
 museButton.addEventListener("click", () => {

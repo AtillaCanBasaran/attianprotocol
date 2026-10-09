@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-store">
 <title>NAVIGATOR</title>
-<link rel="stylesheet" href="/css/style.css">
-<script src="/scripts/navigator-reactions.js" defer></script>
-<script src="/scripts/navigator-reactions-after-dark.js" defer></script>
-<script src="/scripts/navigator.js" defer></script>
+<link rel="stylesheet" href="/css/style.css?v=0.3.48">
+<script src="/scripts/navigator-reactions.js?v=0.3.48" defer></script>
+<script src="/scripts/navigator-reactions-after-dark.js?v=0.3.48" defer></script>
+<script src="/scripts/navigator.js?v=0.3.48" defer></script>
 <script src="/scripts/legal-footer.js" defer></script>
 </head>
 <body class="navigator-page">
@@ -20,7 +21,7 @@
             <input id="navigator-query" type="search" autocomplete="off" spellcheck="false" placeholder="Search archive nodes or type something suspicious...">
             <kbd>ESC</kbd>
         </label>
-        <p id="navigator-response" class="navigator-response" aria-live="polite">Nine public destinations available. Pretend this is a responsible use of your time.</p>
+        <p id="navigator-response" class="navigator-response" aria-live="polite">Eleven public destinations available. Pretend this is a responsible use of your time.</p>
     </header>
 
     <section class="navigator-directory" aria-label="Public archive nodes">
@@ -28,9 +29,11 @@
         <a class="navigator-result" data-search="artifacts images memories drawings restored photos" href="/memory_node/attian/artifactvault/"><strong>Artifact Vault</strong><span>Restored visual evidence</span></a>
         <a class="navigator-result" data-search="companions people friends relationships egebal" href="/memory_node/attian/companiondatabase/"><strong>Companion Database</strong><span>Trusted entities and liabilities</span></a>
         <a class="navigator-result" data-search="creatures animals cats swan turtle monkeys pamuk" href="/memory_node/attian/creatureindex/"><strong>Creature Index</strong><span>Quest animals and suspicious fauna</span></a>
+        <a class="navigator-result muse-result" data-search="games gaming tarot wheel trivia cake muse minigames" href="/memory_node/attian/gamingarea/"><strong>Gaming Area</strong><span>MUSE-run games and bad odds</span></a>
+        <a class="navigator-result" data-search="map grandmap world geography locations travel places archive pins" href="/memory_node/attian/grandmap/"><strong>Grand Map</strong><span>World pins and archive routes</span></a>
         <a class="navigator-result" data-search="missions plans future goals ireland japan german art dnd" href="/memory_node/attian/missionlog/"><strong>Mission Log</strong><span>Pending quests and future problems</span></a>
         <a class="navigator-result" data-search="research academic habits studies reports" href="/memory_node/attian/researchterminal/"><strong>Research Terminal</strong><span>Ordinary habits, serious formatting</span></a>
-        <a class="navigator-result" data-search="visitor guest write leave entry fragment archive" href="/memory_node/attian/visitorterminal/"><strong>Visitor Terminal</strong><span>Leave external contamination</span></a>
+        <a class="navigator-result navigator-offline" data-search="visitor guest write leave entry fragment archive offline disabled" href="/memory_node/attian/visitorterminal/"><strong>Visitor Terminal</strong><span>Offline / input sealed</span></a>
         <a class="navigator-result" data-search="updates patches changes version changelog history" href="/memory_node/attian/updatelog/"><strong>Update Log</strong><span>Patch history and documented damage</span></a>
         <a class="navigator-result muse-result" data-search="recommendation advice muse engine suggestions random" href="/memory_node/attian/recommendationengine/"><strong>Recommendation Engine</strong><span>Advice nobody officially requested</span></a>
         <p id="navigator-empty" class="navigator-empty" hidden>No matching node. Either spell better or search less ambitiously.</p>

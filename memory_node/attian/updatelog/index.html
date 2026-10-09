@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
+<script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js" defer></script>
 </head>
 
@@ -32,6 +33,237 @@
 </section>
 
 <section class="patch-stream">
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>ALPHA CHECKPOINT // PATCH 0.3.49</span><b>Structure Audit And Content Intake Guide</b><small>manual authoring path added for future archive growth</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>CHECKPOINT / DOCUMENTATION / MAINTENANCE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / alpha structure accepted under protest</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Added an alpha checkpoint audit at <code>docs/ALPHA_CHECKPOINT_AUDIT.md</code>.</li>
+                <li class="plus">Added a manual content authoring guide at <code>docs/CONTENT_AUTHORING_GUIDE.md</code>.</li>
+                <li class="plus">Added <code>scripts/archive-content-data.js</code> as the easier metadata layer for future Artifact Vault and Creature Index entries.</li>
+                <li class="plus">Updated Artifact Vault and Creature Index to load the new content data layer before the generated-card renderer.</li>
+                <li class="plus">Normalized active-page public voice labels toward <code>Administrator</code> and replaced Signal Records scaffold labels with archive-facing wording.</li>
+            </ul>
+            <p class="patch-admin">Administrator correction: The alpha is structurally acceptable. This is not praise. It is permission to stop rebuilding the skeleton and start feeding it better content.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>FUN VILLAGE // PATCH 0.3.48</span><b>Portal-Only Village Map</b><small>public navigator entry removed; village POIs activated</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>FEATURE BACKBONE / ROUTING</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / village now has suspicious boxes</dd></dl>
+            <ul class="patch-list">
+                <li class="minus">Removed Fun Village from the main Navigator so it is only reached through the Grand Map portal.</li>
+                <li class="plus">Added <code>images/fantasyvillage/villagemap.png</code> as the live village map.</li>
+                <li class="plus">Added clickable SVG point-of-interest boxes for the tavern, market, port/dock, cave, temple, forest, workshop, and cemetery.</li>
+                <li class="plus">Added a local dossier panel driven by <code>scripts/fantasy-village.js</code> for preliminary POI details.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The village has been hidden from reasonable navigation. This will obviously make everyone click it harder.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.47</span><b>Immersion Copy Pass</b><small>technical labels removed from the public map interface</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>COPY / IMMERSION POLISH</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / fewer visible implementation crumbs</dd></dl>
+            <ul class="patch-list">
+                <li class="minus">Removed public-facing implementation labels from the Grand Map status boxes and default dossier panel.</li>
+                <li class="plus">Replaced map state language with in-world archive/cartography commentary.</li>
+                <li class="plus">Rewrote the Fun Village gateway as a portal into the Subject's quest-shaped interpretation of reality.</li>
+                <li class="plus">Changed the map corner stamp from technical status to a terse syncing notice.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: Visitors do not need to know the map is a file. Visitors need to know the archive is busy pretending the world is stable.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>CREATURE INDEX // PATCH 0.3.46</span><b>Creature Asset Compartmentalization</b><small>bestiary visuals moved into a dedicated folder</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MAINTENANCE / ASSET ORGANIZATION</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / scanner paths updated</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Moved Creature Index restored and original image families into <code>images/creatureindex/</code>.</li>
+                <li class="plus">Updated <code>scripts/visual-archive.js</code> so generated Creature Index cards scan the new asset folder.</li>
+                <li class="plus">Left Artifact Vault, map, companion, and achievement icon assets in their own locations.</li>
+                <li class="plus">Updated handoff and editing guide notes so future creature intake uses the new folder.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: Creatures now have a habitat. Please stop leaving them loose in the general image directory.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>ARTIFACT VAULT // PATCH 0.3.45</span><b>Image Asset Compartmentalization</b><small>artifact visuals moved into a dedicated folder</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MAINTENANCE / ASSET ORGANIZATION</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / scanner paths updated</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Moved Artifact Vault drawing, memory, and miniature image families into <code>images/artifactvault/</code>.</li>
+                <li class="plus">Updated <code>scripts/visual-archive.js</code> so generated Artifact Vault cards scan the new asset folder.</li>
+                <li class="plus">Left Creature Index, map, companion, and achievement icon assets in their existing locations at the time of this patch.</li>
+                <li class="plus">Updated handoff and editing guide notes so future intake uses the new folder.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: Artifacts now have a drawer. The floor has filed a complaint that this did not happen sooner.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.44</span><b>Rewritten World SVG And Visited-Country Dossiers</b><small>updated ISO handling and preliminary archive records</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MAP DATA / SVG SOURCE UPDATE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / rewritten SVG preferred</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Switched the Grand Map preferred source to <code>world_rw.svg</code>, with <code>world.svg</code> retained as fallback.</li>
+                <li class="plus">Updated country ID handling so generated path IDs can be normalized through ISO labels or country classes.</li>
+                <li class="plus">Multiple SVG path pieces belonging to the same country now select together through the same normalized country ID.</li>
+                <li class="plus">Added preliminary dossiers for Bulgaria, Italy, and Belgium.</li>
+                <li class="plus">Kept all unindexed countries on the Corrupted Data fallback route.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: Several countries arrived in pieces. The archive now recognizes the pieces as one country instead of filing them as suspicious crumbs.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.43</span><b>Direct World SVG Map</b><small>overlay alignment problem removed at the source</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MAP ARCHITECTURE / VISUAL REDESIGN</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / geometry preserved</dd></dl>
+            <ul class="patch-list">
+                <li class="minus">Removed the image-map overlay approach that repeatedly produced alignment drift.</li>
+                <li class="plus">Rebuilt the Grand Map around <code>world.svg</code> as the direct visible and interactive map.</li>
+                <li class="plus">Styled SVG country paths with dark navy-purple fills, thin cyan strokes, purple hover fill, cyan-white hover strokes, and strong glow.</li>
+                <li class="plus">Selected countries now use a persistent purple-cyan gradient fill with near-white cyan stroke.</li>
+                <li class="plus">Country clicks read the SVG country ID and load the corresponding <code>countries-index.json</code> dossier.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The map and the clickable map are now the same object. At last, geography has stopped wearing a poorly fitted costume.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.42</span><b>Refined SVG And Soft Core Glow</b><small>country highlight hides minor alignment seams</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MAP VISUAL / OVERLAY REFINEMENT</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / refined overlay preferred</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Switched the Grand Map overlay preference to <code>countries1.svg</code>.</li>
+                <li class="plus">Kept fallback loading for earlier country SVG filenames.</li>
+                <li class="plus">Replaced hard border emphasis with a clipped radial glow that illuminates from inside each country.</li>
+                <li class="plus">Added a short selection flash so clicks feel responsive without exposing small border mismatches.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: Borders are no longer shouted. Countries now glow from within, which is more elegant and less likely to betray tiny cartographic crimes.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.41</span><b>True SVG Country Overlay</b><small>existing country geometry wired to JSON dossiers</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MAP INTERACTION / DATA INDEX</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / SVG geometry preserved</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Placed the existing country SVG layer directly over the visible <code>map0.png</code> surface in the same responsive container.</li>
+                <li class="plus">Preserved SVG country geometry and path IDs instead of hand-drawing replacement borders.</li>
+                <li class="plus">Added hover/focus highlighting and click selection for SVG country paths.</li>
+                <li class="plus">Added <code>countries-index.json</code> so clicked country IDs open matching dossiers in the Attian-styled map panel.</li>
+                <li class="plus">Unindexed countries now fall back to a Corrupted Data dossier instead of breaking the interface.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The map now uses its actual border file instead of asking me to impersonate a cartographer with a trembling neon pen.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.40</span><b>Segmentation Rollback And Manual Workbench</b><small>failed country overlays removed from live view</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>ROLLBACK / DEV WORKFLOW</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / awaiting manual border tuning</dd></dl>
+            <ul class="patch-list">
+                <li class="minus">Removed the experimental country segmentation, clickable region paths, corrupted placeholders, and live dossier panel from the Grand Map.</li>
+                <li class="plus">Returned the Grand Map live page to the world map image as the only visible map element.</li>
+                <li class="plus">Added a blank loaded troubleshooting hook at <code>scripts/grand-map-dev.js</code> for manual overlay experiments.</li>
+                <li class="plus">Added a non-live commented implementation guide at <code>docs/GRAND_MAP_SEGMENTATION_GUIDE.js</code>.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The map has been demilitarized. Border experiments have been moved to a controlled workbench where they can misbehave without claiming production status.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.39</span><b>Anchored Country Dossier Grid</b><small>map image and interaction paths locked to one coordinate system</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>UI / MAP STABILITY CORRECTION</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / alignment hardened</dd></dl>
+            <ul class="patch-list">
+                <li class="minus">Removed the separate image-plus-overlay structure that could visually drift when surrounding layout changed.</li>
+                <li class="plus">Embedded the world map directly inside the interactive SVG scene so country paths and image share the same 1672 by 941 coordinate system.</li>
+                <li class="plus">Locked the map and dossier into a stable grid with an internal scrolling dossier panel, preventing longer records from pushing the page layout down.</li>
+                <li class="plus">Added a region-comments row to the selected-region dossier for future manual commentary.</li>
+                <li class="plus">Added placeholder country sectors that return Corrupted Data until proper archive records are written.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The map now stops pretending the page layout is geography. Borders are still approximated by hand, but at least they are anchored to the planet instead of the furniture.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.38</span><b>Country Region Interaction Layer</b><small>floating marker cards replaced with stable country selection</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>UI / MAP INTERACTION CORRECTION</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / overlap reduced</dd></dl>
+            <ul class="patch-list">
+                <li class="minus">Removed floating marker info boxes that overlapped and drifted at different viewport sizes.</li>
+                <li class="plus">Added an SVG country-region layer that scales with the world map image.</li>
+                <li class="plus">Countries now glow on hover or keyboard focus with visible borders.</li>
+                <li class="plus">Clicking or tapping a country updates a fixed region dossier panel instead of opening map-overlaid boxes.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The map no longer throws labels over itself like loose paper in a fan. Geography has been disciplined.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>GRAND MAP // PATCH 0.3.37</span><b>World Map Region Pins</b><small>real map image and interactive location cards installed</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>UI / MAP BACKBONE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / routes awaiting deeper records</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Installed the world map image as the Grand Map surface.</li>
+                <li class="plus">Added interactive starting regions for Osnabrueck, Istanbul, Amsterdam, Vienna, Tokyo, and Seoul.</li>
+                <li class="plus">Added hover, focus, and tap-friendly location cards with coordinates and related archive categories.</li>
+                <li class="plus">Linked early placeholder routes to relevant archive nodes until specific posts are curated.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: Geography has been given buttons. This is how maps become paperwork with altitude.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>ARCHIVE EXPANSION // PATCH 0.3.36</span><b>Games, Map, Village, And Assistant Shell</b><small>new backbone nodes installed for future systems</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>STRUCTURE / FEATURE BACKBONE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / content pending</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Added Gaming Area as a MUSE-moderated node for tarot, wheel, and trivia/Cake systems.</li>
+                <li class="plus">Added Grand Map as a world-routing scaffold for location-linked archive records.</li>
+                <li class="plus">Added Fun Village as a CRPG-style fantasy village foundation with tavern, quests, monsters, and drama districts.</li>
+                <li class="plus">Installed a site-wide Administrator assistant visual shell without AI backend integration.</li>
+                <li class="plus">Updated Navigator, handoff, and editing guide so the new backbone is discoverable.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: Three future systems and one unpowered assistant shell now exist. MUSE is celebrating a cake whose existence remains unverified.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>VISITOR TERMINAL // PATCH 0.3.35</span><b>Offline Lockdown State</b><small>public intake sealed until backend reactivation</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>UI / SERVICE STATE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / terminal deliberately offline</dd></dl>
+            <ul class="patch-list">
+                <li class="minus">Disabled Visitor Terminal submissions while the Supabase backend is inactive.</li>
+                <li class="plus">Recolored the terminal into a red offline/error state instead of the active green terminal language.</li>
+                <li class="plus">Replaced the intake introduction with an Administrator lock notice explaining the channel is intentionally inaccessible.</li>
+                <li class="plus">Marked the Navigator entry as offline so visitors do not mistake the sealed channel for an active intake point.</li>
+                <li class="plus">Kept the page visible as a dormant terminal shell for later reactivation.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The public input pipe is sealed until the server stops mistaking sleep for death. Sensible, finally.</p>
+        </div>
+    </details>
+
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>ARCHIVE MAINTENANCE // PATCH 0.3.34</span><b>Workspace Organization Pass</b><small>handoff updated, source notes organized, stale snapshots removed</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MAINTENANCE / STRUCTURE</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / workspace made less ridiculous</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Updated the Codex handoff so future sessions can understand the archive, workflow, voice rules, and page systems faster.</li>
+                <li class="plus">Moved raw future-content notes into a dedicated documentation source area instead of leaving them inside live page folders.</li>
+                <li class="plus">Repaired Field Notes into a consistent repeated-entry structure for easier manual editing.</li>
+                <li class="minus">Removed stale legacy snapshot files that are already recoverable through Git history.</li>
+            </ul>
+            <p class="patch-admin">Admin correction: The archive now has fewer loose notes hiding in operational corridors. This is not peace. It is merely improved containment.</p>
+        </div>
+    </details>
+
     <details class="patch-note" open>
         <summary class="patch-summary"><span>MISSION LOG // PATCH 0.3.33</span><b>Quest Journal Systems Online</b><small>categories, search, tracking, and objective progress installed</small></summary>
         <div class="patch-body">

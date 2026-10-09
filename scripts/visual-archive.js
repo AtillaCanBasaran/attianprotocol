@@ -1,6 +1,9 @@
 (function () {
     var MAX_SCAN = 30;
     var PENDING_SLOTS = 6;
+    var ARTIFACT_IMAGE_BASE = "/images/artifactvault/";
+    var CREATURE_IMAGE_BASE = "/images/creatureindex/";
+    var externalArchiveContent = window.ATTIAN_ARCHIVE_CONTENT || {};
 
     function imgExists(src) {
         return new Promise(function (resolve) {
@@ -199,6 +202,10 @@
         }
     };
 
+    if (externalArchiveContent.creatures) {
+        Object.assign(creatureMeta, externalArchiveContent.creatures);
+    }
+
     function defaultCreatureMeta(index) {
         return {
             code: "CRTR-AUTO-" + pad(index),
@@ -207,7 +214,7 @@
             rarity: "PENDING / AUTO-INDEXED",
             tags: ["AUTO", "PENDING", "FIELD"],
             latin: "Pending identification",
-            inn: "Auto-detected from /images/creature" + index,
+            inn: "Auto-detected from " + CREATURE_IMAGE_BASE + "creature" + index,
             size: "Pending",
             age: "Unknown",
             eyes: "Pending Administrator inspection",
@@ -263,7 +270,7 @@
             "<article class=\"creature-card pending-card\">",
             "    <div class=\"creature-card-top\"><div><span class=\"creature-code\">CRTR-PENDING-" + pad(index) + "</span><h2>INCOMING CREATURE SLOT " + index + "</h2><p class=\"dim\">waiting for creature" + index + ".png</p></div><span class=\"creature-rarity\">EMPTY / READY</span></div>",
             "    <div class=\"creature-image-slot\">CREATURE" + index + "_IMAGE_PENDING</div>",
-            "    <p class=\"creature-admin\">Administrator staging note: Drop <code>creature" + index + ".png</code> and optionally <code>creature" + index + "_original.jpeg</code> into <code>/images</code>. I will do the clerical suffering.</p>",
+            "    <p class=\"creature-admin\">Administrator staging note: Drop <code>creature" + index + ".png</code> and optionally <code>creature" + index + "_original.jpeg</code> into <code>/images/creatureindex</code>. I will do the clerical suffering.</p>",
             "</article>"
         ].join("\n");
     }
@@ -274,9 +281,9 @@
         var cards = [];
         var lastFound = 0;
         for (var i = 1; i <= MAX_SCAN; i += 1) {
-            var restored = await firstExisting(["/images/creature" + i + ".png", "/images/creature" + i + ".jpeg", "/images/creature" + i + ".jpg"]);
+            var restored = await firstExisting([CREATURE_IMAGE_BASE + "creature" + i + ".png", CREATURE_IMAGE_BASE + "creature" + i + ".jpeg", CREATURE_IMAGE_BASE + "creature" + i + ".jpg"]);
             if (restored) {
-                var original = await firstExisting(["/images/creature" + i + "_original.jpeg", "/images/creature" + i + "_original.jpg", "/images/creature" + i + "_original.png"]);
+                var original = await firstExisting([CREATURE_IMAGE_BASE + "creature" + i + "_original.jpeg", CREATURE_IMAGE_BASE + "creature" + i + "_original.jpg", CREATURE_IMAGE_BASE + "creature" + i + "_original.png"]);
                 cards.push(creatureCard(i, restored, original));
                 lastFound = i;
             }
@@ -292,6 +299,10 @@
         { prefix: "memory", label: "Memory Fragment", type: "Restored memory image" },
         { prefix: "mini", label: "Miniature Fragment", type: "Miniature / object-memory" }
     ];
+
+    if (Array.isArray(externalArchiveContent.artifactTypes)) {
+        artifactTypes = externalArchiveContent.artifactTypes;
+    }
 
     var artifactCatalog = {
         "drawing1": {
@@ -408,6 +419,10 @@
         }
     };
 
+    if (externalArchiveContent.artifacts) {
+        Object.assign(artifactCatalog, externalArchiveContent.artifacts);
+    }
+
     function artifactKey(config, index) {
         return config.prefix + index;
     }
@@ -493,9 +508,9 @@
         for (var t = 0; t < artifactTypes.length; t += 1) {
             var config = artifactTypes[t];
             for (var i = 1; i <= MAX_SCAN; i += 1) {
-                var restored = await firstExisting(["/images/" + config.prefix + i + ".png", "/images/" + config.prefix + i + "_restored.png", "/images/" + config.prefix + i + ".jpeg", "/images/" + config.prefix + i + "_original.png"]);
+                var restored = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + ".png", ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.png", ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
                 if (restored) {
-                    var original = await firstExisting(["/images/" + config.prefix + i + "_original.jpeg", "/images/" + config.prefix + i + "_original.jpg", "/images/" + config.prefix + i + "_original.png"]);
+                    var original = await firstExisting([ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpeg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpg", ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"]);
                     if (original === restored) original = null;
                     var key = artifactKey(config, i);
                     var meta = artifactCatalog[key] || defaultArtifact(config, i, original);

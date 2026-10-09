@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMING AREA</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script src="/scripts/game-area.js" defer></script>
+<script src="/scripts/admin-assistant.js" defer></script>
+<script src="/scripts/legal-footer.js" defer></script>
+</head>
+
+<body class="game-area-page">
+
+<h1>GAMING AREA</h1>
+<p class="dim">/memory_node/attian/gamingarea</p>
+
+<section class="game-brief">
+    <p class="game-kicker">MUSE-RUN RECREATION NODE // RULES UNSTABLE BUT ENTHUSIASTIC</p>
+    <p>
+        This node will host small archive games: a cyberpunk tarot/deck-of-many-things oracle, a wheel of consequences, and a trivia trial for the possibly
+        real grand prize known only as The Cake. MUSE has been assigned moderation duties. Administrator has filed six objections and one safety form.
+        Full content is pending; the machines are already humming.<span class="cursor">_</span>
+    </p>
+    <div class="game-status-grid">
+        <div><span>BACKBONE</span><p>Build State</p></div>
+        <div><span>MUSE</span><p>Moderator</p></div>
+        <div><span>SEALED</span><p>Prize Integrity</p></div>
+    </div>
+</section>
+
+<section class="game-hall" aria-label="Gaming Area modules">
+    <article class="game-module tarot-module">
+        <header>
+            <span>GAME_001 // NETRUNNER TAROT</span>
+            <h2>Neon Deck Of Unwise Outcomes</h2>
+            <p>Tarot logic, DnD Deck-of-Many-Things danger, archive corruption, and MUSE pretending this is a controlled experiment.</p>
+        </header>
+        <div class="tarot-display" id="tarotDisplay">
+            <span>NO CARD DRAWN</span>
+            <strong>Awaiting signal...</strong>
+            <p>Click draw when future content is installed. Current deck is scaffolding only.</p>
+        </div>
+        <button type="button" id="drawTarotCard">[ draw placeholder card ]</button>
+        <p class="game-muse">MUSE: The cards know things. Administrator says probability does not count as prophecy. Rude.</p>
+    </article>
+
+    <article class="game-module wheel-module">
+        <header>
+            <span>GAME_002 // CONSEQUENCE WHEEL</span>
+            <h2>Spin The Archive Wheel</h2>
+            <p>One bad outcome, several archive victories, and one result where the Subject owes the visitor something. Naturally suspicious.</p>
+        </header>
+        <div class="wheel-shell" aria-hidden="true">
+            <div class="wheel-face" id="wheelFace">?</div>
+        </div>
+        <button type="button" id="spinArchiveWheel">[ spin placeholder wheel ]</button>
+        <p id="wheelResult" class="game-output">Wheel dormant. Outcomes not legally binding yet.</p>
+    </article>
+
+    <article class="game-module cake-module">
+        <header>
+            <span>GAME_003 // THE CAKE TRIAL</span>
+            <h2>Trivia Quiz For The Cake</h2>
+            <p>Answer archive-themed trivia to win The Cake. Nobody confirms whether The Cake is food, acronym, favor, compliment, or trap.</p>
+        </header>
+        <div class="cake-terminal">
+            <p class="game-output">QUESTION BUFFER EMPTY // Trivia bank pending.</p>
+            <p>Subject status: failed repeatedly. Very repeatedly.</p>
+        </div>
+        <button type="button" disabled>[ quiz locked until question bank exists ]</button>
+        <p class="game-admin">Administrator: I refuse to certify The Cake. MUSE drew frosting on the incident report.</p>
+    </article>
+</section>
+
+<div class="nav">
+    <a href="/memory_node/attian/">[ return to navigator ]</a>
+</div>
+
+<div class="status">
+Last Synchronization: 05.10.2026 13:25
+</div>
+
+</body>
+</html>

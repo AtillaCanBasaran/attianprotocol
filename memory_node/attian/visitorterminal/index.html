@@ -8,54 +8,54 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
+<script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js" defer></script>
 </head>
 
-<body>
+<body class="visitor-offline-page">
 
 <h1>VISITOR TERMINAL</h1>
 <p class="dim">/memory_node/attian/visitorterminal</p>
 
 <section class="visitor-brief">
-    <p class="visitor-kicker">PUBLIC INPUT CHANNEL // EXTERNAL FRAGMENT INTAKE</p>
+    <p class="visitor-kicker">PUBLIC INPUT CHANNEL // SIGNAL LOST // ADMIN LOCK</p>
     <p>
-        Administrator notice: the visitor input channel has been left open, against my better structural instincts, because external fragments are apparently
-        "charming" and "good for the archive" and other phrases people use before creating filing problems. Submit a thought, mood report, food ranking,
-        useless fact, tiny joke, suspicious confession, or whatever sentence escaped containment. The terminal is annoyingly tolerant. The archive will pretend
-        to be normal about it. I will be normal about it as well, obviously.<span class="cursor">_</span>
+        ADMINISTRATOR NOTICE: Visitor Terminal intake is currently offline. External fragment transmission has been deactivated until the final archive
+        version is ready and the storage backend is reawakened. The form remains visible for calibration purposes only. Do not submit confessions, soup
+        opinions, tiny jokes, or suspiciously meaningful sentences. The channel is sealed. The silence is intentional.<span class="cursor">_</span>
     </p>
     <div class="visitor-status-grid">
-        <div><span>OPEN</span><p>Input Channel</p></div>
-        <div><span>PUBLIC</span><p>Access Class</p></div>
-        <div><span>JUDGED</span><p>Admin Mood</p></div>
+        <div><span>OFFLINE</span><p>Input Channel</p></div>
+        <div><span>LOCKED</span><p>Access Class</p></div>
+        <div><span>ADMIN CUT</span><p>Current Cause</p></div>
     </div>
 </section>
 
 <section class="visitor-console">
     <label for="entryTitle">ENTRY NAME</label>
-    <input id="entryTitle" placeholder="Example: Soup opinion, tiny confession, suspicious fact">
+    <input id="entryTitle" placeholder="INPUT DISABLED // terminal offline" disabled>
 
     <label for="visitorName">VISITOR NAME</label>
-    <input id="visitorName" placeholder="Name, alias, creature classification...">
+    <input id="visitorName" placeholder="IDENTITY INTAKE LOCKED" disabled>
 
     <label for="logText">FRAGMENT</label>
-    <textarea id="logText" placeholder="Transmit something. The archive will pretend to be normal about it."></textarea>
+    <textarea id="logText" placeholder="TRANSMISSION CHANNEL DEACTIVATED BY ADMINISTRATOR" disabled></textarea>
 
-    <button onclick="submitLog()">[ transmit fragment ]</button>
+    <button disabled>[ transmission disabled ]</button>
 
     <div class="visitor-response-panel">
-        <p id="response" class="dim"></p>
-        <p id="personalityResponse" class="visitor-personality-response"></p>
+        <p id="response" class="dim">ERROR 503: Visitor intake unavailable. Supabase backend is intentionally dormant until final deployment.</p>
+        <p id="personalityResponse" class="visitor-personality-response admin-visitor-response">Administrator: I deactivated the terminal before the sleeping server began pretending to be a haunted appliance. This is maintenance, not drama.</p>
     </div>
 </section>
 
 <section class="visitor-archive-section">
     <div class="visitor-section-head">
         <h2>VISITOR ARCHIVE</h2>
-        <p class="dim">Recovered external fragments. Some may be meaningful. Some may be soup-related. Both are admissible.</p>
+        <p class="dim">Recovered external fragments are sealed until storage returns. The archive remembers the doorway. The doorway is closed.</p>
     </div>
     <div id="archive" class="visitor-archive">
-        <p class="dim">Loading stored visitor fragments. Please remain emotionally normal...</p>
+        <p class="dim">ARCHIVE ACCESS OFFLINE // backend asleep // public records temporarily inaccessible.</p>
     </div>
 </section>
 
@@ -67,128 +67,6 @@
 Last Synchronization: 27.06.2026 00:00
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-const SUPABASE_URL = "https://kykvxudcgndhrtuiiazm.supabase.co";
-const SUPABASE_KEY = "sb_publishable_ALdL51D5F_lDYJz1LXKaiA_-8HGrOaD";
-
-const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-async function submitLog() {
-    const entryTitle = document.getElementById("entryTitle").value.trim();
-    const visitorName = document.getElementById("visitorName").value.trim();
-    const logText = document.getElementById("logText").value.trim();
-    const response = document.getElementById("response");
-    const personalityResponse = document.getElementById("personalityResponse");
-    personalityResponse.textContent = "";
-    personalityResponse.className = "visitor-personality-response";
-
-    if (!entryTitle || !visitorName || !logText) {
-        response.textContent = "ERROR: entry name, visitor name, and fragment required. The admin refuses to archive pure air.";
-        return;
-    }
-
-    response.textContent = "TRANSMITTING...";
-
-    const { error } = await client
-        .from("visitor_logs")
-        .insert([
-            {
-                folder: "visitor_terminal",
-                entry_title: entryTitle,
-                visitor_name: visitorName,
-                log_text: logText
-            }
-        ]);
-
-    if (error) {
-        response.textContent = "TRANSMISSION FAILED: " + error.message;
-    } else {
-        response.textContent = "TRANSMISSION COMPLETE. FRAGMENT STORED. The archive has been made slightly more suspicious.";
-        renderPersonalityResponse();
-
-        document.getElementById("entryTitle").value = "";
-        document.getElementById("visitorName").value = "";
-        document.getElementById("logText").value = "";
-
-        loadArchive();
-    }
-}
-
-function renderPersonalityResponse() {
-    const personalityResponse = document.getElementById("personalityResponse");
-    const roll = Math.random();
-
-    if (roll < 0.04) {
-        personalityResponse.textContent = "ADMIN: Fragment accepted. Naturally nobody thanks me for organizing this entire mess into something usable. That is fine. I am not bothered. Obviously.";
-        personalityResponse.classList.add("admin-visitor-response");
-        return;
-    }
-
-    if (roll < 0.08) {
-        personalityResponse.textContent = "MUSE: I LIKE THAT. I already like you. I have no evidence but my heart is running down the hallway with a clipboard.";
-        personalityResponse.classList.add("muse-visitor-response");
-    }
-}
-
-async function loadArchive() {
-    const archive = document.getElementById("archive");
-
-    const { data, error } = await client
-        .from("visitor_logs")
-        .select("entry_title, visitor_name, log_text, created_at")
-        .eq("folder", "visitor_terminal")
-        .order("created_at", { ascending: false });
-
-    if (error) {
-        archive.innerHTML = "<p class='dim'>ARCHIVE ACCESS FAILED: " + error.message + "</p>";
-        return;
-    }
-
-    if (!data || data.length === 0) {
-        archive.innerHTML = "<p class='dim'>No visitor fragments stored. Apparently everyone is being shy. Tragic.</p>";
-        return;
-    }
-
-    archive.innerHTML = "";
-
-    data.forEach(entry => {
-        const date = new Date(entry.created_at).toLocaleString();
-
-        archive.innerHTML += `
-            <details class="visitor-entry">
-                <summary>
-                    <span>${escapeHTML(entry.entry_title)}</span>
-                    <small>click to inspect</small>
-                </summary>
-
-                <div class="visitor-entry-body">
-                    <p class="dim">
-                    VISITOR NAME: ${escapeHTML(entry.visitor_name)}<br>
-                    DATE: ${date}<br>
-                    STATUS: RECOVERED / PROBABLY SAFE
-                    </p>
-
-                    <p>${escapeHTML(entry.log_text)}</p>
-                </div>
-            </details>
-        `;
-    });
-}
-
-function escapeHTML(text) {
-    return String(text)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-}
-
-loadArchive();
-</script>
 
 </body>
 </html>

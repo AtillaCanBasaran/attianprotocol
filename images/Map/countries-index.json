@@ -1,0 +1,167 @@
+{
+  "DE": {
+    "name": "Germany",
+    "status": "INDEXED",
+    "locations": ["Osnabrueck"],
+    "coordinates": "52.2799 N, 8.0472 E",
+    "artifacts": ["Local archive objects pending"],
+    "creatures": ["Urban sightings pending"],
+    "companions": ["Current-life records pending"],
+    "fieldNotes": "Restricted writing node: /memory_node/attian/fieldnotes/",
+    "comments": "Administrator: direct world.svg country dossier active. Geometry is no longer arguing with a background image."
+  },
+  "TR": {
+    "name": "Turkey",
+    "status": "INDEXED",
+    "locations": ["Istanbul"],
+    "coordinates": "41.0082 N, 28.9784 E",
+    "artifacts": ["Origin-adjacent fragments pending"],
+    "creatures": ["Street-level creature records pending"],
+    "companions": ["Early network records pending"],
+    "fieldNotes": "Memory fragments pending attachment.",
+    "comments": "Administrator: Turkey is normalized at runtime because this SVG stores its pieces by class instead of an ID."
+  },
+  "NL": {
+    "name": "Netherlands",
+    "status": "INDEXED",
+    "locations": ["Amsterdam"],
+    "coordinates": "52.3676 N, 4.9041 E",
+    "artifacts": ["Travel objects pending"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Travel context pending"],
+    "fieldNotes": "Artifact route pending.",
+    "comments": "Administrator: canal-adjacent memory hooks installed. Actual drama withheld."
+  },
+  "AT": {
+    "name": "Austria",
+    "status": "INDEXED",
+    "locations": ["Vienna"],
+    "coordinates": "48.2082 N, 16.3738 E",
+    "artifacts": ["Travel records pending"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Travel context pending"],
+    "fieldNotes": "Mission route pending.",
+    "comments": "Administrator: classical city, suspiciously theatrical data profile."
+  },
+  "JP": {
+    "name": "Japan",
+    "status": "INDEXED",
+    "locations": ["Tokyo"],
+    "coordinates": "35.6762 N, 139.6503 E",
+    "artifacts": ["Travel artifacts and bar memories pending"],
+    "creatures": ["Japan-linked sightings pending"],
+    "companions": ["Travel humans pending review"],
+    "fieldNotes": "Return-node notes pending.",
+    "comments": "Administrator: Japan is normalized at runtime because this SVG stores its island pieces by class instead of an ID."
+  },
+  "KR": {
+    "name": "South Korea",
+    "status": "INDEXED",
+    "locations": ["Seoul"],
+    "coordinates": "37.5665 N, 126.9780 E",
+    "artifacts": ["Future catalog slot"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Pending"],
+    "fieldNotes": "Research route pending.",
+    "comments": "Administrator: placeholder route prepared for later synchronization."
+  },
+  "BG": {
+    "name": "Bulgaria",
+    "status": "PRELIMINARY",
+    "locations": ["Visited-region record pending"],
+    "coordinates": "42.7339 N, 25.4858 E",
+    "artifacts": ["Travel memory slot pending"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Trip context pending"],
+    "fieldNotes": "Bulgaria archive notes not yet imported.",
+    "comments": "Administrator: country marked as visited. Dossier shell exists; real details await manual intake."
+  },
+  "IT": {
+    "name": "Italy",
+    "status": "PRELIMINARY",
+    "locations": ["Visited-region record pending"],
+    "coordinates": "41.8719 N, 12.5674 E",
+    "artifacts": ["Travel memory slot pending"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Trip context pending"],
+    "fieldNotes": "Italy archive notes not yet imported.",
+    "comments": "Administrator: multiple Italy SVG paths resolve to this single dossier. Sensible. Rare."
+  },
+  "BE": {
+    "name": "Belgium",
+    "status": "PRELIMINARY",
+    "locations": ["Visited-region record pending"],
+    "coordinates": "50.5039 N, 4.4699 E",
+    "artifacts": ["Travel memory slot pending"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Trip context pending"],
+    "fieldNotes": "Belgium archive notes not yet imported.",
+    "comments": "Administrator: Belgium has entered the visited-country index. The archive is pretending this was always organized."
+  },
+  "DEU": {
+    "name": "Germany",
+    "status": "LEGACY ID",
+    "locations": ["Osnabrueck"],
+    "coordinates": "52.2799 N, 8.0472 E",
+    "artifacts": ["Local archive objects pending"],
+    "creatures": ["Urban sightings pending"],
+    "companions": ["Current-life records pending"],
+    "fieldNotes": "Restricted writing node: /memory_node/attian/fieldnotes/",
+    "comments": "Administrator: legacy three-letter ID retained for old overlay experiments."
+  },
+  "TUR": {
+    "name": "Turkey",
+    "status": "LEGACY ID",
+    "locations": ["Istanbul"],
+    "coordinates": "41.0082 N, 28.9784 E",
+    "artifacts": ["Origin-adjacent fragments pending"],
+    "creatures": ["Street-level creature records pending"],
+    "companions": ["Early network records pending"],
+    "fieldNotes": "Memory fragments pending attachment.",
+    "comments": "Administrator: legacy three-letter ID retained for old overlay experiments."
+  },
+  "NLD": {
+    "name": "Netherlands",
+    "status": "LEGACY ID",
+    "locations": ["Amsterdam"],
+    "coordinates": "52.3676 N, 4.9041 E",
+    "artifacts": ["Travel objects pending"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Travel context pending"],
+    "fieldNotes": "Artifact route pending.",
+    "comments": "Administrator: legacy three-letter ID retained for old overlay experiments."
+  },
+  "AUT": {
+    "name": "Austria",
+    "status": "LEGACY ID",
+    "locations": ["Vienna"],
+    "coordinates": "48.2082 N, 16.3738 E",
+    "artifacts": ["Travel records pending"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Travel context pending"],
+    "fieldNotes": "Mission route pending.",
+    "comments": "Administrator: legacy three-letter ID retained for old overlay experiments."
+  },
+  "JPN": {
+    "name": "Japan",
+    "status": "LEGACY ID",
+    "locations": ["Tokyo"],
+    "coordinates": "35.6762 N, 139.6503 E",
+    "artifacts": ["Travel artifacts and bar memories pending"],
+    "creatures": ["Japan-linked sightings pending"],
+    "companions": ["Travel humans pending review"],
+    "fieldNotes": "Return-node notes pending.",
+    "comments": "Administrator: legacy three-letter ID retained for old overlay experiments."
+  },
+  "KOR": {
+    "name": "South Korea",
+    "status": "LEGACY ID",
+    "locations": ["Seoul"],
+    "coordinates": "37.5665 N, 126.9780 E",
+    "artifacts": ["Future catalog slot"],
+    "creatures": ["Uncataloged"],
+    "companions": ["Pending"],
+    "fieldNotes": "Research route pending.",
+    "comments": "Administrator: legacy three-letter ID retained for old overlay experiments."
+  }
+}
