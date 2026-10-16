@@ -23,7 +23,7 @@
             "        <button class=\"admin-assistant-close\" type=\"button\" aria-label=\"Close Administrator interface\">[ x ]</button>",
             "    </header>",
             "    <div class=\"admin-assistant-log\">",
-            "        <p class=\"admin-assistant-system\">AI assistant core not connected. Visual shell installed for future integration.</p>",
+            "        <p class=\"admin-assistant-system\">PLANNED AI ASSISTANT // core not connected. Input is disabled; no prompt or personal data is transmitted to an AI provider.</p>",
             "        <p class=\"admin-assistant-admin\">Administrator: I am present as infrastructure only. Do not ask me to solve the archive before the brain has been wired in.</p>",
             "    </div>",
             "    <form class=\"admin-assistant-form\">",

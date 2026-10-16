@@ -350,7 +350,7 @@
         {
             terms: ["beer"],
             speaker: "muse",
-            text: "Liquid bread! ADMINISTRATOR: Technically closer than I wanted."
+            text: "Liquid bread! WE LOVE BREAD! ADMINISTRATOR: Technically closer than I wanted."
         },
         {
             terms: ["wine"],

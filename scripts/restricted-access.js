@@ -76,6 +76,14 @@
         "    margin-top: 14px;",
         "    color: #6d5b80;",
         "}",
+        ".access-gate .gate-security-note {",
+        "    border-left: 1px solid #ff5d73;",
+        "    margin: 16px 0 0;",
+        "    padding-left: 12px;",
+        "    color: #b37c88;",
+        "    font-size: 0.78rem;",
+        "    line-height: 1.55;",
+        "}",
         ".access-gate.denied {",
         "    animation: access-denied 0.22s linear 2;",
         "}",
@@ -103,7 +111,7 @@
         gate.setAttribute("aria-labelledby", "admin-access-title");
         gate.innerHTML = [
             "<h1 id=\"admin-access-title\">ADMIN ACCESS</h1>",
-            "<p class=\"dim\">Restricted memory address detected. Authentication required.<span class=\"cursor\">_</span></p>",
+            "<p class=\"dim\">Restricted memory address detected. Interface clearance required.<span class=\"cursor\">_</span></p>",
             "<form>",
             "    <div class=\"gate-grid\">",
             "        <input type=\"password\" name=\"password\" autocomplete=\"current-password\" inputmode=\"numeric\" placeholder=\"ACCESS KEY\">",
@@ -111,6 +119,7 @@
             "    </div>",
             "    <p class=\"gate-status\">Awaiting credential packet...</p>",
             "</form>",
+            "<p class=\"gate-security-note\">SECURITY NOTICE: This static gate is an interface boundary, not server-side authentication or encryption. Confidential material must not rely on it.</p>",
             "<div class=\"nav\">",
             "    <a href=\"/memory_node/attian/\">[ <-- return to navigator ]</a>",
             "</div>"

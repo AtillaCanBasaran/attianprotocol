@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RECOMMENDATION ENGINE</title>
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=0.3.58">
 
 <script src="/scripts/admin-assistant.js" defer></script>
-<script src="/scripts/legal-footer.js" defer></script>
+<script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
 
 <body>
@@ -373,16 +373,10 @@ const museButton = document.getElementById("museButton");
 const adminLine = document.getElementById("adminLine");
 const museLine = document.getElementById("museLine");
 
-const refreshCount = Number(localStorage.getItem("museRefreshCount") || "0") + 1;
-localStorage.setItem("museRefreshCount", refreshCount);
-
-if (refreshCount % 7 === 0) {
-    renderGlitch("Administrator: Refresh anomaly detected. Ten visits to this unstable drawer. I am not angry. I am documenting.");
-}
+let clickCount = 0;
 
 museButton.addEventListener("click", () => {
-    const clickCount = Number(localStorage.getItem("museClickCount") || "0") + 1;
-    localStorage.setItem("museClickCount", clickCount);
+    clickCount += 1;
 
     if (clickCount % 5 === 0 || Math.random() < 0.08) {
         renderGlitch();
@@ -403,5 +397,6 @@ function renderGlitch(adminOverride) {
 }
 </script>
 
+<noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>

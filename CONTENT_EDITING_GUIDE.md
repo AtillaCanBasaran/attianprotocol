@@ -33,7 +33,7 @@ Each archive page keeps most of its visible text in its own `index.html`. Live p
 | Mission Log | `memory_node/attian/missionlog/index.html` | Quest cards, category data, requirements/objectives, rewards, story descriptions |
 | Recommendation Engine | `memory_node/attian/recommendationengine/index.html` | Recommendation options and output text |
 | Research Terminal | `memory_node/attian/researchterminal/index.html` | Research entries and filters |
-| Signal Records | `memory_node/attian/signalrecords/index.html` | Media records and filters |
+| Signal Records | `memory_node/attian/signalrecords/index.html` | Media records, category dividers, persistent remarks, and filters |
 | System Failure Log | `memory_node/attian/systemfailurelog/index.html` | Red-signal records and restricted notes |
 | Update Log | `memory_node/attian/updatelog/index.html` | Add newest patch inside `patch-stream`, above the previous newest patch |
 | Visitor Terminal | `memory_node/attian/visitorterminal/index.html` | Offline notice, disabled form shell, archive-offline message |
@@ -75,7 +75,9 @@ Filename conventions used by the generated archive:
 - Originals: add `_original` before the extension when available
 - Optimized preferred formats: add `.avif` and `.webp` beside the original.
 - Thumbnail preferred formats: add `_thumb.avif` and `_thumb.webp` beside restored display images.
-- Keep the original PNG/JPEG file as fallback and backup.
+- Creature rows use the thumbnail while collapsed and load the `.webp` preview when expanded.
+- Keep the restored PNG at full resolution; the expanded Creature Index preview links directly to it for inspection in another tab.
+- Keep `_original` PNG/JPEG source fragments as fallback, backup, and comparison material.
 
 Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.
 

@@ -6,10 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RESEARCH TERMINAL</title>
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=0.3.61">
 
+<script src="/scripts/research-terminal.js?v=1" defer></script>
 <script src="/scripts/admin-assistant.js" defer></script>
-<script src="/scripts/legal-footer.js" defer></script>
+<script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@
     </p>
     <div class="research-status-grid">
         <div><span>LIBRARY</span><p>Terminal Mode</p></div>
-        <div><span>12</span><p>Indexed Logs</p></div>
+        <div><span id="researchRecordCount">27</span><p>Indexed Logs</p></div>
         <div><span>MIXED</span><p>Seriousness Level</p></div>
     </div>
 </section>
@@ -45,12 +46,14 @@
         <button type="button" data-filter="physics">PHYSICS</button>
         <button type="button" data-filter="biology">BIOLOGY</button>
         <button type="button" data-filter="chemistry">CHEMISTRY</button>
+        <button type="button" data-filter="art">ART</button>
+        <button type="button" data-filter="cognition">COGNITION</button>
         <button type="button" data-filter="history">HISTORY</button>
         <button type="button" data-filter="geography">GEOGRAPHY</button>
         <button type="button" data-filter="adulthood">ADULTHOOD</button>
     </div>
 
-    <p id="researchStatus" class="dim">Showing all indexed logs. The library is pretending this is orderly.</p>
+    <p id="researchStatus" class="dim" aria-live="polite">Synchronizing research dossiers...</p>
 </section>
 
 <section class="research-library" id="researchLibrary">
@@ -216,64 +219,9 @@
 </div>
 
 <div class="status">
-Last Synchronization: 27.06.2026 00:00
+Last Synchronization: 16.10.2026
 </div>
 
-<script>
-const searchInput = document.getElementById("researchSearch");
-const openButton = document.getElementById("researchOpenButton");
-const statusLine = document.getElementById("researchStatus");
-const filterButtons = Array.from(document.querySelectorAll(".research-filter-row button"));
-const logs = Array.from(document.querySelectorAll(".research-log"));
-let activeFilter = "all";
-
-function normalize(text) {
-    return text.toLowerCase().trim();
-}
-
-function applyResearchFilter(openFirstExact) {
-    const query = normalize(searchInput.value);
-    let visible = [];
-
-    logs.forEach(log => {
-        const tags = log.dataset.tags || "";
-        const text = normalize(log.textContent + " " + tags);
-        const filterMatch = activeFilter === "all" || tags.includes(activeFilter);
-        const queryMatch = !query || text.includes(query);
-        const show = filterMatch && queryMatch;
-        log.hidden = !show;
-        if (show) visible.push(log);
-    });
-
-    statusLine.textContent = visible.length
-        ? "Showing " + visible.length + " indexed log(s). Click a record to inspect the shelf."
-        : "NO MATCHES. The archive found nothing, which is not proof of innocence.";
-
-    if (openFirstExact && visible[0]) {
-        logs.forEach(log => log.open = false);
-        visible[0].open = true;
-        visible[0].scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-}
-
-filterButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        activeFilter = button.dataset.filter;
-        filterButtons.forEach(item => item.classList.toggle("selected", item === button));
-        applyResearchFilter(false);
-    });
-});
-
-searchInput.addEventListener("input", () => applyResearchFilter(false));
-searchInput.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-        applyResearchFilter(true);
-    }
-});
-openButton.addEventListener("click", () => applyResearchFilter(true));
-
-applyResearchFilter(false);
-</script>
-
+<noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>

@@ -5,37 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store">
 <title>NAVIGATOR</title>
-<link rel="stylesheet" href="/css/style.css?v=0.3.55">
+<link rel="stylesheet" href="/css/style.css?v=0.3.59">
 <script src="/scripts/navigator-response-data.js?v=0.3.55" defer></script>
 <script src="/scripts/navigator.js?v=0.3.55" defer></script>
 <script src="/scripts/admin-assistant.js?v=0.3.55" defer></script>
-<script src="/scripts/legal-footer.js" defer></script>
+<script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
 <body class="navigator-page">
 <main class="navigator-shell">
     <header class="navigator-command-head">
-        <p class="navigator-kicker">ATTIAN PROTOCOL / NAVIGATOR</p>
-        <h1>Where do you intend to interfere?</h1>
+        <div class="navigator-head-grid">
+            <div class="navigator-head-copy">
+                <p class="navigator-kicker">MEMORY_NODE/ATTIAN // ROUTE CONTROL</p>
+                <h1>Choose a memory route.</h1>
+                <p class="navigator-intro">Eleven public nodes. Several questionable decisions. One Administrator pretending this is orderly.</p>
+            </div>
+            <div class="navigator-core" aria-hidden="true">
+                <span>11</span>
+                <small>PUBLIC<br>NODES</small>
+                <i></i><i></i>
+            </div>
+        </div>
         <label class="navigator-search" for="navigator-query">
             <span>&gt;</span>
             <input id="navigator-query" type="search" autocomplete="off" spellcheck="false" placeholder="Search archive nodes or type something suspicious...">
             <kbd>ESC</kbd>
         </label>
-        <p id="navigator-response" class="navigator-response" aria-live="polite">Eleven public destinations available. Pretend this is a responsible use of your time.</p>
+        <p id="navigator-response" class="navigator-response" aria-live="polite">Route control online. Name a destination or select a signal below.</p>
     </header>
 
     <section class="navigator-directory" aria-label="Public archive nodes">
-        <a class="navigator-result" data-search="achievements milestones success childhood school romance" href="/memory_node/attian/achievementrepository/"><strong>Achievement Repository</strong><span>Milestones and unlikely successes</span></a>
-        <a class="navigator-result" data-search="artifacts images memories drawings restored photos" href="/memory_node/attian/artifactvault/"><strong>Artifact Vault</strong><span>Restored visual evidence</span></a>
-        <a class="navigator-result" data-search="companions people friends relationships egebal" href="/memory_node/attian/companiondatabase/"><strong>Companion Database</strong><span>Trusted entities and liabilities</span></a>
-        <a class="navigator-result" data-search="creatures animals cats swan turtle monkeys pamuk" href="/memory_node/attian/creatureindex/"><strong>Creature Index</strong><span>Quest animals and suspicious fauna</span></a>
-        <a class="navigator-result muse-result" data-search="games gaming tarot wheel trivia cake muse minigames" href="/memory_node/attian/gamingarea/"><strong>Gaming Area</strong><span>MUSE-run games and bad odds</span></a>
-        <a class="navigator-result" data-search="map grandmap world geography locations travel places archive pins" href="/memory_node/attian/grandmap/"><strong>Grand Map</strong><span>World pins and archive routes</span></a>
-        <a class="navigator-result" data-search="missions plans future goals ireland japan german art dnd" href="/memory_node/attian/missionlog/"><strong>Mission Log</strong><span>Pending quests and future problems</span></a>
-        <a class="navigator-result" data-search="research academic habits studies reports" href="/memory_node/attian/researchterminal/"><strong>Research Terminal</strong><span>Ordinary habits, serious formatting</span></a>
-        <a class="navigator-result navigator-offline" data-search="visitor guest write leave entry fragment archive offline disabled" href="/memory_node/attian/visitorterminal/"><strong>Visitor Terminal</strong><span>Offline / input sealed</span></a>
-        <a class="navigator-result" data-search="updates patches changes version changelog history" href="/memory_node/attian/updatelog/"><strong>Update Log</strong><span>Patch history and documented damage</span></a>
-        <a class="navigator-result muse-result" data-search="recommendation advice muse engine suggestions random" href="/memory_node/attian/recommendationengine/"><strong>Recommendation Engine</strong><span>Advice nobody officially requested</span></a>
+        <a class="navigator-result" data-search="achievements milestones success childhood school romance" href="/memory_node/attian/achievementrepository/"><span class="navigator-node-glyph">ACH</span><span class="navigator-node-copy"><strong>Achievement Repository</strong><small>Milestones and unlikely successes</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result" data-search="artifacts images memories drawings restored photos" href="/memory_node/attian/artifactvault/"><span class="navigator-node-glyph">ART</span><span class="navigator-node-copy"><strong>Artifact Vault</strong><small>Restored visual evidence</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result" data-search="companions people friends relationships egebal" href="/memory_node/attian/companiondatabase/"><span class="navigator-node-glyph">CMP</span><span class="navigator-node-copy"><strong>Companion Database</strong><small>Trusted entities and liabilities</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result" data-search="creatures animals cats swan turtle monkeys pamuk" href="/memory_node/attian/creatureindex/"><span class="navigator-node-glyph">BIO</span><span class="navigator-node-copy"><strong>Creature Index</strong><small>Quest animals and suspicious fauna</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result muse-result" data-search="games gaming tarot wheel trivia cake muse minigames" href="/memory_node/attian/gamingarea/"><span class="navigator-node-glyph">GM</span><span class="navigator-node-copy"><strong>Gaming Area</strong><small>MUSE-run games and bad odds</small></span><span class="navigator-node-state">MUSE</span></a>
+        <a class="navigator-result" data-search="map grandmap world geography locations travel places archive pins" href="/memory_node/attian/grandmap/"><span class="navigator-node-glyph">MAP</span><span class="navigator-node-copy"><strong>Grand Map</strong><small>World signals and archive routes</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result" data-search="missions plans future goals ireland japan german art dnd" href="/memory_node/attian/missionlog/"><span class="navigator-node-glyph">MSN</span><span class="navigator-node-copy"><strong>Mission Log</strong><small>Pending quests and future problems</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result" data-search="research academic habits studies reports" href="/memory_node/attian/researchterminal/"><span class="navigator-node-glyph">RSC</span><span class="navigator-node-copy"><strong>Research Terminal</strong><small>Ordinary habits, serious formatting</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result navigator-offline" data-search="visitor guest write leave entry fragment archive offline disabled" href="/memory_node/attian/visitorterminal/"><span class="navigator-node-glyph">VIS</span><span class="navigator-node-copy"><strong>Visitor Terminal</strong><small>Input sealed by Administrator</small></span><span class="navigator-node-state">OFFLINE</span></a>
+        <a class="navigator-result" data-search="updates patches changes version changelog history" href="/memory_node/attian/updatelog/"><span class="navigator-node-glyph">LOG</span><span class="navigator-node-copy"><strong>Update Log</strong><small>Patch history and documented damage</small></span><span class="navigator-node-state">OPEN</span></a>
+        <a class="navigator-result muse-result" data-search="recommendation advice muse engine suggestions random" href="/memory_node/attian/recommendationengine/"><span class="navigator-node-glyph">ERR</span><span class="navigator-node-copy"><strong>Recommendation Engine</strong><small>Advice nobody officially requested</small></span><span class="navigator-node-state">MUSE</span></a>
         <p id="navigator-empty" class="navigator-empty" hidden>No matching node. Either spell better or search less ambitiously.</p>
     </section>
 
@@ -57,6 +67,7 @@
     </details>
 </main>
 <div class="nav"><a href="/index.html">[ return to Attian Protocol ]</a></div>
-<div class="status">Last Synchronization: 09.07.2026 11:45</div>
+<div class="status">Last Synchronization: 16.10.2026</div>
+<noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>

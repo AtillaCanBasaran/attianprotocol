@@ -6,6 +6,7 @@
     const search = document.getElementById("questSearch");
     const categoryBar = document.getElementById("questCategoryBar");
     const trackedFilter = document.getElementById("trackedQuestFilter");
+    const clearProgress = document.getElementById("clearQuestProgress");
     const filterStatus = document.getElementById("questFilterStatus");
 
     if (!board || !cards.length || !search || !categoryBar || !trackedFilter || !filterStatus) {
@@ -182,6 +183,20 @@
         applyFilters();
     });
 
+    if (clearProgress) {
+        clearProgress.addEventListener("click", function () {
+            if (!window.confirm("Delete all locally stored Mission Log tracking and objective progress from this browser?")) {
+                return;
+            }
+            try {
+                localStorage.removeItem(storageKey);
+            } catch (error) {
+                // Reload still clears the in-memory journal for this visit.
+            }
+            window.location.reload();
+        });
+    }
+
     search.addEventListener("input", applyFilters);
 
     function applyFilters() {
@@ -207,6 +222,5 @@
         filterStatus.textContent = "SHOWING " + visible + " / " + cards.length + trackedLabel.toUpperCase() + " QUESTS // " + categoryLabel.toUpperCase() + searchLabel;
     }
 
-    saveJournal();
     applyFilters();
 }());

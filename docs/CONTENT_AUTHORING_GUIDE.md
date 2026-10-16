@@ -99,7 +99,7 @@ The card should appear automatically. If it does not:
 
 ### 4. Optimized image versions
 
-The live page prefers optimized `.avif` / `.webp` files and small `_thumb` files when present. The original `.png` / `.jpeg` stays in place as backup and browser fallback.
+The live page uses small `_thumb` files in the collapsed creature rows, then loads the higher-quality `.webp` preview only when a creature is expanded. The full-size `.png` stays linked from the preview, so opening the image in a new tab reveals the original-resolution restored file. Any `_original.png` / `_original.jpeg` source fragment remains available through the separate inspection drawer.
 
 For best performance, generate these beside the original:
 
@@ -343,27 +343,38 @@ Privacy rule: avoid unnecessary real names, exact birth dates, addresses, or sen
 
 ## Adding Research Terminal Logs
 
-File:
+Content files:
 
 ```text
-memory_node/attian/researchterminal/index.html
+memory_node/attian/researchterminal/data/core-records.md
+memory_node/attian/researchterminal/data/new-records.md
 ```
 
-Add a new:
+Research records use plain Markdown. Copy this block into the appropriate data file:
 
-```html
-<details class="research-log" data-tags="science biology keyword">
+```markdown
+## 16 // BIOLOGY / TOPIC
+
+### An Overly Formal Archive Title
+
+**Archive explanation:** A clear, accurate explanation of the actual concept.
+
+**Subject storage format:** The Subject's longer personal analogy, joke, or memory device.
+
+**Admin comment:** A concise Administrator correction or review.
+
+---
 ```
 
-Use:
+Rules:
 
-- `<span>` for category;
-- `<b>` for long academic-style title;
-- `.research-simple` for plain explanation;
-- one subject storage line;
-- `.research-admin` for Administrator note.
+- Keep the three bold field labels exactly as shown; the page parser uses them.
+- `LILI's comment` is accepted for imported legacy material but new public records should use `Admin comment`.
+- Blank lines create separate paragraphs inside the dossier.
+- The visible `RT-###` code and total record count are generated automatically.
+- Search terms are generated from the category, title, and explanation.
 
-If adding a new category, also add a filter button in `.research-filter-row`.
+If adding a new top-level category, add one matching filter button in `.research-filter-row` inside `index.html`.
 
 ## Adding Signal Records
 
@@ -382,11 +393,23 @@ Add a new:
 Use:
 
 - `.signal-summary-text` beginning with `Archive summary:`
-- `.signal-subjective`
+- `.signal-subjective` beginning with `Subjective note:`
+- `.signal-remark` for persistent memory hooks such as characters, short quote or lyric fragments, scenes, images, recurring concepts, or details that immediately return when remembering the work
 - one of:
   - `.signal-admin`
   - `.signal-muse`
   - `.signal-red`
+
+The live index is divided by large HTML comments for anime, movies, series, music, games, and books. Put the new record below the matching divider. A complete copy-ready `RECORD TEMPLATE` is stored at the top of `.signal-library`.
+
+Keep interpretation in `Subjective note`; move specific remembered material into `Remark`. If nothing has been recorded yet, use:
+
+```html
+<section class="signal-remark" aria-label="Persistent remarks">
+    <h3>Remark</h3>
+    <p class="signal-remark-empty">No persistent fragment indexed yet.</p>
+</section>
+```
 
 Red Channel examples should be clipped and uncomfortable:
 

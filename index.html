@@ -5,73 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ATTIAN PROTOCOL</title>
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=0.3.60">
 
-<script src="/scripts/main-page.js" defer></script>
-<script src="/scripts/admin-assistant.js" defer></script>
-<script src="/scripts/legal-footer.js" defer></script>
+<script src="/scripts/main-page.js?v=3" defer></script>
+<script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
 
 <body class="home-page">
 
-<main class="home-shell">
-    <section class="home-hero protocol-panel">
-        <h1>ATTIAN PROTOCOL</h1>
-        <p class="protocol-state">MEMORY NODE ACTIVE &amp; ONLINE<span class="cursor">_</span></p>
-        <p class="home-lede">
-            Welcome. The Subject has assembled a digital museum from memories, creatures, unfinished quests, and evidence
-            that should probably have remained context-free. I keep it organized. He makes that difficult.
-        </p>
+<main class="home-shell entry-experience">
+    <nav class="entry-progress" aria-label="Archive entry progress">
+        <button type="button" class="active" data-progress-stage="welcome" disabled><span>01</span><small>WELCOME</small></button>
+        <button type="button" data-progress-stage="trace" disabled><span>02</span><small>TRACE</small></button>
+        <button type="button" data-progress-stage="mode" disabled><span>03</span><small>MODE</small></button>
+        <button type="button" data-progress-stage="consent" disabled><span>04</span><small>CONSENT</small></button>
+    </nav>
+
+    <section class="entry-stage entry-welcome-stage is-active" data-entry-stage="welcome" aria-labelledby="welcome-title">
+        <div class="entry-cinematic" id="entry-cinematic" title="Click the transmission to advance">
+            <div class="entry-avatar-scene" aria-hidden="true">
+                <span class="entry-orbit orbit-one"></span>
+                <span class="entry-orbit orbit-two"></span>
+                <div class="entry-avatar-frame">
+                    <img src="/images/avatars/lili_avatar_entry.jpg" alt="">
+                </div>
+                <span class="entry-scan-label">ADMINISTRATOR // ACTIVE</span>
+            </div>
+
+            <div class="entry-transmission">
+                <p class="entry-kicker">MEMORY_NODE/ATTIAN // MAIN GATE</p>
+                <h1 id="welcome-title">Visitor signal acquired.</h1>
+                <div class="entry-dialogue-window">
+                    <span class="entry-speaker">ADMINISTRATOR</span>
+                    <p id="entry-dialogue" aria-live="polite">Establishing visual contact...</p>
+                    <small class="entry-dialogue-hint">click transmission to advance // repeatedly if patience has failed</small>
+                </div>
+                <div id="understanding-controls" class="entry-choice-row entry-understanding" hidden>
+                    <button type="button" data-understands="yes">I understand.</button>
+                    <button type="button" data-understands="repeat">Explain it like I am less awake.</button>
+                </div>
+            </div>
+        </div>
+        <p class="entry-privacy-note">LOCAL IMMERSION SEQUENCE // no answers are transmitted or stored</p>
     </section>
 
-    <section class="home-panel reason-panel">
-        <p class="lab-id">VISITOR STATISTICS // DECLARE YOUR EXCUSE</p>
-        <h2>Why did you enter?</h2>
+    <section class="entry-stage" data-entry-stage="trace" aria-labelledby="trace-title" hidden>
+        <header class="entry-stage-head">
+            <span class="entry-step-code">02 // SIGNAL TRACE</span>
+            <h2 id="trace-title">How did you find this place?</h2>
+            <p>Choose the least inaccurate explanation.</p>
+        </header>
 
-        <div class="entry-reason-list" aria-label="Reasons to enter the archive">
-            <button type="button" data-entry-reason="curious"><span>01</span>The Subject sent a link. I became curious.</button>
-            <button type="button" data-entry-reason="obliged"><span>02</span>The Subject sent a link. Ignoring it felt rude.</button>
-            <button type="button" data-entry-reason="interested"><span>03</span>I was genuinely interested in the contents. Somehow.</button>
-            <button type="button" data-entry-reason="administrator"><span>04</span>I came to appreciate the infrastructure and the Administrator&#39;s work.</button>
-            <button type="button" data-entry-reason="accident"><span>05</span>It was an accident. Now I am unfortunately curious.</button>
+        <div class="entry-reason-grid" aria-label="How the visitor found the archive">
+            <button type="button" data-entry-reason="direct"><span class="reason-glyph">LINK</span><b>The Subject gave me the link.</b><small>Direct exposure. Predictable.</small></button>
+            <button type="button" data-entry-reason="social"><span class="reason-glyph">SOC</span><b>I saw it on the Subject&#39;s social media.</b><small>Public signal interception.</small></button>
+            <button type="button" data-entry-reason="random"><span class="reason-glyph">???</span><b>I somehow found it randomly.</b><small>Search engines make mistakes.</small></button>
+            <button type="button" data-entry-reason="returning"><span class="reason-glyph">RPT</span><b>Not my first visit. I liked it and came back curious.</b><small>Concerning, but flattering.</small></button>
+            <button type="button" data-entry-reason="referred"><span class="reason-glyph">REF</span><b>Someone else sent me here.</b><small>Containment has failed socially.</small></button>
         </div>
 
-        <p id="entry-reason-response" class="admin-response home-response">
-            Select once. I require clean statistics for future mockery.
-        </p>
-    </section>
-
-    <section class="home-panel admin-module-panel">
-        <h2>Select your Administrator mode:</h2>
-
-        <div id="admin-mode-row" class="admin-mode-row" aria-label="Administrator personality options"></div>
-        <p id="admin-mode-response" class="admin-response home-response">
-            Current mode: herself. Finally, a correct default.
-        </p>
-    </section>
-
-    <section class="home-panel home-entry-panel">
-        <p class="lab-id">NAVIGATION HANDSHAKE</p>
-        <h2>Archive access is open.</h2>
-        <div class="home-preview-strip" aria-label="Archive preview categories">
-            <span>achievements</span>
-            <span>artifacts</span>
-            <span>companions</span>
-            <span>creatures</span>
-            <span>games</span>
-            <span>map</span>
-            <span>missions</span>
-            <span>visitors offline</span>
+        <div class="entry-stage-response">
+            <p id="entry-reason-response" class="admin-response">No telemetry. I am judging you locally.</p>
+            <button id="trace-continue" class="entry-continue" type="button" hidden>continue to Administrator calibration</button>
         </div>
-        <a class="protocol-entry" href="/memory_node/attian/">
-            [ I accept my fate, unnecessary knowledge of the Subject, and promise not to use any of it in a court of law ]
-        </a>
+    </section>
+
+    <section class="entry-stage" data-entry-stage="mode" aria-labelledby="mode-title" hidden>
+        <header class="entry-stage-head">
+            <span class="entry-step-code">03 // PERSONALITY CALIBRATION</span>
+            <h2 id="mode-title">Select your Administrator mode.</h2>
+            <p>The controls are real. Their authority is debatable.</p>
+        </header>
+
+        <div class="entry-mode-console">
+            <div id="admin-mode-row" class="entry-mode-grid" aria-label="Administrator personality options">
+                <button type="button" class="selected" data-admin-mode="herself"><span>AUTH</span><b>herself</b><small>LOCKED DEFAULT</small></button>
+            </div>
+            <div id="mode-interference" class="mode-interference" aria-hidden="true"><span>REQUEST INTERCEPTED</span></div>
+        </div>
+
+        <div class="entry-stage-response">
+            <p id="admin-mode-response" class="admin-response">Current mode: herself. Finally, a correct default.</p>
+            <button id="mode-continue" class="entry-continue" type="button">accept the completely democratic result</button>
+        </div>
+    </section>
+
+    <section class="entry-stage entry-consent-stage" data-entry-stage="consent" aria-labelledby="consent-title" hidden>
+        <div class="entry-consent-seal" aria-hidden="true"><span>AP</span><small>UNWISELY<br>AUTHORIZED</small></div>
+        <div class="entry-consent-copy">
+            <span class="entry-step-code">04 // FINAL LIABILITY THEATRE</span>
+            <h2 id="consent-title">One last administrative fiction.</h2>
+            <div class="entry-consent-list" aria-label="Archive entry acknowledgements">
+                <label class="entry-consent-check"><input type="checkbox" data-fate-consent><span>I am entering voluntarily and accept whatever unnecessarily specific fate follows.</span></label>
+                <label class="entry-consent-check"><input type="checkbox" data-fate-consent><span>I promise not to judge the archive too efficiently.</span></label>
+                <label class="entry-consent-check"><input type="checkbox" data-fate-consent><span>I will not weaponize unnecessary knowledge of the Subject in court, group chats, or suspiciously formal brunches.</span></label>
+                <label class="entry-consent-check"><input type="checkbox" data-fate-consent><span>I acknowledge that the Administrator is always right wherever technically convenient.</span></label>
+            </div>
+            <p id="consent-response" class="consent-response" aria-live="polite">Four boxes. A heroic administrative burden.</p>
+            <p class="entry-legal-joke">This is an immersion gate, not a legal waiver. The real legal information remains irritatingly accessible below.</p>
+            <button id="enter-archive" class="protocol-entry" type="button">ENTER MEMORY NODE</button>
+        </div>
     </section>
 </main>
 
 <div class="status">
-Last Synchronization: 08.07.2026 13:15
+Last Synchronization: 16.10.2026
 </div>
 
+<noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>

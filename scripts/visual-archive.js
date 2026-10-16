@@ -230,54 +230,86 @@
         };
     }
 
-    function creatureCard(index, restored, original, thumb) {
+    function creatureCard(index, restored, original, thumb, fullResolution, startOpen) {
         var m = creatureMeta[index] || defaultCreatureMeta(index);
         var tags = m.tags.map(function (tag) { return "<span>" + escapeHTML(tag) + "</span>"; }).join("\n            ");
         var originalHTML = original ? [
             "<details class=\"original-fragment\">",
             "    <summary>inspect original fragment</summary>",
-            "    <img loading=\"lazy\" decoding=\"async\" src=\"" + original + "\" alt=\"Original creature fragment " + index + "\">",
+            "    <img class=\"creature-original-visual\" loading=\"lazy\" decoding=\"async\" data-original-src=\"" + original + "\" alt=\"Original creature fragment " + index + "\">",
             "</details>"
         ].join("\n        ") : "";
 
         return [
-            "<article class=\"creature-card " + escapeHTML((m.classes || "") + " " + rarityClass(m.rarity)) + "\">",
-            "    <div class=\"creature-card-top\">",
-            "        <div>",
+            "<details class=\"creature-card " + escapeHTML((m.classes || "") + " " + rarityClass(m.rarity)) + "\"" + (startOpen ? " open" : "") + ">",
+            "    <summary class=\"creature-summary\">",
+            "        <span class=\"creature-thumb-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + (thumb || restored) + "\" alt=\"Thumbnail for " + escapeHTML(m.title) + "\"></span>",
+            "        <span class=\"creature-summary-main\">",
             "            <span class=\"creature-code\">" + escapeHTML(m.code) + "</span>",
-            "            <h2>" + escapeHTML(m.title) + "</h2>",
-            "            <p class=\"dim\">" + escapeHTML(m.subtitle) + "</p>",
-            "        </div>",
+            "            <b>" + escapeHTML(m.title) + "</b>",
+            "            <small>" + escapeHTML(m.subtitle) + "</small>",
+            "        </span>",
             "        <span class=\"creature-rarity\">" + escapeHTML(m.rarity) + "</span>",
+            "        <span class=\"creature-summary-toggle\" aria-hidden=\"true\">[ + ]</span>",
+            "    </summary>",
+            "    <div class=\"creature-card-body\">",
+            "        <div class=\"creature-visual-column\">",
+            "            <div class=\"creature-image-slot\"><a href=\"" + (fullResolution || restored) + "\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open full-resolution creature image " + index + "\"><img class=\"restored-visual creature-preview-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + (thumb || restored) + "\" data-preview-src=\"" + restored + "\" alt=\"Restored creature fragment " + index + "\"></a></div>",
+            "            <p class=\"restored-note\">Compact field preview. <a class=\"creature-fullres-link\" href=\"" + (fullResolution || restored) + "\" target=\"_blank\" rel=\"noopener\">Open full-resolution PNG</a>. Source fragment " + (original ? "attached below for comparison." : "not detected yet. Suspicious.") + "</p>",
+            "            " + originalHTML,
+            "        </div>",
+            "        <div class=\"creature-copy\">",
+            "            <div class=\"creature-type-row\">" + tags + "</div>",
+            "            <dl class=\"creature-meta\">",
+            "                <dt>Latin Name</dt><dd>" + escapeHTML(m.latin) + "</dd>",
+            "                <dt>I.N.N.</dt><dd>" + escapeHTML(m.inn) + "</dd>",
+            "                <dt>Size Class</dt><dd>" + escapeHTML(m.size) + "</dd>",
+            "                <dt>Age</dt><dd>" + escapeHTML(m.age) + "</dd>",
+            "                <dt>Eyes</dt><dd>" + escapeHTML(m.eyes) + "</dd>",
+            "                <dt>Fur</dt><dd>" + escapeHTML(m.fur) + "</dd>",
+            "            </dl>",
+            "            " + creatureProfileHTML(m),
+            "            " + creatureQuestHTML(m),
+            m.story ? "            <details class=\"creature-section creature-story\"><summary>Encounter Record</summary><p>" + escapeHTML(m.story) + "</p></details>" : "",
+            "            <p class=\"creature-admin\">" + escapeHTML(m.comment) + "</p>",
+            "        </div>",
             "    </div>",
-            "    <div class=\"creature-image-slot\"><a href=\"" + restored + "\" aria-label=\"Open full restored creature image " + index + "\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + (thumb || restored) + "\" alt=\"Restored creature fragment " + index + "\"></a></div>",
-            "    <p class=\"restored-note\">Restored creature visual by the Administrator. Original fragment " + (original ? "attached below for humiliating comparison." : "not detected yet. Suspicious.") + "</p>",
-            originalHTML,
-            "    <div class=\"creature-type-row\">" + tags + "</div>",
-            "    <dl class=\"creature-meta\">",
-            "        <dt>Latin Name</dt><dd>" + escapeHTML(m.latin) + "</dd>",
-            "        <dt>I.N.N.</dt><dd>" + escapeHTML(m.inn) + "</dd>",
-            "        <dt>Size Class</dt><dd>" + escapeHTML(m.size) + "</dd>",
-            "        <dt>Age</dt><dd>" + escapeHTML(m.age) + "</dd>",
-            "        <dt>Eyes</dt><dd>" + escapeHTML(m.eyes) + "</dd>",
-            "        <dt>Fur</dt><dd>" + escapeHTML(m.fur) + "</dd>",
-            "    </dl>",
-            creatureProfileHTML(m),
-            creatureQuestHTML(m),
-            m.story ? "    <details class=\"creature-section creature-story\"><summary>Encounter Record</summary><p>" + escapeHTML(m.story) + "</p></details>" : "",
-            "    <p class=\"creature-admin\">" + escapeHTML(m.comment) + "</p>",
-            "</article>"
+            "</details>"
         ].join("\n");
     }
 
     function pendingCreatureCard(index) {
         return [
-            "<article class=\"creature-card pending-card\">",
-            "    <div class=\"creature-card-top\"><div><span class=\"creature-code\">CRTR-PENDING-" + pad(index) + "</span><h2>INCOMING CREATURE SLOT " + index + "</h2><p class=\"dim\">waiting for creature" + index + ".png</p></div><span class=\"creature-rarity\">EMPTY / READY</span></div>",
-            "    <div class=\"creature-image-slot\">CREATURE" + index + "_IMAGE_PENDING</div>",
-            "    <p class=\"creature-admin\">Administrator staging note: Drop <code>creature" + index + ".png</code> and optionally <code>creature" + index + "_original.jpeg</code> into <code>/images/creatureindex</code>. I will do the clerical suffering.</p>",
-            "</article>"
+            "<details class=\"creature-card pending-card\">",
+            "    <summary class=\"creature-summary\"><span class=\"creature-thumb-slot\">SCAN</span><span class=\"creature-summary-main\"><span class=\"creature-code\">CRTR-PENDING-" + pad(index) + "</span><b>INCOMING CREATURE SLOT " + index + "</b><small>waiting for creature" + index + ".png</small></span><span class=\"creature-rarity\">EMPTY / READY</span><span class=\"creature-summary-toggle\" aria-hidden=\"true\">[ + ]</span></summary>",
+            "    <div class=\"creature-card-body creature-pending-body\"><div class=\"creature-image-slot\">CREATURE" + index + "_IMAGE_PENDING</div><p class=\"creature-admin\">Administrator staging note: Drop <code>creature" + index + ".png</code> and optionally <code>creature" + index + "_original.jpeg</code> into <code>/images/creatureindex</code>. I will do the clerical suffering.</p></div>",
+            "</details>"
         ].join("\n");
+    }
+
+    function activateCreaturePreviews(container) {
+        Array.prototype.forEach.call(container.querySelectorAll(".creature-card"), function (card) {
+            function loadPreview() {
+                if (!card.open) return;
+                var image = card.querySelector(".creature-preview-visual[data-preview-src]");
+                if (!image) return;
+                image.src = image.getAttribute("data-preview-src");
+                image.removeAttribute("data-preview-src");
+            }
+
+            card.addEventListener("toggle", loadPreview);
+            loadPreview();
+
+            Array.prototype.forEach.call(card.querySelectorAll(".original-fragment"), function (drawer) {
+                drawer.addEventListener("toggle", function () {
+                    if (!drawer.open) return;
+                    var originalImage = drawer.querySelector(".creature-original-visual[data-original-src]");
+                    if (!originalImage) return;
+                    originalImage.src = originalImage.getAttribute("data-original-src");
+                    originalImage.removeAttribute("data-original-src");
+                });
+            });
+        });
     }
 
     async function loadCreatures() {
@@ -291,22 +323,27 @@
         for (var idx = 0; idx < indexes.length; idx += 1) {
             var i = indexes[idx];
             var restored = await firstExisting([
-                CREATURE_IMAGE_BASE + "creature" + i + ".avif",
                 CREATURE_IMAGE_BASE + "creature" + i + ".webp",
+                CREATURE_IMAGE_BASE + "creature" + i + ".avif",
                 CREATURE_IMAGE_BASE + "creature" + i + ".png",
                 CREATURE_IMAGE_BASE + "creature" + i + ".jpeg",
                 CREATURE_IMAGE_BASE + "creature" + i + ".jpg"
             ]);
             if (restored) {
                 var original = await firstExisting([
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.avif",
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.webp",
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.png",
                     CREATURE_IMAGE_BASE + "creature" + i + "_original.jpeg",
                     CREATURE_IMAGE_BASE + "creature" + i + "_original.jpg",
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.png"
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.webp",
+                    CREATURE_IMAGE_BASE + "creature" + i + "_original.avif"
+                ]);
+                var fullResolution = await firstExisting([
+                    CREATURE_IMAGE_BASE + "creature" + i + ".png",
+                    CREATURE_IMAGE_BASE + "creature" + i + ".jpeg",
+                    CREATURE_IMAGE_BASE + "creature" + i + ".jpg"
                 ]);
                 var thumb = await firstExisting(thumbCandidates(restored));
-                cards.push(creatureCard(i, restored, original, thumb));
+                cards.push(creatureCard(i, restored, original, thumb, fullResolution, cards.length === 0));
                 lastFound = Math.max(lastFound, i);
             }
         }
@@ -314,6 +351,7 @@
             cards.push(pendingCreatureCard(p));
         }
         container.innerHTML = cards.join("\n");
+        activateCreaturePreviews(container);
     }
 
     var artifactTypes = [
