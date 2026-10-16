@@ -150,6 +150,7 @@ Inside `creatures`, add the matching number:
     subtitle: "SHORT TAXONOMIC INSULT",
     rarity: "RARE / SIDE QUEST ENCOUNTER",
     tags: ["FIELD", "URBAN", "SUSPICIOUS"],
+    stats: { Power: 5, Speed: 6, Courage: 4, Wisdom: 8, Charisma: 7, Stealth: 3 },
     latin: "Invented latin-style name",
     inn: "Encounter location",
     size: "Small-medium",
@@ -157,11 +158,19 @@ Inside `creatures`, add the matching number:
     eyes: "Judgmental, tiny, ancient, etc.",
     fur: "Fur/feathers/shell/surface description",
     skillSet: ["Skill One", "Skill Two", "Skill Three"],
+    skillDetails: {
+        "Skill One": "Short, useful, mildly funny explanation of what happens.",
+        "Skill Two": "Short explanation for the second ability.",
+        "Skill Three": "Short explanation for the third ability."
+    },
     professions: ["Quest Giver", "Local Problem"],
-    abstract: "Short profile of what this creature is in archive terms.",
+    abstract: "Short card-front description of what this creature is and what makes the encounter strange.",
+    questType: "SIDE QUEST",
+    questStatus: "ACTIVE",
     questName: "Quest Name",
-    questBehavior: "What it asks, blocks, causes, or symbolizes.",
-    story: "Longer encounter record. Vivid, funny, not endless.",
+    questBehavior: "One clear objective the player can understand.",
+    questReward: "A concrete, funny, or lore-relevant reward.",
+    story: "Longer optional lore-shelf encounter record. Vivid, funny, not endless.",
     comment: "Administrator note: final dry classification."
 }
 ```
@@ -176,7 +185,9 @@ This lets the page render from a known list instead of checking many missing fil
 
 ### 3. Optimized image versions
 
-The live page prefers optimized `.avif` / `.webp` files and small `_thumb` files when present. The original `.png` / `.jpeg` stays in place as backup and browser fallback.
+The live collection card prefers the restored `.webp` / `.avif` artwork and always contains the complete image without cropping it. The original `.png` / `.jpeg` stays in place for full-resolution inspection, and `_thumb` files remain useful for other compact archive contexts.
+
+Keep the six shared stats in the documented order so visitors can compare cards directly. Every name in `skillSet` should have an identically spelled key in `skillDetails`; selecting that skill opens its short explanation on the card. `questType`, `questStatus`, `questBehavior`, and `questReward` form the compact quest panel.
 
 For best performance, generate these beside the original:
 

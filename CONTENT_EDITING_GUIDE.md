@@ -75,8 +75,10 @@ Filename conventions used by the generated archive:
 - Originals: add `_original` before the extension when available
 - Optimized preferred formats: add `.avif` and `.webp` beside the original.
 - Thumbnail preferred formats: add `_thumb.avif` and `_thumb.webp` beside restored display images.
-- Creature rows use the thumbnail while collapsed and load the `.webp` preview when expanded.
-- Keep the restored PNG at full resolution; the expanded Creature Index preview links directly to it for inspection in another tab.
+- Creature entries render as collectible card fronts with full contained artwork, types, six shared stats, inspectable skills, a short profile, and a structured quest.
+- Use the same stat order for every creature: `Power`, `Speed`, `Courage`, `Wisdom`, `Charisma`, `Stealth`. Give every `skillSet` name a matching short entry in `skillDetails`.
+- Long stories, field metadata, source links, and Administrator review live in the optional lore shelf inside each card.
+- Keep the restored PNG at full resolution; each Creature Index card links directly to it for inspection in another tab.
 - Keep `_original` PNG/JPEG source fragments as fallback, backup, and comparison material.
 
 Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.

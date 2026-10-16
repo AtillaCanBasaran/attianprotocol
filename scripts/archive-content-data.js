@@ -53,6 +53,7 @@
                 subtitle: "SHORT TAXONOMIC INSULT",
                 rarity: "RARE / SIDE QUEST ENCOUNTER",
                 tags: ["FIELD", "PENDING", "SUSPICIOUS"],
+                stats: { Power: 5, Speed: 5, Courage: 5, Wisdom: 5, Charisma: 5, Stealth: 5 },
                 latin: "Invented latin-style name",
                 inn: "Where encountered",
                 size: "Small / medium / alarming",
@@ -60,10 +61,18 @@
                 eyes: "What the eyes imply",
                 fur: "Fur, feathers, shell, or other surface betrayal",
                 skillSet: ["Skill One", "Skill Two", "Skill Three"],
+                skillDetails: {
+                    "Skill One": "Short, useful, mildly funny explanation of what happens.",
+                    "Skill Two": "Short explanation for the second ability.",
+                    "Skill Three": "Short explanation for the third ability."
+                },
                 professions: ["Quest Giver", "Local Problem"],
                 abstract: "Short creature profile in archive voice.",
+                questType: "SIDE QUEST",
+                questStatus: "ACTIVE",
                 questName: "Quest Name",
-                questBehavior: "What this creature asks, blocks, causes, or symbolizes.",
+                questBehavior: "One clear objective the player can understand.",
+                questReward: "A concrete, funny, or lore-relevant reward.",
                 story: "Longer encounter record. Keep it vivid, but not infinite.",
                 comment: "Administrator note: Final dry classification."
             }
