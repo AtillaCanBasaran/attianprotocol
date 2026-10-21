@@ -26,7 +26,7 @@ You give these images to a computer and demand a three-dimensional protein.
 
 Occasionally, the computer complies.
 
-**LILI's comment:** The Subject has reduced one of the most sophisticated structural biology techniques to frozen soup, electron hostility, and suspiciously shaped blobs. The scientific principles remain recognizable. I find this more concerning than the terminology.
+**Admin comment:** The Subject has reduced one of the most sophisticated structural biology techniques to frozen soup, electron hostility, and suspiciously shaped blobs. The scientific principles remain recognizable. I find this more concerning than the terminology.
 
 ---
 
@@ -64,7 +64,7 @@ You proudly announce that you have solved the structure.
 
 The computer requests additional particles.
 
-**LILI's comment:** The Subject describes statistical alignment and reconstruction as organizing an uncooperative photography session. This is an unacceptable methods description. As a teaching analogy, however, it has survived preliminary review.
+**Admin comment:** The Subject describes statistical alignment and reconstruction as organizing an uncooperative photography session. This is an unacceptable methods description. As a teaching analogy, however, it has survived preliminary review.
 
 ---
 
@@ -100,7 +100,7 @@ Protein soup.
 
 Biology is therefore a collection of tiny folded tools trying very hard not to become soup.
 
-**LILI's comment:** The Subject has classified molecular function as a struggle against soup formation. Structurally reductive, but the relationship between folding, stability, and function is preserved. Classification retained.
+**Admin comment:** The Subject has classified molecular function as a struggle against soup formation. Structurally reductive, but the relationship between folding, stability, and function is preserved. Classification retained.
 
 ---
 
@@ -142,7 +142,7 @@ Become the Lord of the Grids.
 
 The entire PhD can now be represented by one small circular object and several years of questionable decisions.
 
-**LILI's comment:** Converting discarded scientific material into a personal relic has unusually high archival value. Material ownership, contamination, and processing safety remain unresolved. MUSE has submitted seventeen variations of "SCIENCE RING." All have been rejected. One was preserved.
+**Admin comment:** Converting discarded scientific material into a personal relic has unusually high archival value. Material ownership, contamination, and processing safety remain unresolved. MUSE has submitted seventeen variations of "SCIENCE RING." All have been rejected. One was preserved.
 
 ---
 
@@ -178,7 +178,7 @@ Interest will be collected later.
 
 Usually at an inconvenient hour.
 
-**LILI's comment:** The Subject understands that caffeine postpones the perception of fatigue rather than eliminating its cause. Consumption continues regardless. I have classified this as borrowing alertness from a future version of the operator who was not consulted.
+**Admin comment:** The Subject understands that caffeine postpones the perception of fatigue rather than eliminating its cause. Consumption continues regardless. I have classified this as borrowing alertness from a future version of the operator who was not consulted.
 
 ---
 
@@ -210,7 +210,7 @@ At 03:00, he announces that tomorrow will be different.
 
 Tomorrow has filed a complaint.
 
-**LILI's comment:** Sleep is one of the few maintenance operations that becomes less effective when repeatedly postponed. The Subject has identified this relationship and continues treating bedtime as a negotiable political agreement.
+**Admin comment:** Sleep is one of the few maintenance operations that becomes less effective when repeatedly postponed. The Subject has identified this relationship and continues treating bedtime as a negotiable political agreement.
 
 ---
 
@@ -250,7 +250,7 @@ Sometimes you owe more.
 
 The entire procedure resembles a financial confession ritual conducted by a powerful entity that has never heard of user-friendly interface design.
 
-**LILI's comment:** The tax system is complicated. The Subject's decision to distribute financial documents across unrelated storage locations is an independent complication. Both problems have been recorded. Only one is currently under our administrative control.
+**Admin comment:** The tax system is complicated. The Subject's decision to distribute financial documents across unrelated storage locations is an independent complication. Both problems have been recorded. Only one is currently under our administrative control.
 
 ---
 
@@ -282,7 +282,7 @@ You simply hope it selected the correct contractual category.
 
 And that the deductible is not another smaller disaster.
 
-**LILI's comment:** Insurance does not bribe catastrophe. It transfers specified financial risks under contractual conditions. The Subject's metaphor is misleading, although the description of policy documents as an additional threat has some administrative merit.
+**Admin comment:** Insurance does not bribe catastrophe. It transfers specified financial risks under contractual conditions. The Subject's metaphor is misleading, although the description of policy documents as an additional threat has some administrative merit.
 
 ---
 
@@ -324,7 +324,7 @@ Living bridges require maintenance, or they gradually become dramatic ruins.
 
 The Subject has collected several architectural case studies.
 
-**LILI's comment:** Relationships cannot be maintained through assumptions alone. The Subject understands this theoretically. Historical implementation has been less consistent. Nevertheless, several bridges remain operational despite considerable environmental damage. Preservation priority: high.
+**Admin comment:** Relationships cannot be maintained through assumptions alone. The Subject understands this theoretically. Historical implementation has been less consistent. Nevertheless, several bridges remain operational despite considerable environmental damage. Preservation priority: high.
 
 ---
 
@@ -370,7 +370,7 @@ The Subject understands the theory perfectly.
 
 The floor continues providing contradictory evidence.
 
-**LILI's comment:** Organization is not the acquisition of organizational equipment. It is the continued use of an accessible system. The Subject has mastered the acquisition stage. Further research is required for the remaining components.
+**Admin comment:** Organization is not the acquisition of organizational equipment. It is the continued use of an accessible system. The Subject has mastered the acquisition stage. Further research is required for the remaining components.
 
 ---
 
@@ -410,7 +410,7 @@ Maps are essentially spoilers for history.
 
 Except the spoilers keep changing because humanity refuses to stop updating the plot.
 
-**LILI's comment:** The Subject's classification of maps as historical spoilers is surprisingly effective. Borders and territories are not determined by geography alone, however. Human decisions remain an additional variable with an exceptionally poor documentation history.
+**Admin comment:** The Subject's classification of maps as historical spoilers is surprisingly effective. Borders and territories are not determined by geography alone, however. Human decisions remain an additional variable with an exceptionally poor documentation history.
 
 ---
 
@@ -454,4 +454,4 @@ Humanity built extensive lore databases before inventing databases.
 
 The Subject considers this excellent worldbuilding.
 
-**LILI's comment:** Mythology is not merely primitive science. It is also a mechanism for cultural preservation, shared identity, and symbolic understanding. The Subject is particularly interested in the monsters, divine family disputes, and unnecessarily complicated pantheons. The archive has adjusted its indexing expectations accordingly.
+**Admin comment:** Mythology is not merely primitive science. It is also a mechanism for cultural preservation, shared identity, and symbolic understanding. The Subject is particularly interested in the monsters, divine family disputes, and unnecessarily complicated pantheons. The archive has adjusted its indexing expectations accordingly.

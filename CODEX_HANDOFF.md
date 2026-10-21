@@ -368,7 +368,7 @@ The non-live reference/instruction file is `docs/GRAND_MAP_SEGMENTATION_GUIDE.js
 
 Fun Village is a fantasy/old-school CRPG-style node linked only through the Grand Map portal, not from the main Navigator. It uses `images/fantasyvillage/villagemap.png` as the visible map and `scripts/fantasy-village.js` to drive clickable SVG POI boxes for tavern, market, port/dock, cave, temple, forest, workshop, and cemetery. The POI copy is intentionally preliminary; full village content is pending.
 
-### Administrator / LILI Assistant Shell
+### Administrator Assistant Shell
 
 `scripts/admin-assistant.js` injects a floating visual assistant shell across pages. It is intentionally offline.
 
@@ -377,7 +377,7 @@ Rules:
 - no AI calls yet
 - no API keys
 - no real chat persistence
-- visible copy may say LILI / Administrator Interface, but public narration should still usually say `Administrator`
+- visible copy must say `Administrator`; the private name may appear only in historical Update Log records or deliberately obscure easter eggs
 - when real integration happens later, update the handoff, privacy/legal considerations, and Update Log
 - before activation, complete the provider, server-side secret, retention, tool-isolation, and prompt-injection gates in `docs/LEGAL_SECURITY_ACTIVATION_CHECKLIST.md`
 

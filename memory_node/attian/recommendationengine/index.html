@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M.U.S.E. // RECOMMENDATION ENGINE</title>
-<link rel="stylesheet" href="/css/style.css?v=0.3.73">
-<script src="/scripts/recommendation-engine-data.js?v=0.3.73" defer></script>
-<script src="/scripts/recommendation-engine.js?v=0.3.73" defer></script>
+<link rel="stylesheet" href="/css/style.css?v=0.3.74">
+<script src="/scripts/recommendation-engine-data.js?v=0.3.74" defer></script>
+<script src="/scripts/recommendation-engine.js?v=0.3.74" defer></script>
 <script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
@@ -24,7 +24,7 @@
             <p class="muse-engine-kicker">SUBJECT-ASSIGNED DESIGNATION</p>
             <h1>M.U.S.E.</h1>
             <p class="muse-engine-expansion">Memory Unification &amp; Suggestion Engine</p>
-            <p>Subject named her. She kept the acronym. LILI would have filed an objection.</p>
+            <p>Subject named her. She kept the acronym. Administrator filed an objection.</p>
             <div class="muse-engine-status" aria-label="Recommendation engine status">
                 <span><i>LIVE</i> MUSE channel</span>
                 <span><i>SUPERVISED</i> technically</span>
@@ -35,44 +35,48 @@
 
     <section class="muse-engine-console" aria-labelledby="engine-prompt-title">
         <div class="muse-parameter-panel">
-            <div class="muse-panel-heading">
-                <span>01 // INPUT SHAPING</span>
-                <h2 id="engine-prompt-title">I need something to...</h2>
-                <p>Choose one direction. MUSE will interpret “direction” generously.</p>
+            <div class="muse-action-parameter">
+                <div class="muse-panel-heading">
+                    <span>01 // INPUT SHAPING</span>
+                    <h2 id="engine-prompt-title">I need something to...</h2>
+                    <p>Choose one direction. MUSE interprets generously.</p>
+                </div>
+
+                <div id="muse-actions" class="muse-action-grid" role="group" aria-label="Recommendation type">
+                    <button type="button" class="is-selected" data-muse-action="random">surprise me</button>
+                    <button type="button" data-muse-action="watch">watch</button>
+                    <button type="button" data-muse-action="read">read</button>
+                    <button type="button" data-muse-action="play">play</button>
+                    <button type="button" data-muse-action="make">make</button>
+                    <button type="button" data-muse-action="eat">eat</button>
+                    <button type="button" data-muse-action="visit">visit</button>
+                    <button type="button" data-muse-action="listen">listen</button>
+                    <button type="button" data-muse-action="do">do</button>
+                    <button type="button" data-muse-action="think">think about</button>
+                </div>
             </div>
 
-            <div id="muse-actions" class="muse-action-grid" role="group" aria-label="Recommendation type">
-                <button type="button" class="is-selected" data-muse-action="random">surprise me</button>
-                <button type="button" data-muse-action="watch">watch</button>
-                <button type="button" data-muse-action="read">read</button>
-                <button type="button" data-muse-action="play">play</button>
-                <button type="button" data-muse-action="make">make</button>
-                <button type="button" data-muse-action="eat">eat</button>
-                <button type="button" data-muse-action="visit">visit</button>
-                <button type="button" data-muse-action="listen">listen</button>
-                <button type="button" data-muse-action="do">do</button>
-                <button type="button" data-muse-action="think">think about</button>
-            </div>
+            <div class="muse-mood-parameter">
+                <div class="muse-mood-heading">
+                    <div><span>02 // EMOTIONAL WEATHER</span><h2>Current mood signals</h2></div>
+                    <button id="clearMuseMoods" type="button">clear moods</button>
+                </div>
+                <p class="muse-mood-note">Optional. Several weather systems may coexist.</p>
+                <div id="muse-moods" class="muse-mood-grid" role="group" aria-label="Current moods">
+                    <button type="button" aria-pressed="false" data-muse-mood="tired">tired</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="curious">curious</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="restless">restless</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="cozy">cozy</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="brave">brave</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="haunted">haunted</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="social">social</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="focused">focused</button>
+                    <button type="button" aria-pressed="false" data-muse-mood="chaotic">chaotic</button>
+                </div>
 
-            <div class="muse-mood-heading">
-                <div><span>02 // EMOTIONAL WEATHER</span><h2>Current mood signals</h2></div>
-                <button id="clearMuseMoods" type="button">clear moods</button>
-            </div>
-            <p class="muse-mood-note">Optional. Select several if the weather is doing that thing again.</p>
-            <div id="muse-moods" class="muse-mood-grid" role="group" aria-label="Current moods">
-                <button type="button" aria-pressed="false" data-muse-mood="tired">tired</button>
-                <button type="button" aria-pressed="false" data-muse-mood="curious">curious</button>
-                <button type="button" aria-pressed="false" data-muse-mood="restless">restless</button>
-                <button type="button" aria-pressed="false" data-muse-mood="cozy">cozy</button>
-                <button type="button" aria-pressed="false" data-muse-mood="brave">brave</button>
-                <button type="button" aria-pressed="false" data-muse-mood="haunted">haunted</button>
-                <button type="button" aria-pressed="false" data-muse-mood="social">social</button>
-                <button type="button" aria-pressed="false" data-muse-mood="focused">focused</button>
-                <button type="button" aria-pressed="false" data-muse-mood="chaotic">chaotic</button>
-            </div>
-
-            <div id="museMoodComment" class="muse-mood-comment" aria-live="polite">
-                <span>MUSE</span><p>Select an emotional weather pattern. I have tiny umbrellas.</p>
+                <div id="museMoodComment" class="muse-mood-comment" aria-live="polite">
+                    <span>MUSE</span><p>Select an emotional weather pattern. I have tiny umbrellas.</p>
+                </div>
             </div>
 
             <aside class="muse-admin-warning">
@@ -137,7 +141,7 @@
 </main>
 
 <div class="nav"><a href="/memory_node/attian/">[ return to navigator ]</a></div>
-<div class="status">Last Synchronization: 21.10.2026</div>
+<div class="status">Last Synchronization: 21.10.2026 // 0.3.74</div>
 <noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>

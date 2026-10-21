@@ -123,7 +123,7 @@ Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.
 - Manual content authoring guide: `docs/CONTENT_AUTHORING_GUIDE.md`
 - Artifact Vault generated image assets: `images/artifactvault/`
 - Creature Index generated image assets: `images/creatureindex/`
-- Administrator/LILI assistant visual shell: `scripts/admin-assistant.js`
+- Administrator assistant visual shell: `scripts/admin-assistant.js`
 - Mission Log filters, local tracking, and objective progress: `scripts/mission-log.js`
 - Site-wide visual styling: `css/style.css`
 
