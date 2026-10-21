@@ -31,7 +31,7 @@ Each archive page keeps most of its visible text in its own `index.html`. Live p
 | Grand Map | `memory_node/attian/grandmap/index.html` | Map pins, location routing, village gateway |
 | Fun Village | `memory_node/attian/fantasyvillage/index.html` + `scripts/fantasy-village.js` | Map intro, SVG POI boxes, local dossier copy, commentary |
 | Mission Log | `memory_node/attian/missionlog/index.html` | Quest cards, category data, requirements/objectives, rewards, story descriptions |
-| Recommendation Engine | `memory_node/attian/recommendationengine/index.html` | Recommendation options and output text |
+| Recommendation Engine | `scripts/recommendation-engine-data.js` | Normal recommendations, action/mood recommendations, rare events, and secondary MUSE comments |
 | Research Terminal | `memory_node/attian/researchterminal/index.html` | Research entries and filters |
 | Signal Records | `memory_node/attian/signalrecords/index.html` | Media records, category dividers, persistent remarks, and filters |
 | System Failure Log | `memory_node/attian/systemfailurelog/index.html` | Red-signal records and restricted notes |
@@ -48,9 +48,35 @@ Add one object to `window.NAVIGATOR_RESPONSE_BANK` with:
 
 - `terms`: words or phrases visitors may type
 - `speaker`: `administrator`, `muse`, or `red`
-- `text`: the response shown under the Navigator search bar
+- `text`: the in-character response shown inside the Navigator search core
+- `routes`: matching `data-route` names to reveal and illuminate
+- `node`: the short destination label shown after the commentary
+- `showAll`: optional `true` for help/system replies that should retain the whole map
+- `mode`: optional `suggestion`, `pending`, `question`, or `error`; omit it for a normal route
+- `virtualCode`, `virtualTitle`, `virtualText`: optional labels for the temporary node shown by `pending`, `question`, and `error`
 
-The Navigator automatically loads this file and displays the matching avatar frame. This is now the single source of truth for Navigator responses.
+Keep equivalent terms with the same answer in one entry. A trigger may intentionally appear in multiple entries when it has different answers; the Navigator randomly selects one of the equally specific responses whenever that query is typed. Route-related commentary should end through the `node` field instead of spending its prose saying “go there.”
+
+The same file contains three editable arrays:
+
+- `NAVIGATOR_RESPONSE_BANK`: current curated responses
+- `NAVIGATOR_LEGACY_ROUTED_RESPONSES`: preserved older responses already attached to destinations
+- `NAVIGATOR_UNASSIGNED_RESPONSES`: preserved older responses displayed through the gray unconnected node
+
+To classify an unassigned response, move its object into `NAVIGATOR_LEGACY_ROUTED_RESPONSES`, remove the gray-node `virtual*` fields, change or remove `mode: "question"`, and add the appropriate `routes` and `node` values.
+
+Use `suggestion` with one or more `routes` when a term has no exact record but could plausibly live in existing nodes. Use `pending` for a sensible future node, `error` for a deliberately rejected signal class, and `question` for a curated strange/uncertain signal. Completely unknown terms automatically use the question-mark node.
+
+## Recommendation Engine
+
+For ordinary content additions, edit `scripts/recommendation-engine-data.js`:
+
+- `MUSE_RECOMMENDATIONS`: preserved free-range suggestions used by “surprise me”
+- `MUSE_CONTEXTUAL_RECOMMENDATIONS`: parameter-aware suggestions with `actions`, `moods`, `title`, `muse`, and `admin`
+- `MUSE_GLITCHES`: rare signal events
+- `MUSE_SECONDARY_COMMENTS`: occasional MUSE follow-ups that replace Administrator review
+
+The available action IDs are `watch`, `read`, `play`, `make`, `eat`, `visit`, `listen`, `do`, and `think`. Mood IDs are listed directly beside the contextual bank. Use several moods when a recommendation fits more than one emotional state. Layout belongs in the page HTML/CSS; selection and rare-event behavior belong in `scripts/recommendation-engine.js`.
 
 ## Generated Visual Archive Copy
 
@@ -107,7 +133,7 @@ Visitor Terminal is intentionally offline for now because the Supabase backend i
 
 - Do not re-add Supabase calls unless the user asks to reactivate it.
 - Keep the page red/offline through `body.visitor-offline-page`.
-- Keep the Navigator entry marked as offline while the terminal is sealed.
+- Keep the Navigator entry marked as yellow construction while the terminal backend is unavailable.
 - If reactivated later, update the Visitor Terminal page, Navigator label, CSS state, and Update Log together.
 
 ## Future Content Sources

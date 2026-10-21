@@ -283,9 +283,31 @@ Open `scripts/navigator-response-data.js` and add one object inside `window.NAVI
 {
     terms: ["cake", "the cake", "grand prize"],
     speaker: "muse",
-    text: "Cake Trial located. The prize may be dessert, acronym, leverage, or a trap wearing frosting."
+    routes: ["gaming"],
+    node: "GAMING AREA // UNDER CONSTRUCTION",
+    text: "The prize may be dessert, acronym, leverage, or a trap wearing frosting."
 }
 ```
+
+`routes` uses the destination's `data-route` value from `memory_node/attian/index.html`. Matching routes remain visible and their chipset traces illuminate. `node` supplies the compact label after the character commentary. Use `showAll: true` instead of `routes` only for help or system queries that should retain the entire map.
+
+To suggest a plausible node without claiming an exact match, add `mode: "suggestion"` and keep the likely destinations in `routes`. To show a temporary visual node instead of a real destination, use `mode: "pending"`, `"question"`, or `"error"`:
+
+```js
+{
+    category: "unconnected",
+    terms: ["food", "recipe", "cooking"],
+    mode: "pending",
+    node: "CULINARY MEMORY NODE",
+    virtualCode: "...",
+    virtualTitle: "ROUTE RESERVED",
+    virtualText: "Food data exists. A civilized filing system does not.",
+    speaker: "administrator",
+    text: "Culinary residue detected, but no dedicated node has been constructed."
+}
+```
+
+`virtualCode`, `virtualTitle`, and `virtualText` are optional. The renderer supplies themed defaults. A search with no authored entry automatically becomes a neutral question-mark node.
 
 Supported speakers:
 
@@ -293,7 +315,15 @@ Supported speakers:
 - `muse` = MUSE avatar, bright cyan live-spark frame
 - `red` = public signal corruption: no Red avatar and no clean Red voice; it glitches/silences the visible archive speaker instead
 
-Keep terms lowercase when possible. Add several phrases if visitors may search the same idea different ways. The Navigator loads the bank automatically; no separate registration step is needed.
+Keep terms lowercase when possible. Group phrases that share one response instead of copying the same object. Reusing a trigger is allowed when its response is different: the Navigator randomly selects among equally specific matching responses each time the query is typed.
+
+The response data file is divided into three arrays:
+
+- `window.NAVIGATOR_RESPONSE_BANK` for current curated responses
+- `window.NAVIGATOR_LEGACY_ROUTED_RESPONSES` for older responses that already inherited a destination
+- `window.NAVIGATOR_UNASSIGNED_RESPONSES` for older responses that retain their commentary but display the gray unconnected node
+
+An unassigned entry can remain gray indefinitely. To route it later, move the complete object into the routed array, remove `virtualCode`, `virtualTitle`, and `virtualText`, then replace `mode: "question"` with the intended `routes`, `node`, and optional mode.
 
 For a mixed voice response, keep one entry and mark the interruption inside `text`:
 
@@ -306,6 +336,32 @@ For a mixed voice response, keep one entry and mark the interruption inside `tex
 ```
 
 The Navigator will split the line into an asymmetric MUSE/Admin transmission automatically.
+
+## Adding a Recommendation Engine Result
+
+Edit `scripts/recommendation-engine-data.js`; the page HTML does not need to change for ordinary content additions.
+
+Add a contextual result to `window.MUSE_CONTEXTUAL_RECOMMENDATIONS`:
+
+```js
+{
+    actions: ["watch"],
+    moods: ["tired", "chaotic"],
+    title: "WHAT WE DO IN THE SHADOWS",
+    muse: "Watch What We Do in the Shadows. Vampires are also tired and bad at administration.",
+    admin: "Undead workplace failure has been accepted as a recommendation criterion."
+}
+```
+
+Supported action IDs are `watch`, `read`, `play`, `make`, `eat`, `visit`, `listen`, `do`, and `think`. Supported moods are `tired`, `curious`, `restless`, `cozy`, `brave`, `haunted`, `social`, `focused`, and `chaotic`. Give an entry several moods when appropriate; the engine scores all selected moods.
+
+Other editable arrays in the same file:
+
+- `MUSE_RECOMMENDATIONS` contains the preserved free-range pool used by “surprise me.”
+- `MUSE_GLITCHES` contains rare event pairs.
+- `MUSE_SECONDARY_COMMENTS` contains the uncommon extra MUSE response that may replace Administrator review.
+
+Do not add browser storage or telemetry to this feature. The visible session trace is intentionally held only in page memory and disappears when the page closes.
 
 ## Adding an Achievement
 

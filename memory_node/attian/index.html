@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store">
 <title>NAVIGATOR</title>
-<link rel="stylesheet" href="/css/style.css?v=0.3.67">
-<script src="/scripts/navigator-response-data.js?v=0.3.55" defer></script>
-<script src="/scripts/navigator.js?v=0.3.57" defer></script>
+<link rel="stylesheet" href="/css/style.css?v=0.3.70">
+<script src="/scripts/navigator-response-data.js?v=0.3.71" defer></script>
+<script src="/scripts/navigator.js?v=0.3.71" defer></script>
 <script src="/scripts/admin-assistant.js?v=0.3.55" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
@@ -25,34 +25,36 @@
         </header>
 
         <div class="navigator-neural-map">
-            <svg class="navigator-route-layer" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true">
-                <path id="route-achievement" class="navigator-route route-admin" d="M475 318 H350 V92 H250"/>
-                <path id="route-artifact" class="navigator-route route-admin" d="M525 280 V74 H480"/>
-                <path id="route-research" class="navigator-route route-admin" d="M725 278 V92 H910"/>
-                <path id="route-gaming" class="navigator-route route-building" d="M760 318 H1035 V125"/>
-                <path id="route-companion" class="navigator-route route-admin" d="M470 352 H270"/>
-                <path id="route-creature" class="navigator-route route-admin" d="M470 405 H315 V475 H250"/>
-                <path id="route-map" class="navigator-route route-building" d="M765 350 H955"/>
-                <path id="route-mission" class="navigator-route route-admin" d="M765 410 H930 V470 H1030"/>
-                <path id="route-update" class="navigator-route route-admin" d="M515 440 V555 H255"/>
-                <path id="route-recommendation" class="navigator-route route-muse" d="M620 448 V580"/>
-                <path id="route-visitor" class="navigator-route route-building" d="M720 442 V558 H1035"/>
-                <path id="route-field" class="navigator-route route-locked" d="M520 445 V675 H155"/>
-                <path id="route-signal" class="navigator-route route-locked" d="M575 448 V675 H450"/>
-                <path id="route-dream" class="navigator-route route-corrupt" d="M665 448 V675 H745"/>
-                <path id="route-failure" class="navigator-route route-corrupt" d="M710 445 V675 H1050"/>
+            <svg class="navigator-route-layer" viewBox="0 0 1200 900" preserveAspectRatio="none" aria-hidden="true">
+                <path id="route-achievement" class="navigator-route route-admin" d="M430 230 H330 V76 H165"/>
+                <path id="route-artifact" class="navigator-route route-admin" d="M520 170 V76 H485"/>
+                <path id="route-research" class="navigator-route route-admin" d="M900 490 H1040"/>
+                <path id="route-companion" class="navigator-route route-admin" d="M350 260 H165"/>
+                <path id="route-creature" class="navigator-route route-admin" d="M350 375 H165"/>
+                <path id="route-update" class="navigator-route route-admin" d="M350 490 H165"/>
+                <path id="route-visitor" class="navigator-route route-building" d="M350 605 H165"/>
+                <path id="route-map" class="navigator-route route-building" d="M900 260 H1040"/>
+                <path id="route-mission" class="navigator-route route-admin" d="M900 375 H1040"/>
+                <path id="route-recommendation" class="navigator-route route-muse" d="M735 170 V76 H925"/>
+                <path id="route-gaming" class="navigator-route route-building" d="M900 605 H1040"/>
+                <path id="route-field" class="navigator-route route-locked" d="M455 700 V830 H165"/>
+                <path id="route-signal" class="navigator-route route-locked" d="M555 700 V830 H455"/>
+                <path id="route-dream" class="navigator-route route-corrupt" d="M695 700 V830 H745"/>
+                <path id="route-failure" class="navigator-route route-corrupt" d="M800 700 V830 H1040"/>
+                <path id="route-virtual" class="navigator-route route-virtual" d="M900 430 H1015"/>
             </svg>
 
             <section class="navigator-directory" aria-label="Archive memory nodes">
                 <div class="navigator-chip-core" aria-label="Attian memory core">
                     <div class="navigator-core-mark"><span>ATTIAN</span><b>MEMORY CORE</b><i>15 SIGNALS // 07 STABLE // 01 MUSE // 03 BUILDING // 04 SEALED</i></div>
                     <label class="navigator-search" for="navigator-query"><span>&gt;</span><input id="navigator-query" type="search" autocomplete="off" spellcheck="false" placeholder="Search the chipset..."><kbd>ESC</kbd></label>
+                    <p id="navigator-response" class="navigator-response" aria-live="polite">Route control online. Name a destination or select a signal above.</p>
                     <small>TYPE A ROUTE OR SELECT A CONNECTED MODULE</small>
                 </div>
 
                 <a class="navigator-result node-museum node-achievement" data-route="achievement" data-note="Milestones indexed. Context remains more complicated than the medals imply." data-search="achievements milestones success childhood school romance" href="/memory_node/attian/achievementrepository/"><span class="navigator-node-glyph">ACH</span><span class="navigator-node-copy"><em>CURATED WING</em><strong>Achievement Repository</strong><small>Milestones and unlikely successes</small></span><span class="navigator-node-state">VAULT</span></a>
                 <a class="navigator-result node-museum node-artifact" data-route="artifact" data-note="Visual fragments restored and filed. Touching them will not improve the chronology." data-search="artifacts images memories drawings restored photos" href="/memory_node/attian/artifactvault/"><span class="navigator-node-glyph">ART</span><span class="navigator-node-copy"><em>CURATED WING</em><strong>Artifact Vault</strong><small>Restored visual evidence</small></span><span class="navigator-node-state">VAULT</span></a>
-                <a class="navigator-result node-lab node-research" data-route="research" data-note="Research protocols available. Lab competence not included with navigation access." data-search="research academic habits studies reports" href="/memory_node/attian/researchterminal/"><span class="navigator-node-glyph">RSC</span><span class="navigator-node-copy"><em>LAB CHANNEL</em><strong>Research Terminal</strong><small>Protocols, methods, serious formatting</small></span><span class="navigator-node-state">LIVE</span></a>
+                <a class="navigator-result muse-result node-oracle node-recommendation" data-route="recommendation" data-zone="muse" data-speaker="muse" data-note="Recommendations ready. Responsibility for following them has already been assigned elsewhere." data-search="recommendation advice muse engine suggestions random" href="/memory_node/attian/recommendationengine/"><span class="navigator-node-glyph">ERR</span><span class="navigator-node-copy"><em>MUSE SIGNAL</em><strong>Recommendation Engine</strong><small>Advice nobody officially requested</small></span><span class="navigator-node-state">MUSE</span></a>
                 <a class="navigator-result muse-result navigator-building node-arcade node-gaming" data-route="gaming" data-zone="muse" data-speaker="muse" data-note="Arcade assembly in progress. MUSE has already disputed three safety regulations." data-search="games gaming tarot wheel trivia cake muse minigames construction" href="/memory_node/attian/gamingarea/"><span class="navigator-node-glyph">GM</span><span class="navigator-node-copy"><em>MUSE ARCADE</em><strong>Gaming Area</strong><small>Games, bad odds, incomplete wiring</small></span><span class="navigator-node-state">BUILDING</span></a>
 
                 <a class="navigator-result node-collectible node-companion" data-route="companion" data-note="Trusted entities, alleged friends, and several ongoing administrative liabilities." data-search="companions people friends relationships egebal cards collectible" href="/memory_node/attian/companiondatabase/"><span class="navigator-node-glyph">CMP</span><span class="navigator-node-copy"><em>ENTITY DECK</em><strong>Companion Database</strong><small>Trusted entities and liabilities</small></span><span class="navigator-node-state">COLLECT</span></a>
@@ -61,7 +63,7 @@
                 <a class="navigator-result node-dossier node-mission" data-route="mission" data-note="Future objectives detected. Completion remains an optional feature, apparently." data-search="missions plans future goals ireland japan german art dnd quests" href="/memory_node/attian/missionlog/"><span class="navigator-node-glyph">MSN</span><span class="navigator-node-copy"><em>ACTIVE DOSSIER</em><strong>Mission Log</strong><small>Pending quests and future problems</small></span><span class="navigator-node-state">TRACKING</span></a>
 
                 <a class="navigator-result node-system node-update" data-route="update" data-note="Every repair, regression, and suspiciously optimistic version number lives here." data-search="updates patches changes version changelog history system" href="/memory_node/attian/updatelog/"><span class="navigator-node-glyph">LOG</span><span class="navigator-node-copy"><em>SYSTEM BUS</em><strong>Update Log</strong><small>Patch history and documented damage</small></span><span class="navigator-node-state">SYS</span></a>
-                <a class="navigator-result muse-result node-oracle node-recommendation" data-route="recommendation" data-zone="muse" data-speaker="muse" data-note="Recommendations ready. Responsibility for following them has already been assigned elsewhere." data-search="recommendation advice muse engine suggestions random" href="/memory_node/attian/recommendationengine/"><span class="navigator-node-glyph">ERR</span><span class="navigator-node-copy"><em>MUSE SIGNAL</em><strong>Recommendation Engine</strong><small>Advice nobody officially requested</small></span><span class="navigator-node-state">MUSE</span></a>
+                <a class="navigator-result node-lab node-research" data-route="research" data-note="Research protocols available. Lab competence not included with navigation access." data-search="research academic habits studies reports" href="/memory_node/attian/researchterminal/"><span class="navigator-node-glyph">RSC</span><span class="navigator-node-copy"><em>LAB CHANNEL</em><strong>Research Terminal</strong><small>Protocols, methods, serious formatting</small></span><span class="navigator-node-state">LIVE</span></a>
                 <a class="navigator-result navigator-building node-intake node-visitor" data-route="visitor" data-note="Visitor intake hardware is present. The service behind it is not. Construction continues." data-search="visitor guest write leave entry fragment archive offline disabled construction" href="/memory_node/attian/visitorterminal/"><span class="navigator-node-glyph">VIS</span><span class="navigator-node-copy"><em>INTAKE PORT</em><strong>Visitor Terminal</strong><small>Submission channel not commissioned</small></span><span class="navigator-node-state">BUILDING</span></a>
 
                 <a class="navigator-result navigator-locked node-private node-field" data-route="field" data-note="Field Notes are present. The archive requires a cyber key before pretending otherwise." data-search="field notes private observations locked restricted" href="/memory_node/attian/fieldnotes/"><span class="navigator-node-glyph">KEY</span><span class="navigator-node-copy"><em>ENCRYPTED NOTES</em><strong>Field Notes</strong><small>Personal observations under lock</small></span><span class="navigator-node-state">LOCKED</span></a>
@@ -69,14 +71,17 @@
                 <a class="navigator-result navigator-corrupt node-corrupt node-dream" data-route="dream" data-note="Dreaming Fragments detected. Coherence failed before authentication could finish." data-search="dreaming fragments dreams corrupted restricted red" href="/memory_node/attian/dreamingfragments/"><span class="navigator-node-glyph">DRM</span><span class="navigator-node-copy"><em>UNSTABLE MEMORY</em><strong>Dreaming Fragments</strong><small>Unfiltered dream logic</small></span><span class="navigator-node-state">CORRUPT</span></a>
                 <a class="navigator-result navigator-corrupt node-corrupt node-failure" data-route="failure" data-note="Failure records continue to execute after termination. This is not reassuring." data-search="system failure log failures human software corrupted restricted red" href="/memory_node/attian/systemfailurelog/"><span class="navigator-node-glyph">ERR</span><span class="navigator-node-copy"><em>FAULT MEMORY</em><strong>System Failure Log</strong><small>Human software events</small></span><span class="navigator-node-state">CORRUPT</span></a>
 
-                <p id="navigator-empty" class="navigator-empty" hidden>No matching node. Either spell better or search less ambitiously.</p>
+                <article id="navigator-virtual-node" class="navigator-virtual-node" hidden aria-live="polite">
+                    <span class="navigator-virtual-code" aria-hidden="true">?</span>
+                    <span class="navigator-virtual-copy"><em>UNCONNECTED SIGNAL</em><strong>NO MATCH FOUND</strong><small>Try another route signature.</small></span>
+                    <span class="navigator-virtual-state">UNKNOWN</span>
+                </article>
             </section>
         </div>
-        <p id="navigator-response" class="navigator-response" aria-live="polite">Route control online. Name a destination or select a signal above.</p>
     </section>
 </main>
 <div class="nav"><a href="/index.html">[ return to Attian Protocol ]</a></div>
-<div class="status">Last Synchronization: 16.10.2026</div>
+<div class="status">Last Synchronization: 19.10.2026</div>
 <noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>

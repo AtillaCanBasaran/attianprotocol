@@ -19,6 +19,7 @@
         "Yes, the screen still works. No, I will not produce a secret third answer.",
         "Visitor input detected. Visitor decision remains mysteriously absent."
     ];
+    var finalQuestionNudge = "Yes, that was a question. The two buttons below are the unusually visible answer mechanism.";
     var reasonResponses = {
         direct: "Direct invitation verified. The Subject knowingly caused this. Useful evidence.",
         social: "Public signal intercepted. So the social-media bait functioned after all.",
@@ -106,52 +107,50 @@
         if (!dialogue || !controls || !cinematic) return;
 
         var index = 0;
-        var lineTimer;
-        var controlTimer;
-        var controlsVisible = false;
         var impatientClicks = 0;
+        var lastReaction = -1;
 
         function revealControls() {
-            window.clearTimeout(controlTimer);
-            controlsVisible = true;
             controls.hidden = false;
             controls.classList.add("is-visible");
         }
 
-        function showLine() {
-            window.clearTimeout(lineTimer);
-            if (index >= dialogueLines.length) {
-                revealControls();
-                return;
-            }
-            var currentLine = dialogueLines[index];
-            dialogue.classList.remove("is-speaking");
+        function setDialogue(text, annoyed) {
+            dialogue.classList.remove("is-speaking", "is-annoyed");
             window.requestAnimationFrame(function () {
-                dialogue.textContent = currentLine;
+                dialogue.textContent = text;
                 dialogue.classList.add("is-speaking");
+                dialogue.classList.toggle("is-annoyed", Boolean(annoyed));
             });
-            index += 1;
-            if (index < dialogueLines.length) {
-                lineTimer = window.setTimeout(showLine, reducedMotion ? 80 : 2450);
-            } else {
-                controlTimer = window.setTimeout(revealControls, reducedMotion ? 0 : 700);
-            }
         }
-        lineTimer = window.setTimeout(showLine, reducedMotion ? 0 : 450);
+
+        function showNextLine() {
+            if (index >= dialogueLines.length - 1) return;
+            index += 1;
+            setDialogue(dialogueLines[index], false);
+            if (index === dialogueLines.length - 1) revealControls();
+        }
+
+        function showFrustration() {
+            var nextReaction = Math.floor(Math.random() * impatientReactions.length);
+            if (impatientReactions.length > 1 && nextReaction === lastReaction) {
+                nextReaction = (nextReaction + 1) % impatientReactions.length;
+            }
+            lastReaction = nextReaction;
+            setDialogue(impatientReactions[nextReaction], true);
+        }
+
+        setDialogue(dialogueLines[0], false);
 
         cinematic.addEventListener("click", function (event) {
             if (event.target.closest("button")) return;
-            if (!controlsVisible) {
-                showLine();
+            if (index < dialogueLines.length - 1) {
+                showNextLine();
                 return;
             }
             impatientClicks += 1;
-            if (impatientClicks > 1 || Math.random() < 0.55) {
-                dialogue.classList.remove("is-speaking");
-                dialogue.textContent = impatientReactions[Math.floor(Math.random() * impatientReactions.length)];
-                void dialogue.offsetWidth;
-                dialogue.classList.add("is-speaking", "is-annoyed");
-            }
+            if (impatientClicks === 1) setDialogue(finalQuestionNudge, true);
+            else showFrustration();
         });
 
         controls.addEventListener("click", function (event) {
