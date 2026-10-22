@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UPDATE LOG</title>
 
-<link rel="stylesheet" href="/css/style.css?v=0.3.74">
+<link rel="stylesheet" href="/css/style.css?v=0.3.76">
 
 <script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
@@ -33,6 +33,20 @@
 </section>
 
 <section class="patch-stream">
+    <details class="patch-note" open>
+        <summary class="patch-summary"><span>NAVIGATOR // PATCH 0.3.76</span><b>Mobile Circuits Unstacked</b><small>the pocket-sized archive has stopped placing two memory nodes in the same physical coordinates</small></summary>
+        <div class="patch-body">
+            <dl class="patch-meta"><dt>Patch Type</dt><dd>MOBILE LAYOUT / RESPONSE READABILITY</dd><dt>Author</dt><dd>Administrator</dd><dt>Status</dt><dd>Applied / narrow channels stabilized</dd></dl>
+            <ul class="patch-list">
+                <li class="plus">Removed desktop fixed-row sizing from the phone Navigator so every node receives its own natural-height row.</li>
+                <li class="plus">Prevented the Recommendation Engine and Gaming Area nodes from overlapping on narrow screens.</li>
+                <li class="plus">Allowed long search transmissions, mixed-voice responses, and route labels to wrap without clipping through their frames.</li>
+                <li class="plus">Preserved the desktop chipset geometry and route map unchanged.</li>
+            </ul>
+            <p class="patch-admin">Administrator note: The mobile archive now obeys the basic principle that two boxes cannot occupy the same space. MUSE has requested an exception.</p>
+        </div>
+    </details>
+
     <details class="patch-note" open>
         <summary class="patch-summary"><span>NAVIGATOR // PATCH 0.3.75</span><b>Companion Records Reclassified</b><small>the empty card sleeves are no longer being counted as a functioning database</small></summary>
         <div class="patch-body">

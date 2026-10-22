@@ -9455,3 +9455,124 @@ kbd {
 @media (prefers-reduced-motion: reduce) {
     .muse-engine-console.is-discharging .muse-button-bay:after { animation: none; }
 }
+
+/* PATCH 0.3.76 // Navigator mobile flow and readable search transmissions */
+@media (max-width: 700px) {
+    .navigator-chipset-page .navigator-neural-map {
+        min-height: 0;
+        padding: 9px;
+        overflow: visible;
+    }
+
+    .navigator-chipset-page .navigator-directory {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: none;
+        grid-auto-flow: row;
+        grid-auto-rows: auto;
+        align-items: stretch;
+        min-height: 0;
+        gap: 9px;
+    }
+
+    .navigator-chipset-page .navigator-directory > *,
+    .navigator-chipset-page .navigator-chip-core,
+    .navigator-chipset-page .navigator-directory .navigator-result,
+    .navigator-chipset-page .navigator-directory .navigator-virtual-node {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .navigator-chipset-page .navigator-chip-core {
+        min-height: 0;
+        height: auto;
+        padding: 18px 13px;
+        overflow: visible;
+    }
+
+    .navigator-chipset-page .navigator-directory .navigator-result,
+    .navigator-chipset-page .navigator-directory .navigator-result.node-recommendation,
+    .navigator-chipset-page .navigator-directory .navigator-result.node-gaming {
+        min-height: 108px;
+        height: auto;
+        align-content: start;
+    }
+
+    .navigator-chipset-page .navigator-node-copy,
+    .navigator-chipset-page .navigator-node-copy strong,
+    .navigator-chipset-page .navigator-node-copy small,
+    .navigator-chipset-page .navigator-chip-core .navigator-response,
+    .navigator-response-copy,
+    .navigator-response-text,
+    .navigator-response-node {
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        white-space: normal;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-response {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-response-card {
+        width: 100%;
+        min-height: 0;
+        height: auto;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-response-card:not(.navigator-response-dual) {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-response-card:not(.navigator-response-dual) .navigator-response-node {
+        grid-column: 1 / -1;
+        width: 100%;
+        margin: 4px 0 0;
+        text-align: left;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-response-dual {
+        display: grid;
+        gap: 9px;
+        overflow: visible;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-voice-segment {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        clip-path: none;
+        text-align: left;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-voice-right {
+        grid-template-columns: auto minmax(0, 1fr);
+        justify-self: stretch;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-voice-right .navigator-response-portrait {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-voice-right .navigator-response-copy {
+        grid-column: 2;
+        grid-row: 1;
+        justify-items: start;
+    }
+
+    .navigator-chipset-page .navigator-chip-core .navigator-dual-rail,
+    .navigator-chipset-page .navigator-chip-core .navigator-voice-left:after,
+    .navigator-chipset-page .navigator-chip-core .navigator-voice-right:before {
+        display: none;
+    }
+}
