@@ -4,15 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M.U.S.E. // RECOMMENDATION ENGINE</title>
-<link rel="stylesheet" href="/css/style.css?v=0.3.74">
+<link rel="stylesheet" href="/css/style.css?v=0.3.84">
 <script src="/scripts/recommendation-engine-data.js?v=0.3.74" defer></script>
 <script src="/scripts/recommendation-engine.js?v=0.3.74" defer></script>
 <script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
+<script src="/scripts/node-loading-console.js?v=5" defer></script>
 </head>
 
 <body class="recommendation-page">
 <main class="muse-recommendation-page">
+    <section class="node-intro" data-loading-node="recommendation" aria-live="off" aria-label="MUSE Recommendation Engine connection status">
+    <div class="node-intro-content">
     <header class="muse-engine-hero">
         <div class="muse-engine-portrait" aria-hidden="true">
             <span class="muse-orbit muse-orbit-one"></span>
@@ -24,7 +27,7 @@
             <p class="muse-engine-kicker">SUBJECT-ASSIGNED DESIGNATION</p>
             <h1>M.U.S.E.</h1>
             <p class="muse-engine-expansion">Memory Unification &amp; Suggestion Engine</p>
-            <p>Subject named her. She kept the acronym. Administrator filed an objection.</p>
+            <p>A supervised suggestion engine translating moods into things to watch, read, play, make, eat, visit, or do.</p>
             <div class="muse-engine-status" aria-label="Recommendation engine status">
                 <span><i>LIVE</i> MUSE channel</span>
                 <span><i>SUPERVISED</i> technically</span>
@@ -32,6 +35,8 @@
             </div>
         </div>
     </header>
+    </div>
+    </section>
 
     <section class="muse-engine-console" aria-labelledby="engine-prompt-title">
         <div class="muse-parameter-panel">
@@ -141,7 +146,7 @@
 </main>
 
 <div class="nav"><a href="/memory_node/attian/">[ return to navigator ]</a></div>
-<div class="status">Last Synchronization: 21.10.2026 // 0.3.74</div>
+<div class="status">Last Synchronization: 26.10.2026 // 0.3.84</div>
 <noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>

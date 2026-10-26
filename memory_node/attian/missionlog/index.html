@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MISSION LOG</title>
 
-<link rel="stylesheet" href="/css/style.css?v=0.3.58">
+<link rel="stylesheet" href="/css/style.css?v=0.3.84">
 
 <script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
 <script src="/scripts/mission-log.js" defer></script>
+<script src="/scripts/node-loading-console.js?v=5" defer></script>
 </head>
 
 <body class="mission-page">
@@ -17,17 +18,18 @@
 <h1>MISSION LOG</h1>
 <p class="dim">/memory_node/attian/missionlog</p>
 
+<section class="node-intro" data-loading-node="mission" aria-live="off" aria-label="Mission Log connection status">
+<div class="node-intro-content">
 <section class="mission-brief">
     <p class="mission-kicker">QUEST JOURNAL // ACTIVE AND UNREASONABLY OPTIMISTIC</p>
-    <p>
-        Active quests have been reorganized into something resembling a video game mission log, because ambition becomes less alarming
-        when divided into objectives and rewards. Read story sections if you require lore. Ignore them if you are emotionally built like a speedrunner.<span class="cursor">_</span>
-    </p>
+    <p>Ambitions divided into objectives, rewards, side quests, and several deadlines that remain emotionally theoretical.<span class="cursor">_</span></p>
     <div class="mission-status-grid">
         <div><span>20</span><p>Logged Quests</p></div>
         <div><span>6</span><p>Quest Classes</p></div>
         <div><span>LOCAL</span><p>Tracking State</p></div>
     </div>
+</section>
+</div>
 </section>
 
 <section class="quest-console" aria-label="Mission Log controls">
@@ -843,7 +845,7 @@
     <a href="/memory_node/attian/">[ return to navigator ]</a>
 </div>
 <div class="status">
-Last Synchronization: 27.06.2026 00:00
+Last Synchronization: 26.10.2026
 </div>
 
 <noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>

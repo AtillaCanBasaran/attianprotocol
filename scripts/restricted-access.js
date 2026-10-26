@@ -103,6 +103,7 @@
         document.body.classList.add("restricted-unlocked");
         gate.remove();
         content.removeAttribute("aria-hidden");
+        document.dispatchEvent(new CustomEvent("attian:restricted-unlocked"));
     }
 
     function buildGate(content) {

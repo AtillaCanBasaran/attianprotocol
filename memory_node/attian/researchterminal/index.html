@@ -6,11 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RESEARCH TERMINAL</title>
 
-<link rel="stylesheet" href="/css/style.css?v=0.3.61">
+<link rel="stylesheet" href="/css/style.css?v=0.3.84">
 
 <script src="/scripts/research-terminal.js?v=1" defer></script>
 <script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
+<script src="/scripts/node-loading-console.js?v=5" defer></script>
 </head>
 
 <body>
@@ -18,19 +19,18 @@
 <h1>RESEARCH TERMINAL</h1>
 <p class="dim">/memory_node/attian/researchterminal</p>
 
+<section class="node-intro" data-loading-node="research" aria-live="off" aria-label="Research Terminal connection status">
+<div class="node-intro-content">
 <section class="research-brief">
     <p class="research-kicker">MUSEUM LIBRARY // SIMPLIFIED KNOWLEDGE SHELF</p>
-    <p>
-        This terminal stores research notes, simplified explanations, and overly formal titles for things the subject insists on understanding by turning
-        them into smaller, stranger mental objects. The archive supplies the plain explanation. Administrator supplies quality control, mockery, and
-        occasional concern about how scientific concepts are being stored next to jokes about particle shapes. Visitors may search, filter by category,
-        or open a log directly. Try not to confuse "simple" with "wrong." The subject already does that enough.<span class="cursor">_</span>
-    </p>
+    <p>Science, history, and adulthood translated into plain explanations without removing the useful weirdness.<span class="cursor">_</span></p>
     <div class="research-status-grid">
         <div><span>LIBRARY</span><p>Terminal Mode</p></div>
         <div><span id="researchRecordCount">27</span><p>Indexed Logs</p></div>
         <div><span>MIXED</span><p>Seriousness Level</p></div>
     </div>
+</section>
+</div>
 </section>
 
 <section class="research-console">
@@ -219,7 +219,7 @@
 </div>
 
 <div class="status">
-Last Synchronization: 16.10.2026
+Last Synchronization: 26.10.2026
 </div>
 
 <noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>

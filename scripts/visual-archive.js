@@ -5,26 +5,23 @@
     var CREATURE_IMAGE_BASE = "/images/creatureindex/";
     var externalArchiveContent = window.ATTIAN_ARCHIVE_CONTENT || {};
 
-    function imgExists(src) {
-        return new Promise(function (resolve) {
-            var img = new Image();
-            img.onload = function () { resolve(src); };
-            img.onerror = function () { resolve(null); };
-            img.src = src;
-        });
+    function creatureAssets(index) {
+        var stem = CREATURE_IMAGE_BASE + "creature" + index;
+        return {
+            restored: stem + ".webp",
+            thumb: stem + "_thumb.webp",
+            full: stem + ".png",
+            original: stem + "_original." + (index === 7 ? "png" : "jpeg")
+        };
     }
 
-    async function firstExisting(candidates) {
-        for (var i = 0; i < candidates.length; i += 1) {
-            var found = await imgExists(candidates[i]);
-            if (found) return found;
-        }
-        return null;
-    }
-
-    function thumbCandidates(src) {
-        var stem = String(src || "").replace(/\.[^.]+$/, "");
-        return [stem + "_thumb.avif", stem + "_thumb.webp", src];
+    function artifactAssets(config, index) {
+        var stem = ARTIFACT_IMAGE_BASE + config.prefix + index;
+        return {
+            restored: stem + ".webp",
+            thumb: stem + "_thumb.webp",
+            original: stem + "_original.jpeg"
+        };
     }
 
     function pad(num) {
@@ -332,7 +329,7 @@
         return [
             "<article class=\"creature-card creature-collection-card " + escapeHTML((m.classes || "") + " " + rarityClass(m.rarity)) + "\">",
             "    <header class=\"creature-card-header\"><span>" + escapeHTML(m.code) + "</span><b>" + escapeHTML(m.rarity.split(" /")[0]) + "</b></header>",
-            "    <a class=\"creature-card-art\" href=\"" + (fullResolution || restored) + "\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open full-resolution art for " + escapeHTML(m.title) + "\"><span class=\"creature-art-matte\"><img loading=\"lazy\" decoding=\"async\" src=\"" + restored + "\" alt=\"" + escapeHTML(m.title) + "\"></span></a>",
+            "    <a class=\"creature-card-art\" href=\"" + (fullResolution || restored) + "\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open full-resolution art for " + escapeHTML(m.title) + "\"><span class=\"creature-art-matte\"><img loading=\"lazy\" decoding=\"async\" src=\"" + (thumb || restored) + "\" alt=\"" + escapeHTML(m.title) + "\"></span></a>",
             "    <div class=\"creature-card-core\">",
             "        <div class=\"creature-nameplate\"><span>" + escapeHTML(m.subtitle) + "</span><h2>" + escapeHTML(m.title) + "</h2></div>",
             "        <div class=\"creature-type-row\" aria-label=\"Creature types\">" + tags + "</div>",
@@ -410,7 +407,7 @@
         if (reader) reader.hidden = true;
     }
 
-    async function loadCreatures() {
+    function loadCreatures() {
         var container = document.getElementById("creatureDexAuto");
         if (!container) return;
         var cards = [];
@@ -420,30 +417,9 @@
             : Array.from({ length: MAX_SCAN }, function (_, idx) { return idx + 1; });
         for (var idx = 0; idx < indexes.length; idx += 1) {
             var i = indexes[idx];
-            var restored = await firstExisting([
-                CREATURE_IMAGE_BASE + "creature" + i + ".webp",
-                CREATURE_IMAGE_BASE + "creature" + i + ".avif",
-                CREATURE_IMAGE_BASE + "creature" + i + ".png",
-                CREATURE_IMAGE_BASE + "creature" + i + ".jpeg",
-                CREATURE_IMAGE_BASE + "creature" + i + ".jpg"
-            ]);
-            if (restored) {
-                var original = await firstExisting([
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.png",
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.jpeg",
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.jpg",
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.webp",
-                    CREATURE_IMAGE_BASE + "creature" + i + "_original.avif"
-                ]);
-                var fullResolution = await firstExisting([
-                    CREATURE_IMAGE_BASE + "creature" + i + ".png",
-                    CREATURE_IMAGE_BASE + "creature" + i + ".jpeg",
-                    CREATURE_IMAGE_BASE + "creature" + i + ".jpg"
-                ]);
-                var thumb = await firstExisting(thumbCandidates(restored));
-                cards.push(creatureCard(i, restored, original, thumb, fullResolution));
-                lastFound = Math.max(lastFound, i);
-            }
+            var assets = creatureAssets(i);
+            cards.push(creatureCard(i, assets.restored, assets.original, assets.thumb, assets.full));
+            lastFound = Math.max(lastFound, i);
         }
         for (var p = lastFound + 1; p <= lastFound + PENDING_SLOTS; p += 1) {
             cards.push(pendingCreatureCard(p));
@@ -627,7 +603,7 @@
         var originalHTML = original ? [
             "<details class=\"original-fragment\">",
             "    <summary>inspect source fragment</summary>",
-            "    <img loading=\"lazy\" decoding=\"async\" src=\"" + original + "\" alt=\"Source fragment for " + escapeHTML(meta.title) + "\">",
+            "    <img loading=\"lazy\" decoding=\"async\" data-src=\"" + original + "\" alt=\"Source fragment for " + escapeHTML(meta.title) + "\">",
             "</details>"
         ].join("\n                ") : "";
         return [
@@ -639,7 +615,7 @@
             "    </summary>",
             "    <div class=\"artifact-body\">",
             "        <div>",
-            "            <div class=\"artifact-image-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + restored + "\" alt=\"Restored artifact: " + escapeHTML(meta.title) + "\"></div>",
+            "            <div class=\"artifact-image-slot\"><img class=\"restored-visual\" loading=\"lazy\" decoding=\"async\" src=\"" + (thumb || restored) + "\" data-src=\"" + restored + "\" alt=\"Restored artifact: " + escapeHTML(meta.title) + "\"></div>",
             "            <p class=\"restored-note\">Restored view: how the archive remembers the object after memory has finished exaggerating responsibly.</p>",
             "            " + originalHTML,
             "        </div>",
@@ -665,7 +641,32 @@
         return found[index];
     }
 
-    async function loadArtifacts() {
+    function hydrateDeferredImages(scope) {
+        Array.prototype.forEach.call(scope.querySelectorAll("img[data-src]"), function (image) {
+            if (!image.getAttribute("data-src")) return;
+            image.src = image.getAttribute("data-src");
+            image.removeAttribute("data-src");
+        });
+    }
+
+    function activateArtifactImages(container) {
+        Array.prototype.forEach.call(container.querySelectorAll(".artifact-card"), function (card) {
+            var restoredImage = card.querySelector(".artifact-image-slot img[data-src]");
+            if (card.open && restoredImage) hydrateDeferredImages(restoredImage.parentElement);
+            card.addEventListener("toggle", function () {
+                var deferredRestored = card.querySelector(".artifact-image-slot img[data-src]");
+                if (card.open && deferredRestored) hydrateDeferredImages(deferredRestored.parentElement);
+            });
+            var original = card.querySelector(".original-fragment");
+            if (original) {
+                original.addEventListener("toggle", function () {
+                    if (original.open) hydrateDeferredImages(original);
+                });
+            }
+        });
+    }
+
+    function loadArtifacts() {
         var container = document.getElementById("artifactGridAuto");
         if (!container) return;
         var cards = [];
@@ -685,43 +686,21 @@
             var item = artifactQueue[q];
             var config = item.config;
             var i = item.index;
-            var restored = await firstExisting([
-                ARTIFACT_IMAGE_BASE + config.prefix + i + ".avif",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + ".webp",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + ".png",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.avif",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.webp",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + "_restored.png",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpeg",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + ".jpg",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.avif",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.webp",
-                ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"
-            ]);
-            if (restored) {
-                var original = await firstExisting([
-                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.avif",
-                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.webp",
-                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpeg",
-                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.jpg",
-                    ARTIFACT_IMAGE_BASE + config.prefix + i + "_original.png"
-                ]);
-                if (original === restored) original = null;
-                var thumb = await firstExisting(thumbCandidates(restored));
-                var key = artifactKey(config, i);
-                var meta = artifactCatalog[key] || defaultArtifact(config, i, original);
-                found.push({ serial: serial, meta: meta, restored: restored, original: original });
-                cards.push(artifactCard(serial, config, i, restored, original, thumb));
-                serial += 1;
-            }
+            var assets = artifactAssets(config, i);
+            var key = artifactKey(config, i);
+            var meta = artifactCatalog[key] || defaultArtifact(config, i, assets.original);
+            found.push({ serial: serial, meta: meta, restored: assets.restored, original: assets.original, thumb: assets.thumb });
+            cards.push(artifactCard(serial, config, i, assets.restored, assets.original, assets.thumb));
+            serial += 1;
         }
         container.innerHTML = cards.join("\n");
+        activateArtifactImages(container);
         setupArtifactFilters(found);
         var featured = document.getElementById("artifactFeaturedAuto");
         var selected = featuredArtifact(found);
         if (featured && selected) {
             featured.innerHTML = [
-                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" decoding=\"async\" src=\"" + selected.restored + "\" alt=\"Featured restored artifact: " + escapeHTML(selected.meta.title) + "\"></div><p class=\"restored-note\">Daily feature rotation. The archive denies favoritism, poorly.</p></div>",
+                "<div><div class=\"artifact-image-slot artifact-feature-slot\"><img class=\"restored-visual\" decoding=\"async\" src=\"" + (selected.thumb || selected.restored) + "\" alt=\"Featured restored artifact: " + escapeHTML(selected.meta.title) + "\"></div><p class=\"restored-note\">Daily feature rotation. The archive denies favoritism, poorly.</p></div>",
                 "<div><p class=\"artifact-kicker\">FEATURED SLOT // TODAY'S RESTORED FRAGMENT</p><h2>" + escapeHTML(selected.meta.title) + "</h2><p>" + escapeHTML(selected.meta.feature) + "</p><dl class=\"artifact-meta\"><dt>Category</dt><dd>" + escapeHTML(selected.meta.category || selected.meta.type) + "</dd><dt>Collection</dt><dd>" + escapeHTML(selected.meta.collection || "Unsorted") + "</dd><dt>Status</dt><dd>" + escapeHTML(selected.meta.status || "Restored") + "</dd><dt>Rotation</dt><dd>Daily selection from active vault fragments</dd></dl></div>"
             ].join("\n");
         }
