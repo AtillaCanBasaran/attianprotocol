@@ -1,6 +1,22 @@
 (function () {
     "use strict";
 
+    function loadDetentionRuntime() {
+        var path = window.location.pathname;
+        if (path.indexOf("/memory_node/attian/") !== 0 || path.indexOf("/gamingarea/") !== -1) {
+            return;
+        }
+        if (document.querySelector('script[data-detention-runtime]')) {
+            return;
+        }
+
+        var runtime = document.createElement("script");
+        runtime.src = "/scripts/detention-runtime.js?v=0.4.0";
+        runtime.defer = true;
+        runtime.dataset.detentionRuntime = "true";
+        document.head.appendChild(runtime);
+    }
+
     function initAdminAssistant() {
         if (document.querySelector(".admin-assistant-shell")) {
             return;
@@ -51,6 +67,8 @@
         close.addEventListener("click", function () {
             setOpen(false);
         });
+
+        loadDetentionRuntime();
     }
 
     if (document.readyState === "loading") {

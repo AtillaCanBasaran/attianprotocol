@@ -27,7 +27,7 @@ Each archive page keeps most of its visible text in its own `index.html`. Live p
 | Design Lab | `memory_node/attian/designlab/index.html` | Design concepts and examples |
 | Dreaming Fragments | `memory_node/attian/dreamingfragments/index.html` | Restricted fragment records |
 | Field Notes | `memory_node/attian/fieldnotes/index.html` | Writing fragments and commentary |
-| Gaming Area | `memory_node/attian/gamingarea/index.html` | Game module intros, placeholder panels, MUSE/Admin copy |
+| Detention Facility | `scripts/detention-cases.js` + `scripts/detention-triggers.js` | Court cases, questions, page-specific MUSE baits, and Navigator judicial queries |
 | Grand Map | `memory_node/attian/grandmap/index.html` | Map pins, location routing, village gateway |
 | Fun Village | `memory_node/attian/fantasyvillage/index.html` + `scripts/fantasy-village.js` | Map intro, SVG POI boxes, local dossier copy, commentary |
 | Mission Log | `memory_node/attian/missionlog/index.html` | Quest cards, category data, requirements/objectives, rewards, story descriptions |
@@ -114,7 +114,10 @@ Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.
 - Legal footer: `scripts/legal-footer.js`
 - Restricted page password overlay: `scripts/restricted-access.js`
 - Main entry page behavior: `scripts/main-page.js`
-- Gaming Area placeholder interactions: `scripts/game-area.js`
+- Detention Facility court cases: `scripts/detention-cases.js`
+- Detention bait placement and probability: `scripts/detention-triggers.js`
+- Court flow and verdict rules: `scripts/detention-court.js`
+- Referral-only facility intake: `scripts/detention-facility.js`
 - Grand Map SVG overlay behavior: `scripts/grand-map.js`
 - Grand Map live SVG map: `images/Map/world_rw.svg`
 - Grand Map country dossier data: `images/Map/countries-index.json`
@@ -126,6 +129,17 @@ Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.
 - Administrator assistant visual shell: `scripts/admin-assistant.js`
 - Mission Log filters, local tracking, and objective progress: `scripts/mission-log.js`
 - Site-wide visual styling: `css/style.css`
+- Detention/court styling: `css/detention.css`
+
+## Detention Facility Cases and Baits
+
+The former Gaming Area is now a referral-only Detention Facility. Do not add a normal Navigator link to it.
+
+To add a case, edit `scripts/detention-cases.js` and give it a permanent case ID, title, charge, visible evidence, and exactly five fair multiple-choice questions. Every question needs a `correctIndex`; the visitor must be able to derive every answer from the evidence and interaction itself.
+
+To make that case discoverable, edit `scripts/detention-triggers.js`. Add an optional bait to the appropriate `pagePools` list, or add a deliberate exact search phrase to `navigatorQueries`. Page baits use the shared 30% appearance rate, only one can appear per visit, and ignoring them has no consequence. Ordinary clicks, misspellings, vulnerable queries, and real functional controls must never create a case.
+
+Use `?detention-demo=1` on an eligible archive page during local testing to force one rotating bait to appear. Court and verdict state is stored only in `sessionStorage`; no visitor identity or remote telemetry is collected.
 
 ## Visitor Terminal State
 

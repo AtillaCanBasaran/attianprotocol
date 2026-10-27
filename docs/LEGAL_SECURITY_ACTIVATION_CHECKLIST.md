@@ -2,13 +2,13 @@
 
 This file records implementation gates for services that are visible in the interface but currently offline. It is a technical checklist, not legal advice. Re-check the public Impressum and privacy policy whenever hosting, storage, AI, analytics, or submission behavior changes.
 
-## Current verified state — 16 October 2026
+## Current verified state — 27 October 2026
 
 - Hosting: static GitHub Pages site.
 - Footer: every HTML page loads `scripts/legal-footer.js`, which links to `/impressum/` and `/datenschutz/`.
 - Analytics/advertising: none found.
 - First-party cookies: none found.
-- Browser storage: Mission Log progress only, under `attian-mission-log-v1`, after the visitor uses a tracking or objective control.
+- Browser storage: Mission Log progress persists locally under `attian-mission-log-v1`; the fictional Archive Court stores only its active case/verdict, score, and safe return path in session storage. Neither is transmitted.
 - Recommendation Engine: interaction counts are memory-only and disappear on reload.
 - Visitor Terminal: disabled; no Supabase client or request is loaded.
 - LILI: visual shell only; input disabled; no AI provider or prompt transmission.

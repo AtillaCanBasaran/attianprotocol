@@ -22,7 +22,7 @@ This is currently an alpha checkpoint. The main structure is online; many pages 
 - `Research Terminal` — simplified notes and pseudo-academic explanations.
 - `Signal Records` — restricted media/music/game/book archive.
 - `Dreaming Fragments` / `Field Notes` / `System Failure Log` — restricted personal shelves.
-- `Gaming Area` — MUSE-moderated game backbone.
+- `Detention Facility` — referral-only archive court and future recreational detention sector; not directly accessible from the Navigator.
 - `Grand Map` — interactive world map.
 - `Fun Village` — portal-only fantasy village reached from the Grand Map.
 

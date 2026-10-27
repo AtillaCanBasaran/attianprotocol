@@ -29,6 +29,12 @@
         return String(value || "").toLowerCase().trim().replace(/ö/g, "o").replace(/ü/g, "u").replace(/ä/g, "a");
     }
 
+    function currentNodeName(value) {
+        return String(value || "")
+            .replace(/GAMING AREA/g, "DETENTION FACILITY")
+            .replace(/Gaming Area/g, "Detention Facility");
+    }
+
     function containsTerm(query, term) {
         var normalizedQuery = normalize(query).replace(/[^a-z0-9&.]+/g, " ").replace(/\s+/g, " ").trim();
         var normalizedTerm = normalize(term).replace(/[^a-z0-9&.]+/g, " ").replace(/\s+/g, " ").trim();
@@ -50,10 +56,10 @@
             return {
                 terms: terms.map(function (term) { return String(term || ""); }).filter(Boolean),
                 speaker: normalize(entry.speaker || "administrator"),
-                text: String(entry.text || entry.response || ""),
+                text: currentNodeName(entry.text || entry.response || ""),
                 category: String(entry.category || "uncategorized"),
                 routes: (Array.isArray(entry.routes) ? entry.routes : [entry.route || ""]).map(function (route) { return String(route || ""); }).filter(Boolean),
-                node: String(entry.node || ""),
+                node: currentNodeName(entry.node || ""),
                 showAll: Boolean(entry.showAll),
                 mode: String(entry.mode || "route").toLowerCase(),
                 virtualCode: String(entry.virtualCode || ""),
@@ -332,7 +338,12 @@
             if (event.key === "Enter") {
                 event.preventDefault();
                 var visibleResult = results.find(function (result) { return !result.hidden; });
-                if (visibleResult) window.location.href = visibleResult.href;
+                if (visibleResult && visibleResult.getAttribute("aria-disabled") !== "true" && visibleResult.href) {
+                    window.location.href = visibleResult.href;
+                } else if (visibleResult) {
+                    setResponse(visibleResult.getAttribute("data-note"), "administrator", readResultName(visibleResult));
+                    markResponseMode("error");
+                }
             }
         });
 
@@ -361,6 +372,13 @@
             result.addEventListener("blur", releaseNode);
             result.addEventListener("pointerdown", function () {
                 result.classList.add("navigator-node-routing");
+            });
+            result.addEventListener("click", function (event) {
+                if (result.getAttribute("aria-disabled") !== "true") return;
+                event.preventDefault();
+                result.classList.remove("navigator-node-routing");
+                setResponse(result.getAttribute("data-note"), "administrator", readResultName(result));
+                markResponseMode("error");
             });
         });
 

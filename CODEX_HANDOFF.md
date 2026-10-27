@@ -144,7 +144,11 @@ Concept/reference pages:
 - `scripts/recommendation-engine-data.js` is the editable Recommendation Engine content bank: preserved free-range recommendations, contextual action/mood results, rare glitch events, and occasional secondary MUSE comments.
 - `scripts/recommendation-engine.js` handles action and multi-mood selection, short MUSE/Administrator mood reactions, weighted recommendation choice, the red-button discharge, the rare-event schedule/effects, MUSE-versus-Administrator follow-ups, and the in-memory-only recent-result trace.
 - `scripts/research-terminal.js` loads the two Research Terminal Markdown data files, creates collapsible dossiers, and powers category/search filtering. Edit the Markdown files rather than hand-authoring generated dossier markup.
-- `scripts/game-area.js` powers lightweight placeholder interactions for Gaming Area.
+- `scripts/detention-runtime.js` loads the modular court system on supported archive pages through the existing Administrator shell.
+- `scripts/detention-cases.js` is the editable case bank; each case has visible evidence and five deterministic questions.
+- `scripts/detention-triggers.js` owns the 30% rotating page-bait pools and fixed Navigator judicial queries.
+- `scripts/detention-court.js` renders the incident notice, five-round hearing, 5/5 acquittal rule, and fictional conviction transfer.
+- `scripts/detention-facility.js` verifies the local conviction record before displaying facility intake.
 - `scripts/grand-map.js` powers the Grand Map direct-SVG country selection and JSON-index dossier panel.
 - `scripts/grand-map-dev.js` is a retained manual experimentation hook, but it is not loaded by the live Grand Map page.
 - `scripts/fantasy-village.js` powers the Fun Village clickable POI map and local dossier panel.
@@ -329,17 +333,23 @@ When reactivating later:
 - Change Navigator copy away from offline state.
 - Add a new Update Log entry explaining reactivation.
 
-### Gaming Area
+### Detention Facility and Archive Court
 
-Gaming Area is a backbone node moderated by MUSE.
+The former Gaming Area has been reclassified as the `Detention Facility`. Its old URL is retained, but the Navigator node is a non-routing referral display. Direct visits show a sealed intake screen unless the current browser session contains a court conviction.
 
-Current modules:
+Phase I implements discovery, misconduct, and judicial processing only:
 
-- cyberpunk/netrunner tarot inspired by tarot and DnD's Deck of Many Things
-- spin-the-wheel consequence game
-- trivia quiz scaffold for the mysterious grand prize, `The Cake`
+- supported pages have a 30% chance to receive one optional, page-specific MUSE bait;
+- exact Navigator queries can reveal fixed judicial temptations;
+- accepting a bait opens an incident notice before any hearing begins;
+- every case presents visible evidence and five fair questions;
+- 5/5 produces acquittal; 0–4 produces fictional Recreational Detention;
+- visitors may dismiss the incident, leave court, clear the fictional record, or use ordinary navigation at any time;
+- state is local `sessionStorage`; the system records no identity and sends no telemetry.
 
-The page has small placeholder interactions through `scripts/game-area.js`, but the final decks, outcomes, question bank, scoring, and prize logic are not implemented yet.
+Case content lives in `scripts/detention-cases.js`; appearance pools and query triggers live in `scripts/detention-triggers.js`. `?detention-demo=1` forces a bait on an eligible page for local testing. `memory_node/attian/gamingarea/detention_court.md` is the full Phase I design source, while `gaming.md` remains the broader future facility/carnival concept.
+
+The former tarot, wheel, and Cake code remains dormant in `scripts/game-area.js` for reference but is not loaded. Carnival systems, rewards, tokens, and escape progression are deliberately outside Phase I.
 
 ### Grand Map and Fun Village
 
