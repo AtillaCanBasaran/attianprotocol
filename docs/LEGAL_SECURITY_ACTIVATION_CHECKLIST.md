@@ -8,7 +8,7 @@ This file records implementation gates for services that are visible in the inte
 - Footer: every HTML page loads `scripts/legal-footer.js`, which links to `/impressum/` and `/datenschutz/`.
 - Analytics/advertising: none found.
 - First-party cookies: none found.
-- Browser storage: Mission Log progress persists locally under `attian-mission-log-v1`; the fictional Archive Court stores only its active case/verdict, score, and safe return path in session storage. Neither is transmitted.
+- Browser storage: Mission Log progress persists locally under `attian-mission-log-v1`; the Detention Carnival stores its intro/discovery and future fictional game state under `attian-carnival-state-v1`; the Archive Court stores only its active case/verdict, score, and safe return path in session storage. None is transmitted, and each persistent system has a visible local reset.
 - Recommendation Engine: interaction counts are memory-only and disappear on reload.
 - Visitor Terminal: disabled; no Supabase client or request is loaded.
 - LILI: visual shell only; input disabled; no AI provider or prompt transmission.

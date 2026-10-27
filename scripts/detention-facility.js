@@ -30,7 +30,28 @@
         var requestEntry = document.getElementById("detentionRequestEntry");
         var doorStatus = document.getElementById("detentionDoorStatus");
         var verdict = readVerdict();
+        var demoRequested = false;
+        try {
+            demoRequested = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+                && new URLSearchParams(window.location.search).get("carnival-demo") === "1";
+        } catch (error) { /* Old browsers retain the normal sealed route. */ }
+
+        if (!verdict && demoRequested) {
+            verdict = {
+                caseId: "DEMO-M-00",
+                status: "convicted",
+                score: 0,
+                sourcePath: "/memory_node/attian/"
+            };
+        }
         var caseFile = verdict && window.ATTIAN_DETENTION_CASES && window.ATTIAN_DETENTION_CASES[verdict.caseId];
+        if (!caseFile && demoRequested) {
+            caseFile = {
+                id: "DEMO-M-00",
+                title: "Local Carnival Systems Inspection",
+                charge: "Authorized preview of an unauthorized recreational modification."
+            };
+        }
         var admitted = Boolean(verdict && verdict.status === "convicted" && caseFile);
 
         returnLink.href = safeReturnPath(verdict && verdict.sourcePath);
@@ -67,6 +88,15 @@
             clearVerdict();
             window.location.href = returnLink.href;
         });
+
+        if (window.AttianCarnival) {
+            window.AttianCarnival.init({
+                verdict: verdict,
+                caseFile: caseFile,
+                returnPath: returnLink.href,
+                preview: demoRequested
+            });
+        }
     }
 
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initFacility);

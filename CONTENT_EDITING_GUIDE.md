@@ -118,6 +118,7 @@ Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.
 - Detention bait placement and probability: `scripts/detention-triggers.js`
 - Court flow and verdict rules: `scripts/detention-court.js`
 - Referral-only facility intake: `scripts/detention-facility.js`
+- Detention Carnival scenes and local state: `scripts/detention-carnival.js`
 - Grand Map SVG overlay behavior: `scripts/grand-map.js`
 - Grand Map live SVG map: `images/Map/world_rw.svg`
 - Grand Map country dossier data: `images/Map/countries-index.json`
@@ -130,6 +131,7 @@ Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.
 - Mission Log filters, local tracking, and objective progress: `scripts/mission-log.js`
 - Site-wide visual styling: `css/style.css`
 - Detention/court styling: `css/detention.css`
+- Detention Carnival environment: `css/carnival.css`
 
 ## Detention Facility Cases and Baits
 
@@ -140,6 +142,8 @@ To add a case, edit `scripts/detention-cases.js` and give it a permanent case ID
 To make that case discoverable, edit `scripts/detention-triggers.js`. Add an optional bait to the appropriate `pagePools` list, or add a deliberate exact search phrase to `navigatorQueries`. Ordinary pages use the shared 30% appearance rate and building nodes use the explicit `pageChances` override. Baits should be inserted into a relevant record, image frame, map panel, or machine control—not detached from the page when a native placement is available. Only one appears per visit, and ignoring it has no consequence.
 
 Use `?detention-demo=1` on an eligible archive page during local testing to force one rotating bait to appear. Court and verdict state is stored only in `sessionStorage`; no visitor identity or remote telemetry is collected.
+
+The Carnival is one environment inside the facility page, not a set of separate game pages. Its hub and focus-scene copy live in the `scenes` object in `scripts/detention-carnival.js`. Keep new grounds interactions data-driven, add their ID to the matching discovery list, and connect them with a real `data-carnival-scene` button. The first release deliberately exposes only previews: do not activate rewards, Exit Tokens, inventory, or RPG stats until their stage is implemented end-to-end. During local development, `/memory_node/attian/detentionfacility/?carnival-demo=1` previews the admitted flow without manufacturing a public bypass.
 
 ## Visitor Terminal State
 

@@ -114,7 +114,7 @@ Primary pages:
 - `memory_node/attian/designlab/index.html` - design concepts.
 - `memory_node/attian/dreamingfragments/index.html` - restricted dream fragments.
 - `memory_node/attian/fieldnotes/index.html` - restricted writing fragments.
-- `memory_node/attian/detentionfacility/index.html` - referral-only Detention Facility intake; direct visitors see a sealed disciplinary door.
+- `memory_node/attian/detentionfacility/index.html` - referral-only Detention Facility intake and MUSE's single-scene Detention Carnival; direct visitors see a sealed disciplinary door.
 - `memory_node/attian/grandmap/index.html` - world map backbone and route hub.
 - `memory_node/attian/fantasyvillage/index.html` - portal-only CRPG village backbone linked from Grand Map.
 - `memory_node/attian/missionlog/index.html` - game-style quest journal.
@@ -337,7 +337,7 @@ When reactivating later:
 
 The `Detention Facility` is the reclassified disciplinary sector. Its route is `/memory_node/attian/detentionfacility/`; the obsolete recreation route has been removed. The Navigator node is a non-routing referral display, and direct visits show a sealed intake screen unless the current browser session contains a court conviction.
 
-Phase I implements discovery, misconduct, and judicial processing only:
+Phase I implements discovery, misconduct, and judicial processing:
 
 - ordinary supported pages have a 30% chance to receive one optional, page-native MUSE bait; building nodes use a slightly higher 42% hazard rate;
 - exact Navigator queries can reveal fixed judicial temptations;
@@ -347,9 +347,9 @@ Phase I implements discovery, misconduct, and judicial processing only:
 - visitors may dismiss the incident, leave court, clear the fictional record, or use ordinary navigation at any time;
 - state is local `sessionStorage`; the system records no identity and sends no telemetry.
 
-Case content lives in `scripts/detention-cases.js`; the bank currently contains 32 cases, including 20 additional behavior-specific proceedings with varied correct-answer positions. Appearance pools and query triggers live in `scripts/detention-triggers.js`. `?detention-demo=1` forces a bait on an eligible page for local testing. Restricted-gate abuse, 101+ welcome clicks, repeated rejected Administrator modes, sealed-door bashing, and deliberate loading-console tools also produce referrals. `memory_node/attian/detentionfacility/detention_court.md` is the full Phase I design source, while `detention_facility.md` remains the broader future facility/carnival concept.
+Case content lives in `scripts/detention-cases.js`; the bank currently contains 32 cases, including 20 additional behavior-specific proceedings with varied correct-answer positions. Appearance pools and query triggers live in `scripts/detention-triggers.js`. `?detention-demo=1` forces a bait on an eligible page for local testing. Restricted-gate abuse, 101+ welcome clicks, repeated rejected Administrator modes, sealed-door bashing, and deliberate loading-console tools also produce referrals. `memory_node/attian/detentionfacility/detention_court.md` is the full Phase I design source, while `detention_facility.md` remains the broader facility concept.
 
-The old tarot, wheel, and Cake code remains dormant in `scripts/game-area.js` for reference but is not loaded. Carnival systems, rewards, tokens, and escape progression are deliberately outside Phase I.
+Carnival foundation 0.5.0 implements Stages 1–2 from `memory_node/attian/detentionfacility/carnival.md`: a short/skippable court-transfer transformation, one responsive spatial stage, three visibly repurposed machines, an always-visible Exit Gate, five grounds interactions, persistent commentary, a detention record, focus/return transitions, and local discovery memory. `scripts/detention-carnival.js` owns scene data and local state; `css/carnival.css` owns the environment. Use the local-only `?carnival-demo=1` parameter on the facility route to preview it without completing court. The games, Exit Token, inventory, stats, and deeper RPG remain intentionally dormant for Stages 3–5. The old tarot, wheel, and Cake code remains dormant in `scripts/game-area.js` as reference and is not loaded.
 
 ### Grand Map and Fun Village
 

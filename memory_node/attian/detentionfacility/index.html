@@ -7,9 +7,11 @@
 <title>DETENTION FACILITY // SEALED</title>
 <link rel="stylesheet" href="/css/style.css?v=0.3.84">
 <link rel="stylesheet" href="/css/detention.css?v=0.4.1">
+<link rel="stylesheet" href="/css/carnival.css?v=0.5.0">
 <script src="/scripts/detention-cases.js?v=0.4.1" defer></script>
 <script src="/scripts/detention-court.js?v=0.4.1" defer></script>
-<script src="/scripts/detention-facility.js?v=0.4.1" defer></script>
+<script src="/scripts/detention-carnival.js?v=0.5.0" defer></script>
+<script src="/scripts/detention-facility.js?v=0.5.0" defer></script>
 <script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
@@ -51,10 +53,119 @@
             <p class="detention-muse-line">MUSE: WELCOME TO DETENTION! The attractions are still behind several locks, but the locks are decorative in spirit!</p>
         </div>
         <div class="detention-construction-block">
-            <span>FACILITY STATUS</span>
-            <strong>INTAKE OPEN // RECREATION WING SEALED</strong>
-            <p>The court and transfer corridor are operational. Carnival systems, rewards, tokens, and escape proceedings remain outside this release.</p>
+            <span>TRANSFER STATUS</span>
+            <strong>INTAKE OPEN // DESTINATION: SECTOR M-00</strong>
+            <p>The sentence has been accepted. The transfer corridor is redirecting toward Recreational Detention.</p>
         </div>
+        <div id="carnivalTransferSequence" class="carnival-transfer-sequence" aria-live="polite">
+            <span data-transfer-step="1">01 // SENTENCE ISSUED</span>
+            <span data-transfer-step="2">02 // CIRCUIT ROUTING</span>
+            <span data-transfer-step="3">03 // UNAUTHORIZED CYAN SIGNAL</span>
+            <span data-transfer-step="4">04 // MUSE MODIFICATION DETECTED</span>
+            <span data-transfer-step="5">05 // RECREATIONAL DETENTION ONLINE</span>
+        </div>
+        <div class="detention-actions carnival-transfer-actions">
+            <button id="carnivalBeginTransfer" type="button">[ authorize transfer ]</button>
+            <button id="carnivalSkipTransfer" type="button">[ skip transformation ]</button>
+        </div>
+    </section>
+
+    <section id="carnivalExperience" class="carnival-experience" hidden aria-labelledby="carnivalTitle">
+        <header class="carnival-command-bar">
+            <div>
+                <p>RECREATIONAL DETENTION // SECTOR M-00</p>
+                <h2 id="carnivalTitle">The Carnival Is Open</h2>
+            </div>
+            <div class="carnival-command-state"><span>SENTENCE // ACTIVE</span><strong>EXIT CREDENTIAL // MISSING</strong></div>
+        </header>
+
+        <div class="carnival-token-compact" aria-live="polite"><span>EXIT TOKEN</span><strong id="carnivalTokenCompact">MISSING</strong></div>
+
+        <div class="carnival-layout">
+            <section id="carnivalStage" class="carnival-stage" aria-label="MUSE's Detention Carnival">
+                <div class="carnival-stage-chassis" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+                <div class="carnival-string-lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+                <div class="carnival-world" id="carnivalWorld">
+                    <button class="carnival-exit-gate" type="button" data-carnival-scene="exit">
+                        <span>ADMINISTRATIVE RELEASE GATE</span>
+                        <strong>EXIT</strong>
+                        <small>AUTHORIZED TOKEN REQUIRED</small>
+                        <i aria-hidden="true"></i>
+                    </button>
+
+                    <div class="carnival-attractions" aria-label="Carnival attractions">
+                        <button class="carnival-attraction attraction-oracle" type="button" data-carnival-scene="oracle">
+                            <span class="carnival-official-name">MEMORY-FRAGMENT SCANNER</span>
+                            <strong>The Maybe Machine</strong>
+                            <small>ORACLE // symbolic archive readings</small>
+                            <span class="oracle-machine" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </button>
+
+                        <button class="carnival-attraction attraction-wheel" type="button" data-carnival-scene="wheel">
+                            <span class="carnival-official-name">PROBABILITY DISTRIBUTION MODULE</span>
+                            <strong>Wheel Of Nice Things<br>And Tax Consequences</strong>
+                            <small>PRIZE REDISTRIBUTION // centerpiece</small>
+                            <span class="wheel-machine" aria-hidden="true"><i></i><b></b></span>
+                        </button>
+
+                        <button class="carnival-attraction attraction-cake" type="button" data-carnival-scene="cake">
+                            <span class="carnival-official-name">APTITUDE-ASSESSMENT TERMINAL</span>
+                            <strong>Certified Cake Trial</strong>
+                            <small>DESSERT EXAMINATION // allegedly legitimate</small>
+                            <span class="cake-machine" aria-hidden="true"><i></i><b>?</b></span>
+                        </button>
+                    </div>
+
+                    <div class="carnival-grounds-label"><span>CARNIVAL GROUNDS</span><small>UNREGISTERED INHABITANTS // OPTIONAL TROUBLE</small></div>
+                    <div class="carnival-grounds" aria-label="Carnival grounds">
+                        <button type="button" data-carnival-scene="ticketmaster"><span>TKT</span><strong>Ticket Office</strong><small>somebody is counting the same ticket</small></button>
+                        <button type="button" data-carnival-scene="merchant"><span>MRK</span><strong>Market Stall</strong><small>wares of questionable usefulness</small></button>
+                        <button type="button" data-carnival-scene="detainee"><span>NPC</span><strong>Former Detainee</strong><small>has not actually left</small></button>
+                        <button type="button" data-carnival-scene="staff"><span>KEY</span><strong>Interesting People</strong><small>officially says STAFF ONLY</small></button>
+                        <button type="button" data-carnival-scene="village"><span>RD</span><strong>Village Road</strong><small>a distant fantasy route</small></button>
+                    </div>
+                </div>
+
+                <section id="carnivalFocusPanel" class="carnival-focus-panel" hidden aria-live="polite">
+                    <button id="carnivalReturnHub" class="carnival-return-hub" type="button">[ return to carnival grounds ]</button>
+                    <p id="carnivalFocusCode" class="carnival-focus-code">ATTRACTION</p>
+                    <h3 id="carnivalFocusTitle">Selected machine</h3>
+                    <p id="carnivalFocusSummary"></p>
+                    <div id="carnivalFocusBody" class="carnival-focus-body"></div>
+                </section>
+            </section>
+
+            <details class="carnival-record" open>
+                <summary><span>DETENTION RECORD</span><strong id="carnivalRecordCase">CASE —</strong></summary>
+                <div class="carnival-record-body">
+                    <dl>
+                        <div><dt>Sentence</dt><dd>Recreational Detention // Active</dd></div>
+                        <div><dt>Exit Credential</dt><dd id="carnivalRecordToken">Missing</dd></div>
+                        <div><dt>Attractions Inspected</dt><dd id="carnivalRecordDiscovery">0 / 3</dd></div>
+                        <div><dt>RPG Identity</dt><dd id="carnivalRecordIdentity">Not registered</dd></div>
+                    </dl>
+                    <section class="carnival-objectives">
+                        <span>CURRENT OBJECTIVES</span>
+                        <ol>
+                            <li data-carnival-objective="inspect">Inspect the three repurposed machines.</li>
+                            <li data-carnival-objective="token">Acquire an Exit Token or equivalent authorization.</li>
+                            <li data-carnival-objective="grounds">Investigate the people and doors MUSE failed to document.</li>
+                        </ol>
+                    </section>
+                    <section class="carnival-inventory-preview">
+                        <span>INVENTORY</span>
+                        <p id="carnivalInventoryState">No items. Several pockets remain optimistic.</p>
+                    </section>
+                    <button id="carnivalResetState" type="button">[ reset local carnival memory ]</button>
+                </div>
+            </details>
+        </div>
+
+        <section class="carnival-commentary" aria-live="polite">
+            <div class="carnival-commentary-signal" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div><span id="carnivalSpeaker">MUSE // UNAUTHORIZED HOST</span><p id="carnivalCommentary">I decorated it myself! Administrator said it had to remain functional, so EVERYTHING FUNCTIONAL GOT A LITTLE HAT.</p></div>
+        </section>
     </section>
 
     <nav class="detention-facility-nav" aria-label="Detention navigation">
@@ -62,7 +173,7 @@
         <button id="detentionClearRecord" type="button" hidden>[ clear fictional record ]</button>
     </nav>
 </main>
-<div class="status">Facility Reclassification: 27.10.2026 // PHASE I</div>
+<div class="status">Facility Reclassification: 27.10.2026 // CARNIVAL FOUNDATION 0.5.0</div>
 <noscript><footer class="legal-noscript"><a href="/impressum/">Impressum</a><span> / </span><a href="/datenschutz/">Datenschutz / Privacy</a></footer></noscript>
 </body>
 </html>
