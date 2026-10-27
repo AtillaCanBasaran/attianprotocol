@@ -15,6 +15,7 @@
     }
 
     function safePath(value) {
+        if (value === "/" || (typeof value === "string" && value.indexOf("/index.html") === 0)) return value;
         return typeof value === "string" && value.indexOf("/memory_node/attian/") === 0
             ? value
             : "/memory_node/attian/";
@@ -190,7 +191,7 @@
             if (retryButton) retryButton.addEventListener("click", function () { beginHearing(caseFile, incident); });
             var transferButton = content().querySelector("[data-transfer]");
             if (transferButton) transferButton.addEventListener("click", function () {
-                window.location.href = "/memory_node/attian/gamingarea/?case=" + encodeURIComponent(caseFile.id);
+                window.location.href = "/memory_node/attian/detentionfacility/?case=" + encodeURIComponent(caseFile.id);
             });
         }
 

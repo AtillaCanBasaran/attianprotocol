@@ -6,9 +6,10 @@
 <meta name="robots" content="noindex">
 <title>DETENTION FACILITY // SEALED</title>
 <link rel="stylesheet" href="/css/style.css?v=0.3.84">
-<link rel="stylesheet" href="/css/detention.css?v=0.4.0">
-<script src="/scripts/detention-cases.js?v=0.4.0" defer></script>
-<script src="/scripts/detention-facility.js?v=0.4.0" defer></script>
+<link rel="stylesheet" href="/css/detention.css?v=0.4.1">
+<script src="/scripts/detention-cases.js?v=0.4.1" defer></script>
+<script src="/scripts/detention-court.js?v=0.4.1" defer></script>
+<script src="/scripts/detention-facility.js?v=0.4.1" defer></script>
 <script src="/scripts/admin-assistant.js" defer></script>
 <script src="/scripts/legal-footer.js?v=4" defer></script>
 </head>
@@ -17,16 +18,20 @@
     <header class="detention-facility-header">
         <p class="detention-kicker">ARCHIVE COMPLIANCE // DISCIPLINARY SECTOR</p>
         <h1>Detention Facility</h1>
-        <p class="dim">/memory_node/attian/gamingarea // route retained for evidentiary reasons</p>
+        <p class="dim">/memory_node/attian/detentionfacility // referral traffic only</p>
     </header>
 
     <section id="detentionAccessPanel" class="detention-access-panel" aria-live="polite">
         <div class="detention-seal" aria-hidden="true"><span>ACCESS</span><strong>SEALED</strong></div>
         <div>
-            <p class="detention-case-label">REFERRAL CHECK IN PROGRESS</p>
+            <p class="detention-case-label">REFERRAL CHECK COMPLETE // NO VALID DISPOSITION</p>
             <h2>Disciplinary intake is not a public destination.</h2>
             <p>The former recreation node has been reclassified. Entry now requires a locally issued court disposition.</p>
-            <p class="detention-admin-line">Administrator: If you arrived by guessing the address, congratulations. You have discovered a locked door.</p>
+            <p class="detention-admin-line">Administrator: If you arrived by guessing the address, congratulations. You have discovered a locked door. It remains a door.</p>
+            <div class="detention-door-controls">
+                <button id="detentionRequestEntry" type="button">[ request entry anyway ]</button>
+                <p id="detentionDoorStatus" class="dim">REQUESTS FILED: 0 // sensible retreat remains available</p>
+            </div>
         </div>
     </section>
 

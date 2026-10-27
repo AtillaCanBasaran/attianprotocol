@@ -133,11 +133,11 @@ Detailed recipes and examples are in `docs/CONTENT_AUTHORING_GUIDE.md`.
 
 ## Detention Facility Cases and Baits
 
-The former Gaming Area is now a referral-only Detention Facility. Do not add a normal Navigator link to it.
+The Detention Facility is a referral-only disciplinary sector. Do not add a normal Navigator link to it.
 
-To add a case, edit `scripts/detention-cases.js` and give it a permanent case ID, title, charge, visible evidence, and exactly five fair multiple-choice questions. Every question needs a `correctIndex`; the visitor must be able to derive every answer from the evidence and interaction itself.
+To add a case, edit `scripts/detention-cases.js` and give it a permanent case ID, title, charge, visible evidence, and exactly five fair multiple-choice questions. Every question needs a `correctIndex`; vary its position and make every answer derivable from the visible evidence and interaction itself.
 
-To make that case discoverable, edit `scripts/detention-triggers.js`. Add an optional bait to the appropriate `pagePools` list, or add a deliberate exact search phrase to `navigatorQueries`. Page baits use the shared 30% appearance rate, only one can appear per visit, and ignoring them has no consequence. Ordinary clicks, misspellings, vulnerable queries, and real functional controls must never create a case.
+To make that case discoverable, edit `scripts/detention-triggers.js`. Add an optional bait to the appropriate `pagePools` list, or add a deliberate exact search phrase to `navigatorQueries`. Ordinary pages use the shared 30% appearance rate and building nodes use the explicit `pageChances` override. Baits should be inserted into a relevant record, image frame, map panel, or machine control—not detached from the page when a native placement is available. Only one appears per visit, and ignoring it has no consequence.
 
 Use `?detention-demo=1` on an eligible archive page during local testing to force one rotating bait to appear. Court and verdict state is stored only in `sessionStorage`; no visitor identity or remote telemetry is collected.
 

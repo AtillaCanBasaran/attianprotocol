@@ -283,8 +283,8 @@ Open `scripts/navigator-response-data.js` and add one object inside `window.NAVI
 {
     terms: ["cake", "the cake", "grand prize"],
     speaker: "muse",
-    routes: ["gaming"],
-    node: "GAMING AREA // UNDER CONSTRUCTION",
+    routes: ["detention"],
+    node: "DETENTION FACILITY // REFERRAL ONLY",
     text: "The prize may be dessert, acronym, leverage, or a trap wearing frosting."
 }
 ```

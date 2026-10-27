@@ -1,6 +1,17 @@
 (function () {
     var PASSWORD = "1327";
 
+    function referToCourt(caseId, triggerId) {
+        var trigger = { id: triggerId };
+        if (window.AttianDetention) {
+            window.AttianDetention.openIncident(caseId, trigger);
+            return;
+        }
+        document.addEventListener("attian:detention-ready", function () {
+            window.AttianDetention.openIncident(caseId, trigger);
+        }, { once: true });
+    }
+
     document.documentElement.classList.add("restricted-locking");
 
     var style = document.createElement("style");
@@ -129,22 +140,37 @@
         var form = gate.querySelector("form");
         var input = gate.querySelector("input");
         var status = gate.querySelector(".gate-status");
+        var failedAttempts = 0;
+        var emptyAttempts = 0;
 
         form.addEventListener("submit", function (event) {
             event.preventDefault();
 
             if (input.value === PASSWORD) {
+                failedAttempts = 0;
                 status.textContent = "ACCESS GRANTED. Restoring restricted memory...";
                 unlock(gate, content);
                 return;
             }
 
+            if (!input.value.trim()) emptyAttempts += 1;
+            failedAttempts += 1;
             input.value = "";
-            status.textContent = "ACCESS DENIED. Credential packet rejected.";
+            status.textContent = failedAttempts >= 3
+                ? "FINAL WARNING. Repeated access interference will be referred to Archive Court."
+                : failedAttempts === 2
+                    ? "ACCESS DENIED AGAIN. Repetition is not a credential format."
+                    : "ACCESS DENIED. Credential packet rejected.";
             gate.classList.remove("denied");
             void gate.offsetWidth;
             gate.classList.add("denied");
             input.focus();
+            if (failedAttempts >= 4) {
+                var caseId = emptyAttempts >= 2 ? "RES-002" : "RES-001";
+                failedAttempts = 0;
+                emptyAttempts = 0;
+                referToCourt(caseId, caseId === "RES-002" ? "restricted-button-bashing" : "restricted-wrong-key");
+            }
         });
 
         return gate;

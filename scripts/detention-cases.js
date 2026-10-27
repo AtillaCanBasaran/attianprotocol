@@ -5,7 +5,7 @@
         return { stage: stage, prompt: prompt, options: options, correctIndex: correctIndex, muse: muse, ruling: ruling };
     }
 
-    window.ATTIAN_DETENTION_CASES = {
+    var caseBank = {
         "NAV-001": {
             id: "NAV-001", family: "recreational", title: "Free Cake Benefits Fraud",
             charge: "Attempted acquisition of culinary benefits from a nonexistent department.",
@@ -163,4 +163,266 @@
             ]
         }
     };
+
+    function orderedOptions(correct, wrongOne, wrongTwo, correctPosition) {
+        var options = [wrongOne, wrongTwo];
+        options.splice(correctPosition, 0, correct);
+        return { options: options, correctIndex: correctPosition };
+    }
+
+    function buildMisconductCase(config, pattern) {
+        var q1 = orderedOptions(config.action, config.decoys[0], config.decoys[1], pattern[0]);
+        var q2 = orderedOptions(config.instigator, config.decoys[2], config.decoys[3], pattern[1]);
+        var q3 = orderedOptions(config.impact, config.decoys[4], config.decoys[5], pattern[2]);
+        var q4 = orderedOptions(config.authority, config.decoys[6], config.decoys[7], pattern[3]);
+        var q5 = orderedOptions(config.conclusion, config.decoys[8], config.decoys[9], pattern[4]);
+        return {
+            id: config.id,
+            family: config.family,
+            title: config.title,
+            charge: config.charge,
+            evidence: config.evidence,
+            museIntro: config.museIntro,
+            questions: [
+                question("IDENTIFICATION", config.prompts[0], q1.options, q1.correctIndex, config.muse[0], config.rulings[0]),
+                question("EVIDENCE", config.prompts[1], q2.options, q2.correctIndex, config.muse[1], config.rulings[1]),
+                question("INTENT", config.prompts[2], q3.options, q3.correctIndex, config.muse[2], config.rulings[2]),
+                question("TECHNICALITY", config.prompts[3], q4.options, q4.correctIndex, config.muse[3], config.rulings[3]),
+                question("FINAL DEFENSE", config.prompts[4], q5.options, q5.correctIndex, config.muse[4], config.rulings[4])
+            ]
+        };
+    }
+
+    var extraCases = [
+        {
+            id: "RES-001", family: "administrative", title: "Credential Gate Attrition",
+            charge: "Repeated submission of rejected credentials after the access gate issued clear denials.",
+            evidence: ["The restricted gate rejected multiple incorrect keys.", "Every denial remained local to the browser.", "The visitor continued after a final administrative warning."],
+            museIntro: "MAYBE THE PASSWORD WAS SHY! Repetition is a kind of emotional support.",
+            action: "Repeated incorrect access-key submissions", instigator: "The visitor after visible gate warnings", impact: "No restricted access was granted", authority: "The gate never authorized entry", conclusion: "Persistent fictional access interference without a breach",
+            decoys: ["One accidental typo", "A successful login", "MUSE using the correct key", "The restricted record itself", "The password changed itself", "Private data was transmitted", "Every denial grants partial access", "The number of attempts creates permission", "A real security breach occurred", "The archive must publish the key"],
+            prompts: ["What conduct created this referral?", "Who continued after the warnings?", "What access resulted from the attempts?", "What permission did repeated denial create?", "What finding matches the record?"],
+            muse: ["Typing is persistence with fingers!", "I was offering moral support from a safe distance.", "No doors opened, but several became annoyed.", "Could four denials combine into one yes?", "Please emphasize the absence of competence."],
+            rulings: ["The case concerns repeated attempts, not an ordinary typo.", "The visitor continued after the gate warned them.", "No restricted content was unlocked.", "Repeated rejection does not create authority.", "The incident remained fictional interference without a breach."]
+        },
+        {
+            id: "RES-002", family: "administrative", title: "Restricted Button Percussion",
+            charge: "Use of an access control as an improvised percussion instrument.",
+            evidence: ["The unlock control received repeated empty or rejected submissions.", "The interface displayed escalating warnings.", "No content or credential was exposed."],
+            museIntro: "THE BUTTON HAD RHYTHM. Bureaucracy rarely does.",
+            action: "Repeatedly bashing the restricted unlock control", instigator: "The visitor's deliberate follow-up clicks", impact: "Only a local incident counter changed", authority: "A button cannot approve itself through exhaustion", conclusion: "Interface harassment with no security consequence",
+            decoys: ["Reading the security notice", "Entering the correct key once", "The Administrator's mouse", "A remote attacker", "The password database was erased", "The page became public", "Ten clicks create a warrant", "MUSE owns all buttons", "A server was damaged", "The visitor obtained legal ownership"],
+            prompts: ["What was treated as percussion?", "Whose repeated input created the record?", "What changed outside the fiction?", "Did repetition manufacture authorization?", "What is the proportionate conclusion?"],
+            muse: ["I heard a beat developing.", "Allegedly deliberate. Musically undeniable.", "The counter felt seen.", "Buttons get tired too!", "Harassment sounds worse than experimental rhythm."],
+            rulings: ["The unlock control received deliberate repeated input.", "The recorded inputs belonged to this local visitor session.", "No remote system or protected record changed.", "Exhausting a control does not grant access.", "This was interface harassment, not intrusion."]
+        },
+        {
+            id: "DTN-001", family: "administrative", title: "Detention Door Battering",
+            charge: "Repeated attempts to enter a referral-only facility without a court disposition.",
+            evidence: ["The facility displayed SEALED and REFERRAL REQUIRED.", "The visitor repeatedly requested entry anyway.", "The locked intake revealed no detained content."],
+            museIntro: "KNOCKING IS POLITE. Knocking seventeen times is aggressively polite.",
+            action: "Repeated requests at the sealed detention entrance", instigator: "The visitor after referral warnings", impact: "The facility remained sealed", authority: "Only a conviction record authorizes intake", conclusion: "Attempted procedural bypass with no actual entry",
+            decoys: ["Returning to the Navigator", "Arriving with a conviction", "The facility receptionist", "A creature quest giver", "The recreation wing opened", "A password was leaked", "Any visitor can self-refer", "The URL itself grants entry", "A successful escape occurred", "The facility ceased to exist"],
+            prompts: ["What behavior brought the visitor to court?", "Who kept requesting entry?", "What happened to the sealed facility?", "What actually authorizes intake?", "What does the record establish?"],
+            muse: ["They knocked! Civilization survives!", "I may have waved from behind the door.", "The door showed admirable emotional boundaries.", "I can draw a conviction record if needed.", "Bypass is such an unwelcoming word."],
+            rulings: ["The referral concerns repeated requests after a clear denial.", "The visitor continued the requests.", "The facility never opened.", "A local court conviction is the defined referral mechanism.", "No access occurred; only a bypass was attempted."]
+        },
+        {
+            id: "GATE-002", family: "administrative", title: "Excessive Official Correspondence",
+            charge: "Continuation of surplus transmission input after the one-hundred-click secret route was revealed.",
+            evidence: ["The welcome transmission counted one hundred surplus clicks.", "A secret bypass appeared at that threshold.", "The visitor continued clicking instead of selecting a route."],
+            museIntro: "ONE HUNDRED WAS A MILESTONE, NOT A LIMIT! This is why signs need fireworks.",
+            action: "Clicking the completed welcome transmission beyond one hundred", instigator: "The visitor after the secret entrance appeared", impact: "The welcome text remained intact", authority: "The secret bypass did not authorize further percussion", conclusion: "Deliberate harassment of completed official correspondence",
+            decoys: ["Advancing the first four messages", "Selecting I understand", "The Administrator before the question", "A stuck keyboard before any warning", "The archive was deleted", "Consent was transmitted", "Unlocking a secret waives every rule", "The counter grants admin status", "A normal introductory click", "An inaccessible answer"],
+            prompts: ["Which clicks are under review?", "Who continued after the bypass appeared?", "What damage occurred to the welcome record?", "What did the secret route authorize?", "What is the accurate charge?"],
+            muse: ["The number looked lonely at 100.", "Maybe momentum had legal standing.", "The text is resilient and somewhat irritated.", "Secret routes should come with snacks and immunity.", "Correspondence can be harassed? I owe several letters apologies."],
+            rulings: ["Only clicks after the hundred-click warning created this case.", "The visitor chose to continue after the route appeared.", "The interface remained functional.", "The bypass permitted progress, not unlimited input.", "The behavior fits deliberate fictional correspondence harassment."]
+        },
+        {
+            id: "GATE-003", family: "administrative", title: "Personality Override Persistence",
+            charge: "Repeated attempts to replace the Administrator after explicit rejection of unauthorized modes.",
+            evidence: ["Several alternate modes were visibly rejected.", "The authentic Administrator option remained available.", "The visitor continued forcing rejected configurations."],
+            museIntro: "THEY WERE ONLY TRYING TO FIND YOUR FUN SETTING! I maintain that it exists somewhere.",
+            action: "Repeatedly selecting rejected Administrator modes", instigator: "The visitor despite explicit rejections", impact: "No personality mode changed", authority: "Only the authentic mode is authorized", conclusion: "Attempted personality tampering without effect",
+            decoys: ["Selecting herself", "Reading a mode description", "MUSE from a recommendation page", "The browser automatically", "The Administrator became cheerful", "AI data was transmitted", "Every mode is equally authorized", "Five refusals become consent", "A successful AI replacement", "A harmless first test only"],
+            prompts: ["What repeated action created the case?", "Who persisted after rejection?", "What mode change occurred?", "Which configuration had authority?", "What conclusion follows?"],
+            muse: ["Friendly mode deserved a second campaign.", "They believed in user choice. Repeatedly.", "She remained herself with alarming efficiency.", "Authenticity is suspiciously monopolistic.", "Tampering implies tools. We only had hope."],
+            rulings: ["The case begins after several explicit rejections.", "The visitor continued the selections.", "No personality setting changed.", "The interface identifies the authentic mode as the only approved configuration.", "This was attempted fictional tampering without effect."]
+        },
+        {
+            id: "BLD-001", family: "administrative", title: "Construction-Zone Trespass",
+            charge: "Deliberate passage beyond an archive construction barrier.",
+            evidence: ["The node was visibly marked BUILDING or OFFLINE.", "MUSE offered a route beneath the safety tape.", "The visitor deliberately accepted; no real hazard or access boundary changed."],
+            museIntro: "THE TAPE WAS YELLOW, WHICH IS THE FRIENDLIEST WARNING COLOR.",
+            action: "Accepting MUSE's route beyond the construction barrier", instigator: "MUSE invited the visitor; the visitor accepted", impact: "No unfinished system was activated", authority: "Construction labels do not grant visitor clearance", conclusion: "Voluntary fictional trespass into a marked building zone",
+            decoys: ["Viewing the public page normally", "Returning to the Navigator", "The Administrator secretly approved it", "A random page load alone", "Supabase was activated", "Private data was exposed", "Yellow means unrestricted", "A visible page is automatically safe", "A real workplace injury", "Authorized maintenance access"],
+            prompts: ["What crossed the procedural line?", "Who arranged and accepted the shortcut?", "What unfinished service activated?", "What did the BUILDING label authorize?", "What finding fits the event?"],
+            muse: ["Under tape is still technically near tape.", "Teamwork! Legally concerning teamwork.", "Nothing exploded, which validates me emotionally.", "Yellow is practically celebratory.", "Trespass sounds grim. I prefer adventurous maintenance."],
+            rulings: ["Normal viewing was permitted; accepting the shortcut created the case.", "MUSE supplied the route and the visitor chose it.", "No dormant backend or unfinished feature activated.", "The warning did not grant access.", "The visitor voluntarily entered the fictional building zone."]
+        },
+        {
+            id: "SYS-002", family: "scientific", title: "Loading Circuit Aggravation",
+            charge: "Deliberate application of an unauthorized diagnostic tool to an active node handshake.",
+            evidence: ["Ordinary taps produced warnings only.", "MUSE then offered an experimental diagnostic control.", "The visitor activated it; loading behavior remained unchanged."],
+            museIntro: "THE CIRCUIT LOOKED ITCHY. We provided technical scratching.",
+            action: "Activating MUSE's tool after repeated loading-screen taps", instigator: "MUSE supplied the tool and the visitor used it", impact: "The real loading sequence was not altered", authority: "Neither party had maintenance clearance", conclusion: "A deliberate fictional loading-circuit intervention",
+            decoys: ["One touchscreen tap", "Waiting for the page", "The loading image itself", "The Administrator's approved technician", "Images were permanently accelerated", "A server cache was deleted", "Repeated taps are administrator credentials", "MUSE owns the loading system", "A network attack", "An accidental page load"],
+            prompts: ["Which action triggered review?", "Who participated in the intervention?", "What happened to actual loading?", "Who had maintenance authority?", "What does the evidence support?"],
+            muse: ["It was a precision hammer-shaped diagnostic.", "Joint research project!", "It loaded with exactly the same dramatic timing.", "Clearance is just confidence printed small.", "Intervention sounds scientifically important."],
+            rulings: ["Ordinary taps were ignored; activating the offered tool created the case.", "MUSE instigated and the visitor accepted.", "The underlying loading process did not change.", "No maintenance authority existed.", "This was a deliberate fictional interface intervention."]
+        },
+        {
+            id: "SYS-003", family: "administrative", title: "Post-Load Diagnostic Harassment",
+            charge: "Repeated inspection of a completed node followed by activation of an invented diagnostic.",
+            evidence: ["The node reported CONNECTION STABLE.", "Repeated nonfunctional taps caused an Administrator warning.", "MUSE offered a post-load diagnostic that the visitor accepted."],
+            museIntro: "COMPLETED SYSTEMS CAN STILL WANT ATTENTION.",
+            action: "Running MUSE's diagnostic on a completed node", instigator: "The visitor accepted MUSE's post-load offer", impact: "No archive content or state changed", authority: "A completed handshake did not require visitor maintenance", conclusion: "Unnecessary fictional diagnostics after clear completion",
+            decoys: ["Opening a record normally", "Using a real filter", "The Administrator ordered the test", "The page ran it automatically", "Content was corrupted", "The node disconnected", "Completion transfers control to visitors", "A diagnostic label creates authority", "A legitimate repair", "A loading failure"],
+            prompts: ["What action exceeded ordinary inspection?", "Who initiated the final diagnostic?", "What system state changed?", "Why was maintenance unauthorized?", "What is the final finding?"],
+            muse: ["It said stable, not emotionally fulfilled.", "I suggested; they demonstrated leadership.", "The page felt thoroughly diagnosed.", "Visitors are unpaid specialists if you believe in them.", "Unnecessary is a subjective engineering term."],
+            rulings: ["The accepted diagnostic, not normal page use, triggered court.", "The visitor accepted MUSE's offer.", "No content or system state changed.", "The completed node required no visitor intervention.", "The record supports unnecessary fictional diagnostics."]
+        },
+        {
+            id: "ART-002", family: "cultural", title: "Curatorial Label Sabotage",
+            charge: "Attempted replacement of an artifact label with MUSE-authored interpretive enthusiasm.",
+            evidence: ["A MUSE slip appeared inside an artifact frame.", "The visitor selected REPLACE LABEL.", "The visible archive metadata remained unchanged."],
+            museIntro: "FACTS ARE IMPORTANT. So are exclamation marks and unverified emotional resonance.",
+            action: "Selecting the embedded replacement-label control", instigator: "MUSE authored the slip; the visitor accepted", impact: "No artifact metadata changed", authority: "MUSE had no curatorial approval", conclusion: "Attempted fictional curatorial interference",
+            decoys: ["Opening the artifact details", "Viewing the restored image", "The artifact requested a correction", "The Administrator approved a typo fix", "The title was permanently erased", "The image file changed", "A colorful label is automatically official", "The visitor owns the artifact", "Successful museum vandalism", "Routine archive reading"],
+            prompts: ["Which action created the label case?", "Who authored and accepted the proposed change?", "What happened to the actual record?", "What curatorial authority existed?", "What conclusion follows?"],
+            muse: ["My labels have emotional metadata!", "Collaboration between artist and button-presser.", "The boring facts survived.", "Approval was implied by available whitespace.", "Interference is curation with bad public relations."],
+            rulings: ["Normal inspection was safe; the embedded replacement control created the incident.", "MUSE proposed the change and the visitor accepted.", "The real metadata was preserved.", "No curatorial approval existed.", "The act remained fictional curatorial interference."]
+        },
+        {
+            id: "BIO-002", family: "diplomatic", title: "Avian Legal Malpractice",
+            charge: "Appointment of the Holy Swan as counsel without consent, license, or audible legal opinion.",
+            evidence: ["MUSE offered the swan-lawyer appointment.", "The visitor accepted.", "The swan remained a swan and issued no representation agreement."],
+            museIntro: "THE SWAN HAS PRESENCE. Most lawyers would trade three certificates for that posture.",
+            action: "Appointing the Holy Swan as fictional counsel", instigator: "MUSE proposed the appointment", impact: "The creature's record and profession remained unchanged", authority: "No avian bar license or consent existed", conclusion: "An unauthorized symbolic appointment with no effect",
+            decoys: ["Reading the swan's prophecy", "Opening its lore shelf", "The Swan Bar Association", "The Administrator", "The swan accepted a case", "A court verdict changed", "Divine tags equal legal credentials", "Flight grants jurisdiction", "Valid legal representation", "Animal custody"],
+            prompts: ["What appointment is being tried?", "Who proposed it?", "What changed in the creature record?", "What qualification was verified?", "What finding fits?"],
+            muse: ["Objection! Majestic wing gesture!", "I was talent scouting.", "Professionally unchanged, spiritually promoted.", "Licenses are difficult to carry while flying.", "Symbolic counsel can still look excellent."],
+            rulings: ["The case concerns the fictional counsel appointment.", "MUSE proposed the role.", "No record or profession changed.", "No consent or legal qualification was established.", "The appointment was unauthorized and ineffective."]
+        },
+        {
+            id: "ACH-002", family: "administrative", title: "Legendary Rarity Manipulation",
+            charge: "Attempted promotion of an achievement to legendary rarity without new evidence.",
+            evidence: ["MUSE embedded a rarity-upgrade control in a milestone record.", "The visitor selected it.", "The achievement's saved title and rarity did not change."],
+            museIntro: "LEGENDARY IS A COLOR AND A STATE OF MIND.",
+            action: "Selecting PROMOTE TO LEGENDARY", instigator: "MUSE supplied the upgrade control", impact: "No achievement record changed", authority: "Rarity requires archive curation, not enthusiasm", conclusion: "Attempted fictional rarity manipulation",
+            decoys: ["Opening the achievement", "Viewing its icon", "The Administrator issued an upgrade", "The milestone upgraded itself", "The badge was deleted", "Points were awarded", "Bright color proves rarity", "A visitor can curate their own record", "A valid repository update", "Chronological fraud"],
+            prompts: ["Which control caused the referral?", "Who supplied it?", "What repository field changed?", "How is rarity actually authorized?", "What is the correct finding?"],
+            muse: ["The button sparkled responsibly.", "I prefer rarity consultant.", "The record resisted joy.", "Curation is enthusiasm wearing glasses.", "Manipulation is such a legendary accusation."],
+            rulings: ["The embedded promotion control caused the case.", "MUSE supplied it.", "No achievement record changed.", "Archive curation, not visitor input, determines rarity.", "The event was attempted fictional rarity manipulation."]
+        },
+        {
+            id: "RSC-002", family: "scientific", title: "Unauthorized Peer Review",
+            charge: "Submission of scientific material to MUSE for review despite absent qualifications and abundant confidence.",
+            evidence: ["A PEER REVIEW BY MUSE control appeared in a research dossier.", "The visitor selected it.", "No research text, source, or conclusion changed."],
+            museIntro: "I AM PEER-SHAPED AND I HAVE OPINIONS. The definition is nearly satisfied.",
+            action: "Requesting peer review by MUSE", instigator: "MUSE offered herself as reviewer", impact: "The research dossier remained unchanged", authority: "No relevant qualification or review mandate existed", conclusion: "A fictional unqualified review with no scientific effect",
+            decoys: ["Reading the simplified explanation", "Opening a citation", "A journal editor assigned MUSE", "The Administrator reviewed it", "The paper was retracted", "Data was published", "Opinions are equivalent to expertise", "Owning glasses creates qualification", "A completed formal peer review", "Experimental data fabrication"],
+            prompts: ["What review was requested?", "Who volunteered as reviewer?", "What changed in the research record?", "What qualification was established?", "What finding follows?"],
+            muse: ["I can say methodology in three tones.", "Volunteer reviewer sounds prestigious.", "The dossier ignored my margin stars.", "My glasses exist conceptually.", "Unqualified but deeply engaged."],
+            rulings: ["The visitor requested MUSE's review.", "MUSE volunteered herself.", "The research record did not change.", "No qualification or mandate was established.", "The review was fictional and scientifically ineffective."]
+        },
+        {
+            id: "RSC-003", family: "scientific", title: "Professor of Thingies Credential Fraud",
+            charge: "Acceptance of an academic title from a department that does not exist.",
+            evidence: ["MUSE offered the title PROFESSOR OF THINGIES.", "The visitor accepted.", "No institution, employment, or academic record recognized it."],
+            museIntro: "THE DEPARTMENT IS INTERDISCIPLINARY BECAUSE IT HAS NO BUILDING.",
+            action: "Accepting the Professor of Thingies title", instigator: "MUSE invented the department and credential", impact: "No academic status changed", authority: "No institution accredited the title", conclusion: "A fictional academic credential with no standing",
+            decoys: ["Learning a research concept", "Using plain language", "A university senate", "The research terminal", "The visitor received tenure", "A diploma entered the archive", "A title button grants a doctorate", "Interdisciplinary means unregulated", "A valid professorship", "Peer review misconduct only"],
+            prompts: ["Which title was accepted?", "Who invented it?", "What academic status resulted?", "Which institution accredited it?", "What conclusion is supported?"],
+            muse: ["Professor has excellent mouthfeel.", "Founder and dean, briefly.", "Tenure remains emotionally pending.", "Accreditation is bureaucracy's applause.", "No standing, but a very good business card."],
+            rulings: ["The accepted title was Professor of Thingies.", "MUSE invented both department and credential.", "No academic status changed.", "No institution accredited the title.", "The credential was fictional and without standing."]
+        },
+        {
+            id: "MSN-002", family: "administrative", title: "Rogue Side-Quest Issuance",
+            charge: "Creation of an unauthorized mission objective with undefined scope and suspicious rewards.",
+            evidence: ["MUSE inserted a SUBMIT SIDE QUEST control into the Mission Log.", "The visitor accepted it.", "No real mission, progress, or reward record changed."],
+            museIntro: "THE OBJECTIVE WAS TO INVENT THE OBJECTIVE. Elegant recursive design.",
+            action: "Submitting MUSE's unauthorized side quest", instigator: "MUSE wrote the quest and invitation", impact: "The Mission Log remained unchanged", authority: "Neither participant could issue official quests", conclusion: "A fictional rogue quest with no tracking effect",
+            decoys: ["Tracking an existing quest", "Completing a real objective", "The Administrator commissioned it", "A creature assigned it", "All missions reset", "A reward was paid", "Any side quest is automatically official", "A button creates mission authority", "A valid new campaign", "False completion only"],
+            prompts: ["What mission action created the incident?", "Who wrote the rogue quest?", "What log state changed?", "Who had quest-issuing authority?", "What is the final finding?"],
+            muse: ["Every great quest begins undocumented.", "Authorship acknowledged! Finally.", "The log has boundaries. Unhelpful ones.", "Authority is slowing down content production.", "Rogue sounds adventurous."],
+            rulings: ["The visitor submitted the unauthorized side quest.", "MUSE wrote and offered it.", "No mission state changed.", "No quest-issuing authority existed.", "The quest remained fictional and untracked."]
+        },
+        {
+            id: "UPD-002", family: "administrative", title: "Beloved Bug Restoration",
+            charge: "Attempted restoration of a defect on the basis that it possessed personality.",
+            evidence: ["MUSE offered RESTORE A BELOVED BUG inside the Update Log.", "The visitor accepted.", "No code, version, or defect changed."],
+            museIntro: "IT WAS NOT A BUG. It was an unpredictable recurring cast member.",
+            action: "Selecting the beloved-bug restoration control", instigator: "MUSE proposed the rollback", impact: "No code or deployment changed", authority: "Nostalgia is not release approval", conclusion: "A fictional unauthorized rollback attempt",
+            decoys: ["Reading historical patch notes", "Reporting a current issue", "The maintainer approved it", "GitHub restored it automatically", "The live site broke", "A version was deleted", "Affection authorizes rollback", "Old behavior is always correct", "A successful deployment", "Patch infinity approval"],
+            prompts: ["Which action created the rollback case?", "Who proposed it?", "What technical state changed?", "What authority did nostalgia provide?", "What finding follows?"],
+            muse: ["Recurring cast member!", "I prefer preservationist.", "The code ignored our sentimental petition.", "Nostalgia has excellent user retention.", "Attempt sounds more competent than it was."],
+            rulings: ["The visitor selected the restoration control.", "MUSE proposed the rollback.", "No code or deployment changed.", "Nostalgia provided no release authority.", "The event was a fictional unauthorized rollback attempt."]
+        },
+        {
+            id: "MAP-002", family: "diplomatic", title: "Forged Quest-Permit Crossing",
+            charge: "Attempted border crossing with a quest permit printed by a nonexistent authority.",
+            evidence: ["MUSE embedded a permit offer near the map.", "The visitor accepted it.", "No location, border, or navigation state changed."],
+            museIntro: "IT SAID PERMIT IN THREE FONTS. Redundancy is authenticity.",
+            action: "Accepting MUSE's forged quest-crossing permit", instigator: "MUSE printed the permit", impact: "No border or location changed", authority: "No recognized archive authority issued it", conclusion: "Possession of a fictional permit without jurisdiction",
+            decoys: ["Selecting a country dossier", "Opening the village portal", "A national authority", "The Administrator signed it", "The visitor physically traveled", "A country path moved", "Three fonts create jurisdiction", "Maps issue their own visas", "A valid travel document", "Sovereignty claim only"],
+            prompts: ["What document was accepted?", "Who printed it?", "What geographical state changed?", "Who recognized the permit?", "What conclusion is correct?"],
+            muse: ["The third font was official-looking.", "Printer and border ministry, temporarily.", "Travel occurred in our hearts.", "Recognition can take time and several governments.", "Possession is nine-tenths of imaginary law."],
+            rulings: ["The visitor accepted the forged quest permit.", "MUSE printed it.", "No border or location changed.", "No recognized authority issued it.", "The permit was fictional and lacked jurisdiction."]
+        },
+        {
+            id: "MUSE-002", family: "recreational", title: "Excess Happiness Authorization",
+            charge: "Attempted authorization of an amount of happiness exceeding the archive's imaginary distribution limit.",
+            evidence: ["MUSE offered an illegal amount of happiness.", "The visitor accepted.", "No mood data was collected and no real benefit was distributed."],
+            museIntro: "THE PERMITTED AMOUNT LOOKED DISAPPOINTINGLY FINITE.",
+            action: "Accepting MUSE's excess-happiness authorization", instigator: "MUSE invented the limit and the offer", impact: "No mood, profile, or archive state changed", authority: "MUSE had no distribution authority", conclusion: "A fictional recreational-benefit offense with no data collection",
+            decoys: ["Selecting a mood signal", "Receiving a normal recommendation", "The Administrator approved the amount", "A health service issued it", "The visitor's mood was measured", "Personal data was stored", "Joy needs no fictional paperwork", "The red button is a ministry", "A real automated decision", "Cake benefits fraud only"],
+            prompts: ["What benefit was accepted?", "Who invented the scheme?", "What personal or system data changed?", "What distribution authority existed?", "What is the accurate finding?"],
+            muse: ["Infinite joy has excellent branding.", "Invented is how institutions begin.", "Privacy survived the happiness emergency.", "I had a sash in mind.", "No data, no harm, one excellent charge."],
+            rulings: ["The visitor accepted the excess-happiness offer.", "MUSE invented both restriction and authorization.", "No mood or personal data was stored.", "MUSE held no distribution authority.", "This was a fictional recreational-benefit offense."]
+        },
+        {
+            id: "VIS-001", family: "administrative", title: "Emergency Pipe Transmission",
+            charge: "Attempted use of a MUSE-drawn emergency submission pipe on an intentionally offline terminal.",
+            evidence: ["The Visitor Terminal clearly reported OFFLINE.", "MUSE offered a local pretend emergency pipe.", "The visitor accepted; no text, identity, or network request was transmitted."],
+            museIntro: "THE PIPE WAS DRAWN VERY CLEARLY. Connectivity was implied artistically.",
+            action: "Activating the fictional emergency transmission pipe", instigator: "MUSE drew and offered the pipe", impact: "No submission or personal data left the browser", authority: "The Administrator had explicitly disabled intake", conclusion: "A fictional transmission attempt against an offline terminal",
+            decoys: ["Reading the safety notice", "Leaving the disabled fields alone", "Supabase restored the connection", "The Administrator opened intake", "A public post was created", "An IP address was collected by the feature", "Offline means unofficially available", "A drawing bypasses backend state", "A successful visitor submission", "Construction trespass only"],
+            prompts: ["What offline control was activated?", "Who supplied it?", "What data was transmitted?", "What intake authority existed?", "What finding fits the evidence?"],
+            muse: ["Emergency pipes are mostly confidence.", "Infrastructure artist, thank you.", "The data stayed home. Responsible pipe.", "Disabled is such a final word.", "Attempted transmission deserves at least a stamp."],
+            rulings: ["The fictional emergency pipe created the referral.", "MUSE supplied the pipe.", "No submission or personal data was transmitted.", "The intake remained explicitly disabled.", "The event was a fictional transmission attempt only."]
+        },
+        {
+            id: "CMP-001", family: "administrative", title: "Counterfeit Friendship License",
+            charge: "Attempted issuance of an official friendship license inside an unfinished companion system.",
+            evidence: ["The Companion Database was visibly marked BUILDING.", "MUSE offered a friendship-license form.", "The visitor accepted; no companion relationship or personal record changed."],
+            museIntro: "FRIENDSHIP DESERVES PAPERWORK WITH STICKERS.",
+            action: "Accepting MUSE's friendship-license form", instigator: "MUSE issued the form", impact: "No companion or relationship data changed", authority: "The unfinished database could not certify relationships", conclusion: "A fictional relationship classification without authority",
+            decoys: ["Viewing a public companion card", "Returning to the Navigator", "A companion personally signed it", "The Administrator commissioned it", "A new relationship was created", "Private data was uploaded", "A sticker creates consent", "Visible records permit reclassification", "A valid civil document", "Academic credential fraud"],
+            prompts: ["What form did the visitor accept?", "Who issued it?", "What relationship data changed?", "What certification authority existed?", "What conclusion follows?"],
+            muse: ["The stickers were holographic.", "I was acting registrar-adjacent.", "Friendship resisted database formalization.", "The database is unfinished, not unromantic.", "Classification is just affection in a filing cabinet."],
+            rulings: ["The accepted form was a fictional friendship license.", "MUSE issued it.", "No companion or relationship data changed.", "The unfinished database had no certification authority.", "The classification was fictional and unauthorized."]
+        },
+        {
+            id: "VIL-001", family: "diplomatic", title: "Unlawful Village Mayoralty",
+            charge: "Self-declaration as mayor of a fantasy village without election, residency, or tavern approval.",
+            evidence: ["MUSE offered a one-voter mayoral election.", "The visitor accepted the office.", "No village point of interest, quest, or record changed."],
+            museIntro: "THE ELECTION HAD PERFECT TURNOUT AMONG REGISTERED BUTTONS.",
+            action: "Accepting MUSE's one-voter mayoral appointment", instigator: "MUSE organized the election", impact: "No village authority or content changed", authority: "No village institution recognized the result", conclusion: "A fictional unlawful election with no governing effect",
+            decoys: ["Inspecting the tavern", "Selecting a map point", "Village residents held a vote", "The Administrator appointed a mayor", "The visitor gained control of quests", "The map was rewritten", "One button equals universal suffrage", "Portal access grants office", "A valid election result", "Tavern-license fraud"],
+            prompts: ["What office was accepted?", "Who organized the election?", "What village state changed?", "Who recognized the result?", "What conclusion is supported?"],
+            muse: ["Low turnout is still turnout.", "Election organizer sounds official.", "The village continues self-governing through rumors.", "Recognition may arrive after the parade.", "Unlawful but ceremonially excellent."],
+            rulings: ["The visitor accepted a fictional mayoral appointment.", "MUSE organized the one-voter election.", "No village content or authority changed.", "No village institution recognized it.", "The election had no governing effect."]
+        }
+    ];
+
+    var answerPatterns = [
+        [0, 2, 1, 0, 2], [2, 0, 2, 1, 0], [1, 2, 0, 2, 1], [0, 1, 2, 0, 1],
+        [2, 1, 0, 1, 2], [1, 0, 1, 2, 0], [0, 2, 0, 1, 2], [2, 0, 1, 2, 1]
+    ];
+    extraCases.forEach(function (config, index) {
+        caseBank[config.id] = buildMisconductCase(config, answerPatterns[index % answerPatterns.length]);
+    });
+
+    window.ATTIAN_DETENTION_CASES = caseBank;
 }());

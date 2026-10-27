@@ -3,7 +3,7 @@
 
     function loadDetentionRuntime() {
         var path = window.location.pathname;
-        if (path.indexOf("/memory_node/attian/") !== 0 || path.indexOf("/gamingarea/") !== -1) {
+        if (path.indexOf("/memory_node/attian/") !== 0 || path.indexOf("/detentionfacility/") !== -1) {
             return;
         }
         if (document.querySelector('script[data-detention-runtime]')) {
@@ -11,7 +11,7 @@
         }
 
         var runtime = document.createElement("script");
-        runtime.src = "/scripts/detention-runtime.js?v=0.4.0";
+        runtime.src = "/scripts/detention-runtime.js?v=0.4.1";
         runtime.defer = true;
         runtime.dataset.detentionRuntime = "true";
         document.head.appendChild(runtime);

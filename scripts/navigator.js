@@ -35,6 +35,10 @@
             .replace(/Gaming Area/g, "Detention Facility");
     }
 
+    function currentRouteName(value) {
+        return String(value || "") === "gaming" ? "detention" : String(value || "");
+    }
+
     function containsTerm(query, term) {
         var normalizedQuery = normalize(query).replace(/[^a-z0-9&.]+/g, " ").replace(/\s+/g, " ").trim();
         var normalizedTerm = normalize(term).replace(/[^a-z0-9&.]+/g, " ").replace(/\s+/g, " ").trim();
@@ -58,7 +62,7 @@
                 speaker: normalize(entry.speaker || "administrator"),
                 text: currentNodeName(entry.text || entry.response || ""),
                 category: String(entry.category || "uncategorized"),
-                routes: (Array.isArray(entry.routes) ? entry.routes : [entry.route || ""]).map(function (route) { return String(route || ""); }).filter(Boolean),
+                routes: (Array.isArray(entry.routes) ? entry.routes : [entry.route || ""]).map(currentRouteName).filter(Boolean),
                 node: currentNodeName(entry.node || ""),
                 showAll: Boolean(entry.showAll),
                 mode: String(entry.mode || "route").toLowerCase(),
@@ -183,6 +187,7 @@
         var topology = document.querySelector(".navigator-topology");
         var routes = Array.prototype.slice.call(document.querySelectorAll(".navigator-route"));
         var results = Array.prototype.slice.call(document.querySelectorAll(".navigator-result"));
+        var sealedNodeClicks = {};
         var reactions = buildReactionBank();
         if (!input || !response) return;
 
@@ -377,8 +382,17 @@
                 if (result.getAttribute("aria-disabled") !== "true") return;
                 event.preventDefault();
                 result.classList.remove("navigator-node-routing");
-                setResponse(result.getAttribute("data-note"), "administrator", readResultName(result));
+                var routeName = result.getAttribute("data-route") || "sealed";
+                sealedNodeClicks[routeName] = (sealedNodeClicks[routeName] || 0) + 1;
+                var warning = sealedNodeClicks[routeName] >= 3
+                    ? "Final warning: this node requires a referral. Repeated impact is not a referral protocol."
+                    : result.getAttribute("data-note");
+                setResponse(warning, "administrator", readResultName(result));
                 markResponseMode("error");
+                if (sealedNodeClicks[routeName] >= 5 && window.AttianDetention) {
+                    sealedNodeClicks[routeName] = 0;
+                    window.AttianDetention.openIncident("DTN-001", { id: "navigator-detention-node-bashing" });
+                }
             });
         });
 

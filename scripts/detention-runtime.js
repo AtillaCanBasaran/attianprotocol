@@ -3,6 +3,17 @@
 
     if (window.ATTIAN_DETENTION_RUNTIME_LOADING) return;
     window.ATTIAN_DETENTION_RUNTIME_LOADING = true;
+    var pendingIncidents = [];
+
+    window.AttianDetention = window.AttianDetention || {
+        openIncident: function (caseId, trigger) {
+            if (window.AttianDetentionCourt) {
+                window.AttianDetentionCourt.openIncident(caseId, trigger || { id: "system-referral" });
+                return;
+            }
+            pendingIncidents.push({ caseId: caseId, trigger: trigger || { id: "system-referral" } });
+        }
+    };
 
     function addStylesheet() {
         if (document.querySelector('link[href^="/css/detention.css"]')) return;
@@ -21,7 +32,7 @@
                 return;
             }
             var script = document.createElement("script");
-            script.src = source + "?v=0.4.0";
+            script.src = source + "?v=0.4.1";
             script.addEventListener("load", function () {
                 script.dataset.loaded = "true";
                 resolve();
@@ -35,6 +46,12 @@
     loadScript("/scripts/detention-cases.js")
         .then(function () { return loadScript("/scripts/detention-court.js"); })
         .then(function () { return loadScript("/scripts/detention-triggers.js"); })
+        .then(function () {
+            document.dispatchEvent(new CustomEvent("attian:detention-ready"));
+            pendingIncidents.splice(0).forEach(function (incident) {
+                window.AttianDetentionCourt.openIncident(incident.caseId, incident.trigger);
+            });
+        })
         .catch(function () {
             window.ATTIAN_DETENTION_RUNTIME_LOADING = false;
         });

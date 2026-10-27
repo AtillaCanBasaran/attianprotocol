@@ -114,7 +114,7 @@ Primary pages:
 - `memory_node/attian/designlab/index.html` - design concepts.
 - `memory_node/attian/dreamingfragments/index.html` - restricted dream fragments.
 - `memory_node/attian/fieldnotes/index.html` - restricted writing fragments.
-- `memory_node/attian/gamingarea/index.html` - MUSE-run game backbone: tarot, wheel, and trivia/Cake trial.
+- `memory_node/attian/detentionfacility/index.html` - referral-only Detention Facility intake; direct visitors see a sealed disciplinary door.
 - `memory_node/attian/grandmap/index.html` - world map backbone and route hub.
 - `memory_node/attian/fantasyvillage/index.html` - portal-only CRPG village backbone linked from Grand Map.
 - `memory_node/attian/missionlog/index.html` - game-style quest journal.
@@ -335,11 +335,11 @@ When reactivating later:
 
 ### Detention Facility and Archive Court
 
-The former Gaming Area has been reclassified as the `Detention Facility`. Its old URL is retained, but the Navigator node is a non-routing referral display. Direct visits show a sealed intake screen unless the current browser session contains a court conviction.
+The `Detention Facility` is the reclassified disciplinary sector. Its route is `/memory_node/attian/detentionfacility/`; the obsolete recreation route has been removed. The Navigator node is a non-routing referral display, and direct visits show a sealed intake screen unless the current browser session contains a court conviction.
 
 Phase I implements discovery, misconduct, and judicial processing only:
 
-- supported pages have a 30% chance to receive one optional, page-specific MUSE bait;
+- ordinary supported pages have a 30% chance to receive one optional, page-native MUSE bait; building nodes use a slightly higher 42% hazard rate;
 - exact Navigator queries can reveal fixed judicial temptations;
 - accepting a bait opens an incident notice before any hearing begins;
 - every case presents visible evidence and five fair questions;
@@ -347,9 +347,9 @@ Phase I implements discovery, misconduct, and judicial processing only:
 - visitors may dismiss the incident, leave court, clear the fictional record, or use ordinary navigation at any time;
 - state is local `sessionStorage`; the system records no identity and sends no telemetry.
 
-Case content lives in `scripts/detention-cases.js`; appearance pools and query triggers live in `scripts/detention-triggers.js`. `?detention-demo=1` forces a bait on an eligible page for local testing. `memory_node/attian/gamingarea/detention_court.md` is the full Phase I design source, while `gaming.md` remains the broader future facility/carnival concept.
+Case content lives in `scripts/detention-cases.js`; the bank currently contains 32 cases, including 20 additional behavior-specific proceedings with varied correct-answer positions. Appearance pools and query triggers live in `scripts/detention-triggers.js`. `?detention-demo=1` forces a bait on an eligible page for local testing. Restricted-gate abuse, 101+ welcome clicks, repeated rejected Administrator modes, sealed-door bashing, and deliberate loading-console tools also produce referrals. `memory_node/attian/detentionfacility/detention_court.md` is the full Phase I design source, while `detention_facility.md` remains the broader future facility/carnival concept.
 
-The former tarot, wheel, and Cake code remains dormant in `scripts/game-area.js` for reference but is not loaded. Carnival systems, rewards, tokens, and escape progression are deliberately outside Phase I.
+The old tarot, wheel, and Cake code remains dormant in `scripts/game-area.js` for reference but is not loaded. Carnival systems, rewards, tokens, and escape progression are deliberately outside Phase I.
 
 ### Grand Map and Fun Village
 

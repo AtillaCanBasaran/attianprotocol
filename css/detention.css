@@ -29,6 +29,8 @@
     background: repeating-linear-gradient(90deg, transparent 0 8px, rgba(255,54,95,.18) 8px 9px) !important;
 }
 .route-detention { stroke: var(--detention-red) !important; stroke-dasharray: 4 7; filter: drop-shadow(0 0 4px rgba(255,54,95,.58)); }
+.navigator-chipset-page .node-detention { grid-column: 10 / 13; grid-row: 5; }
+.navigator-chipset-page .node-detention .navigator-node-glyph { width: 38px; height: 25px; border-radius: 0; }
 
 .detention-dialog-open { overflow: hidden; }
 .detention-overlay {
@@ -199,6 +201,69 @@
 .detention-bait small { display: block; margin-top: 9px; color: #85758f; font: .68rem/1.4 monospace; }
 .detention-bait-dismiss { position: absolute; top: 8px; right: 10px; border: 0; background: transparent; color: #74657e; font-size: 1.2rem; cursor: pointer; }
 
+.detention-integrated-slip {
+    position: relative;
+    margin: 16px 0 0;
+    padding: 13px 14px;
+    border: 1px dashed rgba(113,255,227,.48);
+    background: linear-gradient(110deg, rgba(113,255,227,.08), transparent 58%), rgba(5,4,10,.9);
+    box-shadow: inset 3px 0 0 var(--detention-cyan);
+    color: #c9f8ed;
+}
+.detention-integrated-slip > span,
+.node-ready-misconduct > span { color: var(--detention-cyan); font: .65rem/1.3 monospace; letter-spacing: .12em; }
+.detention-integrated-slip p,
+.node-ready-misconduct p { margin: 7px 0 10px; color: #bfe9df; font: .76rem/1.5 monospace; }
+.detention-integrated-slip button,
+.node-load-misconduct,
+.node-ready-misconduct button,
+.detention-door-controls button {
+    border: 1px solid var(--detention-cyan);
+    padding: 8px 11px;
+    background: rgba(113,255,227,.06);
+    color: var(--detention-cyan);
+    font: .72rem monospace;
+    cursor: pointer;
+}
+.detention-integrated-slip button:hover,
+.detention-integrated-slip button:focus-visible,
+.node-load-misconduct:hover,
+.node-ready-misconduct button:hover { background: var(--detention-cyan); color: #02100d; }
+.detention-integrated-slip small { display: block; margin-top: 8px; color: #796e82; font: .62rem monospace; }
+.artifact-card.has-detention-bait,
+.creature-card.has-detention-bait,
+.achievement-card.has-detention-bait,
+.research-log.has-detention-bait,
+.quest-card.has-detention-bait,
+.patch-note.has-detention-bait { border-color: rgba(113,255,227,.48) !important; box-shadow: 0 0 24px rgba(113,255,227,.08); }
+.detention-artifact-target,
+.detention-creature-target { position: relative; cursor: crosshair; }
+.detention-artifact-target:after,
+.detention-creature-target:after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    pointer-events: none;
+    border: 1px dashed rgba(113,255,227,.48);
+    box-shadow: inset 0 0 20px rgba(113,255,227,.08);
+}
+.detention-artifact-seal {
+    position: absolute;
+    z-index: 3;
+    right: 9px;
+    bottom: 9px;
+    padding: 5px 7px;
+    border: 1px solid var(--detention-cyan);
+    background: rgba(3,10,12,.9);
+    color: var(--detention-cyan);
+    font: .6rem monospace;
+    letter-spacing: .08em;
+    pointer-events: none;
+}
+.node-load-misconduct { margin-top: 10px; width: fit-content; }
+.node-ready-misconduct { margin-top: 14px; padding: 12px; border: 1px dashed rgba(113,255,227,.4); background: rgba(3,14,15,.55); }
+.node-intro.is-being-inspected .node-intro-content { box-shadow: inset 0 0 0 1px rgba(113,255,227,.2); }
+
 .detention-facility-page {
     min-height: 100vh;
     background:
@@ -226,6 +291,10 @@
 .detention-construction-block strong { display: block; margin: 7px 0; color: #ffe5a3; }
 .detention-facility-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .detention-facility-nav a { padding: 10px 14px; border: 1px solid rgba(197,108,255,.45); color: #d7aeff; text-decoration: none; font-family: monospace; }
+.detention-door-controls { margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(255,54,95,.35); }
+.detention-door-controls button { border-color: var(--detention-red); color: #ff9caf; background: rgba(255,54,95,.06); }
+.detention-door-controls button:hover { background: var(--detention-red); color: #120106; }
+.detention-door-controls p { margin: 9px 0 0; font: .68rem/1.5 monospace; }
 
 @media (max-width: 720px) {
     .detention-dialog { max-height: calc(100vh - 12px); }
@@ -239,6 +308,15 @@
     .detention-seal { width: 120px; }
     .detention-transfer-record { grid-template-columns: 1fr; }
     .detention-bait-inline { max-height: 190px; overflow: auto; }
+}
+
+@media (max-width: 980px) {
+    .navigator-chipset-page .node-detention { min-height: 180px; }
+}
+
+@media (max-width: 620px) {
+    .navigator-chipset-page .node-detention { min-height: 108px; }
+    .detention-integrated-slip { padding: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

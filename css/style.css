@@ -7320,6 +7320,38 @@ kbd {
 .entry-dialogue-window p.is-speaking { animation: entry-dialogue .42s ease both; }
 .entry-dialogue-window p.is-annoyed { color: #d8b9ee; }
 .entry-dialogue-hint { display: block; margin-top: 13px; color: #675c72; font-size: .58rem; letter-spacing: 1.4px; }
+.entry-cinematic.is-click-milestone {
+    border-color: rgba(197,108,255,.88);
+    animation: entry-click-milestone .82s ease both;
+}
+.entry-cinematic.is-click-milestone:after {
+    position: absolute;
+    z-index: 6;
+    top: 16px;
+    right: 25px;
+    border: 1px solid rgba(197,108,255,.62);
+    padding: 6px 9px;
+    color: #dcb7ff;
+    background: rgba(10,3,18,.88);
+    box-shadow: 0 0 18px rgba(197,108,255,.18);
+    font-size: .56rem;
+    letter-spacing: 1.8px;
+    pointer-events: none;
+}
+.entry-cinematic.is-click-milestone-25:after { content: "INPUT PATTERN // 25"; }
+.entry-cinematic.is-click-milestone-50:after { content: "BEHAVIORAL REVIEW // 50"; }
+.entry-cinematic.is-click-milestone-100:after { content: "HIDDEN QUEST // 100"; }
+.entry-cinematic.is-click-milestone-50 .entry-avatar-frame {
+    box-shadow: 0 0 52px rgba(197,108,255,.48), 0 0 18px rgba(113,255,227,.22);
+}
+.entry-cinematic.is-click-milestone-100 .entry-avatar-frame {
+    animation: entry-click-achievement .82s cubic-bezier(.2,.8,.2,1) both;
+    box-shadow: 0 0 65px rgba(197,108,255,.58), 0 0 25px rgba(113,255,227,.3);
+}
+.entry-cinematic.is-click-milestone-100 .entry-dialogue-window {
+    border-left-color: #71ffe3;
+    background: linear-gradient(90deg, rgba(197,108,255,.18), rgba(113,255,227,.06), transparent 72%);
+}
 .entry-choice-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .entry-choice-row.is-visible { animation: entry-dialogue .42s ease both; }
 .entry-choice-row button,
@@ -7333,6 +7365,22 @@ kbd {
 }
 .entry-choice-row button:hover,
 .entry-continue:hover { border-color: #71ffe3; color: #71ffe3; box-shadow: 0 0 17px rgba(113,255,227,.18); }
+.entry-choice-row .entry-bypass-choice {
+    flex-basis: 100%;
+    border-color: rgba(113,255,227,.72);
+    color: #d8fff8;
+    background:
+        linear-gradient(90deg, rgba(113,255,227,.12), rgba(197,108,255,.1), transparent),
+        rgba(5,14,18,.92);
+    box-shadow: inset 3px 0 0 #71ffe3, 0 0 22px rgba(113,255,227,.14);
+    opacity: 0;
+    transform: translateY(8px);
+}
+.entry-choice-row .entry-bypass-choice.is-unlocked {
+    opacity: 1;
+    transform: none;
+    animation: entry-bypass-unlock .7s cubic-bezier(.2,.8,.2,1) both;
+}
 .entry-privacy-note { margin: 12px 0 0; text-align: center; color: #77788b; font-size: .66rem; letter-spacing: 1.5px; }
 
 .entry-stage-head { max-width: 880px; margin: 0 auto 28px; text-align: center; }
@@ -7489,6 +7537,22 @@ kbd {
 @keyframes entry-interference { 0% { opacity: 0; clip-path: inset(48% 0 48%); } 12%, 72% { opacity: 1; clip-path: inset(0); } 35% { clip-path: inset(20% 0 28%); } 45% { clip-path: inset(0); } 100% { opacity: 0; } }
 @keyframes entry-approval { 0% { opacity: 0; } 18%, 72% { opacity: .92; } 100% { opacity: 0; } }
 @keyframes entry-approved { 50% { transform: translateY(-2px); } }
+@keyframes entry-click-milestone {
+    0%, 100% { transform: none; filter: none; }
+    24% { transform: translateX(2px); filter: brightness(1.08); }
+    48% { transform: translateX(-2px); }
+    72% { transform: none; filter: brightness(1.04); }
+}
+@keyframes entry-click-achievement {
+    0% { transform: scale(.94); filter: saturate(.7); }
+    55% { transform: scale(1.035); filter: saturate(1.25) brightness(1.12); }
+    100% { transform: none; filter: none; }
+}
+@keyframes entry-bypass-unlock {
+    0% { opacity: 0; transform: translateY(8px); filter: blur(3px); }
+    55% { opacity: 1; transform: translateY(-2px); filter: none; box-shadow: inset 3px 0 0 #71ffe3, 0 0 34px rgba(113,255,227,.3); }
+    100% { opacity: 1; transform: none; filter: none; }
+}
 
 @media (max-width: 900px) {
     .entry-cinematic { grid-template-columns: 1fr; min-height: auto; }
@@ -7518,7 +7582,9 @@ kbd {
     .entry-stage.is-active, .entry-stage.is-leaving, .entry-dialogue-window p.is-speaking,
     .entry-choice-row.is-visible, .entry-avatar-frame:after, .entry-orbit,
     .entry-mode-grid button.denied, .entry-mode-console.admin-blocking .entry-mode-grid,
-    .mode-interference.active { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    .mode-interference.active, .entry-cinematic.is-click-milestone,
+    .entry-cinematic.is-click-milestone-100 .entry-avatar-frame,
+    .entry-bypass-choice.is-unlocked { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 
 /* PATCH 0.3.81 // Loading handshake becomes the node introduction */

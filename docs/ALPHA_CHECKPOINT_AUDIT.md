@@ -2,7 +2,7 @@
 
 Checkpoint date: 08.10.2026
 
-Status: alpha structure is coherent enough to keep. The site now has the right skeleton: public Navigator, restricted shelves, Mission Log, Artifact Vault, Creature Index, Gaming Area, Grand Map, portal-only Fun Village, offline Visitor Terminal, and the Administrator assistant shell.
+Status: alpha structure is coherent enough to keep. The site now has the right skeleton: public Navigator, restricted shelves, Mission Log, Artifact Vault, Creature Index, referral-only Detention Facility, Grand Map, portal-only Fun Village, offline Visitor Terminal, and the Administrator assistant shell.
 
 ## Executive Read
 
@@ -208,22 +208,24 @@ Watch:
 - These pages need careful content intake. They can become too revealing or too abstract quickly.
 - Use short visible summaries and collapsible deeper records.
 
-### Gaming Area
+### Detention Facility
 
 Files:
 
-- `memory_node/attian/gamingarea/index.html`
-- `scripts/game-area.js`
+- `memory_node/attian/detentionfacility/index.html`
+- `scripts/detention-cases.js`
+- `scripts/detention-triggers.js`
+- `scripts/detention-court.js`
 
 Good:
 
-- Backbone is correct: tarot, wheel, trivia/Cake.
-- MUSE moderation fits this page.
+- Referral-only entry, local court state, and the locked Navigator node are coherent.
+- Page-native MUSE bait and Administrator judgment now form one shared interaction system.
 
 Watch:
 
-- Needs real content later: tarot deck, wheel outcomes, trivia bank.
-- Keep game copy funny, but use clear rules when interaction becomes real.
+- Carnival progression, token systems, rewards, and escape routes remain future work.
+- Keep every case fair: visible evidence, one correct answer per round, and ordinary navigation always available.
 
 ### Grand Map
 

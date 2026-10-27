@@ -2,24 +2,59 @@
     "use strict";
 
     var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function referToCourt(caseId, triggerId) {
+        var trigger = { id: triggerId };
+        if (window.AttianDetention) {
+            window.AttianDetention.openIncident(caseId, trigger);
+            return;
+        }
+        document.addEventListener("attian:detention-ready", function () {
+            window.AttianDetention.openIncident(caseId, trigger);
+        }, { once: true });
+    }
     var dialogueLines = [
         "Visitor signal detected. Visual contact is regrettably clear.",
         "You have entered a memory node: part archive, part quest log, part evidence locker.",
         "I am the Administrator. I keep it coherent. The Subject keeps producing material.",
         "Do you understand?"
     ];
-    var impatientReactions = [
-        "The buttons are directly below the sentence. A bold interface decision, apparently.",
+    var progressiveClickReactions = [
+        "Yes, that was a question. The two buttons below are the unusually visible answer mechanism.",
+        "The buttons are directly below the sentence. You may have clicked the transmission by accident.",
+        "Still here? Fair enough. Interfaces occasionally invite the wrong kind of confidence.",
+        "You have discovered clicking. The archive acknowledges the discovery without opening a parade route.",
+        "The next meaningful interaction is one of the two buttons. I checked twice, for your benefit.",
         "Repeatedly poking the transmission will not make comprehension downloadable.",
-        "You have discovered clicking. The archive is very proud of you.",
-        "I asked a binary question. You are attempting a percussion solo.",
-        "The next meaningful interaction is one of the two buttons. I checked.",
-        "Are you testing my patience or your mouse? The telemetry is inconclusive.",
-        "The transmission has ended. Your clicking career may now diversify.",
+        "Visitor input detected. Visitor decision remains mysteriously absent.",
+        "I asked a binary question. You are beginning to treat it as a percussion instrument.",
+        "Are you testing my patience or your mouse? The telemetry is becoming less inconclusive.",
         "Yes, the screen still works. No, I will not produce a secret third answer.",
-        "Visitor input detected. Visitor decision remains mysteriously absent."
+        "This has exceeded the normal accidental-click allowance. I am revising your file accordingly.",
+        "The transmission has ended. Your clicking career may now diversify at any time.",
+        "I am starting to suspect comprehension was never the objective.",
+        "Remarkable persistence. Misapplied, obviously, but remarkable.",
+        "Every click is being counted. This is not a threat; it is increasingly interesting documentation.",
+        "The buttons have not moved. I admire their composure under sustained visitor pressure.",
+        "At this point your mouse is either haunted or acting under direct instruction.",
+        "You are testing whether I run out of remarks. I am testing whether you run out of afternoon.",
+        "I could disable this interaction. I am choosing observation over mercy.",
+        "Continue if you must. The archive has begun classifying this as a behavioral exhibit."
     ];
-    var finalQuestionNudge = "Yes, that was a question. The two buttons below are the unusually visible answer mechanism.";
+    var clickMilestones = {
+        25: {
+            label: "ADMINISTRATOR // WATCHING",
+            text: "Twenty-five surplus clicks. This has crossed from accidental input into a documented behavioral pattern."
+        },
+        50: {
+            label: "ADMINISTRATOR // CONCERNED",
+            text: "Fifty. I have stopped interpreting this as confusion. You are doing it because I react, which is irritatingly effective."
+        },
+        100: {
+            label: "ADMINISTRATOR // INCIDENT FILED",
+            text: "One hundred clicks. Hidden quest complete: TEST THE ADMINISTRATOR'S PATIENCE. Fine. A third option has been authorized for your statistically unusual behavior."
+        }
+    };
     var reasonResponses = {
         direct: "Direct invitation verified. The Subject knowingly caused this. Useful evidence.",
         social: "Public signal intercepted. So the social-media bait functioned after all.",
@@ -104,11 +139,15 @@
         var dialogue = document.getElementById("entry-dialogue");
         var controls = document.getElementById("understanding-controls");
         var cinematic = document.getElementById("entry-cinematic");
+        var scanLabel = cinematic && cinematic.querySelector(".entry-scan-label");
+        var dialogueHint = cinematic && cinematic.querySelector(".entry-dialogue-hint");
+        var bypassButton = document.querySelector("[data-understands='bypass']");
         if (!dialogue || !controls || !cinematic) return;
 
         var index = 0;
         var impatientClicks = 0;
-        var lastReaction = -1;
+        var correspondenceReferralIssued = false;
+        var milestoneTimer;
 
         function revealControls() {
             controls.hidden = false;
@@ -131,13 +170,37 @@
             if (index === dialogueLines.length - 1) revealControls();
         }
 
-        function showFrustration() {
-            var nextReaction = Math.floor(Math.random() * impatientReactions.length);
-            if (impatientReactions.length > 1 && nextReaction === lastReaction) {
-                nextReaction = (nextReaction + 1) % impatientReactions.length;
+        function showMilestone(clickCount, milestone) {
+            window.clearTimeout(milestoneTimer);
+            cinematic.classList.remove("is-click-milestone-25", "is-click-milestone-50", "is-click-milestone-100");
+            void cinematic.offsetWidth;
+            cinematic.classList.add("is-click-milestone", "is-click-milestone-" + clickCount);
+            if (scanLabel) scanLabel.textContent = milestone.label;
+            if (dialogueHint) dialogueHint.textContent = clickCount + " surplus inputs logged // the answer controls remain operational";
+            if (clickCount === 100 && bypassButton) {
+                bypassButton.hidden = false;
+                window.requestAnimationFrame(function () { bypassButton.classList.add("is-unlocked"); });
+                if (dialogueHint) dialogueHint.textContent = "100 surplus inputs logged // exceptional bypass route authorized";
             }
-            lastReaction = nextReaction;
-            setDialogue(impatientReactions[nextReaction], true);
+            setDialogue(milestone.text, true);
+            milestoneTimer = window.setTimeout(function () {
+                cinematic.classList.remove("is-click-milestone", "is-click-milestone-" + clickCount);
+                if (scanLabel) scanLabel.textContent = "ADMINISTRATOR // ACTIVE";
+                if (dialogueHint) dialogueHint.textContent = "click transmission to advance // after the question, choose or test patience";
+            }, reducedMotion ? 700 : 2200);
+        }
+
+        function showProgressiveReaction(clickCount) {
+            var milestone = clickMilestones[clickCount];
+            if (milestone) {
+                showMilestone(clickCount, milestone);
+                return;
+            }
+            if (cinematic.classList.contains("is-click-milestone")) return;
+            var reactionIndex;
+            if (clickCount <= progressiveClickReactions.length) reactionIndex = clickCount - 1;
+            else reactionIndex = 15 + ((clickCount - progressiveClickReactions.length - 1) % 5);
+            setDialogue(progressiveClickReactions[reactionIndex], clickCount > 4);
         }
 
         setDialogue(dialogueLines[0], false);
@@ -149,13 +212,22 @@
                 return;
             }
             impatientClicks += 1;
-            if (impatientClicks === 1) setDialogue(finalQuestionNudge, true);
-            else showFrustration();
+            showProgressiveReaction(impatientClicks);
+            if (impatientClicks > 100 && !correspondenceReferralIssued) {
+                correspondenceReferralIssued = true;
+                referToCourt("GATE-002", "welcome-click-101");
+            }
         });
 
         controls.addEventListener("click", function (event) {
             var button = event.target.closest("[data-understands]");
             if (!button) return;
+            if (button.getAttribute("data-understands") === "bypass") {
+                var traceResponse = document.getElementById("entry-reason-response");
+                if (traceResponse) traceResponse.textContent = "One-hundred-click bypass accepted. You are officially special enough to evade one binary question. Do not generalize.";
+                setStage("trace");
+                return;
+            }
             if (button.getAttribute("data-understands") === "repeat") {
                 dialogue.textContent = "Reduced version: a person had memories. He made them clickable. I supervise the consequences. Better?";
                 dialogue.classList.add("is-speaking");
@@ -191,6 +263,7 @@
         var interference = document.getElementById("mode-interference");
         var continueButton = document.getElementById("mode-continue");
         var interferenceTimer;
+        var deniedAttempts = 0;
         if (!row || !response || !interference || !continueButton) return;
 
         personalityModules.slice().sort(function () { return Math.random() - 0.5; }).slice(0, 4).forEach(function (mode) {
@@ -214,6 +287,7 @@
             window.clearTimeout(interferenceTimer);
 
             if (mode === "herself") {
+                deniedAttempts = 0;
                 response.textContent = "Authentic mode confirmed. An unexpectedly sound decision. You may keep it.";
                 authenticButton.classList.add("approved");
                 interference.querySelector("span").textContent = "AUTHENTIC MODE CONFIRMED";
@@ -226,7 +300,11 @@
                 }, reducedMotion ? 300 : 850);
                 return;
             }
+            deniedAttempts += 1;
             response.textContent = selectedModule.response;
+            if (deniedAttempts === 3) {
+                response.textContent += " This is the third rejected override. Further persistence becomes a disciplinary matter.";
+            }
             button.classList.add("denied");
             interference.querySelector("span").textContent = "REQUEST INTERCEPTED // " + selectedModule.interference;
             void interference.offsetWidth;
@@ -236,6 +314,12 @@
                 consolePanel.classList.remove("admin-blocking");
                 interference.classList.remove("active");
             }, reducedMotion ? 350 : 1150);
+            if (deniedAttempts >= 5) {
+                deniedAttempts = 0;
+                window.setTimeout(function () {
+                    referToCourt("GATE-003", "administrator-mode-forcing");
+                }, reducedMotion ? 0 : 380);
+            }
         });
         continueButton.addEventListener("click", function () { setStage("consent"); });
     }

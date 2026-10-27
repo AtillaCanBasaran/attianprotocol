@@ -1,5 +1,16 @@
 (function () {
     document.documentElement.classList.add("node-loading-enabled");
+
+    function referToCourt(caseId, triggerId) {
+        var trigger = { id: triggerId };
+        if (window.AttianDetention) {
+            window.AttianDetention.openIncident(caseId, trigger);
+            return;
+        }
+        document.addEventListener("attian:detention-ready", function () {
+            window.AttianDetention.openIncident(caseId, trigger);
+        }, { once: true });
+    }
     var COMMON_COMMENTS = [
         "Establishing a stable connection. The archive is pretending this is routine.",
         "Negotiating with the image cache. It has developed boundaries.",
@@ -474,6 +485,10 @@
         var ready = false;
         var visualPercent = 0;
         var started = Date.now();
+        var loadingClicks = 0;
+        var readyClicks = 0;
+        var loadingToolAdded = false;
+        var readyToolAdded = false;
 
         function setSpeakerTone(speaker) {
             loadingStage.classList.remove("is-speaker-administrator", "is-speaker-muse", "is-speaker-interference");
@@ -506,6 +521,56 @@
                 commentIndex += 1;
             }, 160);
         }
+
+        function addLoadingTool() {
+            if (loadingToolAdded) return;
+            loadingToolAdded = true;
+            var button = document.createElement("button");
+            button.type = "button";
+            button.className = "node-load-misconduct";
+            button.textContent = "[ apply MUSE's experimental hammer ]";
+            button.addEventListener("click", function (event) {
+                event.stopPropagation();
+                referToCourt("SYS-002", "loading-experimental-hammer-" + node);
+            });
+            loadingStage.querySelector(".node-load-copy").appendChild(button);
+            setSpeakerTone("muse");
+            comment.textContent = "MUSE: Repeated contact detected! I can lend you a tiny JavaScript hammer. The Administrator has not seen the form.";
+            comment.classList.add("is-visible");
+        }
+
+        function addReadyTool() {
+            if (readyToolAdded) return;
+            readyToolAdded = true;
+            var panel = document.createElement("aside");
+            panel.className = "node-ready-misconduct";
+            panel.innerHTML = "<span>MUSE // POST-LOAD MAINTENANCE</span><p>The node is stable, but you have inspected it with exceptional persistence. Run my completely unnecessary diagnostic?</p><button type=\"button\">[ run post-load diagnostic ]</button>";
+            panel.querySelector("button").addEventListener("click", function (event) {
+                event.stopPropagation();
+                referToCourt("SYS-003", "post-load-diagnostic-" + node);
+            });
+            introContent.appendChild(panel);
+        }
+
+        loadingStage.addEventListener("click", function (event) {
+            if (event.target.closest("button") || ready) return;
+            loadingClicks += 1;
+            if (loadingClicks === 1) {
+                comment.textContent = "Administrator: Touching the loading circuit does not improve transfer speed.";
+                comment.classList.add("is-visible");
+            } else if (loadingClicks === 2) {
+                comment.textContent = "Administrator: Second contact logged. Please stop diagnosing infrastructure with your finger.";
+            } else if (loadingClicks >= 3) {
+                addLoadingTool();
+            }
+        });
+
+        introContent.addEventListener("click", function (event) {
+            if (!ready || event.target.closest("a, button, input, textarea, select, summary, label")) return;
+            readyClicks += 1;
+            if (readyClicks === 3) consoleElement.classList.add("is-being-inspected");
+            if (readyClicks >= 6) addReadyTool();
+        });
 
         function setProgress(done, total) {
             var measured = total ? Math.round((done / total) * 100) : 8;
