@@ -143,7 +143,7 @@ To make that case discoverable, edit `scripts/detention-triggers.js`. Add an opt
 
 Use `?detention-demo=1` on an eligible archive page during local testing to force one rotating bait to appear. Court and verdict state is stored only in `sessionStorage`; no visitor identity or remote telemetry is collected.
 
-The Carnival is one environment inside the facility page, not a set of separate game pages. Its hub and focus-scene copy live in the `scenes` object in `scripts/detention-carnival.js`. Keep new grounds interactions data-driven, add their ID to the matching discovery list, and connect them with a real `data-carnival-scene` button. The first release deliberately exposes only previews: do not activate rewards, Exit Tokens, inventory, or RPG stats until their stage is implemented end-to-end. During local development, `/memory_node/attian/detentionfacility/?carnival-demo=1` previews the admitted flow without manufacturing a public bypass.
+The Carnival is one environment inside the facility page, not a set of separate game pages. Its scene identity copy lives in `sceneMeta`, rendered game/NPC interfaces use the `render…` functions, and click consequences are routed through `handleFocusAction` in `scripts/detention-carnival.js`. Keep new grounds interactions data-driven, add their ID to the matching discovery list, and connect them with a real `data-carnival-scene` button. Preserve at least one complete release route whenever rewards change: Wheel, Cake Trial, and the grounds chain currently provide separate token paths. During local development, `/memory_node/attian/detentionfacility/?carnival-demo=1` previews the admitted flow without manufacturing a public bypass.
 
 ## Visitor Terminal State
 
